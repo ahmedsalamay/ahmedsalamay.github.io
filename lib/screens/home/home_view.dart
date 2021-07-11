@@ -1,6 +1,8 @@
 import 'package:fimto_frame/responsive/responsive_layout.dart';
+import 'package:fimto_frame/routes/router_names.dart';
 import 'package:fimto_frame/themes/buttons.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:video_player/video_player.dart';
 
 class HomeView extends StatelessWidget {
@@ -47,7 +49,8 @@ class HomeViewMobile extends StatelessWidget {
                 ),
               ),
             ),
-            GradientButton(text: 'Let\'s Go', onTap: () {})
+            GradientButton(
+                text: 'Let\'s Go', onTap: () => Get.toNamed(selectToWhoRoute))
           ],
         ),
       ),

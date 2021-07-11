@@ -78,8 +78,8 @@ final ThemeData myTheme = ThemeData(
     ),
     headline3: TextStyle(
       color: Colors.black,
-      fontSize: 16,
-      fontWeight: FontWeight.w600,
+      fontSize: 20,
+      fontWeight: FontWeight.w800,
       fontStyle: FontStyle.normal,
     ),
     headline4: TextStyle(
@@ -184,7 +184,7 @@ final ThemeData myTheme = ThemeData(
     ),
     errorMaxLines: 2,
     isDense: false,
-    contentPadding: EdgeInsets.only(top: 12, bottom: 12, left: 8, right: 8),
+    contentPadding: EdgeInsets.only(top: 12, bottom: 12, left: 15, right: 15),
     isCollapsed: false,
     prefixStyle: TextStyle(
       color: FimtoColors.iconsColor,
@@ -205,9 +205,9 @@ final ThemeData myTheme = ThemeData(
       fontStyle: FontStyle.normal,
     ),
     filled: true,
-    fillColor: Color(0xffebf2ff),
+    fillColor: Color(0xffe4e4e4),
     errorBorder: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(10),
+      borderRadius: BorderRadius.circular(25),
       borderSide: BorderSide(
         width: 2,
         style: BorderStyle.solid,
@@ -215,15 +215,15 @@ final ThemeData myTheme = ThemeData(
       ),
     ),
     focusedBorder: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(10),
+      borderRadius: BorderRadius.circular(25),
       borderSide: BorderSide(
         width: 2,
         style: BorderStyle.solid,
-        color: FimtoColors.textFieldBorderColor,
+        color: Color(0xffe4e4e4),
       ),
     ),
     focusedErrorBorder: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(10),
+      borderRadius: BorderRadius.circular(25),
       borderSide: BorderSide(
         width: 2,
         style: BorderStyle.solid,
@@ -231,27 +231,27 @@ final ThemeData myTheme = ThemeData(
       ),
     ),
     disabledBorder: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(10),
+      borderRadius: BorderRadius.circular(25),
       borderSide: BorderSide(
         width: 2,
         style: BorderStyle.solid,
-        color: FimtoColors.textFieldBorderColor,
+        color: Color(0xffe4e4e4),
       ),
     ),
     enabledBorder: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(10),
+      borderRadius: BorderRadius.circular(25),
       borderSide: BorderSide(
         width: 2,
         style: BorderStyle.solid,
-        color: FimtoColors.textFieldBorderColor,
+        color: Color(0xffe4e4e4),
       ),
     ),
     border: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(10),
+      borderRadius: BorderRadius.circular(25),
       borderSide: BorderSide(
         width: 2,
         style: BorderStyle.solid,
-        color: FimtoColors.textFieldBorderColor,
+        color: Color(0xffb4bcc7),
       ),
     ),
   ),

@@ -15,7 +15,7 @@ class SplashViewModel extends ChangeNotifier {
   }
 
   void navigationAction() {
-    Get.offNamed(homeRoute);
+    Get.offNamed(addAddressRoute);
     // if (!_isUrlsSaved) {
     //   Get.offNamed(codeRoute);
     // } else if (!_isUserSaved) {

@@ -1,6 +1,7 @@
 import 'package:fimto_frame/screens/add_address/add_address_view.dart';
 import 'package:fimto_frame/screens/home/home_view.dart';
 import 'package:fimto_frame/screens/onbording/onbording.dart';
+import 'package:fimto_frame/screens/select_to_who/select_to_who_view.dart';
 import 'package:fimto_frame/screens/splash/splash_view.dart';
 import 'package:flutter/material.dart';
 import '../main.dart';
@@ -20,6 +21,9 @@ Route onGenerateRoute(RouteSettings settings) {
     case addAddressRoute:
       return MaterialPageRoute(
           builder: (context) => AddAddressScreen(), settings: settings);
+    case selectToWhoRoute:
+      return MaterialPageRoute(
+          builder: (context) => SelectToWhoScreen(), settings: settings);
 
     default:
       return MaterialPageRoute(

@@ -1,3 +1,4 @@
+import 'package:fimto_frame/generated/l10n.dart';
 import 'package:fimto_frame/responsive/responsive_layout.dart';
 import 'package:fimto_frame/routes/router_names.dart';
 import 'package:fimto_frame/screens/home/home_view.dart';
@@ -27,20 +28,16 @@ class OnBoardView extends StatelessWidget {
 class OnBordingMobileView extends StatelessWidget {
   getOnBordingPages(BuildContext context) {
     final List<OnBording> onBordingPages = <OnBording>[
-      OnBording(Color(0xFF331f28), 'restaurant.png', 'It doesn\'t need a nails',
-          Color(0xfff9a825), ' our frames stick to any walls'),
-      OnBording(
-          Color(0xFF331f28),
-          'markets.png',
-          'Shape for your frames',
-          Color(0xff00bcd4),
-          'We give you the most suitable shape for the frames on your wall'),
+      OnBording(Color(0xFF331f28), 'restaurant.png', S.of(context).noNails,
+          Color(0xfff9a825), S.of(context).framesStickWall),
+      OnBording(Color(0xFF331f28), 'markets.png', S.of(context).shapeFrame,
+          Color(0xff00bcd4), S.of(context).suitableShape),
       OnBording(
           Color(0xFF331f28),
           'icon_pharmacy.png',
-          'Shipping is always free',
+          S.of(context).shippingFree,
           Colors.deepOrange,
-          'Free Egyptwide shipping! At your doorstep in a week'),
+          S.of(context).egyptwideShipping),
     ];
     return onBordingPages;
   }

@@ -20,7 +20,7 @@ class CustomAppBar extends StatelessWidget {
               onPressed: () => Get.back(),
               icon: Icon(
                 Icons.arrow_back_ios_rounded,
-                color: FimtoColors.iconsColor,
+                color: Colors.black,
               ),
             ),
           ),
@@ -28,7 +28,7 @@ class CustomAppBar extends StatelessWidget {
             flex: 9,
             child: Text(
               title,
-              style: Theme.of(context).textTheme.headline6,
+              style: Theme.of(context).textTheme.headline3,
               textAlign: TextAlign.center,
               overflow: TextOverflow.clip,
             ),
@@ -37,8 +37,8 @@ class CustomAppBar extends StatelessWidget {
             flex: 1,
             child: IconButton(
               icon: Icon(
-                Icons.home_outlined,
-                color: FimtoColors.primaryColor,
+                Icons.menu,
+                color: Colors.black,
                 size: 26,
               ),
               onPressed: () =>
