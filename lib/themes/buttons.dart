@@ -108,7 +108,8 @@ class GradientButton extends StatelessWidget {
                 borderRadius: BorderRadius.circular(8),
               )
             : BoxDecoration(
-                gradient: FimtoColors.buttonLinearGradient,
+                color: FimtoColors.primaryColor,
+                // gradient: FimtoColors.buttonLinearGradient,
                 borderRadius: BorderRadius.circular(25),
               ),
       ),

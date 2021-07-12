@@ -2,8 +2,12 @@ import 'package:fimto_frame/generated/l10n.dart';
 import 'package:fimto_frame/models/language.dart';
 import 'package:fimto_frame/repository/local/token_local_repository.dart';
 import 'package:fimto_frame/responsive/responsive_layout.dart';
+import 'package:fimto_frame/routes/router_names.dart';
+import 'package:fimto_frame/themes/appBar.dart';
 import 'package:fimto_frame/themes/buttons.dart';
+import 'package:fimto_frame/themes/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import 'package:provider/provider.dart';
 
@@ -37,6 +41,7 @@ class AddAddressScreenMobile extends StatelessWidget {
     return ChangeNotifierProvider<AddAddressViewModel>(
         create: (_) => AddAddressViewModel(),
         child: Scaffold(
+          backgroundColor: Colors.white,
           body: _Body(),
         ));
   }
@@ -58,24 +63,28 @@ class __BodyState extends State<_Body> {
   Widget build(BuildContext context) {
     final vm = context.watch<AddAddressViewModel>();
     final height = MediaQuery.of(context).size.height;
-    return Container(
-        height: double.infinity,
-        child: Padding(
-          padding: const EdgeInsets.all(15.0),
-          child: Column(
-            children: [
-              Expanded(
-                child: SingleChildScrollView(
-                  child: _AddressForm(),
+    return SafeArea(
+      child: Container(
+          height: double.infinity,
+          child: Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: Column(
+              children: [
+                CustomAppBar(title: S.of(context).addAddress),
+                _Stepper(),
+                Expanded(
+                  child: SingleChildScrollView(
+                    child: _AddressForm(),
+                  ),
                 ),
-              ),
-              GradientButton(
-                text: S.of(context).confirmAddress,
-                onTap: () {},
-              )
-            ],
-          ),
-        ));
+                GradientButton(
+                  text: S.of(context).confirmAddress,
+                  onTap: () => Get.toNamed(addPaymentMethodRoute),
+                )
+              ],
+            ),
+          )),
+    );
   }
 }
 
@@ -89,7 +98,7 @@ class _AddressForm extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(height: 60),
+          SizedBox(height: 30),
           Text(
             S.of(context).shipTo,
             style: Theme.of(context).textTheme.headline3,
@@ -166,6 +175,104 @@ class _AddressForm extends StatelessWidget {
             obscureText: true,
             decoration: InputDecoration(hintText: S.of(context).mailHint),
           ),
+        ],
+      ),
+    );
+  }
+}
+
+class _Stepper extends StatelessWidget {
+  const _Stepper({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+            child: Row(
+              children: [
+                Container(
+                  width: 50,
+                  height: 50,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(25),
+                      color: FimtoColors.primaryColor),
+                  child: Center(
+                    child: Text(
+                      '1',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 22,
+                          fontWeight: FontWeight.w800),
+                    ),
+                  ),
+                ),
+                Expanded(child: Divider(thickness: 4)),
+                Container(
+                  width: 50,
+                  height: 50,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(25),
+                      border: Border.all(
+                          color: FimtoColors.dividerColor, width: 3)),
+                  child: Center(
+                      child: Text(
+                    '2',
+                    style: TextStyle(
+                        color: FimtoColors.dividerColor,
+                        fontSize: 22,
+                        fontWeight: FontWeight.w800),
+                  )),
+                ),
+                Expanded(child: Divider(thickness: 4)),
+                Container(
+                  width: 50,
+                  height: 50,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(25),
+                      border: Border.all(
+                          color: FimtoColors.dividerColor, width: 3)),
+                  child: Center(
+                    child: Text(
+                      '3',
+                      style: TextStyle(
+                          color: FimtoColors.dividerColor,
+                          fontSize: 22,
+                          fontWeight: FontWeight.w800),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                S.of(context).addAddress,
+                style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500),
+              ),
+              Text(
+                S.of(context).payment,
+                style: TextStyle(
+                    color: FimtoColors.dividerColor,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w800),
+              ),
+              Text(
+                S.of(context).confirmation,
+                style: TextStyle(
+                    color: FimtoColors.dividerColor,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w800),
+              ),
+            ],
+          )
         ],
       ),
     );

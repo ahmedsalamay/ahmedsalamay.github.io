@@ -1,6 +1,8 @@
 import 'package:fimto_frame/responsive/responsive_layout.dart';
 import 'package:fimto_frame/routes/router_names.dart';
+import 'package:fimto_frame/themes/appBar.dart';
 import 'package:fimto_frame/themes/buttons.dart';
+import 'package:fimto_frame/themes/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:video_player/video_player.dart';
@@ -33,24 +35,35 @@ class HomeViewMobile extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
-        body: Column(
-          mainAxisSize: MainAxisSize.min,
+        body: Stack(
           children: [
-            Expanded(
-              child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    _Title(),
-                    SizedBox(height: 15),
-                    _FramesPrice(),
-                    SizedBox(height: 15),
-                    _MoreInfo(),
-                  ],
-                ),
-              ),
+            Image(
+              fit: BoxFit.fill,
+              width: double.infinity,
+              height: MediaQuery.of(context).size.height * 0.45,
+              image: AssetImage('assets/images/up_photo.png'),
             ),
-            GradientButton(
-                text: 'Let\'s Go', onTap: () => Get.toNamed(selectToWhoRoute))
+            Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                CustomAppBar(title: ''),
+                Expanded(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        _Title(),
+                        _FramesPrice(),
+                        SizedBox(height: 15),
+                        _MoreInfo(),
+                      ],
+                    ),
+                  ),
+                ),
+                GradientButton(
+                    text: 'Let\'s Go',
+                    onTap: () => Get.toNamed(selectToWhoRoute))
+              ],
+            ),
           ],
         ),
       ),
@@ -85,28 +98,31 @@ class __TitleState extends State<_Title> {
       width: double.infinity,
       padding: EdgeInsets.all(15),
       decoration: BoxDecoration(
-        color: Colors.grey[300],
+        // color: Colors.grey[300],
         borderRadius: BorderRadius.circular(8),
       ),
       child: Column(
         children: [
-          Text(
-            'Fimto',
-            style: TextStyle(
-                fontSize: 30, color: Colors.white, fontWeight: FontWeight.w800),
+          Image(
+            fit: BoxFit.contain,
+            height: 50,
+            image: AssetImage('assets/images/logo.png'),
           ),
           SizedBox(height: 25),
-          GestureDetector(
-            onTap: () => setState(() {
-              _controller.value.isPlaying
-                  ? _controller.pause()
-                  : _controller.play();
-            }),
-            child: SizedBox(
-              height: 250,
-              child: AspectRatio(
-                aspectRatio: _controller.value.aspectRatio,
-                child: VideoPlayer(_controller),
+          ClipRRect(
+            borderRadius: BorderRadius.circular(15),
+            child: GestureDetector(
+              onTap: () => setState(() {
+                _controller.value.isPlaying
+                    ? _controller.pause()
+                    : _controller.play();
+              }),
+              child: SizedBox(
+                height: 250,
+                child: AspectRatio(
+                  aspectRatio: _controller.value.aspectRatio,
+                  child: VideoPlayer(_controller),
+                ),
               ),
             ),
           ),
@@ -132,22 +148,22 @@ class _FramesPrice extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Icon(
-                Icons.image,
-                color: Colors.deepOrange,
-                size: 40,
+              Image(
+                fit: BoxFit.fill,
+                height: 35,
+                image: AssetImage('assets/images/photo-FB.png'),
               ),
               SizedBox(width: 8),
-              Icon(
-                Icons.image,
-                color: Colors.deepOrange,
-                size: 40,
+              Image(
+                fit: BoxFit.fill,
+                height: 35,
+                image: AssetImage('assets/images/photo-FB.png'),
               ),
               SizedBox(width: 8),
-              Icon(
-                Icons.image,
-                color: Colors.deepOrange,
-                size: 40,
+              Image(
+                fit: BoxFit.fill,
+                height: 35,
+                image: AssetImage('assets/images/photo-FB.png'),
               ),
             ],
           ),
@@ -178,20 +194,18 @@ class _CustomContainer extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 8, vertical: 20),
       margin: EdgeInsets.symmetric(horizontal: 8, vertical: 6),
-      width: MediaQuery.of(context).size.width * 0.6,
+      width: MediaQuery.of(context).size.width * 0.83,
       decoration: BoxDecoration(
-        gradient: LinearGradient(colors: [
-          Colors.deepOrangeAccent,
-          Colors.deepOrange,
-        ]),
+        color: Colors.white,
         borderRadius: BorderRadius.circular(8),
       ),
       child: Text(
         text,
         textAlign: TextAlign.center,
         style: TextStyle(
-          color: Colors.white,
-          fontSize: 14,
+          color: Colors.black,
+          fontWeight: FontWeight.w500,
+          fontSize: 17,
         ),
       ),
     );
@@ -300,7 +314,7 @@ class _SocialPosts extends StatelessWidget {
               TabPageSelector(
                 controller: controller,
                 color: Colors.grey[300],
-                selectedColor: Colors.deepOrange,
+                selectedColor: FimtoColors.primaryColor,
               ),
             ],
           ),

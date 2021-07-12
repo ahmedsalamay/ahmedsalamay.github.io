@@ -1,9 +1,15 @@
 import 'package:fimto_frame/screens/add_address/add_address_view.dart';
+import 'package:fimto_frame/screens/add_payment_method/add_payment_method_view.dart';
+import 'package:fimto_frame/screens/choose_frame/choose_frame_view.dart';
+import 'package:fimto_frame/screens/confirm_order/confirm_order_view.dart';
+import 'package:fimto_frame/screens/congratulation/congratulation_view.dart';
 import 'package:fimto_frame/screens/home/home_view.dart';
+import 'package:fimto_frame/screens/leave_message/leave_message_view.dart';
 import 'package:fimto_frame/screens/onbording/onbording.dart';
 import 'package:fimto_frame/screens/select_to_who/select_to_who_view.dart';
 import 'package:fimto_frame/screens/splash/splash_view.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import '../main.dart';
 import 'router_names.dart';
 
@@ -24,6 +30,23 @@ Route onGenerateRoute(RouteSettings settings) {
     case selectToWhoRoute:
       return MaterialPageRoute(
           builder: (context) => SelectToWhoScreen(), settings: settings);
+    case addPaymentMethodRoute:
+      return MaterialPageRoute(
+          builder: (context) => AddPaymentMethodScreen(), settings: settings);
+    case confirmOrderRoute:
+      return MaterialPageRoute(
+          builder: (context) => ConfirmOrderScreen(), settings: settings);
+    case leaveMessageRoute:
+      return MaterialPageRoute(
+          builder: (context) => LeaveMessageScreen(), settings: settings);
+    case congratulationRoute:
+      return MaterialPageRoute(
+          builder: (context) => CongratulationsScreen(), settings: settings);
+    case chooseFrameRoute:
+      return MaterialPageRoute(
+          builder: (context) => ChooseFrameScreen(
+              pickedFile: settings.arguments as List<PickedFile>),
+          settings: settings);
 
     default:
       return MaterialPageRoute(

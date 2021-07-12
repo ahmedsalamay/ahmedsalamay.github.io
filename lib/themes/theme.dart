@@ -72,13 +72,13 @@ final ThemeData myTheme = ThemeData(
     ),
     headline2: TextStyle(
       color: FimtoColors.primaryColor,
-      fontSize: 22,
+      fontSize: 20,
       fontWeight: FontWeight.w800,
       fontStyle: FontStyle.normal,
     ),
     headline3: TextStyle(
       color: Colors.black,
-      fontSize: 20,
+      fontSize: 18,
       fontWeight: FontWeight.w800,
       fontStyle: FontStyle.normal,
     ),
@@ -89,9 +89,9 @@ final ThemeData myTheme = ThemeData(
       fontStyle: FontStyle.normal,
     ),
     headline5: TextStyle(
-      color: FimtoColors.primaryColor,
-      fontSize: 16,
-      fontWeight: FontWeight.w500,
+      color: Color(0xFF787d8d),
+      fontSize: 20,
+      fontWeight: FontWeight.w600,
       fontStyle: FontStyle.normal,
     ),
     headline6: TextStyle(
@@ -172,7 +172,7 @@ final ThemeData myTheme = ThemeData(
     ),
     hintStyle: TextStyle(
       color: FimtoColors.hintColor,
-      fontSize: 18,
+      fontSize: 16,
       fontWeight: FontWeight.w400,
       fontStyle: FontStyle.normal,
     ),
@@ -304,7 +304,7 @@ final ThemeData myTheme = ThemeData(
 class FimtoColors {
   static const Color lightPrimaryColor = Color(0xFFef7b58);
   static const Color darkPrimaryColor = Color(0xFFe63a19);
-  static const Color primaryColor = Color(0xFFe74321);
+  static const Color primaryColor = Color(0xFFfe5f55);
   static const Color onPrimaryColor = Color(0xFFFFFFFF);
   static const Color scaffoldBackGroundColor = Color(0xFFFAFAFC);
   static const Color shadowColor = Color(0xffF2F2F2);

@@ -269,6 +269,276 @@ class S {
       args: [],
     );
   }
+
+  /// `Choose your frame`
+  String get chooseYourFrame {
+    return Intl.message(
+      'Choose your frame',
+      name: 'chooseYourFrame',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Choose your suitable designs on your wall`
+  String get chooseSuitableDesign {
+    return Intl.message(
+      'Choose your suitable designs on your wall',
+      name: 'chooseSuitableDesign',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Checkout`
+  String get checkout {
+    return Intl.message(
+      'Checkout',
+      name: 'checkout',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add Address`
+  String get addAddress {
+    return Intl.message(
+      'Add Address',
+      name: 'addAddress',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Shipping Address`
+  String get shippingAddress {
+    return Intl.message(
+      'Shipping Address',
+      name: 'shippingAddress',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Payment`
+  String get payment {
+    return Intl.message(
+      'Payment',
+      name: 'payment',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirmation`
+  String get confirmation {
+    return Intl.message(
+      'Confirmation',
+      name: 'confirmation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add Payment Method`
+  String get addPaymentMethod {
+    return Intl.message(
+      'Add Payment Method',
+      name: 'addPaymentMethod',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Choose Payment Method`
+  String get choosePaymentMethod {
+    return Intl.message(
+      'Choose Payment Method',
+      name: 'choosePaymentMethod',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please transfer the total amount to`
+  String get pleaseTransferAmountTo {
+    return Intl.message(
+      'Please transfer the total amount to',
+      name: 'pleaseTransferAmountTo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirm the payment Method`
+  String get confirmPaymentMethod {
+    return Intl.message(
+      'Confirm the payment Method',
+      name: 'confirmPaymentMethod',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your payment will be confirmed automatically if the sender number register at your order if not, please contact us to confirm the payment`
+  String get paymentConfirmAutomatically {
+    return Intl.message(
+      'Your payment will be confirmed automatically if the sender number register at your order if not, please contact us to confirm the payment',
+      name: 'paymentConfirmAutomatically',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirm Your Order`
+  String get confirmYourOrder {
+    return Intl.message(
+      'Confirm Your Order',
+      name: 'confirmYourOrder',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Order Summary`
+  String get orderSummary {
+    return Intl.message(
+      'Order Summary',
+      name: 'orderSummary',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Address`
+  String get address {
+    return Intl.message(
+      'Address',
+      name: 'address',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Payment Method`
+  String get paymentMethod {
+    return Intl.message(
+      'Payment Method',
+      name: 'paymentMethod',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delivery Time`
+  String get deliveryTime {
+    return Intl.message(
+      'Delivery Time',
+      name: 'deliveryTime',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Total`
+  String get total {
+    return Intl.message(
+      'Total',
+      name: 'total',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirm Order`
+  String get confirmOrder {
+    return Intl.message(
+      'Confirm Order',
+      name: 'confirmOrder',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Leave a message`
+  String get leaveMessage {
+    return Intl.message(
+      'Leave a message',
+      name: 'leaveMessage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Leave a message to your dear person`
+  String get messageToYourDear {
+    return Intl.message(
+      'Leave a message to your dear person',
+      name: 'messageToYourDear',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Congratulations`
+  String get congratulations {
+    return Intl.message(
+      'Congratulations',
+      name: 'congratulations',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The Order has been confirmed`
+  String get orderConfirmed {
+    return Intl.message(
+      'The Order has been confirmed',
+      name: 'orderConfirmed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `A successful purchase for your frames`
+  String get successfulPurchase {
+    return Intl.message(
+      'A successful purchase for your frames',
+      name: 'successfulPurchase',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Order Number`
+  String get orderNumber {
+    return Intl.message(
+      'Order Number',
+      name: 'orderNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You can track your order from here`
+  String get canTrackYourOrder {
+    return Intl.message(
+      'You can track your order from here',
+      name: 'canTrackYourOrder',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Track Your Order`
+  String get trackYourOrder {
+    return Intl.message(
+      'Track Your Order',
+      name: 'trackYourOrder',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

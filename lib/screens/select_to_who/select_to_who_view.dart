@@ -37,37 +37,51 @@ class SelectToWhoMobile extends StatelessWidget {
     return ChangeNotifierProvider<SelectToWhoViewModel>(
         create: (_) => SelectToWhoViewModel(),
         child: Scaffold(
-          body: SafeArea(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                CustomAppBar(title: S.of(context).selectToWho),
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 25),
-                    child: SingleChildScrollView(
-                      child: Column(
-                        children: [
-                          SizedBox(height: 35),
-                          Text(
-                            S.of(context).selectCreateFrames,
-                            style: TextStyle(
-                                fontSize: 26, color: Color(0xFF737888)),
-                            textAlign: TextAlign.center,
-                          ),
-                          SizedBox(height: 25),
-                          _GiftCard(selected: false),
-                          _ForMeCard(selected: false)
-                        ],
-                      ),
+          backgroundColor: Colors.white,
+          body: _Body(),
+        ));
+  }
+}
+
+class _Body extends StatelessWidget {
+  const _Body({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          CustomAppBar(title: S.of(context).selectToWho),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 25),
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    SizedBox(height: 35),
+                    Text(
+                      S.of(context).selectCreateFrames,
+                      style: TextStyle(fontSize: 26, color: Color(0xFF737888)),
+                      textAlign: TextAlign.center,
                     ),
-                  ),
+                    SizedBox(height: 25),
+                    _GiftCard(selected: false),
+                    _ForMeCard(selected: false)
+                  ],
                 ),
-                GradientButton(text: S.of(context).continueBTN, onTap: () {})
-              ],
+              ),
             ),
           ),
-        ));
+          GradientButton(
+              text: S.of(context).continueBTN,
+              onTap: context.read<SelectToWhoViewModel>().continueAction)
+        ],
+      ),
+    );
   }
 }
 
@@ -82,9 +96,10 @@ class _GiftCard extends StatelessWidget {
       child: Container(
         child: Column(
           children: [
-            Placeholder(
-              fallbackHeight: 120,
-              fallbackWidth: 50,
+            Image(
+              fit: BoxFit.fill,
+              height: 120,
+              image: AssetImage('assets/images/gift.png'),
             ),
             SizedBox(height: 6),
             _Choice(
@@ -100,9 +115,10 @@ class _GiftCard extends StatelessWidget {
             SizedBox(height: 6),
             Text(
               S.of(context).noAdditionalExpenses,
-              style: TextStyle(fontSize: 16, color: Color(0xFFeff0f2)),
+              style: TextStyle(fontSize: 16, color: Color(0xFFbabdc5)),
               textAlign: TextAlign.center,
             ),
+            SizedBox(height: 6),
           ],
         ),
       ),
@@ -121,9 +137,10 @@ class _ForMeCard extends StatelessWidget {
       child: Container(
         child: Column(
           children: [
-            Placeholder(
-              fallbackHeight: 120,
-              fallbackWidth: 50,
+            Image(
+              fit: BoxFit.fill,
+              height: 120,
+              image: AssetImage('assets/images/onboard2.png'),
             ),
             SizedBox(height: 6),
             _Choice(

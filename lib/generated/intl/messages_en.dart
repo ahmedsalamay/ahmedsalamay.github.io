@@ -21,14 +21,36 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "addAddress": MessageLookupByLibrary.simpleMessage("Add Address"),
+        "addPaymentMethod":
+            MessageLookupByLibrary.simpleMessage("Add Payment Method"),
+        "address": MessageLookupByLibrary.simpleMessage("Address"),
         "addressHint": MessageLookupByLibrary.simpleMessage("Address"),
         "buildingNumberHint":
             MessageLookupByLibrary.simpleMessage("Building Number"),
+        "canTrackYourOrder": MessageLookupByLibrary.simpleMessage(
+            "You can track your order from here"),
+        "checkout": MessageLookupByLibrary.simpleMessage("Checkout"),
+        "choosePaymentMethod":
+            MessageLookupByLibrary.simpleMessage("Choose Payment Method"),
+        "chooseSuitableDesign": MessageLookupByLibrary.simpleMessage(
+            "Choose your suitable designs on your wall"),
+        "chooseYourFrame":
+            MessageLookupByLibrary.simpleMessage("Choose your frame"),
         "confirmAddress":
             MessageLookupByLibrary.simpleMessage("Confirm The Address"),
+        "confirmOrder": MessageLookupByLibrary.simpleMessage("Confirm Order"),
+        "confirmPaymentMethod":
+            MessageLookupByLibrary.simpleMessage("Confirm the payment Method"),
+        "confirmYourOrder":
+            MessageLookupByLibrary.simpleMessage("Confirm Your Order"),
+        "confirmation": MessageLookupByLibrary.simpleMessage("Confirmation"),
+        "congratulations":
+            MessageLookupByLibrary.simpleMessage("Congratulations"),
         "continueBTN": MessageLookupByLibrary.simpleMessage("Continue"),
         "decorateMyWall":
             MessageLookupByLibrary.simpleMessage("DecorateMyWall"),
+        "deliveryTime": MessageLookupByLibrary.simpleMessage("Delivery Time"),
         "egyptwideShipping": MessageLookupByLibrary.simpleMessage(
             "Free Egyptwide shipping! At your doorstep in a week"),
         "floorHint": MessageLookupByLibrary.simpleMessage("Floor"),
@@ -37,22 +59,42 @@ class MessageLookup extends MessageLookupByLibrary {
         "framesStickWall": MessageLookupByLibrary.simpleMessage(
             "Our frames stick to any walls"),
         "gift": MessageLookupByLibrary.simpleMessage("Gift"),
+        "leaveMessage": MessageLookupByLibrary.simpleMessage("Leave a message"),
         "mailHint": MessageLookupByLibrary.simpleMessage("E-Mail"),
+        "messageToYourDear": MessageLookupByLibrary.simpleMessage(
+            "Leave a message to your dear person"),
         "nameHint": MessageLookupByLibrary.simpleMessage("Your Name"),
         "noAdditionalExpenses": MessageLookupByLibrary.simpleMessage(
             "Don\'t require additional expenses"),
         "noNails":
             MessageLookupByLibrary.simpleMessage("It doesn\'t need a nails"),
+        "orderConfirmed": MessageLookupByLibrary.simpleMessage(
+            "The Order has been confirmed"),
+        "orderNumber": MessageLookupByLibrary.simpleMessage("Order Number"),
+        "orderSummary": MessageLookupByLibrary.simpleMessage("Order Summary"),
+        "payment": MessageLookupByLibrary.simpleMessage("Payment"),
+        "paymentConfirmAutomatically": MessageLookupByLibrary.simpleMessage(
+            "Your payment will be confirmed automatically if the sender number register at your order if not, please contact us to confirm the payment"),
+        "paymentMethod": MessageLookupByLibrary.simpleMessage("Payment Method"),
         "phoneHint": MessageLookupByLibrary.simpleMessage("Phone Number"),
+        "pleaseTransferAmountTo": MessageLookupByLibrary.simpleMessage(
+            "Please transfer the total amount to"),
         "selectCreateFrames": MessageLookupByLibrary.simpleMessage(
             "Please select to who you are creating frames"),
         "selectToWho": MessageLookupByLibrary.simpleMessage("Select To Who"),
         "shapeFrame":
             MessageLookupByLibrary.simpleMessage("Shape for your frames"),
         "shipTo": MessageLookupByLibrary.simpleMessage("Ship To"),
+        "shippingAddress":
+            MessageLookupByLibrary.simpleMessage("Shipping Address"),
         "shippingFree":
             MessageLookupByLibrary.simpleMessage("Shipping is always free"),
+        "successfulPurchase": MessageLookupByLibrary.simpleMessage(
+            "A successful purchase for your frames"),
         "suitableShape": MessageLookupByLibrary.simpleMessage(
-            "We give you the most suitable shape for the frames on your wall")
+            "We give you the most suitable shape for the frames on your wall"),
+        "total": MessageLookupByLibrary.simpleMessage("Total"),
+        "trackYourOrder":
+            MessageLookupByLibrary.simpleMessage("Track Your Order")
       };
 }

@@ -18,9 +18,11 @@ class CustomAppBar extends StatelessWidget {
             flex: 1,
             child: IconButton(
               onPressed: () => Get.back(),
-              icon: Icon(
-                Icons.arrow_back_ios_rounded,
-                color: Colors.black,
+              icon: Image(
+                height: 20,
+                width: 20,
+                fit: BoxFit.fill,
+                image: AssetImage('assets/images/down-arrow.png'),
               ),
             ),
           ),
@@ -36,10 +38,11 @@ class CustomAppBar extends StatelessWidget {
           Expanded(
             flex: 1,
             child: IconButton(
-              icon: Icon(
-                Icons.menu,
-                color: Colors.black,
-                size: 26,
+              icon: Image(
+                height: 20,
+                width: 20,
+                fit: BoxFit.fill,
+                image: AssetImage('assets/images/list-text.png'),
               ),
               onPressed: () =>
                   Get.until((route) => Get.currentRoute == homeRoute),

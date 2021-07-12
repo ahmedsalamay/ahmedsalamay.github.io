@@ -28,16 +28,12 @@ class OnBoardView extends StatelessWidget {
 class OnBordingMobileView extends StatelessWidget {
   getOnBordingPages(BuildContext context) {
     final List<OnBording> onBordingPages = <OnBording>[
-      OnBording(Color(0xFF331f28), 'restaurant.png', S.of(context).noNails,
+      OnBording(Color(0xFF634F95), 'onboard1.png', S.of(context).noNails,
           Color(0xfff9a825), S.of(context).framesStickWall),
-      OnBording(Color(0xFF331f28), 'markets.png', S.of(context).shapeFrame,
+      OnBording(Color(0xFF878A94), 'onboard2.png', S.of(context).shapeFrame,
           Color(0xff00bcd4), S.of(context).suitableShape),
-      OnBording(
-          Color(0xFF331f28),
-          'icon_pharmacy.png',
-          S.of(context).shippingFree,
-          Colors.deepOrange,
-          S.of(context).egyptwideShipping),
+      OnBording(Color(0xFFF82020), 'onboard3.png', S.of(context).shippingFree,
+          Colors.deepOrange, S.of(context).egyptwideShipping),
     ];
     return onBordingPages;
   }
