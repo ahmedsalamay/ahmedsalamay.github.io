@@ -8,3 +8,4 @@ const String addPaymentMethodRoute = 'add_payment_method';
 const String confirmOrderRoute = 'confirm_order';
 const String leaveMessageRoute = 'leave_message';
 const String congratulationRoute = 'congratulation';
+const String trackOrderRoute = 'track_order';

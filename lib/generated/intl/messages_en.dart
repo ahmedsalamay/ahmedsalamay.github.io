@@ -50,6 +50,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "continueBTN": MessageLookupByLibrary.simpleMessage("Continue"),
         "decorateMyWall":
             MessageLookupByLibrary.simpleMessage("DecorateMyWall"),
+        "delivered": MessageLookupByLibrary.simpleMessage("delivered"),
+        "deliveredForShipment":
+            MessageLookupByLibrary.simpleMessage("Delivered for shipment"),
         "deliveryTime": MessageLookupByLibrary.simpleMessage("Delivery Time"),
         "egyptwideShipping": MessageLookupByLibrary.simpleMessage(
             "Free Egyptwide shipping! At your doorstep in a week"),
@@ -70,6 +73,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("It doesn\'t need a nails"),
         "orderConfirmed": MessageLookupByLibrary.simpleMessage(
             "The Order has been confirmed"),
+        "orderIsConfirmed":
+            MessageLookupByLibrary.simpleMessage("Order is confirmed"),
         "orderNumber": MessageLookupByLibrary.simpleMessage("Order Number"),
         "orderSummary": MessageLookupByLibrary.simpleMessage("Order Summary"),
         "payment": MessageLookupByLibrary.simpleMessage("Payment"),
@@ -79,6 +84,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "phoneHint": MessageLookupByLibrary.simpleMessage("Phone Number"),
         "pleaseTransferAmountTo": MessageLookupByLibrary.simpleMessage(
             "Please transfer the total amount to"),
+        "processing": MessageLookupByLibrary.simpleMessage("Processing"),
         "selectCreateFrames": MessageLookupByLibrary.simpleMessage(
             "Please select to who you are creating frames"),
         "selectToWho": MessageLookupByLibrary.simpleMessage("Select To Who"),

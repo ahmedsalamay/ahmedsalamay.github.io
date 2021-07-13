@@ -8,6 +8,7 @@ import 'package:fimto_frame/screens/leave_message/leave_message_view.dart';
 import 'package:fimto_frame/screens/onbording/onbording.dart';
 import 'package:fimto_frame/screens/select_to_who/select_to_who_view.dart';
 import 'package:fimto_frame/screens/splash/splash_view.dart';
+import 'package:fimto_frame/screens/track_order/track_order_view.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import '../main.dart';
@@ -42,6 +43,9 @@ Route onGenerateRoute(RouteSettings settings) {
     case congratulationRoute:
       return MaterialPageRoute(
           builder: (context) => CongratulationsScreen(), settings: settings);
+    case trackOrderRoute:
+      return MaterialPageRoute(
+          builder: (context) => TrackOrderScreen(), settings: settings);
     case chooseFrameRoute:
       return MaterialPageRoute(
           builder: (context) => ChooseFrameScreen(

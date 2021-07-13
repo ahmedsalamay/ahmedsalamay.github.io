@@ -79,6 +79,7 @@ flutter:
     - assets/images/list-text.png
     - assets/images/leave_message.png
     - assets/images/congratulations.png
+    - assets/images/confirm.png
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

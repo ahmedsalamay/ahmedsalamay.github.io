@@ -47,5 +47,9 @@
   "successfulPurchase": "A successful purchase for your frames",
   "orderNumber": "Order Number",
   "canTrackYourOrder": "You can track your order from here",
-  "trackYourOrder": "Track Your Order"
+  "trackYourOrder": "Track Your Order",
+  "orderIsConfirmed": "Order is confirmed",
+  "processing": "Processing",
+  "deliveredForShipment": "Delivered for shipment",
+  "delivered": "delivered"
 }

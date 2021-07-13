@@ -539,6 +539,46 @@ class S {
       args: [],
     );
   }
+
+  /// `Order is confirmed`
+  String get orderIsConfirmed {
+    return Intl.message(
+      'Order is confirmed',
+      name: 'orderIsConfirmed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Processing`
+  String get processing {
+    return Intl.message(
+      'Processing',
+      name: 'processing',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delivered for shipment`
+  String get deliveredForShipment {
+    return Intl.message(
+      'Delivered for shipment',
+      name: 'deliveredForShipment',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `delivered`
+  String get delivered {
+    return Intl.message(
+      'delivered',
+      name: 'delivered',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
