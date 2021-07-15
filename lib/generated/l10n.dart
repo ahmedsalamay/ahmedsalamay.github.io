@@ -579,6 +579,86 @@ class S {
       args: [],
     );
   }
+
+  /// `Talk to us`
+  String get talkToUs {
+    return Intl.message(
+      'Talk to us',
+      name: 'talkToUs',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add promo code`
+  String get addPromoCode {
+    return Intl.message(
+      'Add promo code',
+      name: 'addPromoCode',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `FAQ`
+  String get faq {
+    return Intl.message(
+      'FAQ',
+      name: 'faq',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Use policy`
+  String get usePolicy {
+    return Intl.message(
+      'Use policy',
+      name: 'usePolicy',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tour orders`
+  String get yourOrders {
+    return Intl.message(
+      'Tour orders',
+      name: 'yourOrders',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Fimtosoft`
+  String get fimtoSoft {
+    return Intl.message(
+      'Fimtosoft',
+      name: 'fimtoSoft',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Fimto Art`
+  String get fimtoArt {
+    return Intl.message(
+      'Fimto Art',
+      name: 'fimtoArt',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Follow us`
+  String get followUs {
+    return Intl.message(
+      'Follow us',
+      name: 'followUs',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

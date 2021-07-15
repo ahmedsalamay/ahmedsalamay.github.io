@@ -24,6 +24,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "addAddress": MessageLookupByLibrary.simpleMessage("Add Address"),
         "addPaymentMethod":
             MessageLookupByLibrary.simpleMessage("Add Payment Method"),
+        "addPromoCode": MessageLookupByLibrary.simpleMessage("Add promo code"),
         "address": MessageLookupByLibrary.simpleMessage("Address"),
         "addressHint": MessageLookupByLibrary.simpleMessage("Address"),
         "buildingNumberHint":
@@ -56,7 +57,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "deliveryTime": MessageLookupByLibrary.simpleMessage("Delivery Time"),
         "egyptwideShipping": MessageLookupByLibrary.simpleMessage(
             "Free Egyptwide shipping! At your doorstep in a week"),
+        "faq": MessageLookupByLibrary.simpleMessage("FAQ"),
+        "fimtoArt": MessageLookupByLibrary.simpleMessage("Fimto Art"),
+        "fimtoSoft": MessageLookupByLibrary.simpleMessage("Fimtosoft"),
         "floorHint": MessageLookupByLibrary.simpleMessage("Floor"),
+        "followUs": MessageLookupByLibrary.simpleMessage("Follow us"),
         "forMe": MessageLookupByLibrary.simpleMessage("For Me"),
         "forPerson": MessageLookupByLibrary.simpleMessage("For a dear person"),
         "framesStickWall": MessageLookupByLibrary.simpleMessage(
@@ -99,8 +104,11 @@ class MessageLookup extends MessageLookupByLibrary {
             "A successful purchase for your frames"),
         "suitableShape": MessageLookupByLibrary.simpleMessage(
             "We give you the most suitable shape for the frames on your wall"),
+        "talkToUs": MessageLookupByLibrary.simpleMessage("Talk to us"),
         "total": MessageLookupByLibrary.simpleMessage("Total"),
         "trackYourOrder":
-            MessageLookupByLibrary.simpleMessage("Track Your Order")
+            MessageLookupByLibrary.simpleMessage("Track Your Order"),
+        "usePolicy": MessageLookupByLibrary.simpleMessage("Use policy"),
+        "yourOrders": MessageLookupByLibrary.simpleMessage("Tour orders")
       };
 }

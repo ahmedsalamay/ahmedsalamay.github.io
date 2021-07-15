@@ -51,5 +51,13 @@
   "orderIsConfirmed": "Order is confirmed",
   "processing": "Processing",
   "deliveredForShipment": "Delivered for shipment",
-  "delivered": "delivered"
+  "delivered": "delivered",
+  "talkToUs": "Talk to us",
+  "addPromoCode": "Add promo code",
+  "faq": "FAQ",
+  "usePolicy": "Use policy",
+  "yourOrders": "Tour orders",
+  "fimtoSoft": "Fimtosoft",
+  "fimtoArt": "Fimto Art",
+  "followUs": "Follow us"
 }

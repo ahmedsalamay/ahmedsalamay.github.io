@@ -1,7 +1,6 @@
 import 'package:fimto_frame/generated/l10n.dart';
 import 'package:fimto_frame/responsive/responsive_layout.dart';
 import 'package:fimto_frame/themes/appBar.dart';
-import 'package:fimto_frame/themes/buttons.dart';
 import 'package:fimto_frame/themes/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

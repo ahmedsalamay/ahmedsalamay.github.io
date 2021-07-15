@@ -44,8 +44,7 @@ class CustomAppBar extends StatelessWidget {
                 fit: BoxFit.fill,
                 image: AssetImage('assets/images/list-text.png'),
               ),
-              onPressed: () =>
-                  Get.until((route) => Get.currentRoute == homeRoute),
+              onPressed: () => Scaffold.of(context).openEndDrawer(),
             ),
           ),
         ],

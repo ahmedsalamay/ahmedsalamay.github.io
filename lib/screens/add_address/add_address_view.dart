@@ -5,6 +5,7 @@ import 'package:fimto_frame/responsive/responsive_layout.dart';
 import 'package:fimto_frame/routes/router_names.dart';
 import 'package:fimto_frame/themes/appBar.dart';
 import 'package:fimto_frame/themes/buttons.dart';
+import 'package:fimto_frame/themes/drawer.dart';
 import 'package:fimto_frame/themes/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -42,6 +43,8 @@ class AddAddressScreenMobile extends StatelessWidget {
         create: (_) => AddAddressViewModel(),
         child: Scaffold(
           backgroundColor: Colors.white,
+          endDrawer: CustomDrawer(),
+
           body: _Body(),
         ));
   }
@@ -62,7 +65,6 @@ class __BodyState extends State<_Body> {
   @override
   Widget build(BuildContext context) {
     final vm = context.watch<AddAddressViewModel>();
-    final height = MediaQuery.of(context).size.height;
     return SafeArea(
       child: Container(
           height: double.infinity,

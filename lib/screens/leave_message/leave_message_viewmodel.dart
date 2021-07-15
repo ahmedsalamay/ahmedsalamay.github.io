@@ -12,6 +12,9 @@ class LeaveMessageViewModel extends ChangeNotifier {
 
   void continueAction() async {
     final List<PickedFile>? pickedFiles = await _picker.getMultiImage();
+    // final PickedFile? pickedFile =
+    //     await _picker.getImage(source: ImageSource.gallery);
+
     if (pickedFiles != null)
       Get.toNamed(chooseFrameRoute, arguments: pickedFiles);
   }

@@ -3,6 +3,7 @@ import 'package:fimto_frame/responsive/responsive_layout.dart';
 import 'package:fimto_frame/screens/select_to_who/select_to_who_viewmodel.dart';
 import 'package:fimto_frame/themes/appBar.dart';
 import 'package:fimto_frame/themes/buttons.dart';
+import 'package:fimto_frame/themes/drawer.dart';
 import 'package:flutter/material.dart';
 
 import 'package:provider/provider.dart';
@@ -38,6 +39,7 @@ class SelectToWhoMobile extends StatelessWidget {
         create: (_) => SelectToWhoViewModel(),
         child: Scaffold(
           backgroundColor: Colors.white,
+          endDrawer: CustomDrawer(),
           body: _Body(),
         ));
   }
