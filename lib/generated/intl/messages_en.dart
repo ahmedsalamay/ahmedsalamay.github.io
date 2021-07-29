@@ -50,7 +50,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Congratulations"),
         "continueBTN": MessageLookupByLibrary.simpleMessage("Continue"),
         "decorateMyWall":
-            MessageLookupByLibrary.simpleMessage("DecorateMyWall"),
+            MessageLookupByLibrary.simpleMessage("Decorate My Wall"),
         "delivered": MessageLookupByLibrary.simpleMessage("delivered"),
         "deliveredForShipment":
             MessageLookupByLibrary.simpleMessage("Delivered for shipment"),

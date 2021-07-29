@@ -1,3 +1,6 @@
+import 'dart:io';
+import 'dart:typed_data';
+
 import 'package:fimto_frame/screens/add_address/add_address_view.dart';
 import 'package:fimto_frame/screens/add_payment_method/add_payment_method_view.dart';
 import 'package:fimto_frame/screens/choose_frame/choose_frame_view.dart';
@@ -49,7 +52,7 @@ Route onGenerateRoute(RouteSettings settings) {
     case chooseFrameRoute:
       return MaterialPageRoute(
           builder: (context) => ChooseFrameScreen(
-              pickedFile: settings.arguments as List<PickedFile>),
+              pickedFile: settings.arguments as List<Uint8List>),
           settings: settings);
 
     default:

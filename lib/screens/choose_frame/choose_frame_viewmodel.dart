@@ -1,9 +1,12 @@
+import 'dart:io';
+import 'dart:typed_data';
+
 import 'package:fimto_frame/models/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
 class ChooseFrameViewModel extends ChangeNotifier {
-  final List<PickedFile> pickedFiles;
+  final List<Uint8List> pickedFiles;
 
   ChooseFrameViewModel({required this.pickedFiles});
 

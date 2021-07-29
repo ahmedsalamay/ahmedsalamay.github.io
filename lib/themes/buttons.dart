@@ -105,12 +105,12 @@ class GradientButton extends StatelessWidget {
         decoration: onTap == null
             ? BoxDecoration(
                 color: Theme.of(context).disabledColor,
-                borderRadius: BorderRadius.circular(8),
+                borderRadius: BorderRadius.circular(10),
               )
             : BoxDecoration(
                 color: FimtoColors.primaryColor,
                 // gradient: FimtoColors.buttonLinearGradient,
-                borderRadius: BorderRadius.circular(25),
+                borderRadius: BorderRadius.circular(10),
               ),
       ),
     );

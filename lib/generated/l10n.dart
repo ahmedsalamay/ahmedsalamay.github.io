@@ -250,10 +250,10 @@ class S {
     );
   }
 
-  /// `DecorateMyWall`
+  /// `Decorate My Wall`
   String get decorateMyWall {
     return Intl.message(
-      'DecorateMyWall',
+      'Decorate My Wall',
       name: 'decorateMyWall',
       desc: '',
       args: [],

@@ -207,7 +207,7 @@ final ThemeData myTheme = ThemeData(
     filled: true,
     fillColor: Color(0xffe4e4e4),
     errorBorder: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(25),
+      borderRadius: BorderRadius.circular(10),
       borderSide: BorderSide(
         width: 2,
         style: BorderStyle.solid,
@@ -215,7 +215,7 @@ final ThemeData myTheme = ThemeData(
       ),
     ),
     focusedBorder: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(25),
+      borderRadius: BorderRadius.circular(10),
       borderSide: BorderSide(
         width: 2,
         style: BorderStyle.solid,
@@ -223,7 +223,7 @@ final ThemeData myTheme = ThemeData(
       ),
     ),
     focusedErrorBorder: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(25),
+      borderRadius: BorderRadius.circular(10),
       borderSide: BorderSide(
         width: 2,
         style: BorderStyle.solid,
@@ -231,7 +231,7 @@ final ThemeData myTheme = ThemeData(
       ),
     ),
     disabledBorder: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(25),
+      borderRadius: BorderRadius.circular(10),
       borderSide: BorderSide(
         width: 2,
         style: BorderStyle.solid,
@@ -239,7 +239,7 @@ final ThemeData myTheme = ThemeData(
       ),
     ),
     enabledBorder: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(25),
+      borderRadius: BorderRadius.circular(10),
       borderSide: BorderSide(
         width: 2,
         style: BorderStyle.solid,
@@ -247,7 +247,7 @@ final ThemeData myTheme = ThemeData(
       ),
     ),
     border: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(25),
+      borderRadius: BorderRadius.circular(10),
       borderSide: BorderSide(
         width: 2,
         style: BorderStyle.solid,

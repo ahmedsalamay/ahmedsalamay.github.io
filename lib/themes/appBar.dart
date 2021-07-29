@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:fimto_frame/routes/router_names.dart';
-import 'package:fimto_frame/themes/theme.dart';
 
 class CustomAppBar extends StatelessWidget {
   final String title;
@@ -11,6 +9,14 @@ class CustomAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      decoration: BoxDecoration(color: Colors.white, boxShadow: [
+        BoxShadow(
+          color: Colors.grey.withOpacity(0.5),
+          spreadRadius: 3,
+          blurRadius: 3,
+          offset: Offset(0, 2), // changes position of shadow
+        ),
+      ]),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -38,12 +44,7 @@ class CustomAppBar extends StatelessWidget {
           Expanded(
             flex: 1,
             child: IconButton(
-              icon: Image(
-                height: 20,
-                width: 20,
-                fit: BoxFit.fill,
-                image: AssetImage('assets/images/list-text.png'),
-              ),
+              icon: Icon(Icons.menu, size: 30, color: Colors.black),
               onPressed: () => Scaffold.of(context).openEndDrawer(),
             ),
           ),
