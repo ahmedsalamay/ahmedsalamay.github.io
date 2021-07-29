@@ -13,7 +13,6 @@ import 'package:fimto_frame/screens/select_to_who/select_to_who_view.dart';
 import 'package:fimto_frame/screens/splash/splash_view.dart';
 import 'package:fimto_frame/screens/track_order/track_order_view.dart';
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
 import '../main.dart';
 import 'router_names.dart';
 
@@ -51,9 +50,7 @@ Route onGenerateRoute(RouteSettings settings) {
           builder: (context) => TrackOrderScreen(), settings: settings);
     case chooseFrameRoute:
       return MaterialPageRoute(
-          builder: (context) => ChooseFrameScreen(
-              pickedFile: settings.arguments as List<Uint8List>),
-          settings: settings);
+          builder: (context) => ChooseFrameScreen(), settings: settings);
 
     default:
       return MaterialPageRoute(

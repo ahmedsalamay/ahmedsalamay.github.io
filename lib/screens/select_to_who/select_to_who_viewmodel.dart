@@ -4,7 +4,6 @@ import 'dart:typed_data';
 import 'package:fimto_frame/routes/router_names.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 
@@ -13,7 +12,6 @@ class SelectToWhoViewModel extends ChangeNotifier {
 
   Future<void> initAsync() async {}
 
-  final ImagePicker _picker = ImagePicker();
 
   bool _giftSelected = false;
   bool get giftSelected => _giftSelected;

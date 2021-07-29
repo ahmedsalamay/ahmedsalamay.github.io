@@ -10,12 +10,12 @@ class CustomAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(color: Colors.white, boxShadow: [
-        BoxShadow(
-          color: Colors.grey.withOpacity(0.5),
-          spreadRadius: 3,
-          blurRadius: 3,
-          offset: Offset(0, 2), // changes position of shadow
-        ),
+        // BoxShadow(
+        //   color: Colors.grey.withOpacity(0.5),
+        //   spreadRadius: 3,
+        //   blurRadius: 3,
+        //   offset: Offset(0, 2), // changes position of shadow
+        // ),
       ]),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,

@@ -59,5 +59,12 @@
   "yourOrders": "Tour orders",
   "fimtoSoft": "Fimtosoft",
   "fimtoArt": "Fimto Art",
-  "followUs": "Follow us"
+  "followUs": "Follow us",
+  "pickUpSomePhotos": "Pick some photos to get started",
+  "uploadPhotos": "Upload Photos",
+  "importFromFacebook": "Import From Facebook",
+  "importFromInstagram": "Import From Instagram",
+  "or": "OR"
+
+
 }

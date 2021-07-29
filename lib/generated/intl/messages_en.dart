@@ -67,6 +67,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "framesStickWall": MessageLookupByLibrary.simpleMessage(
             "Our frames stick to any walls"),
         "gift": MessageLookupByLibrary.simpleMessage("Gift"),
+        "importFromFacebook":
+            MessageLookupByLibrary.simpleMessage("Import From Facebook"),
+        "importFromInstagram":
+            MessageLookupByLibrary.simpleMessage("Import From Instagram"),
         "leaveMessage": MessageLookupByLibrary.simpleMessage("Leave a message"),
         "mailHint": MessageLookupByLibrary.simpleMessage("E-Mail"),
         "messageToYourDear": MessageLookupByLibrary.simpleMessage(
@@ -76,6 +80,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Don\'t require additional expenses"),
         "noNails":
             MessageLookupByLibrary.simpleMessage("It doesn\'t need a nails"),
+        "or": MessageLookupByLibrary.simpleMessage("OR"),
         "orderConfirmed": MessageLookupByLibrary.simpleMessage(
             "The Order has been confirmed"),
         "orderIsConfirmed":
@@ -87,6 +92,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Your payment will be confirmed automatically if the sender number register at your order if not, please contact us to confirm the payment"),
         "paymentMethod": MessageLookupByLibrary.simpleMessage("Payment Method"),
         "phoneHint": MessageLookupByLibrary.simpleMessage("Phone Number"),
+        "pickUpSomePhotos": MessageLookupByLibrary.simpleMessage(
+            "Pick some photos to get started"),
         "pleaseTransferAmountTo": MessageLookupByLibrary.simpleMessage(
             "Please transfer the total amount to"),
         "processing": MessageLookupByLibrary.simpleMessage("Processing"),
@@ -108,6 +115,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "total": MessageLookupByLibrary.simpleMessage("Total"),
         "trackYourOrder":
             MessageLookupByLibrary.simpleMessage("Track Your Order"),
+        "uploadPhotos": MessageLookupByLibrary.simpleMessage("Upload Photos"),
         "usePolicy": MessageLookupByLibrary.simpleMessage("Use policy"),
         "yourOrders": MessageLookupByLibrary.simpleMessage("Tour orders")
       };

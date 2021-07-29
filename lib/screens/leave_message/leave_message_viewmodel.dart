@@ -1,21 +1,13 @@
 import 'package:fimto_frame/routes/router_names.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:image_picker/image_picker.dart';
 
 class LeaveMessageViewModel extends ChangeNotifier {
   LeaveMessageViewModel();
 
   Future<void> initAsync() async {}
 
-  final ImagePicker _picker = ImagePicker();
-
   void continueAction() async {
-    final List<PickedFile>? pickedFiles = await _picker.getMultiImage();
-    // final PickedFile? pickedFile =
-    //     await _picker.getImage(source: ImageSource.gallery);
-
-    if (pickedFiles != null)
-      Get.toNamed(chooseFrameRoute, arguments: pickedFiles);
+    Get.toNamed(chooseFrameRoute);
   }
 }

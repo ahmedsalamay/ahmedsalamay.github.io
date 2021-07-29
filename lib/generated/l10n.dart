@@ -659,6 +659,56 @@ class S {
       args: [],
     );
   }
+
+  /// `Pick some photos to get started`
+  String get pickUpSomePhotos {
+    return Intl.message(
+      'Pick some photos to get started',
+      name: 'pickUpSomePhotos',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Upload Photos`
+  String get uploadPhotos {
+    return Intl.message(
+      'Upload Photos',
+      name: 'uploadPhotos',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Import From Facebook`
+  String get importFromFacebook {
+    return Intl.message(
+      'Import From Facebook',
+      name: 'importFromFacebook',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Import From Instagram`
+  String get importFromInstagram {
+    return Intl.message(
+      'Import From Instagram',
+      name: 'importFromInstagram',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `OR`
+  String get or {
+    return Intl.message(
+      'OR',
+      name: 'or',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
