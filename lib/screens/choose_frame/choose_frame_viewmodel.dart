@@ -13,6 +13,13 @@ class ChooseFrameViewModel extends ChangeNotifier {
 
   bool isDeleteButtonVisible = false;
 
+  bool _isLoading = false;
+  bool get isLoading => _isLoading;
+  void setLoadingState(bool value) {
+    _isLoading = value;
+    notifyListeners();
+  }
+
   void showDeleteButton() {
     isDeleteButtonVisible = true;
     notifyListeners();
@@ -34,12 +41,14 @@ class ChooseFrameViewModel extends ChangeNotifier {
 
   Future<void> uploadPhoto() async {
     // if (kIsWeb) {
+    setLoadingState(true);
     FilePickerResult? result = await FilePicker.platform.pickFiles(
         allowMultiple: true,
         type: FileType.image,
         onFileLoading: (status) {
           print('FilePickerStatus: $status');
           if (status == FilePickerStatus.done) {
+            setLoadingState(false);
             print('FilePickerStatus: $status');
             // List<File> files =
             // result.paths.map((path) => File(path!)).toList();

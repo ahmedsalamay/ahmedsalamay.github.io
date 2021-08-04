@@ -1,10 +1,7 @@
-import 'dart:typed_data';
-
 import 'package:card_swiper/card_swiper.dart';
 import 'package:fimto_frame/themes/theme.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 import 'choose_frame_viewmodel.dart';
 import '../../models/constants.dart';
 import 'package:fimto_frame/routes/router_names.dart';
@@ -37,34 +34,43 @@ class _Body extends StatelessWidget {
     var vm = context.watch<ChooseFrameViewModel>();
 
     return SafeArea(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
+      child: Stack(
         children: [
-          CustomAppBar(title: S.of(context).chooseYourFrame),
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15),
-              child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    SizedBox(height: 25),
-                    _Frames(),
-                    SizedBox(height: 20),
-                    vm.isImagesPicked ? _FramePreview() : _PickPhotos(),
-                  ],
+          Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              CustomAppBar(title: S.of(context).chooseYourFrame),
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 15),
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        SizedBox(height: 25),
+                        _Frames(),
+                        SizedBox(height: 20),
+                        vm.isImagesPicked ? _FramePreview() : _PickPhotos(),
+                      ],
+                    ),
+                  ),
                 ),
               ),
-            ),
+              GradientButton(
+                  text: S.of(context).checkout,
+                  onTap: () {
+                    showModalBottomSheet(
+                        context: context,
+                        builder: (builder) {
+                          return _BottomSheet();
+                        });
+                  })
+            ],
           ),
-          GradientButton(
-              text: S.of(context).checkout,
-              onTap: () {
-                showModalBottomSheet(
-                    context: context,
-                    builder: (builder) {
-                      return _BottomSheet();
-                    });
-              })
+          Visibility(
+              visible: vm.isLoading,
+              child: Align(
+                  alignment: Alignment.center,
+                  child: CircularProgressIndicator()))
         ],
       ),
     );
@@ -92,15 +98,19 @@ class _PickPhotos extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Expanded(child: _UploadPhoto()),
-                Padding(
-                  padding: const EdgeInsets.all(30.0),
-                  child: Text(
-                    S.of(context).or,
-                    style: Theme.of(context).textTheme.headline5,
-                  ),
-                ),
-                Expanded(child: _ImportPhoto())
+                Expanded(
+                    child: Padding(
+                  padding: const EdgeInsets.all(15.0),
+                  child: _UploadPhoto(),
+                )),
+                // Padding(
+                //   padding: const EdgeInsets.all(30.0),
+                //   child: Text(
+                //     S.of(context).or,
+                //     style: Theme.of(context).textTheme.headline5,
+                //   ),
+                // ),
+                // Expanded(child: _ImportPhoto())
               ],
             )
           ],
@@ -254,7 +264,7 @@ class _Frames extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var vm = context.read<ChooseFrameViewModel>();
+    var vm = context.watch<ChooseFrameViewModel>();
     return Container(
       child: Column(
         children: [
@@ -264,24 +274,34 @@ class _Frames extends StatelessWidget {
                 .toList()
                 .map((e) => GestureDetector(
                       onTap: () => vm.selectFrameAction(e),
-                      child: Column(
-                        children: [
-                          Image(
-                            height: 50,
-                            fit: BoxFit.contain,
-                            image: AssetImage(
-                                'assets/images/${e.toString().split('.')[1]}.png'),
-                          ),
-                          SizedBox(height: 6),
-                          Text(
-                            e.toString().split('.')[1],
-                            style: Theme.of(context)
-                                .textTheme
-                                .headline3!
-                                .copyWith(
-                                    fontSize: 16, fontWeight: FontWeight.w500),
-                          )
-                        ],
+                      child: Container(
+                        padding: const EdgeInsets.all(4.0),
+                        color: vm.selectedFrame == e
+                            ? Color(0xFFf4f4f4)
+                            : Colors.transparent,
+                        child: Column(
+                          children: [
+                            Image(
+                              height: 50,
+                              fit: BoxFit.contain,
+                              image: AssetImage(
+                                  'assets/images/${e.toString().split('.')[1]}.png'),
+                            ),
+                            SizedBox(height: 6),
+                            Text(
+                              e.toString().split('.')[1],
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .headline3!
+                                  .copyWith(
+                                      fontSize: 16,
+                                      color: vm.selectedFrame == e
+                                          ? FimtoColors.primaryColor
+                                          : Colors.black,
+                                      fontWeight: FontWeight.w500),
+                            )
+                          ],
+                        ),
                       ),
                     ))
                 .toList(),

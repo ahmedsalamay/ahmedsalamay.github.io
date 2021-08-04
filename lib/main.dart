@@ -57,7 +57,7 @@ class MyApp extends StatelessWidget {
         locale: context.watch<Language>().currentLocale,
         title: 'Fimto',
         theme: myTheme,
-        initialRoute: chooseFrameRoute,
+        initialRoute: homeRoute,
         onGenerateRoute: onGenerateRoute,
         defaultTransition: Transition.fade,
         opaqueRoute: Get.isOpaqueRouteDefault,

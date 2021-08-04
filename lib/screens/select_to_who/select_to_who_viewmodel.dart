@@ -12,7 +12,6 @@ class SelectToWhoViewModel extends ChangeNotifier {
 
   Future<void> initAsync() async {}
 
-
   bool _giftSelected = false;
   bool get giftSelected => _giftSelected;
 
@@ -36,37 +35,36 @@ class SelectToWhoViewModel extends ChangeNotifier {
   void continueAction() async {
     if (_forMeSelected) {
       if (kIsWeb) {
-        FilePickerResult? result = await FilePicker.platform.pickFiles(
-            allowMultiple: true,
-            type: FileType.image,
-            onFileLoading: (status) {
-              print('FilePickerStatus: $status');
-              if (status == FilePickerStatus.done) {
-                print('FilePickerStatus: $status');
-                // List<File> files =
-                // result.paths.map((path) => File(path!)).toList();
-                // // List<File> files = result.files.map((e) => File(e.path!)).toList();
-                // Get.toNamed(chooseFrameRoute, arguments: files);
-              }
-            });
-        if (result != null) {
-          List<Uint8List> files = result.files.map((e) => e.bytes!).toList();
-          // List<File> files = result.files.map((e) => File(e.path!)).toList();
-          Get.toNamed(chooseFrameRoute, arguments: files);
-        }
+        // FilePickerResult? result = await FilePicker.platform.pickFiles(
+        //     allowMultiple: true,
+        //     type: FileType.image,
+        //     onFileLoading: (status) {
+        //       print('FilePickerStatus: $status');
+        //       if (status == FilePickerStatus.done) {
+        //         print('FilePickerStatus: $status');
+        //
+        //       }
+        //     });
+        // if (result != null) {
+        //   List<Uint8List> files = result.files.map((e) => e.bytes!).toList();
+        //   // List<File> files = result.files.map((e) => File(e.path!)).toList();
+        //   Get.toNamed(chooseFrameRoute, arguments: files);
+        // }
+        Get.toNamed(chooseFrameRoute);
       } else {
         // final List<PickedFile>? pickedFiles = await _picker.getMultiImage();
         // if (pickedFiles != null)
         //   Get.toNamed(chooseFrameRoute, arguments: pickedFiles);
-        FilePickerResult? result = await FilePicker.platform.pickFiles(
-          allowMultiple: true,
-          type: FileType.image,
-        );
-        if (result != null) {
-          List<File> files = result.paths.map((path) => File(path!)).toList();
-          // List<File> files = result.files.map((e) => File(e.path!)).toList();
-          Get.toNamed(chooseFrameRoute, arguments: files);
-        }
+        // FilePickerResult? result = await FilePicker.platform.pickFiles(
+        //   allowMultiple: true,
+        //   type: FileType.image,
+        // );
+        // if (result != null) {
+        //   List<File> files = result.paths.map((path) => File(path!)).toList();
+        //   // List<File> files = result.files.map((e) => File(e.path!)).toList();
+        //   Get.toNamed(chooseFrameRoute, arguments: files);
+        // }
+        Get.toNamed(chooseFrameRoute);
       }
     } else {
       Get.toNamed(leaveMessageRoute);

@@ -1,4 +1,5 @@
 import 'package:fimto_frame/generated/l10n.dart';
+import 'package:fimto_frame/themes/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 
@@ -30,16 +31,19 @@ class _DrawerItems extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        image: DecorationImage(
-            image: AssetImage('assets/images/BACKGROUND.png'),
-            fit: BoxFit.cover),
-      ),
+          // image: DecorationImage(
+          //     image: AssetImage('assets/images/BACKGROUND.png'),
+          //     fit: BoxFit.cover),
+          ),
       child: Column(
         children: [
           SizedBox(height: 45),
           Image(
             height: 30,
-            image: AssetImage('assets/images/logo.png'),
+            color: FimtoColors.primaryColor,
+            image: AssetImage(
+              'assets/images/logo.png',
+            ),
           ),
           SizedBox(height: 35),
           Expanded(
@@ -49,49 +53,49 @@ class _DrawerItems extends StatelessWidget {
                   onTap: () {},
                   title: Text(
                     S.of(context).talkToUs,
-                    style: Theme.of(context).textTheme.headline1,
+                    style: Theme.of(context).textTheme.headline3,
                   ),
                 ),
                 ListTile(
                   onTap: () {},
                   title: Text(
                     S.of(context).addPromoCode,
-                    style: Theme.of(context).textTheme.headline1,
+                    style: Theme.of(context).textTheme.headline3,
                   ),
                 ),
                 ListTile(
                   onTap: () {},
                   title: Text(
                     S.of(context).faq,
-                    style: Theme.of(context).textTheme.headline1,
+                    style: Theme.of(context).textTheme.headline3,
                   ),
                 ),
                 ListTile(
                   onTap: () {},
                   title: Text(
                     S.of(context).usePolicy,
-                    style: Theme.of(context).textTheme.headline1,
+                    style: Theme.of(context).textTheme.headline3,
                   ),
                 ),
                 ListTile(
                   onTap: () {},
                   title: Text(
                     S.of(context).yourOrders,
-                    style: Theme.of(context).textTheme.headline1,
+                    style: Theme.of(context).textTheme.headline3,
                   ),
                 ),
                 ListTile(
                   onTap: () {},
                   title: Text(
                     S.of(context).fimtoSoft,
-                    style: Theme.of(context).textTheme.headline1,
+                    style: Theme.of(context).textTheme.headline3,
                   ),
                 ),
                 ListTile(
                   onTap: () {},
                   title: Text(
                     S.of(context).fimtoArt,
-                    style: Theme.of(context).textTheme.headline1,
+                    style: Theme.of(context).textTheme.headline3,
                   ),
                 ),
                 _LanguageTile(),
@@ -102,7 +106,7 @@ class _DrawerItems extends StatelessWidget {
                     S.of(context).followUs,
                     style: Theme.of(context)
                         .textTheme
-                        .headline1!
+                        .headline3!
                         .copyWith(fontSize: 18),
                   ),
                   subtitle: Row(
@@ -175,7 +179,7 @@ class _LanguageTile extends StatelessWidget {
               Text('En',
                   style: Theme.of(context)
                       .textTheme
-                      .headline1!
+                      .headline3!
                       .copyWith(fontSize: 16)),
             ],
           ),
@@ -190,7 +194,7 @@ class _LanguageTile extends StatelessWidget {
               Text('AR',
                   style: Theme.of(context)
                       .textTheme
-                      .headline1!
+                      .headline3!
                       .copyWith(fontSize: 16)),
             ],
           )

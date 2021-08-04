@@ -12,35 +12,24 @@ class HomeViewMobile extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
-        body: Stack(
+        body: Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
-            Image(
-              fit: BoxFit.fill,
-              width: double.infinity,
-              height: MediaQuery.of(context).size.height * 0.45,
-              image: AssetImage('assets/images/up_photo.png'),
-            ),
-            Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                CustomAppBar(title: ''),
-                Expanded(
-                  child: SingleChildScrollView(
-                    child: Column(
-                      children: [
-                        _Title(),
-                        _FramesPrice(),
-                        SizedBox(height: 15),
-                        _MoreInfo(),
-                      ],
-                    ),
-                  ),
+            CustomAppBar(title: ''),
+            Expanded(
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    _Title(),
+                    _FramesPrice(),
+                    SizedBox(height: 15),
+                    _MoreInfo(),
+                  ],
                 ),
-                GradientButton(
-                    text: 'Let\'s Go',
-                    onTap: () => Get.toNamed(selectToWhoRoute))
-              ],
+              ),
             ),
+            GradientButton(
+                text: 'Let\'s Go', onTap: () => Get.toNamed(selectToWhoRoute))
           ],
         ),
       ),
@@ -83,6 +72,7 @@ class __TitleState extends State<_Title> {
           Image(
             fit: BoxFit.contain,
             height: 50,
+            color: FimtoColors.primaryColor,
             image: AssetImage('assets/images/logo.png'),
           ),
           SizedBox(height: 25),
