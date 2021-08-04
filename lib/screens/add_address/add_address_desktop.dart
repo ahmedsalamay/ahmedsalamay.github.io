@@ -29,28 +29,27 @@ class _Body extends StatelessWidget {
       child: Container(
           height: double.infinity,
           width: double.infinity,
-          child: Expanded(
-            child: Row(
-              children: [
-                Expanded(flex: 1, child: _Stepper()),
-                Expanded(
-                  flex: 3,
-                  child: Column(
-                    children: [
-                      _AddressForm(),
-                      SizedBox(height: 20),
-                      SizedBox(
-                        width: 180,
-                        child: GradientButton(
-                          text: S.of(context).confirmAddress,
-                          onTap: () => Get.toNamed(addPaymentMethodRoute),
-                        ),
-                      )
-                    ],
-                  ),
+          child: Row(
+            children: [
+              // Expanded(flex: 1, child: _Stepper()),
+              _Stepper(),
+              Expanded(
+                flex: 3,
+                child: Column(
+                  children: [
+                    _AddressForm(),
+                    SizedBox(height: 20),
+                    SizedBox(
+                      width: 180,
+                      child: GradientButton(
+                        text: S.of(context).confirmAddress,
+                        onTap: () => Get.toNamed(addPaymentMethodRoute),
+                      ),
+                    )
+                  ],
                 ),
-              ],
-            ),
+              ),
+            ],
           )),
     );
   }
