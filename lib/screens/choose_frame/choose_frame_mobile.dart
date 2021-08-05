@@ -1,4 +1,5 @@
 import 'package:card_swiper/card_swiper.dart';
+import 'package:fimto_frame/repository/remote/facebook_repository.dart';
 import 'package:fimto_frame/themes/theme.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
@@ -15,7 +16,8 @@ class ChooseFrameMobile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<ChooseFrameViewModel>(
-        create: (_) => ChooseFrameViewModel(),
+        create: (_) => ChooseFrameViewModel(
+            facebookRepository: context.read<FacebookRepository>()),
         child: Scaffold(
           backgroundColor: Colors.white,
           endDrawer: CustomDrawer(),

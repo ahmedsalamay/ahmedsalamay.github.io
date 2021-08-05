@@ -1,3 +1,6 @@
+import 'package:fimto_frame/models/language.dart';
+import 'package:fimto_frame/repository/remote/facebook_repository.dart';
+import 'package:fimto_frame/services/request_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
 import 'package:fimto_frame/repository/local/language_local_repository.dart';
@@ -28,6 +31,15 @@ List<SingleChildWidget> providers = [
     update: (_, TokenRepository identityRepository,
             TokenLocalRepository tokenLocalRepository, __) =>
         TokenService(identityRepository, tokenLocalRepository),
+    lazy: true,
+  ),
+  ProxyProvider2<Language, TokenService, RequestProvider>(
+    update: (_, Language language, TokenService tokenService, __) =>
+        RequestProvider(language: language, tokenService: tokenService),
+    lazy: true,
+  ),
+  Provider<FacebookRepository>(
+    create: (_) => FacebookRepository(),
     lazy: true,
   ),
 ];

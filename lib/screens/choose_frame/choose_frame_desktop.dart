@@ -1,3 +1,4 @@
+import 'package:fimto_frame/repository/remote/facebook_repository.dart';
 import 'package:fimto_frame/themes/theme.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
@@ -15,7 +16,8 @@ class ChooseFrameDesktop extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<ChooseFrameViewModel>(
-        create: (_) => ChooseFrameViewModel(),
+        create: (_) => ChooseFrameViewModel(
+            facebookRepository: context.read<FacebookRepository>()),
         child: Scaffold(
           backgroundColor: Colors.white,
           endDrawer: CustomDrawer(),
@@ -244,85 +246,90 @@ class _ImportPhoto extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 180,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Container(
-            height: 80,
-            width: 250,
-            padding: EdgeInsets.all(15),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(6)),
-              color: Colors.white,
-              boxShadow: [
-                BoxShadow(
-                  color: Color(0xFFb4b4b4),
-                  blurRadius: 15.0, // soften the shadow
-                  spreadRadius: 2.0, //extend the shadow
-                  offset: Offset(
-                    3.0, // Move to right 10  horizontally
-                    3.0, // Move to bottom 10 Vertically
+    var vm = context.read<ChooseFrameViewModel>();
+
+    return MaterialButton(
+      onPressed: () => vm.facebookLogin(),
+      child: Container(
+        height: 180,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Container(
+              height: 80,
+              width: 250,
+              padding: EdgeInsets.all(15),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(6)),
+                color: Colors.white,
+                boxShadow: [
+                  BoxShadow(
+                    color: Color(0xFFb4b4b4),
+                    blurRadius: 15.0, // soften the shadow
+                    spreadRadius: 2.0, //extend the shadow
+                    offset: Offset(
+                      3.0, // Move to right 10  horizontally
+                      3.0, // Move to bottom 10 Vertically
+                    ),
+                  )
+                ],
+              ),
+              child: Row(
+                children: [
+                  Icon(
+                    Icons.facebook_sharp,
+                    size: 35,
                   ),
-                )
-              ],
-            ),
-            child: Row(
-              children: [
-                Icon(
-                  Icons.facebook_sharp,
-                  size: 35,
-                ),
-                SizedBox(width: 15),
-                Text(
-                  S.of(context).importFromFacebook,
-                  style: Theme.of(context)
-                      .textTheme
-                      .headline3!
-                      .copyWith(fontSize: 14, fontWeight: FontWeight.w800),
-                ),
-              ],
-            ),
-          ),
-          Spacer(),
-          Container(
-            height: 80,
-            width: 250,
-            padding: EdgeInsets.all(15),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(6)),
-              color: Colors.white,
-              boxShadow: [
-                BoxShadow(
-                  color: Color(0xFFb4b4b4),
-                  blurRadius: 15.0, // soften the shadow
-                  spreadRadius: 2.0, //extend the shadow
-                  offset: Offset(
-                    3.0, // Move to right 10  horizontally
-                    3.0, // Move to bottom 10 Vertically
+                  SizedBox(width: 15),
+                  Text(
+                    S.of(context).importFromFacebook,
+                    style: Theme.of(context)
+                        .textTheme
+                        .headline3!
+                        .copyWith(fontSize: 14, fontWeight: FontWeight.w800),
                   ),
-                )
-              ],
+                ],
+              ),
             ),
-            child: Row(
-              children: [
-                Icon(
-                  Icons.facebook_sharp,
-                  size: 35,
-                ),
-                SizedBox(width: 15),
-                Text(
-                  S.of(context).importFromInstagram,
-                  style: Theme.of(context)
-                      .textTheme
-                      .headline3!
-                      .copyWith(fontSize: 14, fontWeight: FontWeight.w800),
-                ),
-              ],
+            Spacer(),
+            Container(
+              height: 80,
+              width: 250,
+              padding: EdgeInsets.all(15),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(6)),
+                color: Colors.white,
+                boxShadow: [
+                  BoxShadow(
+                    color: Color(0xFFb4b4b4),
+                    blurRadius: 15.0, // soften the shadow
+                    spreadRadius: 2.0, //extend the shadow
+                    offset: Offset(
+                      3.0, // Move to right 10  horizontally
+                      3.0, // Move to bottom 10 Vertically
+                    ),
+                  )
+                ],
+              ),
+              child: Row(
+                children: [
+                  Icon(
+                    Icons.facebook_sharp,
+                    size: 35,
+                  ),
+                  SizedBox(width: 15),
+                  Text(
+                    S.of(context).importFromInstagram,
+                    style: Theme.of(context)
+                        .textTheme
+                        .headline3!
+                        .copyWith(fontSize: 14, fontWeight: FontWeight.w800),
+                  ),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

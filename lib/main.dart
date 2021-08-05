@@ -10,10 +10,22 @@ import 'package:fimto_frame/themes/theme.dart';
 import 'models/language.dart';
 import 'generated/l10n.dart';
 import 'repository/local/language_local_repository.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   //await _initializeFlutterFire();
+
+  if (kIsWeb) {
+    // initialiaze the facebook javascript SDK
+    FacebookAuth.i.webInitialize(
+      appId: "420524549277950", //<-- YOUR APP_ID
+      cookie: true,
+      xfbml: true,
+      version: "v11.0",
+    );
+  }
 
   var currentLanguage = await LanguageLocalRepository().getSavedLaunage();
   runZonedGuarded(() {

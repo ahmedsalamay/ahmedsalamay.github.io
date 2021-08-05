@@ -6,8 +6,8 @@ import 'package:fimto_frame/services/token_services.dart';
 import 'package:dio_logger/dio_logger.dart';
 
 class RequestProvider {
-  final TokenService? tokenService;
-  final Language? language;
+  final TokenService tokenService;
+  final Language language;
 
   Future<Null>? refreshTokenInProgress;
 
