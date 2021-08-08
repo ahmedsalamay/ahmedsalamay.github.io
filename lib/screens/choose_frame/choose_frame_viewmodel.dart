@@ -2,6 +2,7 @@ import 'dart:io';
 import 'dart:typed_data';
 import 'package:dio/dio.dart';
 import 'package:fimto_frame/models/constants.dart';
+import 'package:fimto_frame/models/facebook_photo.dart';
 import 'package:fimto_frame/repository/remote/facebook_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
@@ -27,6 +28,13 @@ class ChooseFrameViewModel extends ChangeNotifier {
   bool get isImagesPicked => _pickedFiles.isNotEmpty;
 
   bool isDeleteButtonVisible = false;
+
+  Map<int, String> _selectedFaceBookPhotos = {};
+  Map<int, String> get selectedFaceBookPhotos => _selectedFaceBookPhotos;
+  void addFacebookPhoto(int index, String source) {
+    _selectedFaceBookPhotos[index] = source;
+    notifyListeners();
+  }
 
   bool _isLoading = false;
   bool get isLoading => _isLoading;
@@ -108,7 +116,7 @@ class ChooseFrameViewModel extends ChangeNotifier {
     }
   }
 
-  Future<void> facebookLogin() async {
+  Future<PhotoPaging?> facebookLogin() async {
     setLoadingState(true);
     final LoginResult result = await FacebookAuth.instance.login(
       permissions: ['user_photos', 'email', 'public_profile'],
@@ -133,19 +141,11 @@ class ChooseFrameViewModel extends ChangeNotifier {
       // var albums = await facebookRepository.fetchAlbums(
       //     accessToken: _accessToken!.token);
 
-      var photos = await facebookRepository.fetchPhotos(
-          accessToken: _accessToken!.token,
-          albumId:
-              '112357808842711' /* albums.asValue!.value.data.first.id.toString()*/);
+      var photos = await facebookRepository.fetchAllPhotos(
+          accessToken: _accessToken!.token, userId: userData['id']);
+      //  '112357808842711' /* albums.asValue!.value.data.first.id.toString()*/);
       logger.i(photos);
-      Get.dialog(Container(
-        child: GridView.count(
-          crossAxisCount: 3,
-          children: List.generate(photos.asValue!.value.data!.length, (index) {
-            return Image.network(photos.asValue!.value.data![index].source);
-          }),
-        ),
-      ));
+      return photos.asFuture;
     } else {
       print(result.status);
       print(result.message);

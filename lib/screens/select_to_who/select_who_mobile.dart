@@ -51,6 +51,7 @@ class _Body extends StatelessWidget {
                     ),
                     SizedBox(height: 25),
                     GiftCard(selected: false),
+                    SizedBox(height: 15),
                     ForMeCard(selected: false)
                   ],
                 ),

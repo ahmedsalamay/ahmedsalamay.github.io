@@ -30,7 +30,29 @@ class FacebookRepository {
     }
   }
 
-  Future<Result<PhotoPaging>> fetchPhotos(
+  Future<Result<PhotoPaging>> fetchAllPhotos(
+      {required String accessToken, required String userId}) async {
+    try {
+      var response = await Dio().get(facebookBaseUrl +
+          '/$userId/photos?uploaded=uploaded&fields=id,name,width,height,photo,source&format=json&access_token=$accessToken');
+      if (response.statusCode == 200) {
+        if (kIsWeb) {
+          var customerBalance = PhotoPaging.fromJson(response.data);
+          return Result.value(customerBalance);
+        } else {
+          var customerBalance =
+              PhotoPaging.fromJson(json.decode(response.data.toString()));
+          return Result.value(customerBalance);
+        }
+      } else {
+        return Result.error(response.data['ErrorString'].toString());
+      }
+    } on DioError {
+      return Result.error(S.current.fimtoSoft);
+    }
+  }
+
+  Future<Result<PhotoPaging>> fetchPhotosByAlbums(
       {required String accessToken, required String albumId}) async {
     try {
       var response = await Dio().get(facebookBaseUrl +

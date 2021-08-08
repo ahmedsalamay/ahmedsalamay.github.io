@@ -1,4 +1,5 @@
 import 'package:card_swiper/card_swiper.dart';
+import 'package:fimto_frame/models/facebook_photo.dart';
 import 'package:fimto_frame/repository/remote/facebook_repository.dart';
 import 'package:fimto_frame/themes/theme.dart';
 import 'package:get/get.dart';
@@ -147,7 +148,12 @@ class _UploadPhoto extends StatelessWidget {
         ],
       ),
       child: MaterialButton(
-        onPressed: () => vm.uploadPhoto(),
+        onPressed: () => vm.facebookLogin().then((value) => value != null
+            ? Get.dialog(FacebookPhotos(
+                photos: value,
+                addFacebookPhoto: vm.addFacebookPhoto,
+              ))
+            : () {}),
         elevation: 1,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -532,6 +538,65 @@ class _SheetTotal extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
         ],
+      ),
+    );
+  }
+}
+
+class FacebookPhotos extends StatelessWidget {
+  final PhotoPaging photos;
+  final Function addFacebookPhoto;
+  const FacebookPhotos(
+      {Key? key, required this.photos, required this.addFacebookPhoto})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    return Container(
+      height: size.height * 0.7,
+      width: size.width * 0.9,
+      child: Padding(
+        padding: EdgeInsets.symmetric(
+            horizontal: size.width * 0.1, vertical: size.height * 0.2),
+        child: Scaffold(
+          appBar: AppBar(
+            actions: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: ElevatedButton(onPressed: () {}, child: Text('Done')),
+              ),
+            ],
+          ),
+          body: Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: GridView.count(
+              crossAxisCount: 3,
+              children: List.generate(photos.data!.length, (index) {
+                return InkWell(
+                  onTap: () => addFacebookPhoto(index, ''),
+                  child: Stack(
+                    children: [
+                      Image.network(
+                        photos.data![index].source,
+                        fit: BoxFit.cover,
+                        width: 80,
+                      ),
+                      Align(
+                        child: Padding(
+                          padding: const EdgeInsets.all(6.0),
+                          child: Icon(Icons.check_circle_rounded,
+                              color: Colors.green),
+                        ),
+                        alignment: Alignment.topRight,
+                      )
+                    ],
+                  ),
+                );
+              }),
+            ),
+          ),
+        ),
       ),
     );
   }
