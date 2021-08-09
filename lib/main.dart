@@ -71,7 +71,7 @@ class MyApp extends StatelessWidget {
         theme: myTheme,
         initialRoute: homeRoute,
         onGenerateRoute: onGenerateRoute,
-        defaultTransition: Transition.fade,
+        defaultTransition: Transition.native,
         opaqueRoute: Get.isOpaqueRouteDefault,
       ),
     );

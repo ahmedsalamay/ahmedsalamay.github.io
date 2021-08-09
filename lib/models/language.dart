@@ -1,6 +1,10 @@
+import 'package:fimto_frame/repository/local/language_local_repository.dart';
 import 'package:flutter/material.dart';
 
 class Language extends ChangeNotifier {
+  final LanguageLocalRepository languageLocalRepository =
+      LanguageLocalRepository();
+
   static const String arabicCode = 'ar';
   static const String englishCode = 'en';
 
@@ -29,4 +33,18 @@ class Language extends ChangeNotifier {
   }
 
   String get languageCode => _currentLocale.languageCode;
+
+  void changeToArLanguage() {
+    newLocale = Language.arabicCode;
+    changeLanguage(Locale(Language.arabicCode));
+    languageLocalRepository.saveLanguageCode(Language.arabicCode);
+    notifyListeners();
+  }
+
+  void changeToEnLanguage() {
+    newLocale = Language.englishCode;
+    changeLanguage(Locale(Language.englishCode));
+    languageLocalRepository.saveLanguageCode(Language.englishCode);
+    notifyListeners();
+  }
 }

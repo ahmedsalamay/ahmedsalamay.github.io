@@ -40,23 +40,20 @@ class __BodyState extends State<_Body> {
     return SafeArea(
       child: Container(
           height: double.infinity,
-          child: Padding(
-            padding: const EdgeInsets.all(15.0),
-            child: Column(
-              children: [
-                CustomAppBar(title: S.of(context).confirmYourOrder),
-                _Stepper(),
-                Expanded(
-                  child: SingleChildScrollView(
-                    child: _OrderSummary(),
-                  ),
+          child: Column(
+            children: [
+              CustomAppBar(title: S.of(context).confirmYourOrder),
+              _Stepper(),
+              Expanded(
+                child: SingleChildScrollView(
+                  child: _OrderSummary(),
                 ),
-                GradientButton(
-                  text: S.of(context).confirmOrder,
-                  onTap: () => Get.toNamed(congratulationRoute),
-                )
-              ],
-            ),
+              ),
+              GradientButton(
+                text: S.of(context).confirmOrder,
+                onTap: () => Get.toNamed(congratulationRoute),
+              )
+            ],
           )),
     );
   }
@@ -66,29 +63,32 @@ class _OrderSummary extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var vm = context.watch<ConfirmOrderViewModel>();
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        SizedBox(height: 30),
-        Text(
-          S.of(context).orderSummary,
-          style: Theme.of(context).textTheme.headline3,
-        ),
-        SizedBox(height: 15),
-        _OrderSummaryItem(
-          title: S.of(context).address,
-          value: 'sherry st..',
-        ),
-        _OrderSummaryItem(
-          title: S.of(context).paymentMethod,
-          value: 'Vodafone cash',
-        ),
-        _OrderSummaryItem(
-          title: S.of(context).deliveryTime,
-          value: '27 May 2021, 22:00 Am',
-        ),
-        _PriceSummary()
-      ],
+    return Padding(
+      padding: const EdgeInsets.all(15.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SizedBox(height: 30),
+          Text(
+            S.of(context).orderSummary,
+            style: Theme.of(context).textTheme.headline3,
+          ),
+          SizedBox(height: 15),
+          _OrderSummaryItem(
+            title: S.of(context).address,
+            value: 'sherry st..',
+          ),
+          _OrderSummaryItem(
+            title: S.of(context).paymentMethod,
+            value: 'Vodafone cash',
+          ),
+          _OrderSummaryItem(
+            title: S.of(context).deliveryTime,
+            value: '27 May 2021, 22:00 Am',
+          ),
+          _PriceSummary()
+        ],
+      ),
     );
   }
 }
@@ -99,6 +99,7 @@ class _Stepper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: EdgeInsets.all(15),
       child: Column(
         children: [
           Padding(

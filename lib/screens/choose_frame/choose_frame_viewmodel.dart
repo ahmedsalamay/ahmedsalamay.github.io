@@ -1,11 +1,11 @@
 import 'dart:io';
 import 'dart:typed_data';
-import 'package:dio/dio.dart';
 import 'package:fimto_frame/models/constants.dart';
 import 'package:fimto_frame/models/facebook_photo.dart';
 import 'package:fimto_frame/repository/remote/facebook_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:get/get.dart';
 import 'package:logger/logger.dart';
@@ -29,10 +29,14 @@ class ChooseFrameViewModel extends ChangeNotifier {
 
   bool isDeleteButtonVisible = false;
 
-  Map<int, String> _selectedFaceBookPhotos = {};
+  Map<int, String> _selectedFaceBookPhotos = <int, String>{};
   Map<int, String> get selectedFaceBookPhotos => _selectedFaceBookPhotos;
-  void addFacebookPhoto(int index, String source) {
+  void addFacebookPhoto(int index, String source) async {
     _selectedFaceBookPhotos[index] = source;
+    Uint8List bytes = (await NetworkAssetBundle(Uri.parse(source)).load(source))
+        .buffer
+        .asUint8List();
+    _pickedFiles.add(bytes);
     notifyListeners();
   }
 
@@ -80,13 +84,12 @@ class ChooseFrameViewModel extends ChangeNotifier {
             }
           });
       if (result != null) {
+        setLoadingState(false);
         if (kIsWeb) {
           List<Uint8List> files = result.files.map((e) => e.bytes!).toList();
-          // List<File> files = result.files.map((e) => File(e.path!)).toList();
           _pickedFiles.addAll(files);
           notifyListeners();
         } else {
-          // List<Uint8List> files = result.files.map((e) => e.bytes!).toList();
           List<File> files = result.files.map((e) => File(e.path!)).toList();
           files
               .map((e) => e.readAsBytes().then((value) {
@@ -97,22 +100,6 @@ class ChooseFrameViewModel extends ChangeNotifier {
           notifyListeners();
         }
       }
-      // facebookLogin();
-    }
-  }
-
-  Future<void> _checkIfIsLogged() async {
-    setLoadingState(true);
-    final accessToken = await FacebookAuth.instance.accessToken;
-    setLoadingState(false);
-
-    if (accessToken != null) {
-      logger.i(accessToken.toJson());
-      // now you can call to  FacebookAuth.instance.getUserData();
-      final userData = await FacebookAuth.instance.getUserData();
-      // final userData = await FacebookAuth.instance.getUserData(fields: "email,birthday,friends,gender,link");
-      _accessToken = accessToken;
-      _userData = userData;
     }
   }
 
@@ -122,19 +109,10 @@ class ChooseFrameViewModel extends ChangeNotifier {
       permissions: ['user_photos', 'email', 'public_profile'],
     ); // by default we request the email and the public profile
 
-    // loginBehavior is only supported for Android devices, for ios it will be ignored
-    // final result = await FacebookAuth.instance.login(
-    //   permissions: ['email', 'public_profile', 'user_birthday', 'user_friends', 'user_gender', 'user_link'],
-    //   loginBehavior: LoginBehavior
-    //       .DIALOG_ONLY, // (only android) show an authentication dialog instead of redirecting to facebook app
-    // );
-
     if (result.status == LoginStatus.success) {
       _accessToken = result.accessToken;
-      // get the user data
-      // by default we get the userId, email,name and picture
+
       final userData = await FacebookAuth.instance.getUserData();
-      // final userData = await FacebookAuth.instance.getUserData(fields: "email,birthday,friends,gender,link");
       _userData = userData;
       // final graphResponse = await Dio().get(
       //     'https://graph.facebook.com/v2.12/me?fields=name,picture.width(800).height(800),first_name,last_name,email&access_token=${_accessToken!.token}');
@@ -145,6 +123,7 @@ class ChooseFrameViewModel extends ChangeNotifier {
           accessToken: _accessToken!.token, userId: userData['id']);
       //  '112357808842711' /* albums.asValue!.value.data.first.id.toString()*/);
       logger.i(photos);
+      setLoadingState(false);
       return photos.asFuture;
     } else {
       print(result.status);
@@ -156,5 +135,8 @@ class ChooseFrameViewModel extends ChangeNotifier {
   void removePhoto(int index) {
     _pickedFiles.removeAt(index);
     notifyListeners();
+    if (!kIsWeb) {
+      Get.back();
+    }
   }
 }

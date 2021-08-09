@@ -1,6 +1,8 @@
+import 'package:fimto_frame/generated/l10n.dart';
 import 'package:fimto_frame/routes/router_names.dart';
 import 'package:fimto_frame/themes/appBar.dart';
 import 'package:fimto_frame/themes/buttons.dart';
+import 'package:fimto_frame/themes/drawer.dart';
 import 'package:fimto_frame/themes/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -12,6 +14,7 @@ class HomeViewMobile extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
+        endDrawer: CustomDrawer(),
         body: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -29,7 +32,8 @@ class HomeViewMobile extends StatelessWidget {
               ),
             ),
             GradientButton(
-                text: 'Let\'s Go', onTap: () => Get.toNamed(selectToWhoRoute))
+                text: S.of(context).letsGo,
+                onTap: () => Get.toNamed(selectToWhoRoute))
           ],
         ),
       ),
@@ -95,7 +99,7 @@ class __TitleState extends State<_Title> {
           ),
           SizedBox(height: 25),
           Text(
-            'FRAME YOUR MOMENTS',
+            S.of(context).frameYourMoment,
             style: Theme.of(context).textTheme.headline2,
           ),
         ],
@@ -136,13 +140,13 @@ class _FramesPrice extends StatelessWidget {
           ),
           SizedBox(width: 16),
           Text(
-            'Get three Frames with 270 LE only',
+            S.of(context).getThreeFrames,
             style:
                 Theme.of(context).textTheme.headline2!.copyWith(fontSize: 20),
           ),
           SizedBox(height: 10),
           Text(
-            'You can add extra frame with only 74LE',
+            S.of(context).youCanExtraFrame,
             style: TextStyle(
                 fontSize: 16, color: Colors.black, fontWeight: FontWeight.w500),
           ),
@@ -193,24 +197,19 @@ class _MoreInfo extends StatelessWidget {
       ),
       child: Column(
         children: [
-          _CustomContainer(text: 'IT DOESN\'T NEED A NAILS'),
-          _CustomContainer(
-              text: 'CHANGE THE LOCATION WITHOUT LEAVING ANY TRACE'),
-          _CustomContainer(text: 'SHIPPING IS ALWAYS FREE'),
-          _CustomContainer(
-              text:
-                  'WE GIVE YOU THE MOST SUITABLE SHAPE FOR THE FRAME ON YOUR WALL'),
+          _CustomContainer(text: S.of(context).noNails),
+          _CustomContainer(text: S.of(context).changLocation),
+          _CustomContainer(text: S.of(context).shippingFree),
+          _CustomContainer(text: S.of(context).suitableShape),
           SizedBox(height: 15),
           _SocialPosts(),
           SizedBox(height: 15),
-          _CustomContainer(text: 'PERFECT FRAME SIZE 21X21'),
-          _CustomContainer(
-              text: 'YOU CAN CHANGE THE PHOTO INSIDE THE FRAME ANY TIME'),
-          _CustomContainer(
-              text: 'WE WILL ADD AN AESTHETIC TOUCH TO YOUR PHOTOS'),
+          _CustomContainer(text: S.of(context).perfectSize),
+          _CustomContainer(text: S.of(context).youCanChangeThePhoto),
+          _CustomContainer(text: S.of(context).addAestheticTouch),
           SizedBox(height: 25),
           Text(
-            'WE GUARANTEE OUR FRAME!',
+            S.of(context).guaranteeOurFrames,
             textAlign: TextAlign.center,
             style: TextStyle(
               color: Colors.black,
@@ -220,7 +219,7 @@ class _MoreInfo extends StatelessWidget {
           ),
           SizedBox(height: 10),
           Text(
-            'YOU CAN RETRIEVE IT IF IT ISN\'T IN THE REQUIRED FORM',
+            S.of(context).youCanRetrieve,
             textAlign: TextAlign.center,
             style: TextStyle(
               color: Colors.black,

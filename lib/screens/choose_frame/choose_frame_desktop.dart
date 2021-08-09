@@ -1,3 +1,4 @@
+import 'package:fimto_frame/models/facebook_photo.dart';
 import 'package:fimto_frame/repository/remote/facebook_repository.dart';
 import 'package:fimto_frame/themes/theme.dart';
 import 'package:get/get.dart';
@@ -205,13 +206,10 @@ class _UploadPhoto extends StatelessWidget {
         color: Colors.white,
         boxShadow: [
           BoxShadow(
-            color: Color(0xFFb4b4b4),
-            blurRadius: 15.0, // soften the shadow
-            spreadRadius: 2.0, //extend the shadow
-            offset: Offset(
-              3.0, // Move to right 10  horizontally
-              3.0, // Move to bottom 10 Vertically
-            ),
+            color: Colors.grey.withOpacity(0.2),
+            spreadRadius: 2,
+            blurRadius: 2,
+            offset: Offset(0, 2), // changes position of shadow
           )
         ],
       ),
@@ -249,7 +247,13 @@ class _ImportPhoto extends StatelessWidget {
     var vm = context.read<ChooseFrameViewModel>();
 
     return MaterialButton(
-      onPressed: () => vm.facebookLogin(),
+      onPressed: () => vm.facebookLogin().then((value) => value != null
+          ? Get.dialog(FacebookPhotos(
+              photos: value,
+              buildContext: context,
+              addFacebookPhoto: vm.addFacebookPhoto,
+            ))
+          : () {}),
       child: Container(
         height: 180,
         child: Column(
@@ -264,13 +268,10 @@ class _ImportPhoto extends StatelessWidget {
                 color: Colors.white,
                 boxShadow: [
                   BoxShadow(
-                    color: Color(0xFFb4b4b4),
-                    blurRadius: 15.0, // soften the shadow
-                    spreadRadius: 2.0, //extend the shadow
-                    offset: Offset(
-                      3.0, // Move to right 10  horizontally
-                      3.0, // Move to bottom 10 Vertically
-                    ),
+                    color: Colors.grey.withOpacity(0.2),
+                    spreadRadius: 2,
+                    blurRadius: 2,
+                    offset: Offset(0, 2), // changes position of shadow
                   )
                 ],
               ),
@@ -301,13 +302,10 @@ class _ImportPhoto extends StatelessWidget {
                 color: Colors.white,
                 boxShadow: [
                   BoxShadow(
-                    color: Color(0xFFb4b4b4),
-                    blurRadius: 15.0, // soften the shadow
-                    spreadRadius: 2.0, //extend the shadow
-                    offset: Offset(
-                      3.0, // Move to right 10  horizontally
-                      3.0, // Move to bottom 10 Vertically
-                    ),
+                    color: Colors.grey.withOpacity(0.2),
+                    spreadRadius: 2,
+                    blurRadius: 2,
+                    offset: Offset(0, 2), // changes position of shadow
                   )
                 ],
               ),
@@ -336,7 +334,10 @@ class _ImportPhoto extends StatelessWidget {
 }
 
 class _FramePreview extends StatelessWidget {
-  const _FramePreview({Key? key}) : super(key: key);
+  _FramePreview({Key? key}) : super(key: key);
+
+  final classicPadding = EdgeInsets.fromLTRB(24, 24, 49, 46);
+  final cleanPadding = EdgeInsets.fromLTRB(12, 12, 40, 38);
 
   @override
   Widget build(BuildContext context) {
@@ -368,7 +369,10 @@ class _FramePreview extends StatelessWidget {
                             'assets/images/${vm.selectedFrame.toString().split('.')[1]}.png'),
                       ),
                       Padding(
-                        padding: const EdgeInsets.fromLTRB(12, 12, 40, 38),
+                        padding: vm.selectedFrame == frames.classic ||
+                                vm.selectedFrame == frames.permise
+                            ? classicPadding
+                            : cleanPadding,
                         child: Image.memory(
                           vm.pickedFiles[index],
                           height: 300,
@@ -423,13 +427,10 @@ class _AddMore extends StatelessWidget {
             borderRadius: BorderRadius.all(Radius.circular(6)),
             boxShadow: [
               BoxShadow(
-                color: Color(0xFFb4b4b4),
-                blurRadius: 15.0, // soften the shadow
-                spreadRadius: 2.0, //extend the shadow
-                offset: Offset(
-                  2.0, // Move to right 10  horizontally
-                  2.0, // Move to bottom 10 Vertically
-                ),
+                color: Colors.grey.withOpacity(0.2),
+                spreadRadius: 2,
+                blurRadius: 2,
+                offset: Offset(0, 2), // changes position of shadow
               )
             ]),
         child: Icon(
@@ -539,6 +540,74 @@ class _SheetTotal extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
         ],
+      ),
+    );
+  }
+}
+
+class FacebookPhotos extends StatelessWidget {
+  final PhotoPaging photos;
+  final Function addFacebookPhoto;
+  final BuildContext buildContext;
+  const FacebookPhotos(
+      {Key? key,
+      required this.photos,
+      required this.addFacebookPhoto,
+      required this.buildContext})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    var vm = buildContext.watch<ChooseFrameViewModel>();
+    return Container(
+      height: size.height * 0.7,
+      width: size.width * 0.9,
+      child: Padding(
+        padding: EdgeInsets.symmetric(
+            horizontal: size.width * 0.1, vertical: size.height * 0.2),
+        child: Scaffold(
+          appBar: AppBar(
+            actions: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: ElevatedButton(onPressed: () {}, child: Text('Done')),
+              ),
+            ],
+          ),
+          body: Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: GridView.count(
+              crossAxisCount: 3,
+              children: List.generate(photos.data!.length, (index) {
+                return InkWell(
+                  onTap: () =>
+                      addFacebookPhoto(index, photos.data![index].source),
+                  child: Stack(
+                    children: [
+                      Image.network(
+                        photos.data![index].source,
+                        fit: BoxFit.cover,
+                        width: 80,
+                      ),
+                      Visibility(
+                        visible: vm.selectedFaceBookPhotos.containsKey(index),
+                        child: Align(
+                          child: Padding(
+                            padding: const EdgeInsets.all(6.0),
+                            child: Icon(Icons.check_circle_rounded,
+                                color: Colors.green),
+                          ),
+                          alignment: Alignment.topRight,
+                        ),
+                      )
+                    ],
+                  ),
+                );
+              }),
+            ),
+          ),
+        ),
       ),
     );
   }

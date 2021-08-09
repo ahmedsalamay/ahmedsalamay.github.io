@@ -35,7 +35,7 @@ class RequestProvider {
           var options = error.response!.requestOptions;
 
           try {
-            var token = await tokenService!.getAccessToken();
+            var token = await tokenService.getAccessToken();
             token = 'Bearer ' + token!;
             if (token != options.headers['Authorization']) {
               _client.interceptors.requestLock.unlock();
@@ -54,7 +54,7 @@ class RequestProvider {
               );
               return;
             } else {
-              return tokenService!.refreshToken().then((newToken) {
+              return tokenService.refreshToken().then((newToken) {
                 //update csrfToken
                 options.headers['Authorization'] =
                     'Bearer ${newToken!.accessToken}';
@@ -89,7 +89,7 @@ class RequestProvider {
       onRequest: (RequestOptions options, handler) async {
         _client.interceptors.requestLock.lock();
 
-        var token = await tokenService!.getAccessToken();
+        var token = await tokenService.getAccessToken();
 
         options.headers["Authorization"] = "Bearer $token";
         _client.interceptors.requestLock.unlock();

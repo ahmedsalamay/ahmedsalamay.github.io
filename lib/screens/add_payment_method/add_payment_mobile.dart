@@ -40,23 +40,20 @@ class __BodyState extends State<_Body> {
     return SafeArea(
       child: Container(
           height: double.infinity,
-          child: Padding(
-            padding: const EdgeInsets.all(15.0),
-            child: Column(
-              children: [
-                CustomAppBar(title: S.of(context).addPaymentMethod),
-                _Stepper(),
-                Expanded(
-                  child: SingleChildScrollView(
-                    child: _PaymentMethods(),
-                  ),
+          child: Column(
+            children: [
+              CustomAppBar(title: S.of(context).addPaymentMethod),
+              _Stepper(),
+              Expanded(
+                child: SingleChildScrollView(
+                  child: _PaymentMethods(),
                 ),
-                GradientButton(
-                  text: S.of(context).confirmPaymentMethod,
-                  onTap: () => Get.toNamed(confirmOrderRoute),
-                )
-              ],
-            ),
+              ),
+              GradientButton(
+                text: S.of(context).confirmPaymentMethod,
+                onTap: () => Get.toNamed(confirmOrderRoute),
+              )
+            ],
           )),
     );
   }
@@ -66,61 +63,65 @@ class _PaymentMethods extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var vm = context.watch<AddPaymentMethodViewModel>();
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        SizedBox(height: 30),
-        Text(
-          S.of(context).choosePaymentMethod,
-          style: Theme.of(context).textTheme.headline3,
-        ),
-        SizedBox(height: 15),
-        _PaymentButton(
-          onTap: () =>
-              vm.selectPaymentMethodAction(paymentMethods.VodafoneCash),
-          text: 'Vodafone Cash',
-          icon: 'vodafone',
-          isSelected: vm.isVodafoneSelected(),
-        ),
-        _PaymentButton(
-          onTap: () =>
-              vm.selectPaymentMethodAction(paymentMethods.EtisalatCash),
-          text: 'Etisalat Cash',
-          icon: 'etisalat',
-          isSelected: vm.isEtisalatSelected(),
-        ),
-        _PaymentButton(
-          onTap: () => vm.selectPaymentMethodAction(paymentMethods.OrangeCash),
-          text: 'Orange Cash',
-          icon: 'orange',
-          isSelected: vm.isOrangeSelected(),
-        ),
-        SizedBox(height: 10),
-        Center(
-          child: Text(
-            S.of(context).pleaseTransferAmountTo,
-            style: Theme.of(context).textTheme.headline5,
-            textAlign: TextAlign.center,
+    return Padding(
+      padding: const EdgeInsets.all(15.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SizedBox(height: 30),
+          Text(
+            S.of(context).choosePaymentMethod,
+            style: Theme.of(context).textTheme.headline3,
           ),
-        ),
-        SizedBox(height: 10),
-        Center(
-          child: Text(
-            '+201090928586',
-            style: Theme.of(context).textTheme.headline2,
-            textAlign: TextAlign.center,
+          SizedBox(height: 15),
+          _PaymentButton(
+            onTap: () =>
+                vm.selectPaymentMethodAction(paymentMethods.VodafoneCash),
+            text: 'Vodafone Cash',
+            icon: 'vodafone',
+            isSelected: vm.isVodafoneSelected(),
           ),
-        ),
-        SizedBox(height: 10),
-        Center(
-          child: Text(
-            S.of(context).paymentConfirmAutomatically,
-            style:
-            Theme.of(context).textTheme.headline5!.copyWith(fontSize: 14),
-            textAlign: TextAlign.center,
+          _PaymentButton(
+            onTap: () =>
+                vm.selectPaymentMethodAction(paymentMethods.EtisalatCash),
+            text: 'Etisalat Cash',
+            icon: 'etisalat',
+            isSelected: vm.isEtisalatSelected(),
           ),
-        )
-      ],
+          _PaymentButton(
+            onTap: () =>
+                vm.selectPaymentMethodAction(paymentMethods.OrangeCash),
+            text: 'Orange Cash',
+            icon: 'orange',
+            isSelected: vm.isOrangeSelected(),
+          ),
+          SizedBox(height: 10),
+          Center(
+            child: Text(
+              S.of(context).pleaseTransferAmountTo,
+              style: Theme.of(context).textTheme.headline5,
+              textAlign: TextAlign.center,
+            ),
+          ),
+          SizedBox(height: 10),
+          Center(
+            child: Text(
+              '+201090928586',
+              style: Theme.of(context).textTheme.headline2,
+              textAlign: TextAlign.center,
+            ),
+          ),
+          SizedBox(height: 10),
+          Center(
+            child: Text(
+              S.of(context).paymentConfirmAutomatically,
+              style:
+                  Theme.of(context).textTheme.headline5!.copyWith(fontSize: 14),
+              textAlign: TextAlign.center,
+            ),
+          )
+        ],
+      ),
     );
   }
 }
@@ -131,6 +132,7 @@ class _Stepper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: EdgeInsets.all(15),
       child: Column(
         children: [
           Padding(
@@ -155,7 +157,7 @@ class _Stepper extends StatelessWidget {
                 ),
                 Expanded(
                     child:
-                    Divider(thickness: 4, color: FimtoColors.primaryColor)),
+                        Divider(thickness: 4, color: FimtoColors.primaryColor)),
                 Container(
                   width: 50,
                   height: 50,
@@ -164,12 +166,12 @@ class _Stepper extends StatelessWidget {
                       color: FimtoColors.primaryColor),
                   child: Center(
                       child: Text(
-                        '2',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 22,
-                            fontWeight: FontWeight.w800),
-                      )),
+                    '2',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 22,
+                        fontWeight: FontWeight.w800),
+                  )),
                 ),
                 Expanded(child: Divider(thickness: 4)),
                 Container(
@@ -273,7 +275,7 @@ class _PaymentButton extends StatelessWidget {
                   style: Theme.of(context).textTheme.headline5!.copyWith(
                       fontSize: 16,
                       fontWeight:
-                      isSelected ? FontWeight.w900 : FontWeight.w400)),
+                          isSelected ? FontWeight.w900 : FontWeight.w400)),
               Spacer(),
               Container(
                 padding: EdgeInsets.all(2),

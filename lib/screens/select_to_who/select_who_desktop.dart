@@ -53,10 +53,7 @@ class _Body extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        GiftCard(selected: false),
-                        ForMeCard(selected: false)
-                      ],
+                      children: [GiftCard(), ForMeCard()],
                     )
                   ],
                 ),

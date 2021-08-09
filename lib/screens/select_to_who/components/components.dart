@@ -4,9 +4,6 @@ import 'package:provider/provider.dart';
 import '../select_to_who_viewmodel.dart';
 
 class GiftCard extends StatelessWidget {
-  final bool selected;
-  const GiftCard({required this.selected});
-
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
@@ -46,9 +43,6 @@ class GiftCard extends StatelessWidget {
 }
 
 class ForMeCard extends StatelessWidget {
-  final bool selected;
-  const ForMeCard({required this.selected});
-
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;

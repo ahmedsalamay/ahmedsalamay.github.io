@@ -64,5 +64,17 @@
   "uploadPhotos": "Upload Photos",
   "importFromFacebook": "Import From Facebook",
   "importFromInstagram": "Import From Instagram",
-  "or": "OR"
+  "or": "OR",
+  "letsGo": "Let's Go",
+  "frameYourMoment": "FRAME YOUR MOMENTS",
+  "changLocation": "CHANGE THE LOCATION WITHOUT LEAVING ANY TRACE",
+  "perfectSize": "PERFECT FRAME SIZE 21X21",
+  "youCanChangeThePhoto": "YOU CAN CHANGE THE PHOTO INSIDE THE FRAME ANY TIME",
+  "addAestheticTouch": "WE WILL ADD AN AESTHETIC TOUCH TO YOUR PHOTOS",
+  "guaranteeOurFrames": "WE GUARANTEE OUR FRAME!",
+  "youCanRetrieve": "YOU CAN RETRIEVE IT IF IT ISN'T IN THE REQUIRED FORM",
+  "getThreeFrames": "Get three Frames with 270 LE only",
+  "youCanExtraFrame": "You can add extra frame with only 74LE",
+  "dismiss": "Dismiss",
+  "delete": "Delete"
 }

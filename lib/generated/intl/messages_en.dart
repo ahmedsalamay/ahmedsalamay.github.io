@@ -22,6 +22,8 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "addAddress": MessageLookupByLibrary.simpleMessage("Add Address"),
+        "addAestheticTouch": MessageLookupByLibrary.simpleMessage(
+            "WE WILL ADD AN AESTHETIC TOUCH TO YOUR PHOTOS"),
         "addPaymentMethod":
             MessageLookupByLibrary.simpleMessage("Add Payment Method"),
         "addPromoCode": MessageLookupByLibrary.simpleMessage("Add promo code"),
@@ -31,6 +33,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Building Number"),
         "canTrackYourOrder": MessageLookupByLibrary.simpleMessage(
             "You can track your order from here"),
+        "changLocation": MessageLookupByLibrary.simpleMessage(
+            "CHANGE THE LOCATION WITHOUT LEAVING ANY TRACE"),
         "checkout": MessageLookupByLibrary.simpleMessage("Checkout"),
         "choosePaymentMethod":
             MessageLookupByLibrary.simpleMessage("Choose Payment Method"),
@@ -51,10 +55,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "continueBTN": MessageLookupByLibrary.simpleMessage("Continue"),
         "decorateMyWall":
             MessageLookupByLibrary.simpleMessage("Decorate My Wall"),
+        "delete": MessageLookupByLibrary.simpleMessage("Delete"),
         "delivered": MessageLookupByLibrary.simpleMessage("delivered"),
         "deliveredForShipment":
             MessageLookupByLibrary.simpleMessage("Delivered for shipment"),
         "deliveryTime": MessageLookupByLibrary.simpleMessage("Delivery Time"),
+        "dismiss": MessageLookupByLibrary.simpleMessage("Dismiss"),
         "egyptwideShipping": MessageLookupByLibrary.simpleMessage(
             "Free Egyptwide shipping! At your doorstep in a week"),
         "faq": MessageLookupByLibrary.simpleMessage("FAQ"),
@@ -64,14 +70,21 @@ class MessageLookup extends MessageLookupByLibrary {
         "followUs": MessageLookupByLibrary.simpleMessage("Follow us"),
         "forMe": MessageLookupByLibrary.simpleMessage("For Me"),
         "forPerson": MessageLookupByLibrary.simpleMessage("For a dear person"),
+        "frameYourMoment":
+            MessageLookupByLibrary.simpleMessage("FRAME YOUR MOMENTS"),
         "framesStickWall": MessageLookupByLibrary.simpleMessage(
             "Our frames stick to any walls"),
+        "getThreeFrames": MessageLookupByLibrary.simpleMessage(
+            "Get three Frames with 270 LE only"),
         "gift": MessageLookupByLibrary.simpleMessage("Gift"),
+        "guaranteeOurFrames":
+            MessageLookupByLibrary.simpleMessage("WE GUARANTEE OUR FRAME!"),
         "importFromFacebook":
             MessageLookupByLibrary.simpleMessage("Import From Facebook"),
         "importFromInstagram":
             MessageLookupByLibrary.simpleMessage("Import From Instagram"),
         "leaveMessage": MessageLookupByLibrary.simpleMessage("Leave a message"),
+        "letsGo": MessageLookupByLibrary.simpleMessage("Let\'s Go"),
         "mailHint": MessageLookupByLibrary.simpleMessage("E-Mail"),
         "messageToYourDear": MessageLookupByLibrary.simpleMessage(
             "Leave a message to your dear person"),
@@ -91,6 +104,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "paymentConfirmAutomatically": MessageLookupByLibrary.simpleMessage(
             "Your payment will be confirmed automatically if the sender number register at your order if not, please contact us to confirm the payment"),
         "paymentMethod": MessageLookupByLibrary.simpleMessage("Payment Method"),
+        "perfectSize":
+            MessageLookupByLibrary.simpleMessage("PERFECT FRAME SIZE 21X21"),
         "phoneHint": MessageLookupByLibrary.simpleMessage("Phone Number"),
         "pickUpSomePhotos": MessageLookupByLibrary.simpleMessage(
             "Pick some photos to get started"),
@@ -117,6 +132,12 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Track Your Order"),
         "uploadPhotos": MessageLookupByLibrary.simpleMessage("Upload Photos"),
         "usePolicy": MessageLookupByLibrary.simpleMessage("Use policy"),
+        "youCanChangeThePhoto": MessageLookupByLibrary.simpleMessage(
+            "YOU CAN CHANGE THE PHOTO INSIDE THE FRAME ANY TIME"),
+        "youCanExtraFrame": MessageLookupByLibrary.simpleMessage(
+            "You can add extra frame with only 74LE"),
+        "youCanRetrieve": MessageLookupByLibrary.simpleMessage(
+            "YOU CAN RETRIEVE IT IF IT ISN\'T IN THE REQUIRED FORM"),
         "yourOrders": MessageLookupByLibrary.simpleMessage("Tour orders")
       };
 }

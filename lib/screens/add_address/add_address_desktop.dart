@@ -31,7 +31,6 @@ class _Body extends StatelessWidget {
           width: double.infinity,
           child: Row(
             children: [
-              // Expanded(flex: 1, child: _Stepper()),
               _Stepper(),
               Expanded(
                 flex: 3,

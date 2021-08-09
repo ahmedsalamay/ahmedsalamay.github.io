@@ -41,7 +41,7 @@ class _Body extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 25),
               child: SingleChildScrollView(
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     SizedBox(height: 35),
                     Text(
@@ -49,10 +49,10 @@ class _Body extends StatelessWidget {
                       style: TextStyle(fontSize: 26, color: Color(0xFF737888)),
                       textAlign: TextAlign.center,
                     ),
-                    SizedBox(height: 25),
-                    GiftCard(selected: false),
+                    SizedBox(height: 35),
+                    GiftCard(),
                     SizedBox(height: 15),
-                    ForMeCard(selected: false)
+                    ForMeCard()
                   ],
                 ),
               ),

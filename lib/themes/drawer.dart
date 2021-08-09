@@ -1,7 +1,8 @@
 import 'package:fimto_frame/generated/l10n.dart';
+import 'package:fimto_frame/models/language.dart';
 import 'package:fimto_frame/themes/theme.dart';
 import 'package:flutter/material.dart';
-import 'package:hive/hive.dart';
+import 'package:provider/provider.dart';
 
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({
@@ -165,38 +166,45 @@ class _LanguageTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var language = context.watch<Language>();
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       child: Row(
         children: [
-          Row(
-            children: [
-              Image(
-                image: AssetImage('assets/images/us.png'),
-                height: 15,
-              ),
-              SizedBox(width: 6),
-              Text('En',
-                  style: Theme.of(context)
-                      .textTheme
-                      .headline3!
-                      .copyWith(fontSize: 16)),
-            ],
+          MaterialButton(
+            onPressed: () => language.changeToEnLanguage(),
+            child: Row(
+              children: [
+                Image(
+                  image: AssetImage('assets/images/us.png'),
+                  height: 15,
+                ),
+                SizedBox(width: 6),
+                Text('En',
+                    style: Theme.of(context)
+                        .textTheme
+                        .headline3!
+                        .copyWith(fontSize: 16)),
+              ],
+            ),
           ),
           SizedBox(width: 25),
-          Row(
-            children: [
-              Image(
-                image: AssetImage('assets/images/egypt.png'),
-                height: 15,
-              ),
-              SizedBox(width: 6),
-              Text('AR',
-                  style: Theme.of(context)
-                      .textTheme
-                      .headline3!
-                      .copyWith(fontSize: 16)),
-            ],
+          MaterialButton(
+            onPressed: () => language.changeToArLanguage(),
+            child: Row(
+              children: [
+                Image(
+                  image: AssetImage('assets/images/egypt.png'),
+                  height: 15,
+                ),
+                SizedBox(width: 6),
+                Text('AR',
+                    style: Theme.of(context)
+                        .textTheme
+                        .headline3!
+                        .copyWith(fontSize: 16)),
+              ],
+            ),
           )
         ],
       ),

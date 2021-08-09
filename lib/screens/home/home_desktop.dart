@@ -1,3 +1,4 @@
+import 'package:fimto_frame/generated/l10n.dart';
 import 'package:fimto_frame/themes/footer.dart';
 import 'package:fimto_frame/themes/theme.dart';
 import 'package:flutter/material.dart';
@@ -100,7 +101,7 @@ class _FramesPrice extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Text(
-            'FRAME YOUR MOMENTS',
+            S.of(context).frameYourMoment,
             style: Theme.of(context).textTheme.headline2,
           ),
           // SizedBox(width: 16),
@@ -128,18 +129,18 @@ class _FramesPrice extends StatelessWidget {
           ),
           // SizedBox(width: 16),
           Text(
-            'Get three Frames with 270 LE only',
+            S.of(context).getThreeFrames,
             style:
                 Theme.of(context).textTheme.headline2!.copyWith(fontSize: 20),
           ),
           //  SizedBox(height: 10),
           Text(
-            'You can add extra frame with only 74LE',
+            S.of(context).youCanExtraFrame,
             style: TextStyle(
                 fontSize: 18, color: Colors.black, fontWeight: FontWeight.w700),
           ),
           Text(
-            'IT DOESN\'T NEED A NAILS',
+            S.of(context).noNails,
             style: TextStyle(
                 fontSize: 18, color: Colors.black, fontWeight: FontWeight.w700),
           ),
@@ -170,7 +171,7 @@ class _CustomContainer extends StatelessWidget {
               textAlign: TextAlign.center, style: _style),
           Text('You can add extra frame with only 74LE',
               textAlign: TextAlign.center, style: _style),
-          Text('IT DOESN\'T NEED A NAILS',
+          Text(S.of(context).noNails,
               textAlign: TextAlign.center, style: _style),
         ],
       ),
@@ -206,7 +207,7 @@ class _MoreInfo extends StatelessWidget {
           ),
           SizedBox(height: 200),
           Text(
-            'WE GUARANTEE OUR FRAME!',
+            S.of(context).guaranteeOurFrames,
             textAlign: TextAlign.center,
             style: TextStyle(
               color: Colors.black,
@@ -216,7 +217,7 @@ class _MoreInfo extends StatelessWidget {
           ),
           SizedBox(height: 10),
           Text(
-            'YOU CAN RETRIEVE IT IF IT ISN\'T IN THE REQUIRED FORM',
+            S.of(context).youCanRetrieve,
             textAlign: TextAlign.center,
             style: TextStyle(
               color: Colors.black,

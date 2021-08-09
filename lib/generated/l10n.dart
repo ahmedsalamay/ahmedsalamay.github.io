@@ -709,6 +709,126 @@ class S {
       args: [],
     );
   }
+
+  /// `Let's Go`
+  String get letsGo {
+    return Intl.message(
+      'Let\'s Go',
+      name: 'letsGo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `FRAME YOUR MOMENTS`
+  String get frameYourMoment {
+    return Intl.message(
+      'FRAME YOUR MOMENTS',
+      name: 'frameYourMoment',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `CHANGE THE LOCATION WITHOUT LEAVING ANY TRACE`
+  String get changLocation {
+    return Intl.message(
+      'CHANGE THE LOCATION WITHOUT LEAVING ANY TRACE',
+      name: 'changLocation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `PERFECT FRAME SIZE 21X21`
+  String get perfectSize {
+    return Intl.message(
+      'PERFECT FRAME SIZE 21X21',
+      name: 'perfectSize',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `YOU CAN CHANGE THE PHOTO INSIDE THE FRAME ANY TIME`
+  String get youCanChangeThePhoto {
+    return Intl.message(
+      'YOU CAN CHANGE THE PHOTO INSIDE THE FRAME ANY TIME',
+      name: 'youCanChangeThePhoto',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `WE WILL ADD AN AESTHETIC TOUCH TO YOUR PHOTOS`
+  String get addAestheticTouch {
+    return Intl.message(
+      'WE WILL ADD AN AESTHETIC TOUCH TO YOUR PHOTOS',
+      name: 'addAestheticTouch',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `WE GUARANTEE OUR FRAME!`
+  String get guaranteeOurFrames {
+    return Intl.message(
+      'WE GUARANTEE OUR FRAME!',
+      name: 'guaranteeOurFrames',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `YOU CAN RETRIEVE IT IF IT ISN'T IN THE REQUIRED FORM`
+  String get youCanRetrieve {
+    return Intl.message(
+      'YOU CAN RETRIEVE IT IF IT ISN\'T IN THE REQUIRED FORM',
+      name: 'youCanRetrieve',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Get three Frames with 270 LE only`
+  String get getThreeFrames {
+    return Intl.message(
+      'Get three Frames with 270 LE only',
+      name: 'getThreeFrames',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You can add extra frame with only 74LE`
+  String get youCanExtraFrame {
+    return Intl.message(
+      'You can add extra frame with only 74LE',
+      name: 'youCanExtraFrame',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Dismiss`
+  String get dismiss {
+    return Intl.message(
+      'Dismiss',
+      name: 'dismiss',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delete`
+  String get delete {
+    return Intl.message(
+      'Delete',
+      name: 'delete',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
