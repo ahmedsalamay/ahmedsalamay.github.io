@@ -570,11 +570,11 @@ class _SheetTotal extends StatelessWidget {
   }
 }
 
-class FacebookPhotos extends StatelessWidget {
+class FacebookPhotos extends StatefulWidget {
   final PhotoPaging photos;
   final Function addFacebookPhoto;
   final BuildContext buildContext;
-  const FacebookPhotos(
+  FacebookPhotos(
       {Key? key,
       required this.photos,
       required this.addFacebookPhoto,
@@ -582,9 +582,16 @@ class FacebookPhotos extends StatelessWidget {
       : super(key: key);
 
   @override
+  _FacebookPhotosState createState() => _FacebookPhotosState();
+}
+
+class _FacebookPhotosState extends State<FacebookPhotos> {
+  Map<int, String> selectedFaceBookPhotos = <int, String>{};
+
+  @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    var vm = buildContext.watch<ChooseFrameViewModel>();
+    var vm = widget.buildContext.watch<ChooseFrameViewModel>();
     return Container(
       height: size.height * 0.7,
       width: size.width * 0.9,
@@ -596,7 +603,10 @@ class FacebookPhotos extends StatelessWidget {
             actions: [
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: ElevatedButton(onPressed: () {}, child: Text('Done')),
+                child: ElevatedButton(
+                    onPressed: () => vm.addFacebookPhoto(
+                        selectedFaceBookPhotos.values.toList()),
+                    child: Text('Done')),
               ),
             ],
           ),
@@ -604,28 +614,36 @@ class FacebookPhotos extends StatelessWidget {
             padding: const EdgeInsets.all(15.0),
             child: GridView.count(
               crossAxisCount: 3,
-              children: List.generate(photos.data!.length, (index) {
+              children: List.generate(widget.photos.data!.length, (index) {
                 return InkWell(
-                  onTap: () =>
-                      addFacebookPhoto(index, photos.data![index].source),
+                  onTap: () {
+                    setState(() {
+                      selectedFaceBookPhotos.containsKey(index)
+                          ? selectedFaceBookPhotos
+                              .removeWhere((key, value) => key == index)
+                          : selectedFaceBookPhotos[index] =
+                              widget.photos.data![index].source;
+                    });
+                  },
+                  //  widget.addFacebookPhoto(index, widget.photos.data![index].source),
                   child: Stack(
                     children: [
                       Image.network(
-                        photos.data![index].source,
+                        widget.photos.data![index].source,
                         fit: BoxFit.cover,
                         height: 100,
                         width: 90,
                       ),
-                      Visibility(
-                        visible: vm.selectedFaceBookPhotos.containsKey(index),
-                        child: Align(
-                          child: Padding(
-                            padding: const EdgeInsets.all(6.0),
-                            child: Icon(Icons.check_circle_rounded,
-                                color: Colors.green),
-                          ),
-                          alignment: Alignment.topRight,
+                      Align(
+                        child: Padding(
+                          padding: const EdgeInsets.all(6.0),
+                          child: selectedFaceBookPhotos.containsKey(index)
+                              ? Icon(Icons.check_box_outlined,
+                                  color: Colors.blue)
+                              : Icon(Icons.check_box_outline_blank_outlined,
+                                  color: Colors.grey),
                         ),
+                        alignment: Alignment.topRight,
                       )
                     ],
                   ),

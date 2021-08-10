@@ -100,8 +100,9 @@ class __FramesState extends State<_Frames> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: frames.values
                   .toList()
-                  .map((e) => GestureDetector(
-                        onTap: () => vm.selectFrameAction(e),
+                  .map((e) => MaterialButton(
+                        onPressed: () => vm.selectFrameAction(e),
+                        splashColor: Colors.transparent,
                         child: Container(
                           padding: EdgeInsets.all(16),
                           color: vm.selectedFrame == e
@@ -112,6 +113,7 @@ class __FramesState extends State<_Frames> {
                               Image(
                                 height: 50,
                                 fit: BoxFit.contain,
+                                filterQuality: FilterQuality.high,
                                 image: AssetImage(
                                     'assets/images/${e.toString().split('.')[1]}.png'),
                               ),
@@ -336,13 +338,12 @@ class _ImportPhoto extends StatelessWidget {
 class _FramePreview extends StatelessWidget {
   _FramePreview({Key? key}) : super(key: key);
 
-  final classicPadding = EdgeInsets.fromLTRB(24, 24, 49, 46);
+  final classicPadding = EdgeInsets.fromLTRB(24, 24, 200, 46);
   final cleanPadding = EdgeInsets.fromLTRB(12, 12, 40, 38);
 
   @override
   Widget build(BuildContext context) {
     var vm = context.watch<ChooseFrameViewModel>();
-
     return Column(
       children: [
         Container(
@@ -376,7 +377,10 @@ class _FramePreview extends StatelessWidget {
                         child: Image.memory(
                           vm.pickedFiles[index],
                           height: 300,
-                          width: 250,
+                          width: vm.selectedFrame == frames.classic ||
+                                  vm.selectedFrame == frames.permise
+                              ? 220
+                              : 250,
                           fit: BoxFit.cover,
                         ),
                       ),
@@ -385,12 +389,17 @@ class _FramePreview extends StatelessWidget {
                         child: Positioned(
                             left: 30,
                             top: 30,
-                            child: IconButton(
-                              onPressed: () => vm.removePhoto(index),
-                              icon: Icon(
-                                Icons.delete,
-                                size: 40,
-                                color: Colors.red,
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(8),
+                                  color: Colors.white),
+                              child: IconButton(
+                                onPressed: () => vm.removePhoto(index),
+                                icon: Icon(
+                                  Icons.delete,
+                                  size: 25,
+                                  color: Colors.black,
+                                ),
                               ),
                             )),
                       )
@@ -545,7 +554,7 @@ class _SheetTotal extends StatelessWidget {
   }
 }
 
-class FacebookPhotos extends StatelessWidget {
+class FacebookPhotos extends StatefulWidget {
   final PhotoPaging photos;
   final Function addFacebookPhoto;
   final BuildContext buildContext;
@@ -557,9 +566,16 @@ class FacebookPhotos extends StatelessWidget {
       : super(key: key);
 
   @override
+  _FacebookPhotosState createState() => _FacebookPhotosState();
+}
+
+class _FacebookPhotosState extends State<FacebookPhotos> {
+  Map<int, String> selectedFaceBookPhotos = <int, String>{};
+
+  @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    var vm = buildContext.watch<ChooseFrameViewModel>();
+    var vm = widget.buildContext.watch<ChooseFrameViewModel>();
     return Container(
       height: size.height * 0.7,
       width: size.width * 0.9,
@@ -571,7 +587,10 @@ class FacebookPhotos extends StatelessWidget {
             actions: [
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: ElevatedButton(onPressed: () {}, child: Text('Done')),
+                child: ElevatedButton(
+                    onPressed: () => vm.addFacebookPhoto(
+                        selectedFaceBookPhotos.values.toList()),
+                    child: Text('Done')),
               ),
             ],
           ),
@@ -579,27 +598,35 @@ class FacebookPhotos extends StatelessWidget {
             padding: const EdgeInsets.all(15.0),
             child: GridView.count(
               crossAxisCount: 3,
-              children: List.generate(photos.data!.length, (index) {
+              children: List.generate(widget.photos.data!.length, (index) {
                 return InkWell(
-                  onTap: () =>
-                      addFacebookPhoto(index, photos.data![index].source),
+                  onTap: () {
+                    setState(() {
+                      selectedFaceBookPhotos.containsKey(index)
+                          ? selectedFaceBookPhotos
+                              .removeWhere((key, value) => key == index)
+                          : selectedFaceBookPhotos[index] =
+                              widget.photos.data![index].source;
+                    });
+                  },
                   child: Stack(
                     children: [
                       Image.network(
-                        photos.data![index].source,
+                        widget.photos.data![index].source,
                         fit: BoxFit.cover,
-                        width: 80,
+                        height: 150,
+                        width: 150,
                       ),
-                      Visibility(
-                        visible: vm.selectedFaceBookPhotos.containsKey(index),
-                        child: Align(
-                          child: Padding(
-                            padding: const EdgeInsets.all(6.0),
-                            child: Icon(Icons.check_circle_rounded,
-                                color: Colors.green),
-                          ),
-                          alignment: Alignment.topRight,
+                      Align(
+                        child: Padding(
+                          padding: const EdgeInsets.all(6.0),
+                          child: selectedFaceBookPhotos.containsKey(index)
+                              ? Icon(Icons.check_box_outlined,
+                                  color: Colors.blue)
+                              : Icon(Icons.check_box_outline_blank_outlined,
+                                  color: Colors.grey),
                         ),
+                        alignment: Alignment.topRight,
                       )
                     ],
                   ),

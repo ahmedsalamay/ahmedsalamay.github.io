@@ -15,6 +15,7 @@ class GiftCard extends StatelessWidget {
             Image(
               fit: BoxFit.fill,
               height: width > 600 ? 180 : 120,
+              filterQuality: FilterQuality.high,
               image: AssetImage('assets/images/gift.png'),
             ),
             SizedBox(height: 6),
@@ -54,6 +55,7 @@ class ForMeCard extends StatelessWidget {
             Image(
               fit: BoxFit.fill,
               height: width > 600 ? 200 : 120,
+              filterQuality: FilterQuality.high,
               image: AssetImage('assets/images/onboard2.png'),
             ),
             SizedBox(height: 6),

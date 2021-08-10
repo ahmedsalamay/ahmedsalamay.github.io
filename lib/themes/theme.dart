@@ -15,7 +15,7 @@ final ThemeData myTheme = ThemeData(
   cardColor: FimtoColors.surfaceColor,
   dividerColor: FimtoColors.dividerColor,
   highlightColor: Color(0x66bcbcbc),
-  splashColor: Color(0xFFe84524),
+  splashColor: Colors.transparent,
   selectedRowColor: Color(0xfff5f5f5),
   unselectedWidgetColor: Color(0x8a000000),
   disabledColor: Color(0x61000000),

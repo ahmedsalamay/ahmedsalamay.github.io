@@ -1,5 +1,7 @@
+import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
+import 'package:dio/dio.dart';
 import 'package:fimto_frame/models/constants.dart';
 import 'package:fimto_frame/models/facebook_photo.dart';
 import 'package:fimto_frame/repository/remote/facebook_repository.dart';
@@ -29,15 +31,25 @@ class ChooseFrameViewModel extends ChangeNotifier {
 
   bool isDeleteButtonVisible = false;
 
-  Map<int, String> _selectedFaceBookPhotos = <int, String>{};
-  Map<int, String> get selectedFaceBookPhotos => _selectedFaceBookPhotos;
-  void addFacebookPhoto(int index, String source) async {
-    _selectedFaceBookPhotos[index] = source;
-    Uint8List bytes = (await NetworkAssetBundle(Uri.parse(source)).load(source))
-        .buffer
-        .asUint8List();
-    _pickedFiles.add(bytes);
-    notifyListeners();
+  void addFacebookPhoto(List<String> sources) async {
+    Get.back();
+    setLoadingState(true);
+    // sources.forEach((source) async {
+    //   Uint8List bytes = (await NetworkAssetBundle(Uri.parse(source)).load(""))
+    //       .buffer
+    //       .asUint8List();
+    //   _pickedFiles.add(bytes);
+    //   notifyListeners();
+    // });
+    for (var source in sources) {
+      var response = await Dio().get(source).then((value) {
+        List<int> list = utf8.encode(value.data);
+        Uint8List bytes = Uint8List.fromList(list);
+        _pickedFiles.add(bytes);
+        notifyListeners();
+      });
+    }
+    setLoadingState(false);
   }
 
   bool _isLoading = false;
