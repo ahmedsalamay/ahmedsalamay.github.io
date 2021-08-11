@@ -37,7 +37,7 @@ class ChooseFrameViewModel extends ChangeNotifier {
     setLoadingState(true);
 
     for (var source in sources) {
-           var response = await Dio()
+      var response = await Dio()
           .get(source, options: Options(responseType: ResponseType.bytes));
       _pickedFiles.add(response.data);
       notifyListeners();
