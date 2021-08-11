@@ -1,4 +1,7 @@
 import 'package:fimto_frame/generated/l10n.dart';
+import 'package:fimto_frame/models/language.dart';
+import 'package:provider/provider.dart';
+
 import 'package:flutter/material.dart';
 
 class Footer extends StatelessWidget {
@@ -6,52 +9,73 @@ class Footer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var language = context.watch<Language>();
+
     return Container(
-      height: MediaQuery.of(context).size.height * 0.22,
+      height: MediaQuery.of(context).size.height * 0.25,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 60, vertical: 15),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        child: Column(
           children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            MaterialButton(
+              hoverColor: Colors.transparent,
+              onPressed: () => language.currentLocale.languageCode == 'en'
+                  ? language.changeToArLanguage()
+                  : language.changeToEnLanguage(),
+              child: Row(
+                children: [
+                  Icon(Icons.language),
+                  SizedBox(width: 6),
+                  Text(language.currentLocale.languageCode == 'ar'
+                      ? 'English'
+                      : 'العربية')
+                ],
+              ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                GestureDetector(
-                  onTap: () {},
-                  child: Text(
-                    S.of(context).usePolicy,
-                    style: textTheme,
-                  ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    GestureDetector(
+                      onTap: () {},
+                      child: Text(
+                        S.of(context).usePolicy,
+                        style: textTheme,
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: () {},
+                      child: Text(
+                        S.of(context).faq,
+                        style: textTheme,
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: () {},
+                      child: Text(
+                        S.of(context).yourOrders,
+                        style: textTheme,
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: () {},
+                      child: Text(
+                        S.of(context).talkToUs,
+                        style: textTheme,
+                      ),
+                    ),
+                  ],
                 ),
-                GestureDetector(
-                  onTap: () {},
-                  child: Text(
-                    S.of(context).faq,
-                    style: textTheme,
-                  ),
-                ),
-                GestureDetector(
-                  onTap: () {},
-                  child: Text(
-                    S.of(context).yourOrders,
-                    style: textTheme,
-                  ),
-                ),
-                GestureDetector(
-                  onTap: () {},
-                  child: Text(
-                    S.of(context).talkToUs,
-                    style: textTheme,
-                  ),
-                ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [_FollowUs(), _PaymentMethod()],
+                )
               ],
             ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [_FollowUs(), _PaymentMethod()],
-            )
           ],
         ),
       ),

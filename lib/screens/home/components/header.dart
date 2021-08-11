@@ -1,3 +1,4 @@
+import 'package:fimto_frame/generated/l10n.dart';
 import 'package:fimto_frame/routes/router_names.dart';
 import 'package:fimto_frame/themes/theme.dart';
 import 'package:flutter/material.dart';
@@ -19,12 +20,28 @@ class Header extends StatelessWidget {
             image: AssetImage('assets/images/logo.png'),
           ),
           Spacer(),
+          TextButton(
+              onPressed: () {},
+              child: Text(S.of(context).faq,
+                  style: Theme.of(context)
+                      .textTheme
+                      .headline3!
+                      .copyWith(fontSize: 15))),
+          SizedBox(width: 25),
+          TextButton(
+              onPressed: () {},
+              child: Text(S.of(context).yourOrders,
+                  style: Theme.of(context)
+                      .textTheme
+                      .headline3!
+                      .copyWith(fontSize: 15))),
+          SizedBox(width: 25),
           OutlinedButton(
             style: OutlinedButton.styleFrom(
                 side: BorderSide(width: 2.0, color: FimtoColors.primaryColor),
                 padding: EdgeInsets.symmetric(horizontal: 50, vertical: 22)),
             onPressed: () => Get.toNamed(selectToWhoRoute),
-            child: Text('Let\'s Go'),
+            child: Text(S.of(context).letsGo),
           )
         ],
       ),

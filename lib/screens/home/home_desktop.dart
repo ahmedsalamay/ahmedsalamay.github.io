@@ -1,6 +1,5 @@
 import 'package:fimto_frame/generated/l10n.dart';
 import 'package:fimto_frame/themes/footer.dart';
-import 'package:fimto_frame/themes/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 import 'components/header.dart';
@@ -15,6 +14,7 @@ class HomeViewDesktop extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Header(),
+            SizedBox(height: 15),
             Expanded(
               child: SingleChildScrollView(
                 child: Column(
@@ -22,6 +22,7 @@ class HomeViewDesktop extends StatelessWidget {
                     _Title(),
                     SizedBox(height: 15),
                     _MoreInfo(),
+                    Divider(indent: 20, endIndent: 20),
                     Footer()
                   ],
                 ),
@@ -34,14 +35,14 @@ class HomeViewDesktop extends StatelessWidget {
   }
 }
 
-class _Title extends StatefulWidget {
-  const _Title({Key? key}) : super(key: key);
+class _Video extends StatefulWidget {
+  const _Video({Key? key}) : super(key: key);
 
   @override
-  __TitleState createState() => __TitleState();
+  _VideoState createState() => _VideoState();
 }
 
-class __TitleState extends State<_Title> {
+class _VideoState extends State<_Video> {
   late VideoPlayerController _controller;
 
   @override
@@ -57,33 +58,85 @@ class __TitleState extends State<_Title> {
 
   @override
   Widget build(BuildContext context) {
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(8),
+      clipBehavior: Clip.hardEdge,
+      child: MaterialButton(
+        onPressed: () => setState(() {
+          _controller.value.isPlaying
+              ? _controller.pause()
+              : _controller.play();
+        }),
+        child: SizedBox(
+          height: 300,
+          child: AspectRatio(
+            aspectRatio: _controller.value.aspectRatio,
+            child: VideoPlayer(_controller),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _Title extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      padding: EdgeInsets.all(15),
+      padding: EdgeInsets.fromLTRB(25, 100, 25, 25),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(15),
-            child: GestureDetector(
-              onTap: () => setState(() {
-                _controller.value.isPlaying
-                    ? _controller.pause()
-                    : _controller.play();
-              }),
-              child: SizedBox(
-                height: 250,
-                child: AspectRatio(
-                  aspectRatio: _controller.value.aspectRatio,
-                  child: VideoPlayer(_controller),
+          Expanded(
+            flex: 3,
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Image(
+                      fit: BoxFit.fill,
+                      height: 45,
+                      image: AssetImage('assets/images/photo-FB.png'),
+                    ),
+                    SizedBox(width: 20),
+                    Image(
+                      fit: BoxFit.fill,
+                      height: 45,
+                      image: AssetImage('assets/images/photo-FB.png'),
+                    ),
+                    SizedBox(width: 20),
+                    Image(
+                      fit: BoxFit.fill,
+                      height: 45,
+                      image: AssetImage('assets/images/photo-FB.png'),
+                    ),
+                  ],
                 ),
-              ),
+                SizedBox(height: 15),
+                Text(
+                  S.of(context).getThreeFrames,
+                  style: Theme.of(context)
+                      .textTheme
+                      .headline2!
+                      .copyWith(fontSize: 24),
+                ),
+                SizedBox(height: 15),
+                Text(
+                  S.of(context).youCanExtraFrame,
+                  style: TextStyle(
+                      fontSize: 22,
+                      color: Colors.black,
+                      fontWeight: FontWeight.w700),
+                ),
+              ],
             ),
           ),
-          _FramesPrice()
+          Expanded(flex: 2, child: _FramesPrice())
         ],
       ),
     );
@@ -96,53 +149,53 @@ class _FramesPrice extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 180,
+      height: 300,
+      padding: EdgeInsets.symmetric(horizontal: 50),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             S.of(context).frameYourMoment,
-            style: Theme.of(context).textTheme.headline2,
+            style:
+                Theme.of(context).textTheme.headline3!.copyWith(fontSize: 40),
           ),
-          // SizedBox(width: 16),
+          SizedBox(height: 25),
+          Expanded(
+            child: Text(
+              S.of(context).addAestheticTouch,
+              maxLines: 2,
+              style: Theme.of(context)
+                  .textTheme
+                  .headline3!
+                  .copyWith(fontSize: 16, fontWeight: FontWeight.w500),
+            ),
+          ),
+          SizedBox(height: 25),
+          ElevatedButton(
+              onPressed: () {},
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 100, vertical: 15),
+                child: Text(S.of(context).letsGo),
+              )),
+          SizedBox(height: 25),
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Image(
-                fit: BoxFit.fill,
-                height: 35,
-                image: AssetImage('assets/images/photo-FB.png'),
+              Icon(
+                Icons.delivery_dining,
+                color: Colors.black,
               ),
-              SizedBox(width: 16),
-              Image(
-                fit: BoxFit.fill,
-                height: 35,
-                image: AssetImage('assets/images/photo-FB.png'),
-              ),
-              SizedBox(width: 16),
-              Image(
-                fit: BoxFit.fill,
-                height: 35,
-                image: AssetImage('assets/images/photo-FB.png'),
+              SizedBox(width: 10),
+              Text(
+                S.of(context).shippingFree,
+                maxLines: 2,
+                style: Theme.of(context)
+                    .textTheme
+                    .headline3!
+                    .copyWith(fontSize: 16, fontWeight: FontWeight.w600),
               ),
             ],
-          ),
-          // SizedBox(width: 16),
-          Text(
-            S.of(context).getThreeFrames,
-            style:
-                Theme.of(context).textTheme.headline2!.copyWith(fontSize: 20),
-          ),
-          //  SizedBox(height: 10),
-          Text(
-            S.of(context).youCanExtraFrame,
-            style: TextStyle(
-                fontSize: 18, color: Colors.black, fontWeight: FontWeight.w700),
-          ),
-          Text(
-            S.of(context).noNails,
-            style: TextStyle(
-                fontSize: 18, color: Colors.black, fontWeight: FontWeight.w700),
           ),
         ],
       ),
@@ -157,32 +210,41 @@ class _CustomContainer extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 6, vertical: 6),
       margin: EdgeInsets.symmetric(horizontal: 8, vertical: 6),
       height: 300,
-      decoration: BoxDecoration(
-        // color: Colors.white,
-        borderRadius: BorderRadius.circular(8),
-      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          Text('Get three Frames with 270 LE only',
-              textAlign: TextAlign.center, style: _style),
-          Text('Get three Frames with 270 LE only',
-              textAlign: TextAlign.center, style: _style),
-          Text('You can add extra frame with only 74LE',
-              textAlign: TextAlign.center, style: _style),
-          Text(S.of(context).noNails,
-              textAlign: TextAlign.center, style: _style),
+          _BulletPoint(S.of(context).noNails),
+          _BulletPoint(S.of(context).changLocation),
+          _BulletPoint(S.of(context).suitableShape),
+          _BulletPoint(S.of(context).perfectSize),
+          _BulletPoint(S.of(context).perfectSize),
         ],
       ),
     );
   }
+}
 
-  final _style = TextStyle(
-    color: Colors.black,
-    fontWeight: FontWeight.w600,
-    fontSize: 18,
-  );
+class _BulletPoint extends StatelessWidget {
+  final String text;
+  const _BulletPoint(this.text);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Icon(Icons.arrow_forward_ios_outlined, color: Colors.black),
+        SizedBox(width: 10),
+        Text(text,
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              color: Colors.black,
+              fontWeight: FontWeight.w600,
+              fontSize: 18,
+            )),
+      ],
+    );
+  }
 }
 
 class _MoreInfo extends StatelessWidget {
@@ -192,27 +254,29 @@ class _MoreInfo extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      padding: EdgeInsets.all(15),
+      padding: EdgeInsets.symmetric(vertical: 80, horizontal: 25),
       decoration: BoxDecoration(
-        color: Colors.grey[200],
+        // color: Colors.grey[200],
         borderRadius: BorderRadius.circular(6),
       ),
       child: Column(
         children: [
           Row(
             children: [
-              Expanded(flex: 1, child: _CustomContainer()),
-              Expanded(flex: 1, child: _SocialPosts()),
+              Expanded(flex: 3, child: _CustomContainer()),
+              Expanded(flex: 2, child: _Video()),
             ],
           ),
-          SizedBox(height: 200),
+          SizedBox(height: 50),
+          _SocialPosts(),
+          SizedBox(height: 50),
           Text(
             S.of(context).guaranteeOurFrames,
             textAlign: TextAlign.center,
             style: TextStyle(
               color: Colors.black,
               fontWeight: FontWeight.w600,
-              fontSize: 14,
+              fontSize: 18,
             ),
           ),
           SizedBox(height: 10),
@@ -222,7 +286,7 @@ class _MoreInfo extends StatelessWidget {
             style: TextStyle(
               color: Colors.black,
               fontWeight: FontWeight.w400,
-              fontSize: 12,
+              fontSize: 16,
             ),
           ),
         ],
@@ -236,51 +300,27 @@ class _SocialPosts extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final TabController? controller = DefaultTabController.of(context);
-
     return Container(
-        height: 300,
-        child: DefaultTabController(
-          length: 3,
-          child: Column(
-            children: [
-              Expanded(
-                child: TabBarView(
-                  controller: controller,
-                  physics: AlwaysScrollableScrollPhysics(),
-                  children: [
-                    Container(
-                      width: 250,
-                      child: Image(
-                        fit: BoxFit.contain,
-                        image: AssetImage('assets/images/social_post.png'),
-                      ),
-                    ),
-                    Container(
-                      width: 250,
-                      child: Image(
-                        fit: BoxFit.contain,
-                        image: AssetImage('assets/images/social_post.png'),
-                      ),
-                    ),
-                    Container(
-                      width: 250,
-                      child: Image(
-                        fit: BoxFit.contain,
-                        image: AssetImage('assets/images/social_post.png'),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(height: 20),
-              TabPageSelector(
-                controller: controller,
-                color: Colors.grey[300],
-                selectedColor: FimtoColors.primaryColor,
-              ),
-            ],
-          ),
-        ));
+      height: 400,
+      padding: EdgeInsets.symmetric(horizontal: 25, vertical: 15),
+      child: SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: Row(
+          children: [1, 2, 3, 4, 5, 6, 7, 8, 9]
+              .map((e) => Container(
+                    height: 400,
+                    width: 350,
+                    padding: EdgeInsets.all(15),
+                    child: Placeholder()
+                    /* Image(
+                      fit: BoxFit.fill,
+                      image: AssetImage('assets/images/social_post.png'),
+                    )*/
+                    ,
+                  ))
+              .toList(),
+        ),
+      ),
+    );
   }
 }

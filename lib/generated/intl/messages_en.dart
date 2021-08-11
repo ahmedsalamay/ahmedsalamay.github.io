@@ -23,7 +23,7 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "addAddress": MessageLookupByLibrary.simpleMessage("Add Address"),
         "addAestheticTouch": MessageLookupByLibrary.simpleMessage(
-            "WE WILL ADD AN AESTHETIC TOUCH TO YOUR PHOTOS"),
+            "We will add an Aesthetic touch to your photos"),
         "addPaymentMethod":
             MessageLookupByLibrary.simpleMessage("Add Payment Method"),
         "addPromoCode": MessageLookupByLibrary.simpleMessage("Add promo code"),
@@ -34,7 +34,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "canTrackYourOrder": MessageLookupByLibrary.simpleMessage(
             "You can track your order from here"),
         "changLocation": MessageLookupByLibrary.simpleMessage(
-            "CHANGE THE LOCATION WITHOUT LEAVING ANY TRACE"),
+            "Change the location without leaving any trace"),
         "checkout": MessageLookupByLibrary.simpleMessage("Checkout"),
         "choosePaymentMethod":
             MessageLookupByLibrary.simpleMessage("Choose Payment Method"),
@@ -71,14 +71,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "forMe": MessageLookupByLibrary.simpleMessage("For Me"),
         "forPerson": MessageLookupByLibrary.simpleMessage("For a dear person"),
         "frameYourMoment":
-            MessageLookupByLibrary.simpleMessage("FRAME YOUR MOMENTS"),
+            MessageLookupByLibrary.simpleMessage("Frame your moments"),
         "framesStickWall": MessageLookupByLibrary.simpleMessage(
             "Our frames stick to any walls"),
         "getThreeFrames": MessageLookupByLibrary.simpleMessage(
             "Get three Frames with 270 LE only"),
         "gift": MessageLookupByLibrary.simpleMessage("Gift"),
         "guaranteeOurFrames":
-            MessageLookupByLibrary.simpleMessage("WE GUARANTEE OUR FRAME!"),
+            MessageLookupByLibrary.simpleMessage("We guarantee our frame!"),
         "importFromFacebook":
             MessageLookupByLibrary.simpleMessage("Import From Facebook"),
         "importFromInstagram":
@@ -105,7 +105,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Your payment will be confirmed automatically if the sender number register at your order if not, please contact us to confirm the payment"),
         "paymentMethod": MessageLookupByLibrary.simpleMessage("Payment Method"),
         "perfectSize":
-            MessageLookupByLibrary.simpleMessage("PERFECT FRAME SIZE 21X21"),
+            MessageLookupByLibrary.simpleMessage("Perfect frame size 21X21"),
         "phoneHint": MessageLookupByLibrary.simpleMessage("Phone Number"),
         "pickUpSomePhotos": MessageLookupByLibrary.simpleMessage(
             "Pick some photos to get started"),
@@ -133,11 +133,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "uploadPhotos": MessageLookupByLibrary.simpleMessage("Upload Photos"),
         "usePolicy": MessageLookupByLibrary.simpleMessage("Use policy"),
         "youCanChangeThePhoto": MessageLookupByLibrary.simpleMessage(
-            "YOU CAN CHANGE THE PHOTO INSIDE THE FRAME ANY TIME"),
+            "You can change the photo inside the frame any time"),
         "youCanExtraFrame": MessageLookupByLibrary.simpleMessage(
             "You can add extra frame with only 74LE"),
         "youCanRetrieve": MessageLookupByLibrary.simpleMessage(
-            "YOU CAN RETRIEVE IT IF IT ISN\'T IN THE REQUIRED FORM"),
-        "yourOrders": MessageLookupByLibrary.simpleMessage("Tour orders")
+            "You can retrieve it if it isn\'t in the required form"),
+        "yourOrders": MessageLookupByLibrary.simpleMessage("Your orders")
       };
 }

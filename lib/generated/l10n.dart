@@ -620,10 +620,10 @@ class S {
     );
   }
 
-  /// `Tour orders`
+  /// `Your orders`
   String get yourOrders {
     return Intl.message(
-      'Tour orders',
+      'Your orders',
       name: 'yourOrders',
       desc: '',
       args: [],
@@ -720,70 +720,70 @@ class S {
     );
   }
 
-  /// `FRAME YOUR MOMENTS`
+  /// `Frame your moments`
   String get frameYourMoment {
     return Intl.message(
-      'FRAME YOUR MOMENTS',
+      'Frame your moments',
       name: 'frameYourMoment',
       desc: '',
       args: [],
     );
   }
 
-  /// `CHANGE THE LOCATION WITHOUT LEAVING ANY TRACE`
+  /// `Change the location without leaving any trace`
   String get changLocation {
     return Intl.message(
-      'CHANGE THE LOCATION WITHOUT LEAVING ANY TRACE',
+      'Change the location without leaving any trace',
       name: 'changLocation',
       desc: '',
       args: [],
     );
   }
 
-  /// `PERFECT FRAME SIZE 21X21`
+  /// `Perfect frame size 21X21`
   String get perfectSize {
     return Intl.message(
-      'PERFECT FRAME SIZE 21X21',
+      'Perfect frame size 21X21',
       name: 'perfectSize',
       desc: '',
       args: [],
     );
   }
 
-  /// `YOU CAN CHANGE THE PHOTO INSIDE THE FRAME ANY TIME`
+  /// `You can change the photo inside the frame any time`
   String get youCanChangeThePhoto {
     return Intl.message(
-      'YOU CAN CHANGE THE PHOTO INSIDE THE FRAME ANY TIME',
+      'You can change the photo inside the frame any time',
       name: 'youCanChangeThePhoto',
       desc: '',
       args: [],
     );
   }
 
-  /// `WE WILL ADD AN AESTHETIC TOUCH TO YOUR PHOTOS`
+  /// `We will add an Aesthetic touch to your photos`
   String get addAestheticTouch {
     return Intl.message(
-      'WE WILL ADD AN AESTHETIC TOUCH TO YOUR PHOTOS',
+      'We will add an Aesthetic touch to your photos',
       name: 'addAestheticTouch',
       desc: '',
       args: [],
     );
   }
 
-  /// `WE GUARANTEE OUR FRAME!`
+  /// `We guarantee our frame!`
   String get guaranteeOurFrames {
     return Intl.message(
-      'WE GUARANTEE OUR FRAME!',
+      'We guarantee our frame!',
       name: 'guaranteeOurFrames',
       desc: '',
       args: [],
     );
   }
 
-  /// `YOU CAN RETRIEVE IT IF IT ISN'T IN THE REQUIRED FORM`
+  /// `You can retrieve it if it isn't in the required form`
   String get youCanRetrieve {
     return Intl.message(
-      'YOU CAN RETRIEVE IT IF IT ISN\'T IN THE REQUIRED FORM',
+      'You can retrieve it if it isn\'t in the required form',
       name: 'youCanRetrieve',
       desc: '',
       args: [],
