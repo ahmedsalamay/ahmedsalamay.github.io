@@ -201,7 +201,7 @@ class _ImportPhoto extends StatelessWidget {
                     ),
                     SizedBox(height: 15),
                     Text(
-                      S.of(context).importFromInstagram,
+                      S.of(context).importFromFacebook,
                       textAlign: TextAlign.center,
                       style: Theme.of(context)
                           .textTheme
@@ -415,13 +415,10 @@ class _AddMore extends StatelessWidget {
             borderRadius: BorderRadius.all(Radius.circular(6)),
             boxShadow: [
               BoxShadow(
-                color: Color(0xFFb4b4b4),
-                blurRadius: 5.0, // soften the shadow
-                spreadRadius: 2.0, //extend the shadow
-                offset: Offset(
-                  2.0, // Move to right 10  horizontally
-                  2.0, // Move to bottom 10 Vertically
-                ),
+                color: Colors.grey.withOpacity(0.2),
+                spreadRadius: 2,
+                blurRadius: 2,
+                offset: Offset(0, 2), // changes position of shadow
               )
             ]),
         child: Icon(

@@ -145,7 +145,7 @@ class __FramesState extends State<_Frames> {
                   showDialog(
                       context: context,
                       builder: (builder) {
-                        return _BottomSheet();
+                        return _CheckoutDialog();
                       });
                 }),
           )
@@ -281,6 +281,7 @@ class _ImportPhoto extends StatelessWidget {
                 children: [
                   Icon(
                     Icons.facebook_sharp,
+                    color: Colors.blue,
                     size: 35,
                   ),
                   SizedBox(width: 15),
@@ -315,6 +316,7 @@ class _ImportPhoto extends StatelessWidget {
                 children: [
                   Icon(
                     Icons.facebook_sharp,
+                    color: Colors.blue,
                     size: 35,
                   ),
                   SizedBox(width: 15),
@@ -452,12 +454,14 @@ class _AddMore extends StatelessWidget {
   }
 }
 
-class _BottomSheet extends StatelessWidget {
-  const _BottomSheet({Key? key}) : super(key: key);
+class _CheckoutDialog extends StatelessWidget {
+  const _CheckoutDialog({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return SimpleDialog(
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(8))),
       children: [
         Container(
           padding: EdgeInsets.symmetric(vertical: 16, horizontal: 16),

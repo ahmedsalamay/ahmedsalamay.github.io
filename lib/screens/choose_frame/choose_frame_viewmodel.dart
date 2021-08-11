@@ -11,6 +11,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:get/get.dart';
 import 'package:logger/logger.dart';
+import 'package:http/http.dart' as http;
 
 import 'package:flutter/foundation.dart' show kIsWeb;
 
@@ -34,20 +35,12 @@ class ChooseFrameViewModel extends ChangeNotifier {
   void addFacebookPhoto(List<String> sources) async {
     Get.back();
     setLoadingState(true);
-    // sources.forEach((source) async {
-    //   Uint8List bytes = (await NetworkAssetBundle(Uri.parse(source)).load(""))
-    //       .buffer
-    //       .asUint8List();
-    //   _pickedFiles.add(bytes);
-    //   notifyListeners();
-    // });
+
     for (var source in sources) {
-      var response = await Dio().get(source).then((value) {
-        List<int> list = utf8.encode(value.data);
-        Uint8List bytes = Uint8List.fromList(list);
-        _pickedFiles.add(bytes);
-        notifyListeners();
-      });
+           var response = await Dio()
+          .get(source, options: Options(responseType: ResponseType.bytes));
+      _pickedFiles.add(response.data);
+      notifyListeners();
     }
     setLoadingState(false);
   }
@@ -89,10 +82,6 @@ class ChooseFrameViewModel extends ChangeNotifier {
             if (status == FilePickerStatus.done) {
               setLoadingState(false);
               print('FilePickerStatus: $status');
-              // List<File> files =
-              // result.paths.map((path) => File(path!)).toList();
-              // // List<File> files = result.files.map((e) => File(e.path!)).toList();
-              // Get.toNamed(chooseFrameRoute, arguments: files);
             }
           });
       if (result != null) {
