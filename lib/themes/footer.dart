@@ -12,25 +12,24 @@ class Footer extends StatelessWidget {
     var language = context.watch<Language>();
 
     return Container(
-      height: MediaQuery.of(context).size.height * 0.25,
+      height: MediaQuery.of(context).size.height * 0.27,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 60, vertical: 15),
         child: Column(
           children: [
-            MaterialButton(
-              hoverColor: Colors.transparent,
-              onPressed: () => language.currentLocale.languageCode == 'en'
-                  ? language.changeToArLanguage()
-                  : language.changeToEnLanguage(),
-              child: Row(
-                children: [
-                  Icon(Icons.language),
-                  SizedBox(width: 6),
-                  Text(language.currentLocale.languageCode == 'ar'
+            Row(
+              children: [
+                Icon(Icons.language),
+                SizedBox(width: 6),
+                TextButton(
+                  onPressed: () => language.currentLocale.languageCode == 'en'
+                      ? language.changeToArLanguage()
+                      : language.changeToEnLanguage(),
+                  child: Text(language.currentLocale.languageCode == 'ar'
                       ? 'English'
-                      : 'العربية')
-                ],
-              ),
+                      : 'العربية'),
+                )
+              ],
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,

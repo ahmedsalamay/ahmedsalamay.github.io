@@ -18,7 +18,7 @@ class GiftCard extends StatelessWidget {
               filterQuality: FilterQuality.high,
               image: AssetImage('assets/images/gift.png'),
             ),
-            SizedBox(height: 6),
+            SizedBox(height: 15),
             Choice(
               selected: context.watch<SelectToWhoViewModel>().giftSelected,
               label: S.of(context).gift,
@@ -58,7 +58,7 @@ class ForMeCard extends StatelessWidget {
               filterQuality: FilterQuality.high,
               image: AssetImage('assets/images/onboard2.png'),
             ),
-            SizedBox(height: 6),
+            SizedBox(height: 15),
             Choice(
               selected: context.watch<SelectToWhoViewModel>().forMeSelected,
               label: S.of(context).forMe,
@@ -86,7 +86,7 @@ class Choice extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      // width: MediaQuery.of(context).size.width * 0.6,
+      width: 200,
       padding: EdgeInsets.symmetric(horizontal: 16, vertical: 4),
       decoration: BoxDecoration(
           color: Color(0xFFe4e4e4), borderRadius: BorderRadius.circular(25)),

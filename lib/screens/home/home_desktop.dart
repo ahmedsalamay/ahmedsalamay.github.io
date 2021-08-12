@@ -1,8 +1,10 @@
 import 'package:fimto_frame/generated/l10n.dart';
 import 'package:fimto_frame/themes/footer.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:video_player/video_player.dart';
 import 'components/header.dart';
+import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 
 class HomeViewDesktop extends StatelessWidget {
   @override
@@ -43,36 +45,42 @@ class _Video extends StatefulWidget {
 }
 
 class _VideoState extends State<_Video> {
-  late VideoPlayerController _controller;
+  late YoutubePlayerController _controller;
 
   @override
   void initState() {
     super.initState();
-    _controller = VideoPlayerController.network(
-        'https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_20mb.mp4')
-      ..initialize().then((_) {
-        // Ensure the first frame is shown after the video is initialized, even before the play button has been pressed.
-        setState(() {});
-      });
+    _controller = YoutubePlayerController(
+      initialVideoId: 'tcodrIK2P_I',
+      params: const YoutubePlayerParams(
+        showControls: true,
+        showFullscreenButton: true,
+        desktopMode: false,
+        privacyEnhanced: true,
+        useHybridComposition: true,
+      ),
+    );
+    _controller.onEnterFullscreen = () {
+      SystemChrome.setPreferredOrientations([
+        DeviceOrientation.landscapeLeft,
+        DeviceOrientation.landscapeRight,
+      ]);
+    };
+    _controller.onExitFullscreen = () {};
   }
 
   @override
   Widget build(BuildContext context) {
+    var width = MediaQuery.of(context).size.width;
     return ClipRRect(
       borderRadius: BorderRadius.circular(8),
       clipBehavior: Clip.hardEdge,
-      child: MaterialButton(
-        onPressed: () => setState(() {
-          _controller.value.isPlaying
-              ? _controller.pause()
-              : _controller.play();
-        }),
-        child: SizedBox(
-          height: 300,
-          child: AspectRatio(
-            aspectRatio: _controller.value.aspectRatio,
-            child: VideoPlayer(_controller),
-          ),
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: width * 0.05),
+        height: 300,
+        child: YoutubePlayerIFrame(
+          controller: _controller,
+          aspectRatio: 16 / 9,
         ),
       ),
     );
@@ -93,58 +101,64 @@ class _Title extends StatelessWidget {
         children: [
           Expanded(
             flex: 3,
-            child: Column(
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Image(
-                      fit: BoxFit.fill,
-                      height: 45,
-                      image: AssetImage('assets/images/photo-FB.png'),
-                    ),
-                    SizedBox(width: 20),
-                    Image(
-                      fit: BoxFit.fill,
-                      height: 45,
-                      image: AssetImage('assets/images/photo-FB.png'),
-                    ),
-                    SizedBox(width: 20),
-                    Image(
-                      fit: BoxFit.fill,
-                      height: 45,
-                      image: AssetImage('assets/images/photo-FB.png'),
-                    ),
-                  ],
-                ),
-                SizedBox(height: 15),
-                Text(
-                  S.of(context).getThreeFrames,
-                  style: Theme.of(context)
-                      .textTheme
-                      .headline2!
-                      .copyWith(fontSize: 24),
-                ),
-                SizedBox(height: 15),
-                Text(
-                  S.of(context).youCanExtraFrame,
-                  style: TextStyle(
-                      fontSize: 22,
-                      color: Colors.black,
-                      fontWeight: FontWeight.w700),
-                ),
-              ],
-            ),
+            child: _Video(),
           ),
-          Expanded(flex: 2, child: _FramesPrice())
+          Expanded(flex: 2, child: _FrameYourMoment())
         ],
       ),
     );
   }
 }
 
-class _FramesPrice extends StatelessWidget {
-  const _FramesPrice({Key? key}) : super(key: key);
+class _FramesPrices extends StatelessWidget {
+  const _FramesPrices({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image(
+              fit: BoxFit.fill,
+              height: 45,
+              image: AssetImage('assets/images/photo-FB.png'),
+            ),
+            SizedBox(width: 20),
+            Image(
+              fit: BoxFit.fill,
+              height: 45,
+              image: AssetImage('assets/images/photo-FB.png'),
+            ),
+            SizedBox(width: 20),
+            Image(
+              fit: BoxFit.fill,
+              height: 45,
+              image: AssetImage('assets/images/photo-FB.png'),
+            ),
+          ],
+        ),
+        SizedBox(height: 15),
+        Text(
+          S.of(context).getThreeFrames,
+          style: Theme.of(context).textTheme.headline2!.copyWith(fontSize: 24),
+        ),
+        SizedBox(height: 15),
+        Text(
+          S.of(context).youCanExtraFrame,
+          style: TextStyle(
+              fontSize: 22, color: Colors.black, fontWeight: FontWeight.w700),
+        ),
+      ],
+    );
+  }
+}
+
+class _FrameYourMoment extends StatelessWidget {
+  const _FrameYourMoment({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -264,7 +278,7 @@ class _MoreInfo extends StatelessWidget {
           Row(
             children: [
               Expanded(flex: 3, child: _CustomContainer()),
-              Expanded(flex: 2, child: _Video()),
+              Expanded(flex: 2, child: _FramesPrices()),
             ],
           ),
           SizedBox(height: 50),
