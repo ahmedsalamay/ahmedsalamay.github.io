@@ -1,7 +1,6 @@
 import 'package:fimto_frame/generated/l10n.dart';
 import 'package:fimto_frame/models/language.dart';
 import 'package:provider/provider.dart';
-
 import 'package:flutter/material.dart';
 
 class Footer extends StatelessWidget {
@@ -38,29 +37,29 @@ class Footer extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    GestureDetector(
-                      onTap: () {},
+                    TextButton(
+                      onPressed: () {},
                       child: Text(
                         S.of(context).usePolicy,
                         style: textTheme,
                       ),
                     ),
-                    GestureDetector(
-                      onTap: () {},
+                    TextButton(
+                      onPressed: () {},
                       child: Text(
                         S.of(context).faq,
                         style: textTheme,
                       ),
                     ),
-                    GestureDetector(
-                      onTap: () {},
+                    TextButton(
+                      onPressed: () {},
                       child: Text(
                         S.of(context).yourOrders,
                         style: textTheme,
                       ),
                     ),
-                    GestureDetector(
-                      onTap: () {},
+                    TextButton(
+                      onPressed: () {},
                       child: Text(
                         S.of(context).talkToUs,
                         style: textTheme,

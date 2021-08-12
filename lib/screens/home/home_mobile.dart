@@ -1,20 +1,27 @@
 import 'package:fimto_frame/generated/l10n.dart';
+import 'package:fimto_frame/models/language.dart';
 import 'package:fimto_frame/routes/router_names.dart';
 import 'package:fimto_frame/themes/appBar.dart';
 import 'package:fimto_frame/themes/buttons.dart';
 import 'package:fimto_frame/themes/drawer.dart';
 import 'package:fimto_frame/themes/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:video_player/video_player.dart';
+import 'package:provider/provider.dart';
+import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 
 class HomeViewMobile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    var language = context.watch<Language>();
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
-        endDrawer: CustomDrawer(),
+        endDrawer:
+            language.currentLocale.languageCode == 'en' ? CustomDrawer() : null,
+        drawer:
+            language.currentLocale.languageCode == 'ar' ? CustomDrawer() : null,
         body: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -49,17 +56,31 @@ class _Title extends StatefulWidget {
 }
 
 class __TitleState extends State<_Title> {
-  late VideoPlayerController _controller;
+  late YoutubePlayerController _controller;
 
   @override
   void initState() {
     super.initState();
-    _controller = VideoPlayerController.network(
-        'https://sample-videos.com/video123/mp4/720/big_buck_bunny_720p_20mb.mp4')
-      ..initialize().then((_) {
-        // Ensure the first frame is shown after the video is initialized, even before the play button has been pressed.
-        setState(() {});
-      });
+    _controller = YoutubePlayerController(
+      initialVideoId: 'NpEaa2P7qZI',
+      params: const YoutubePlayerParams(
+          showControls: false,
+          showFullscreenButton: true,
+          desktopMode: false,
+          privacyEnhanced: true,
+          useHybridComposition: true,
+          mute: true,
+          autoPlay: true,
+          loop: true,
+          showVideoAnnotations: false),
+    );
+    _controller.onEnterFullscreen = () {
+      SystemChrome.setPreferredOrientations([
+        DeviceOrientation.landscapeLeft,
+        DeviceOrientation.landscapeRight,
+      ]);
+    };
+    _controller.onExitFullscreen = () {};
   }
 
   @override
@@ -82,20 +103,12 @@ class __TitleState extends State<_Title> {
           SizedBox(height: 25),
           ClipRRect(
             borderRadius: BorderRadius.circular(15),
-            child: GestureDetector(
-              onTap: () => setState(() {
-                _controller.value.isPlaying
-                    ? _controller.pause()
-                    : _controller.play();
-              }),
-              child: SizedBox(
+            child: SizedBox(
                 height: 250,
-                child: AspectRatio(
-                  aspectRatio: _controller.value.aspectRatio,
-                  child: VideoPlayer(_controller),
-                ),
-              ),
-            ),
+                child: YoutubePlayerIFrame(
+                  controller: _controller,
+                  aspectRatio: 16 / 9,
+                )),
           ),
           SizedBox(height: 25),
           Text(

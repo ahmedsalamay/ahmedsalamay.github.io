@@ -2,7 +2,6 @@ import 'package:fimto_frame/generated/l10n.dart';
 import 'package:fimto_frame/themes/footer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:video_player/video_player.dart';
 import 'components/header.dart';
 import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 
@@ -51,14 +50,17 @@ class _VideoState extends State<_Video> {
   void initState() {
     super.initState();
     _controller = YoutubePlayerController(
-      initialVideoId: 'tcodrIK2P_I',
+      initialVideoId: 'NpEaa2P7qZI',
       params: const YoutubePlayerParams(
-        showControls: true,
-        showFullscreenButton: true,
-        desktopMode: false,
-        privacyEnhanced: true,
-        useHybridComposition: true,
-      ),
+          showControls: false,
+          showFullscreenButton: true,
+          desktopMode: false,
+          privacyEnhanced: true,
+          useHybridComposition: true,
+          mute: true,
+          autoPlay: true,
+          loop: true,
+          showVideoAnnotations: false),
     );
     _controller.onEnterFullscreen = () {
       SystemChrome.setPreferredOrientations([
@@ -76,8 +78,8 @@ class _VideoState extends State<_Video> {
       borderRadius: BorderRadius.circular(8),
       clipBehavior: Clip.hardEdge,
       child: Container(
-        padding: EdgeInsets.symmetric(horizontal: width * 0.05),
-        height: 300,
+        padding: EdgeInsets.symmetric(horizontal: width * 0.07),
+        height: 350,
         child: YoutubePlayerIFrame(
           controller: _controller,
           aspectRatio: 16 / 9,
