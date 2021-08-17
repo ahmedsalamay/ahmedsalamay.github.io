@@ -29,12 +29,15 @@ class MessageLookup extends MessageLookupByLibrary {
         "addPromoCode": MessageLookupByLibrary.simpleMessage("اضافة برومو كود"),
         "address": MessageLookupByLibrary.simpleMessage("العنوان"),
         "addressHint": MessageLookupByLibrary.simpleMessage("Address"),
+        "alreadyHaveAccount":
+            MessageLookupByLibrary.simpleMessage("Already have account"),
         "buildingNumberHint":
             MessageLookupByLibrary.simpleMessage("Building Number"),
         "canTrackYourOrder":
             MessageLookupByLibrary.simpleMessage("يمكنك تتبع الطلب من هنا"),
         "changLocation": MessageLookupByLibrary.simpleMessage(
             "يمكنك تغير مكان البرواز الخاص بك من حائط لأخر دون ترك أثر"),
+        "changeLanguage": MessageLookupByLibrary.simpleMessage("تغير اللغة"),
         "checkout": MessageLookupByLibrary.simpleMessage("الدفع"),
         "choosePaymentMethod": MessageLookupByLibrary.simpleMessage(
             "اختر طريقة الدفع المناسبة لك"),
@@ -50,6 +53,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "confirmYourOrder": MessageLookupByLibrary.simpleMessage("تأكيد الطلب"),
         "confirmation": MessageLookupByLibrary.simpleMessage("التأكيد"),
         "congratulations": MessageLookupByLibrary.simpleMessage("تهانينا"),
+        "connectionErrorHeader":
+            MessageLookupByLibrary.simpleMessage("مشكلة في الاتصال بالانترنت"),
+        "connectionErrorMsg": MessageLookupByLibrary.simpleMessage(
+            "لا يوجد اتصال بالانترنت لتحميل البيانات الازمة , برجاء التاكد من الاتصال"),
         "continueBTN": MessageLookupByLibrary.simpleMessage("استمرار"),
         "decorateMyWall":
             MessageLookupByLibrary.simpleMessage("لتزين جدارى الخاص"),
@@ -59,8 +66,11 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("البرواز فى شرك الشحن"),
         "deliveryTime": MessageLookupByLibrary.simpleMessage("وقت وصول الطلب"),
         "dismiss": MessageLookupByLibrary.simpleMessage("الغاء"),
+        "donnotHaveAccount":
+            MessageLookupByLibrary.simpleMessage("Don\'t Have Account?"),
         "egyptwideShipping": MessageLookupByLibrary.simpleMessage(
             "Free Egyptwide shipping! At your doorstep in a week"),
+        "email": MessageLookupByLibrary.simpleMessage("البريد الإلكتروني"),
         "faq": MessageLookupByLibrary.simpleMessage("الأسئلة الشائعة"),
         "fimtoArt": MessageLookupByLibrary.simpleMessage("Fimto Art"),
         "fimtoSoft": MessageLookupByLibrary.simpleMessage("Fimtosoft"),
@@ -68,6 +78,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "followUs": MessageLookupByLibrary.simpleMessage("تابعنا"),
         "forMe": MessageLookupByLibrary.simpleMessage("البرواز لى"),
         "forPerson": MessageLookupByLibrary.simpleMessage("لشخص غالى"),
+        "forgotPassword":
+            MessageLookupByLibrary.simpleMessage("Forgot Password?"),
         "frameYourMoment":
             MessageLookupByLibrary.simpleMessage("اجعل نفسك محاط بأسعد لحظاتك"),
         "framesStickWall": MessageLookupByLibrary.simpleMessage(
@@ -83,6 +95,9 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Import From Instagram"),
         "leaveMessage": MessageLookupByLibrary.simpleMessage("Leave a message"),
         "letsGo": MessageLookupByLibrary.simpleMessage("ابدأ الأن"),
+        "loadingData": MessageLookupByLibrary.simpleMessage(
+            "منفضلك انتظر لتحميل البيانات المطلوبة"),
+        "login": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
         "mailHint": MessageLookupByLibrary.simpleMessage("E-Mail"),
         "messageToYourDear": MessageLookupByLibrary.simpleMessage(
             "Leave a message to your dear person"),
@@ -97,17 +112,23 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("تم تأكيد الطلب"),
         "orderNumber": MessageLookupByLibrary.simpleMessage("رقم الطلب"),
         "orderSummary": MessageLookupByLibrary.simpleMessage("ملخص الطلب"),
+        "password": MessageLookupByLibrary.simpleMessage("كلمه السر"),
+        "passwordError": MessageLookupByLibrary.simpleMessage("password error"),
         "payment": MessageLookupByLibrary.simpleMessage("الدفع"),
         "paymentConfirmAutomatically": MessageLookupByLibrary.simpleMessage(
             "سيتم تأكيد الدفع تلقائيا اذا كان المرسل سجل طلبك اذا لم يتم. تواصل معنا لتاأكيد الطلب"),
         "paymentMethod": MessageLookupByLibrary.simpleMessage("طريقة الدفع"),
         "perfectSize": MessageLookupByLibrary.simpleMessage("مقاس مثالى 21x21"),
         "phoneHint": MessageLookupByLibrary.simpleMessage("Phone Number"),
+        "phoneNumber": MessageLookupByLibrary.simpleMessage("رقم التليفون"),
+        "phoneNumberError":
+            MessageLookupByLibrary.simpleMessage("Not Valid Phone number"),
         "pickUpSomePhotos": MessageLookupByLibrary.simpleMessage(
             "Pick some photos to get started"),
         "pleaseTransferAmountTo": MessageLookupByLibrary.simpleMessage(
             "من فضلك قم بتحويل المبلغ الى"),
         "processing": MessageLookupByLibrary.simpleMessage("جارى تنفيذ الطلب"),
+        "register": MessageLookupByLibrary.simpleMessage("Register"),
         "selectCreateFrames": MessageLookupByLibrary.simpleMessage(
             "من فضلك أخبرنا من الشخص الذى تريد ان ترسل اليه البرواز"),
         "selectToWho": MessageLookupByLibrary.simpleMessage("اختر لمن"),
@@ -118,6 +139,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("عنوان التوصيل "),
         "shippingFree":
             MessageLookupByLibrary.simpleMessage("التوصيل دائما مانى"),
+        "sorry": MessageLookupByLibrary.simpleMessage("عفوا"),
         "successfulPurchase":
             MessageLookupByLibrary.simpleMessage("تم تأكيد شراء البرواز بنجاح"),
         "suitableShape": MessageLookupByLibrary.simpleMessage(

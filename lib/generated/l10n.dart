@@ -829,6 +829,156 @@ class S {
       args: [],
     );
   }
+
+  /// `Change Language`
+  String get changeLanguage {
+    return Intl.message(
+      'Change Language',
+      name: 'changeLanguage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Email`
+  String get email {
+    return Intl.message(
+      'Email',
+      name: 'email',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Phone Number`
+  String get phoneNumber {
+    return Intl.message(
+      'Phone Number',
+      name: 'phoneNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password`
+  String get password {
+    return Intl.message(
+      'Password',
+      name: 'password',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Login`
+  String get login {
+    return Intl.message(
+      'Login',
+      name: 'login',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `password error`
+  String get passwordError {
+    return Intl.message(
+      'password error',
+      name: 'passwordError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Not Valid Phone number`
+  String get phoneNumberError {
+    return Intl.message(
+      'Not Valid Phone number',
+      name: 'phoneNumberError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Connection Error`
+  String get connectionErrorHeader {
+    return Intl.message(
+      'Connection Error',
+      name: 'connectionErrorHeader',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No internet connection, Please check your wifi or cellular data`
+  String get connectionErrorMsg {
+    return Intl.message(
+      'No internet connection, Please check your wifi or cellular data',
+      name: 'connectionErrorMsg',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please Wait for data to be loaded`
+  String get loadingData {
+    return Intl.message(
+      'Please Wait for data to be loaded',
+      name: 'loadingData',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sorry`
+  String get sorry {
+    return Intl.message(
+      'Sorry',
+      name: 'sorry',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Don't Have Account?`
+  String get donnotHaveAccount {
+    return Intl.message(
+      'Don\'t Have Account?',
+      name: 'donnotHaveAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Register`
+  String get register {
+    return Intl.message(
+      'Register',
+      name: 'register',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Already have account`
+  String get alreadyHaveAccount {
+    return Intl.message(
+      'Already have account',
+      name: 'alreadyHaveAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Forgot Password?`
+  String get forgotPassword {
+    return Intl.message(
+      'Forgot Password?',
+      name: 'forgotPassword',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -13,13 +13,13 @@ class ErrorDialog extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Image(
-              image: AssetImage(
-                'assets/images/red_x.png',
-              ),
-              fit: BoxFit.fill,
-              height: 60,
-            ),
+            //Image(
+            //   image: AssetImage(
+            //     'assets/images/red_x.png',
+            //   ),
+            //   fit: BoxFit.fill,
+            //   height: 60,
+            // ),
             SizedBox(height: 25),
             Text(
               title!,

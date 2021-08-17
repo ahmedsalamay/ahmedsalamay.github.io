@@ -1,6 +1,10 @@
 import 'package:fimto_frame/generated/l10n.dart';
+import 'package:fimto_frame/models/home_page_configuration.dart';
 import 'package:fimto_frame/models/language.dart';
+import 'package:fimto_frame/repository/remote/configuration_repository.dart';
 import 'package:fimto_frame/routes/router_names.dart';
+import 'package:fimto_frame/services/connection_service.dart';
+import 'package:fimto_frame/services/message_service.dart';
 import 'package:fimto_frame/themes/appBar.dart';
 import 'package:fimto_frame/themes/buttons.dart';
 import 'package:fimto_frame/themes/drawer.dart';
@@ -10,59 +14,73 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:youtube_player_iframe/youtube_player_iframe.dart';
+import 'package:flutter_shimmer/flutter_shimmer.dart';
+
+import 'home_viewmodel.dart';
 
 class HomeViewMobile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var language = context.watch<Language>();
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: Colors.white,
-        endDrawer:
-            language.currentLocale.languageCode == 'en' ? CustomDrawer() : null,
-        drawer:
-            language.currentLocale.languageCode == 'ar' ? CustomDrawer() : null,
-        body: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            CustomAppBar(title: ''),
-            Expanded(
-              child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    _Title(),
-                    _FramesPrice(),
-                    SizedBox(height: 15),
-                    _MoreInfo(),
-                  ],
-                ),
+    return ChangeNotifierProvider<HomeViewModel>(
+        create: (_) => HomeViewModel(
+            connectionService: context.read<ConnectionService>(),
+            messageService: context.read<MessageService>(),
+            configurationRepository: context.read<ConfigurationRepository>()),
+        child: Scaffold(
+          backgroundColor: Colors.white,
+          body: SafeArea(
+            child: Scaffold(
+              backgroundColor: Colors.white,
+              endDrawer: language.currentLocale.languageCode == 'en'
+                  ? CustomDrawer()
+                  : null,
+              drawer: language.currentLocale.languageCode == 'ar'
+                  ? CustomDrawer()
+                  : null,
+              body: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  CustomAppBar(title: ''),
+                  Expanded(
+                    child: SingleChildScrollView(
+                      child: Column(
+                        children: [
+                          _Title(),
+                          _FramesPrice(),
+                          SizedBox(height: 15),
+                          _MoreInfo(),
+                        ],
+                      ),
+                    ),
+                  ),
+                  GradientButton(
+                      text: S.of(context).letsGo,
+                      onTap: () => Get.toNamed(selectToWhoRoute))
+                ],
               ),
             ),
-            GradientButton(
-                text: S.of(context).letsGo,
-                onTap: () => Get.toNamed(selectToWhoRoute))
-          ],
-        ),
-      ),
-    );
+          ),
+        ));
   }
 }
 
-class _Title extends StatefulWidget {
-  const _Title({Key? key}) : super(key: key);
+class _Video extends StatefulWidget {
+  final String videoId;
+  const _Video({Key? key, required this.videoId}) : super(key: key);
 
   @override
-  __TitleState createState() => __TitleState();
+  _VideoState createState() => _VideoState();
 }
 
-class __TitleState extends State<_Title> {
+class _VideoState extends State<_Video> {
   late YoutubePlayerController _controller;
 
   @override
   void initState() {
     super.initState();
     _controller = YoutubePlayerController(
-      initialVideoId: 'NpEaa2P7qZI',
+      initialVideoId: widget.videoId,
       params: const YoutubePlayerParams(
           showControls: false,
           showFullscreenButton: true,
@@ -85,6 +103,21 @@ class __TitleState extends State<_Title> {
 
   @override
   Widget build(BuildContext context) {
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(15),
+      child: SizedBox(
+          height: 250,
+          child: YoutubePlayerIFrame(
+            controller: _controller,
+            aspectRatio: 16 / 9,
+          )),
+    );
+  }
+}
+
+class _Title extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
       padding: EdgeInsets.all(15),
@@ -101,15 +134,20 @@ class __TitleState extends State<_Title> {
             image: AssetImage('assets/images/logo.png'),
           ),
           SizedBox(height: 25),
-          ClipRRect(
-            borderRadius: BorderRadius.circular(15),
-            child: SizedBox(
-                height: 250,
-                child: YoutubePlayerIFrame(
-                  controller: _controller,
-                  aspectRatio: 16 / 9,
-                )),
-          ),
+          FutureBuilder<HomePageConfiguration>(
+              future: context.read<HomeViewModel>().loadHomePageConfiguration(),
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  return _Video(
+                      videoId: snapshot.data!.videoLink.split('=')[1]);
+                } else if (snapshot.hasError) {
+                  return Text('Error');
+                }
+                return VideoShimmer(
+                  hasBottomBox: true,
+                  isRectBox: true,
+                );
+              }),
           SizedBox(height: 25),
           Text(
             S.of(context).frameYourMoment,

@@ -69,7 +69,7 @@ class MyApp extends StatelessWidget {
         locale: context.watch<Language>().currentLocale,
         title: 'Fimto',
         theme: myTheme,
-        initialRoute: homeRoute,
+        initialRoute: loginRoute,
         onGenerateRoute: onGenerateRoute,
         defaultTransition: Transition.native,
         opaqueRoute: Get.isOpaqueRouteDefault,

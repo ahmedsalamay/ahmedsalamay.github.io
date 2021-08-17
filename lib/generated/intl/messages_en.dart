@@ -29,12 +29,16 @@ class MessageLookup extends MessageLookupByLibrary {
         "addPromoCode": MessageLookupByLibrary.simpleMessage("Add promo code"),
         "address": MessageLookupByLibrary.simpleMessage("Address"),
         "addressHint": MessageLookupByLibrary.simpleMessage("Address"),
+        "alreadyHaveAccount":
+            MessageLookupByLibrary.simpleMessage("Already have account"),
         "buildingNumberHint":
             MessageLookupByLibrary.simpleMessage("Building Number"),
         "canTrackYourOrder": MessageLookupByLibrary.simpleMessage(
             "You can track your order from here"),
         "changLocation": MessageLookupByLibrary.simpleMessage(
             "Change the location without leaving any trace"),
+        "changeLanguage":
+            MessageLookupByLibrary.simpleMessage("Change Language"),
         "checkout": MessageLookupByLibrary.simpleMessage("Checkout"),
         "choosePaymentMethod":
             MessageLookupByLibrary.simpleMessage("Choose Payment Method"),
@@ -52,6 +56,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "confirmation": MessageLookupByLibrary.simpleMessage("Confirmation"),
         "congratulations":
             MessageLookupByLibrary.simpleMessage("Congratulations"),
+        "connectionErrorHeader":
+            MessageLookupByLibrary.simpleMessage("Connection Error"),
+        "connectionErrorMsg": MessageLookupByLibrary.simpleMessage(
+            "No internet connection, Please check your wifi or cellular data"),
         "continueBTN": MessageLookupByLibrary.simpleMessage("Continue"),
         "decorateMyWall":
             MessageLookupByLibrary.simpleMessage("Decorate My Wall"),
@@ -61,8 +69,11 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Delivered for shipment"),
         "deliveryTime": MessageLookupByLibrary.simpleMessage("Delivery Time"),
         "dismiss": MessageLookupByLibrary.simpleMessage("Dismiss"),
+        "donnotHaveAccount":
+            MessageLookupByLibrary.simpleMessage("Don\'t Have Account?"),
         "egyptwideShipping": MessageLookupByLibrary.simpleMessage(
             "Free Egyptwide shipping! At your doorstep in a week"),
+        "email": MessageLookupByLibrary.simpleMessage("Email"),
         "faq": MessageLookupByLibrary.simpleMessage("FAQ"),
         "fimtoArt": MessageLookupByLibrary.simpleMessage("Fimto Art"),
         "fimtoSoft": MessageLookupByLibrary.simpleMessage("Fimtosoft"),
@@ -70,6 +81,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "followUs": MessageLookupByLibrary.simpleMessage("Follow us"),
         "forMe": MessageLookupByLibrary.simpleMessage("For Me"),
         "forPerson": MessageLookupByLibrary.simpleMessage("For a dear person"),
+        "forgotPassword":
+            MessageLookupByLibrary.simpleMessage("Forgot Password?"),
         "frameYourMoment":
             MessageLookupByLibrary.simpleMessage("Frame your moments"),
         "framesStickWall": MessageLookupByLibrary.simpleMessage(
@@ -85,6 +98,9 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Import From Instagram"),
         "leaveMessage": MessageLookupByLibrary.simpleMessage("Leave a message"),
         "letsGo": MessageLookupByLibrary.simpleMessage("Let\'s Go"),
+        "loadingData": MessageLookupByLibrary.simpleMessage(
+            "Please Wait for data to be loaded"),
+        "login": MessageLookupByLibrary.simpleMessage("Login"),
         "mailHint": MessageLookupByLibrary.simpleMessage("E-Mail"),
         "messageToYourDear": MessageLookupByLibrary.simpleMessage(
             "Leave a message to your dear person"),
@@ -100,6 +116,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Order is confirmed"),
         "orderNumber": MessageLookupByLibrary.simpleMessage("Order Number"),
         "orderSummary": MessageLookupByLibrary.simpleMessage("Order Summary"),
+        "password": MessageLookupByLibrary.simpleMessage("Password"),
+        "passwordError": MessageLookupByLibrary.simpleMessage("password error"),
         "payment": MessageLookupByLibrary.simpleMessage("Payment"),
         "paymentConfirmAutomatically": MessageLookupByLibrary.simpleMessage(
             "Your payment will be confirmed automatically if the sender number register at your order if not, please contact us to confirm the payment"),
@@ -107,11 +125,15 @@ class MessageLookup extends MessageLookupByLibrary {
         "perfectSize":
             MessageLookupByLibrary.simpleMessage("Perfect frame size 21X21"),
         "phoneHint": MessageLookupByLibrary.simpleMessage("Phone Number"),
+        "phoneNumber": MessageLookupByLibrary.simpleMessage("Phone Number"),
+        "phoneNumberError":
+            MessageLookupByLibrary.simpleMessage("Not Valid Phone number"),
         "pickUpSomePhotos": MessageLookupByLibrary.simpleMessage(
             "Pick some photos to get started"),
         "pleaseTransferAmountTo": MessageLookupByLibrary.simpleMessage(
             "Please transfer the total amount to"),
         "processing": MessageLookupByLibrary.simpleMessage("Processing"),
+        "register": MessageLookupByLibrary.simpleMessage("Register"),
         "selectCreateFrames": MessageLookupByLibrary.simpleMessage(
             "Please select to who you are creating frames"),
         "selectToWho": MessageLookupByLibrary.simpleMessage("Select To Who"),
@@ -122,6 +144,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Shipping Address"),
         "shippingFree":
             MessageLookupByLibrary.simpleMessage("Shipping is always free"),
+        "sorry": MessageLookupByLibrary.simpleMessage("Sorry"),
         "successfulPurchase": MessageLookupByLibrary.simpleMessage(
             "A successful purchase for your frames"),
         "suitableShape": MessageLookupByLibrary.simpleMessage(

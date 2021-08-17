@@ -10,8 +10,20 @@ class TokenService {
   final TokenLocalRepository _tokenLocalRepository;
   Token? _token;
 
-  Future<Result<Token>> loginAsync(String? userName, String? password) async {
-    var result = await _tokenRepository.loginAsync(userName, password);
+  Future<Result<Token>> loginAsync(String phoneNumber, String password) async {
+    var result = await _tokenRepository.loginAsync(phoneNumber, password);
+    if (result.isError) {
+      return Result.error(result.asError!.error);
+    }
+    await _tokenLocalRepository.saveToken(result.asValue!.value);
+
+    return Result.value(result.asValue!.value);
+  }
+
+  Future<Result<Token>> registerAsync(
+      String phoneNumber, String email, String password) async {
+    var result =
+        await _tokenRepository.registerAsync(email, phoneNumber, password);
     if (result.isError) {
       return Result.error(result.asError!.error);
     }

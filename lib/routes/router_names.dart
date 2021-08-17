@@ -9,3 +9,5 @@ const String confirmOrderRoute = 'confirm_order';
 const String leaveMessageRoute = 'leave_message';
 const String congratulationRoute = 'congratulation';
 const String trackOrderRoute = 'track_order';
+const String loginRoute = 'login';
+const String registerRoute = 'register';

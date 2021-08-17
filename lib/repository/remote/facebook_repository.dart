@@ -1,20 +1,15 @@
 import 'package:fimto_frame/generated/l10n.dart';
+import 'package:fimto_frame/models/constants.dart';
 import 'package:fimto_frame/models/facebook_album.dart';
 import 'package:fimto_frame/models/facebook_photo.dart';
-import 'package:fimto_frame/services/request_provider.dart';
 import 'dart:convert';
 import 'package:async/async.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
-import 'package:get/get.dart';
-
-final String facebookBaseUrl = 'https://graph.facebook.com/v11.0';
 
 class FacebookRepository {
   FacebookRepository();
 
-  //final _appLocalization = AppLocalizations.of(Get.context);
   Future<Result<AlbumPaging>> fetchAlbums({required String accessToken}) async {
     try {
       var response = await Dio().get(facebookBaseUrl +

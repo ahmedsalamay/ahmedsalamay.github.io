@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:async/async.dart';
 import 'package:fimto_frame/errors/auth_exception.dart';
+import 'package:fimto_frame/models/constants.dart';
 import 'package:fimto_frame/models/language.dart';
 import 'package:fimto_frame/models/token.dart';
 
@@ -14,6 +15,8 @@ class TokenRepository {
       '6jtxzxpy+ImAVeo+I6VrcK4dFxE4SgQ00pACvyp6oOQ=';
   static const String _scope =
       'openid profile email roles storeKeeperapi offline_access';
+
+  static String get authUrl => 'https://fimtoframe.hadaf.website/connect/token';
 
   TokenRepository({
     required this.language,
@@ -27,36 +30,53 @@ class TokenRepository {
       'Content-Type': 'application/json',
     };
 
-    client.options.contentType = 'application/x-www-form-urlencoded';
+    // client.options.contentType = 'application/json';
   }
 
   late Dio client;
 
-  Future<Result<Token>> loginAsync(String? username, String? password) async {
+  Future<Result<Token>> loginAsync(String phone, String password) async {
+    client.options.contentType = 'application/x-www-form-urlencoded';
     try {
       var data = {
-        'username': username,
+        'username': phone,
         'password': password,
         'grant_type': 'password',
-        'client_id': _client_id,
-        'client_secret': _client_secret,
-        'scope': _scope,
-
-        ///why it is like that? is `en` or `ar` is enough? => no it is a back end contract
-        ///and it will not return the data localized, so u SHOULD pass `EG` or `US`.
-        'Accept-Language':
-            language!.languageCode == Language.arabicCode ? 'ar-EG' : 'en-US',
+        'client_id': 'mobile',
+        'client_secret': 'secret',
+        'response_type': 'id_token token',
+        'scope': 'fimto_api offline_access openid profile',
       };
 
-      final response =
-          await client.post('companyUrls!.tokenEndPoint!', data: data);
+      final response = await client.post(baseUrl + 'Account/Login', data: data);
       final token = Token.fromJson(response.data);
 
       return Result.value(token);
     } on DioError catch (error) {
       if (error.response!.statusCode == HttpStatus.badRequest) {
-        var errorMsg = error.response!.data['error_description'];
+        var errorMsg = error.response!.data;
+        return Result.error(errorMsg);
+      }
+      return Result.error('');
+    }
+  }
 
+  Future<Result<Token>> registerAsync(
+      String email, String phoneNumber, String password) async {
+    try {
+      var data = {
+        "email": email,
+        "phoneNumber": phoneNumber,
+        "password": password
+      };
+
+      final response = await client.post(baseUrl + 'Register', data: data);
+      final token = Token.fromJson(response.data);
+
+      return Result.value(token);
+    } on DioError catch (error) {
+      if (error.response!.statusCode == HttpStatus.badRequest) {
+        var errorMsg = error.response!.data;
         return Result.error(errorMsg);
       }
       return Result.error('');

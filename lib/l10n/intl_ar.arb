@@ -76,5 +76,20 @@
   "getThreeFrames": "احصل على ثلاث براويز بسعر 269ج فقط",
   "youCanExtraFrame": "يمكنك الحصول على اى برواز بسعر 74ج",
   "dismiss": "الغاء",
-  "delete": "حذف"
+  "delete": "حذف",
+  "changeLanguage": "تغير اللغة",
+  "email": "البريد الإلكتروني",
+  "phoneNumber": "رقم التليفون",
+  "password": "كلمه السر",
+  "login": "تسجيل الدخول",
+  "passwordError": "password error",
+  "phoneNumberError": "Not Valid Phone number",
+  "connectionErrorHeader": "مشكلة في الاتصال بالانترنت",
+  "connectionErrorMsg": "لا يوجد اتصال بالانترنت لتحميل البيانات الازمة , برجاء التاكد من الاتصال",
+  "loadingData": "منفضلك انتظر لتحميل البيانات المطلوبة",
+  "sorry": "عفوا",
+  "donnotHaveAccount": "Don't Have Account?",
+  "register": "Register",
+  "alreadyHaveAccount": "Already have account",
+  "forgotPassword": "Forgot Password?"
 }

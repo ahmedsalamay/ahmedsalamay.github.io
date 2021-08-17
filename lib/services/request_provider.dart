@@ -18,7 +18,7 @@ class RequestProvider {
   }) {
     _client.interceptors.add(dioLoggerInterceptor);
 
-    _client.interceptors.add(InterceptorsWrapper(
+    /* _client.interceptors.add(InterceptorsWrapper(
       onError: (DioError error, handler) async {
         if (error.response!.statusCode == HttpStatus.unauthorized) {
           if (refreshTokenInProgress != null) {
@@ -95,7 +95,7 @@ class RequestProvider {
         _client.interceptors.requestLock.unlock();
         return handler.next(options);
       },
-    ));
+    ));*/
 
     _client.options.responseType = ResponseType.json;
     _client.options.baseUrl = '';
@@ -109,9 +109,7 @@ class RequestProvider {
 
   Future<Response> getAsync(String resource) {
     return _client.get(
-      'companyUrls!.apiUrl' == null
-          ? resource
-          : 'companyUrls!.apiUrl!' + resource,
+      resource,
     );
   }
 

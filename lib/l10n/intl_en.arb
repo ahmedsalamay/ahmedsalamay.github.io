@@ -76,5 +76,20 @@
   "getThreeFrames": "Get three Frames with 270 LE only",
   "youCanExtraFrame": "You can add extra frame with only 74LE",
   "dismiss": "Dismiss",
-  "delete": "Delete"
+  "delete": "Delete",
+  "changeLanguage": "Change Language",
+  "email": "Email",
+  "phoneNumber": "Phone Number",
+  "password": "Password",
+  "login": "Login",
+  "passwordError": "password error",
+  "phoneNumberError": "Not Valid Phone number",
+  "connectionErrorHeader": "Connection Error",
+  "connectionErrorMsg": "No internet connection, Please check your wifi or cellular data",
+  "loadingData": "Please Wait for data to be loaded",
+  "sorry": "Sorry",
+  "donnotHaveAccount": "Don't Have Account?",
+  "register": "Register",
+  "alreadyHaveAccount": "Already have account",
+  "forgotPassword": "Forgot Password?"
 }

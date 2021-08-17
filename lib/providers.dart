@@ -1,5 +1,7 @@
 import 'package:fimto_frame/models/language.dart';
+import 'package:fimto_frame/repository/remote/configuration_repository.dart';
 import 'package:fimto_frame/repository/remote/facebook_repository.dart';
+import 'package:fimto_frame/screens/congratulation/congratulation_desktop.dart';
 import 'package:fimto_frame/services/request_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
@@ -27,6 +29,10 @@ List<SingleChildWidget> providers = [
     create: (_) => MessageService(),
     lazy: true,
   ),
+  ProxyProvider<Language, TokenRepository>(
+    update: (_, language, __) => TokenRepository(language: language),
+    lazy: true,
+  ),
   ProxyProvider2<TokenRepository, TokenLocalRepository, TokenService>(
     update: (_, TokenRepository identityRepository,
             TokenLocalRepository tokenLocalRepository, __) =>
@@ -40,6 +46,11 @@ List<SingleChildWidget> providers = [
   ),
   Provider<FacebookRepository>(
     create: (_) => FacebookRepository(),
+    lazy: true,
+  ),
+  ProxyProvider<RequestProvider, ConfigurationRepository>(
+    update: (_, requestProvider, __) =>
+        ConfigurationRepository(requestProvider),
     lazy: true,
   ),
 ];
