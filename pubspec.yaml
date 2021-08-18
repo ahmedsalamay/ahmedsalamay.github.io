@@ -88,6 +88,8 @@ flutter:
     - assets/images/BACKGROUND.png
     - assets/images/twitter.png
     - assets/images/INSTAGRAM.png
+    - assets/images/instagram_colored.png
+    - assets/images/facebook.png
     - assets/images/egypt.png
     - assets/images/facebookGrey.png
     - assets/images/googleGrey.png

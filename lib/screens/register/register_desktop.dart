@@ -1,10 +1,7 @@
 import 'package:fimto_frame/services/connection_service.dart';
 import 'package:fimto_frame/services/message_service.dart';
 import 'package:fimto_frame/services/token_services.dart';
-import 'package:get/get.dart';
-import 'package:fimto_frame/routes/router_names.dart';
 import 'package:fimto_frame/themes/buttons.dart';
-import 'package:fimto_frame/themes/drawer.dart';
 import 'package:fimto_frame/themes/theme.dart';
 import 'package:provider/provider.dart';
 import 'package:fimto_frame/generated/l10n.dart';
@@ -21,281 +18,136 @@ class RegisterScreenDesktop extends StatelessWidget {
               tokenService: context.read<TokenService>(),
             ),
         child: Scaffold(
-          backgroundColor: Colors.white,
-          endDrawer: CustomDrawer(),
+          backgroundColor: Color(0xFFf6fafb),
           body: _Body(),
         ));
   }
 }
 
 class _Body extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    final vm = context.watch<RegisterViewModel>();
-    return SafeArea(
-      child: Container(
-          height: double.infinity,
-          width: double.infinity,
-          child: Row(
-            children: [
-              _Stepper(),
-              Expanded(
-                flex: 3,
-                child: Column(
-                  children: [
-                    _AddressForm(),
-                    SizedBox(height: 20),
-                    SizedBox(
-                      width: 180,
-                      child: GradientButton(
-                        text: S.of(context).confirmAddress,
-                        onTap: () => Get.toNamed(addPaymentMethodRoute),
-                      ),
-                    )
-                  ],
-                ),
-              ),
-            ],
-          )),
-    );
-  }
-}
-
-class _AddressForm extends StatelessWidget {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(16),
-      child: Container(
-        height: MediaQuery.of(context).size.height * 0.6,
-        width: double.infinity,
-        child: Form(
-          key: _formKey,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(height: 50),
-              Text(
-                S.of(context).shipTo,
-                style: Theme.of(context).textTheme.headline3,
-              ),
-              SizedBox(height: 35),
-              Row(
-                children: [
-                  Expanded(
-                    child: TextFormField(
-                      textAlign: TextAlign.start,
-                      // onChanged: (value) => vm.onUserNameChange(value),
-                      // validator: (value) => vm.validateUserName(value),
-                      textInputAction: TextInputAction.next,
-                      decoration:
-                          InputDecoration(hintText: S.of(context).nameHint),
-                    ),
-                  ),
-                  SizedBox(width: 12),
-                  Expanded(
-                    child: TextFormField(
-                      textAlign: TextAlign.start,
-                      // onChanged: (value) => vm.onPasswordChange(value),
-                      // validator: (value) => vm.validatePassword(value),
-                      textInputAction: TextInputAction.done,
-                      obscureText: true,
-                      decoration:
-                          InputDecoration(hintText: S.of(context).phoneHint),
-                    ),
-                  ),
+    final vm = context.watch<RegisterViewModel>();
+    var size = MediaQuery.of(context).size;
+    return SafeArea(
+      child: Center(
+        child: Column(
+          children: [
+            _Header(),
+            SizedBox(height: size.height * 0.1),
+            Container(
+              height: 450,
+              width: 400,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(6),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.2),
+                    spreadRadius: 2,
+                    blurRadius: 2,
+                    offset: Offset(0, 2), // changes position of shadow
+                  )
                 ],
               ),
-              SizedBox(height: 12),
-              Row(
-                children: [
-                  Expanded(
-                    child: TextFormField(
-                      textAlign: TextAlign.start,
-                      // onChanged: (value) => vm.onPasswordChange(value),
-                      // validator: (value) => vm.validatePassword(value),
-                      textInputAction: TextInputAction.done,
-                      obscureText: true,
-                      decoration: InputDecoration(hintText: 'Cairo'),
-                    ),
+              child: Padding(
+                padding: const EdgeInsets.all(15.0),
+                child: Form(
+                  key: _formKey,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SizedBox(height: 10),
+                      Visibility(
+                        child: Center(child: CircularProgressIndicator()),
+                        visible: vm.isLoading,
+                      ),
+                      TextFormField(
+                        textAlign: TextAlign.start,
+                        onChanged: (value) => vm.onPhoneNumberChange(value),
+                        validator: (value) => vm.validatePhoneNumber(value),
+                        keyboardType: TextInputType.phone,
+                        textInputAction: TextInputAction.next,
+                        decoration: InputDecoration(
+                            prefixIcon: Icon(Icons.phone),
+                            hintText: S.of(context).phoneNumber),
+                      ),
+                      SizedBox(height: 15),
+                      TextFormField(
+                        textAlign: TextAlign.start,
+                        onChanged: (value) => vm.onEmailChange(value),
+                        validator: (value) => vm.validateEmailAddress(value),
+                        keyboardType: TextInputType.emailAddress,
+                        textInputAction: TextInputAction.next,
+                        decoration: InputDecoration(
+                            prefixIcon: Icon(Icons.email),
+                            hintText: S.of(context).email),
+                      ),
+                      SizedBox(height: 15),
+                      TextFormField(
+                        textAlign: TextAlign.start,
+                        onChanged: (value) => vm.onPasswordChange(value),
+                        validator: (value) => vm.validatePassword(value),
+                        textInputAction: TextInputAction.done,
+                        obscureText: true,
+                        decoration: InputDecoration(
+                            prefixIcon: Icon(Icons.lock_outline),
+                            hintText: S.of(context).password),
+                      ),
+                      SizedBox(height: 40),
+                      SolidButton(
+                        text: S.of(context).register,
+                        onTap: () => vm.registerAction(_formKey),
+                      ),
+                      SizedBox(height: 30),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(S.of(context).alreadyHaveAccount,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .headline3!
+                                  .copyWith(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w500)),
+                          TextButton(
+                            onPressed: () {},
+                            child: Text(S.of(context).login,
+                                style: Theme.of(context).textTheme.bodyText2),
+                          ),
+                        ],
+                      )
+                    ],
                   ),
-                  SizedBox(width: 12),
-                  Expanded(
-                    child: TextFormField(
-                      textAlign: TextAlign.start,
-                      // onChanged: (value) => vm.onPasswordChange(value),
-                      // validator: (value) => vm.validatePassword(value),
-                      textInputAction: TextInputAction.done,
-                      obscureText: true,
-                      decoration: InputDecoration(hintText: 'Nasser City'),
-                    ),
-                  ),
-                ],
+                ),
               ),
-              SizedBox(height: 12),
-              Row(
-                children: [
-                  Expanded(
-                    child: TextFormField(
-                      textAlign: TextAlign.start,
-                      // onChanged: (value) => vm.onPasswordChange(value),
-                      // validator: (value) => vm.validatePassword(value),
-                      textInputAction: TextInputAction.done,
-                      obscureText: true,
-                      decoration: InputDecoration(
-                          hintText: S.of(context).buildingNumberHint),
-                    ),
-                  ),
-                  SizedBox(width: 12),
-                  Expanded(
-                    child: TextFormField(
-                      textAlign: TextAlign.start,
-                      // onChanged: (value) => vm.onPasswordChange(value),
-                      // validator: (value) => vm.validatePassword(value),
-                      textInputAction: TextInputAction.done,
-                      obscureText: true,
-                      decoration:
-                          InputDecoration(hintText: S.of(context).floorHint),
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(height: 12),
-              TextFormField(
-                textAlign: TextAlign.start,
-                // onChanged: (value) => vm.onPasswordChange(value),
-                // validator: (value) => vm.validatePassword(value),
-                textInputAction: TextInputAction.done,
-                obscureText: true,
-                decoration:
-                    InputDecoration(hintText: S.of(context).addressHint),
-              ),
-              SizedBox(height: 12),
-              TextFormField(
-                textAlign: TextAlign.start,
-                // onChanged: (value) => vm.onPasswordChange(value),
-                // validator: (value) => vm.validatePassword(value),
-                textInputAction: TextInputAction.done,
-                obscureText: true,
-                decoration: InputDecoration(hintText: S.of(context).mailHint),
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
   }
 }
 
-class _Stepper extends StatelessWidget {
-  const _Stepper({Key? key}) : super(key: key);
+class _Header extends StatelessWidget {
+  const _Header({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      constraints: BoxConstraints(maxWidth: 300),
-      height: double.infinity,
-      color: Color(0xFFf9f9f9),
+      padding: EdgeInsets.symmetric(horizontal: 30, vertical: 25),
       child: Row(
         children: [
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-            constraints: BoxConstraints(maxHeight: 400),
-            child: Column(
-              children: [
-                Container(
-                  width: 50,
-                  height: 50,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(25),
-                      color: FimtoColors.primaryColor),
-                  child: Center(
-                    child: Text(
-                      '1',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 22,
-                          fontWeight: FontWeight.w800),
-                    ),
-                  ),
-                ),
-                SizedBox(height: 12),
-                Expanded(
-                    child: VerticalDivider(
-                  thickness: 4,
-                )),
-                SizedBox(height: 12),
-                Container(
-                  width: 50,
-                  height: 50,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(25),
-                      border: Border.all(
-                          color: FimtoColors.dividerColor, width: 3)),
-                  child: Center(
-                      child: Text(
-                    '2',
-                    style: TextStyle(
-                        color: FimtoColors.dividerColor,
-                        fontSize: 22,
-                        fontWeight: FontWeight.w800),
-                  )),
-                ),
-                SizedBox(height: 12),
-                Expanded(child: VerticalDivider(thickness: 4)),
-                SizedBox(height: 12),
-                Container(
-                  width: 50,
-                  height: 50,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(25),
-                      border: Border.all(
-                          color: FimtoColors.dividerColor, width: 3)),
-                  child: Center(
-                    child: Text(
-                      '3',
-                      style: TextStyle(
-                          color: FimtoColors.dividerColor,
-                          fontSize: 22,
-                          fontWeight: FontWeight.w800),
-                    ),
-                  ),
-                ),
-              ],
-            ),
+          Image(
+            fit: BoxFit.contain,
+            height: 30,
+            color: FimtoColors.primaryColor,
+            image: AssetImage('assets/images/logo.png'),
           ),
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
-            constraints: BoxConstraints(maxHeight: 400),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  S.of(context).addAddress,
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500),
-                ),
-                Text(
-                  S.of(context).payment,
-                  style: TextStyle(
-                      color: FimtoColors.dividerColor,
-                      fontSize: 16,
-                      fontWeight: FontWeight.w800),
-                ),
-                Text(
-                  S.of(context).confirmation,
-                  style: TextStyle(
-                      color: FimtoColors.dividerColor,
-                      fontSize: 16,
-                      fontWeight: FontWeight.w800),
-                ),
-              ],
-            ),
-          )
+          Spacer(),
         ],
       ),
     );

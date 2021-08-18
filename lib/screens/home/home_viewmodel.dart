@@ -10,9 +10,10 @@ class HomeViewModel extends ChangeNotifier {
   final MessageService messageService;
   final ConfigurationRepository configurationRepository;
 
-  HomeViewModel({required this.connectionService,
-    required this.messageService,
-    required this.configurationRepository});
+  HomeViewModel(
+      {required this.connectionService,
+      required this.messageService,
+      required this.configurationRepository});
 
   HomePageConfiguration? _homePageConfiguration;
 
@@ -40,12 +41,19 @@ class HomeViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<HomePageConfiguration?> loadHomePageConfiguration() async {
+  Future<HomePageConfiguration> loadHomePageConfiguration() async {
     var result = await configurationRepository.getHomePageData();
     if (result.isError) {
       return Future.error(result.asError!.error);
     }
     return result.asValue!.value;
   }
-}
 
+  Future<List<SocialReviews>> loadHomeSocialReviews() async {
+    var result = await configurationRepository.getSocialReviews();
+    if (result.isError) {
+      return Future.error(result.asError!.error);
+    }
+    return result.asValue!.value;
+  }
+}

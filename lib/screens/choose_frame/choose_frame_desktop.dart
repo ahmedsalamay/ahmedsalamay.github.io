@@ -279,10 +279,10 @@ class _ImportPhoto extends StatelessWidget {
               ),
               child: Row(
                 children: [
-                  Icon(
-                    Icons.facebook_sharp,
-                    color: Colors.blue,
-                    size: 35,
+                  IconButton(
+                    icon: Image.asset('assets/images/facebook.png'),
+                    padding: EdgeInsets.all(0),
+                    onPressed: () {},
                   ),
                   SizedBox(width: 15),
                   Text(
@@ -314,10 +314,10 @@ class _ImportPhoto extends StatelessWidget {
               ),
               child: Row(
                 children: [
-                  Icon(
-                    Icons.facebook_sharp,
-                    color: Colors.blue,
-                    size: 35,
+                  IconButton(
+                    icon: Image.asset('assets/images/instagram_colored.png'),
+                    padding: EdgeInsets.all(0),
+                    onPressed: () {},
                   ),
                   SizedBox(width: 15),
                   Text(

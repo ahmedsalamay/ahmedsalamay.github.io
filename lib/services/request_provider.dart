@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 import 'package:dio/dio.dart';
+import 'package:fimto_frame/models/constants.dart';
 import 'package:fimto_frame/models/language.dart';
 import 'package:fimto_frame/services/token_services.dart';
 import 'package:dio_logger/dio_logger.dart';
@@ -102,40 +103,41 @@ class RequestProvider {
     _client.options.headers = {
       'accept': 'application/json',
       'Content-Type': 'application/json',
-      'Accept-Language':
+      "Access-Control-Allow-Origin: *"
+              'Accept-Language':
           language!.languageCode == Language.arabicCode ? 'ar-EG' : 'en-US',
     };
   }
 
   Future<Response> getAsync(String resource) {
     return _client.get(
-      resource,
+      baseUrl + resource,
     );
   }
 
   Future<Response> postAsync(
       {required String resource, String? body, String? token}) {
     return _client.post(
-      'companyUrls!.apiUrl!' + resource,
+      baseUrl + resource,
       data: body,
     );
   }
 
   Future<Response> putAsync({required String resource, String? body}) {
-    return _client.put('companyUrls!.apiUrl!' + resource, data: body);
+    return _client.put(baseUrl + resource, data: body);
   }
 
   Future<Response> deleteAsync(String resource, {String? body}) {
-    return _client.delete('companyUrls!.apiUrl!' + resource);
+    return _client.delete(baseUrl + resource);
   }
 
   Future<Response> patchAsync(String resource, {String? body}) {
-    return _client.patch('companyUrls!.apiUrl!' + resource, data: body);
+    return _client.patch(baseUrl + resource, data: body);
   }
 
   Future<Response> getBytesAsync(String url) {
     return _client.get(
-      'companyUrls!.apiUrl' == null ? url : 'companyUrls!.apiUrl!' + url,
+      baseUrl + url,
       options: Options(responseType: ResponseType.bytes),
     );
   }

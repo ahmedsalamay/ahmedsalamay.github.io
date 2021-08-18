@@ -1,11 +1,34 @@
 import 'package:fimto_frame/generated/l10n.dart';
+import 'package:fimto_frame/models/home_page_configuration.dart';
+import 'package:fimto_frame/repository/remote/configuration_repository.dart';
+import 'package:fimto_frame/services/connection_service.dart';
+import 'package:fimto_frame/services/message_service.dart';
 import 'package:fimto_frame/themes/footer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_shimmer/flutter_shimmer.dart';
 import 'components/header.dart';
 import 'package:youtube_player_iframe/youtube_player_iframe.dart';
+import 'package:provider/provider.dart';
+import 'home_viewmodel.dart';
 
 class HomeViewDesktop extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return ChangeNotifierProvider<HomeViewModel>(
+        create: (_) => HomeViewModel(
+            connectionService: context.read<ConnectionService>(),
+            messageService: context.read<MessageService>(),
+            configurationRepository: context.read<ConfigurationRepository>()),
+        child: _Body());
+  }
+}
+
+class _Body extends StatelessWidget {
+  const _Body({
+    Key? key,
+  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -37,7 +60,8 @@ class HomeViewDesktop extends StatelessWidget {
 }
 
 class _Video extends StatefulWidget {
-  const _Video({Key? key}) : super(key: key);
+  final String videoId;
+  const _Video({Key? key, required this.videoId}) : super(key: key);
 
   @override
   _VideoState createState() => _VideoState();
@@ -50,7 +74,7 @@ class _VideoState extends State<_Video> {
   void initState() {
     super.initState();
     _controller = YoutubePlayerController(
-      initialVideoId: 'NpEaa2P7qZI',
+      initialVideoId: widget.videoId,
       params: const YoutubePlayerParams(
           showControls: false,
           showFullscreenButton: true,
@@ -103,7 +127,20 @@ class _Title extends StatelessWidget {
         children: [
           Expanded(
             flex: 3,
-            child: _Video(),
+            child: FutureBuilder<HomePageConfiguration>(
+                future:
+                    context.read<HomeViewModel>().loadHomePageConfiguration(),
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) {
+                    return _Video(
+                        videoId: snapshot.data!.videoLink.split('=')[1]);
+                  } else if (snapshot.hasError) {
+                    return Text('Error');
+                  }
+                  return PlayStoreShimmer(
+                    hasBottomFirstLine: false,
+                  );
+                }),
           ),
           Expanded(flex: 2, child: _FrameYourMoment())
         ],

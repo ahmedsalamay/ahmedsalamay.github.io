@@ -49,10 +49,10 @@ class LoginViewModel extends ChangeNotifier {
 
   void logInAction(GlobalKey<FormState> formKey) {
     final form = formKey.currentState!;
-    // if (form.validate()) {
-    //   _logIn();
-    // }
-    Get.toNamed(homeRoute);
+    if (form.validate()) {
+      _logIn();
+    }
+    // Get.toNamed(homeRoute);
   }
 
   void _logIn() async {

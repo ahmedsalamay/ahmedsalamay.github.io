@@ -1,6 +1,7 @@
 import 'package:fimto_frame/generated/l10n.dart';
 import 'package:fimto_frame/models/home_page_configuration.dart';
 import 'package:fimto_frame/models/language.dart';
+import 'package:fimto_frame/models/social_reviews.dart';
 import 'package:fimto_frame/repository/remote/configuration_repository.dart';
 import 'package:fimto_frame/routes/router_names.dart';
 import 'package:fimto_frame/services/connection_service.dart';
@@ -143,9 +144,8 @@ class _Title extends StatelessWidget {
                 } else if (snapshot.hasError) {
                   return Text('Error');
                 }
-                return VideoShimmer(
-                  hasBottomBox: true,
-                  isRectBox: true,
+                return PlayStoreShimmer(
+                  hasBottomFirstLine: false,
                 );
               }),
           SizedBox(height: 25),
@@ -292,9 +292,40 @@ class _SocialPosts extends StatelessWidget {
     final TabController? controller = DefaultTabController.of(context);
 
     return Container(
-        width: MediaQuery.of(context).size.width * 0.75,
-        height: 300,
-        child: DefaultTabController(
+      width: MediaQuery.of(context).size.width * 0.75,
+      height: 300,
+      child: FutureBuilder<List<SocialReviews>>(
+          future: context.read<HomeViewModel>().loadHomeSocialReviews(),
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              return SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: snapshot.data!
+                      .map((e) => Container(
+                            height: 400,
+                            width: 300,
+                            padding: EdgeInsets.all(15),
+                            child: Placeholder(
+                              strokeWidth: 3,
+                            )
+                            /* Image(
+                      fit: BoxFit.fill,
+                      image: AssetImage('assets/images/social_post.png'),
+                    )*/
+                            ,
+                          ))
+                      .toList(),
+                ),
+              );
+            } else if (snapshot.hasError) {
+              return Text('Error');
+            }
+            return PlayStoreShimmer(
+              hasBottomFirstLine: true,
+            );
+          }),
+      /*DefaultTabController(
           length: 3,
           child: Column(
             children: [
@@ -335,6 +366,7 @@ class _SocialPosts extends StatelessWidget {
               ),
             ],
           ),
-        ));
+        )*/
+    );
   }
 }

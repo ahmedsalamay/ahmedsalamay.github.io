@@ -1,6 +1,7 @@
 import 'package:fimto_frame/models/language.dart';
 import 'package:fimto_frame/repository/remote/configuration_repository.dart';
 import 'package:fimto_frame/repository/remote/facebook_repository.dart';
+import 'package:fimto_frame/repository/remote/order_repository.dart';
 import 'package:fimto_frame/screens/congratulation/congratulation_desktop.dart';
 import 'package:fimto_frame/services/request_provider.dart';
 import 'package:provider/provider.dart';
@@ -51,6 +52,10 @@ List<SingleChildWidget> providers = [
   ProxyProvider<RequestProvider, ConfigurationRepository>(
     update: (_, requestProvider, __) =>
         ConfigurationRepository(requestProvider),
+    lazy: true,
+  ),
+  ProxyProvider<RequestProvider, OrderRepository>(
+    update: (_, requestProvider, __) => OrderRepository(requestProvider),
     lazy: true,
   ),
 ];

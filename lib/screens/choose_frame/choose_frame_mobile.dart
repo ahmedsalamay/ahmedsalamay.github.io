@@ -194,10 +194,10 @@ class _ImportPhoto extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Icon(
-                      Icons.facebook,
-                      color: Colors.blue,
-                      size: 40,
+                    IconButton(
+                      icon: Image.asset('assets/images/facebook.png'),
+                      padding: EdgeInsets.all(0),
+                      onPressed: () {},
                     ),
                     SizedBox(height: 15),
                     Text(
@@ -240,10 +240,10 @@ class _ImportPhoto extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Icon(
-                      Icons.facebook,
-                      color: Colors.blue,
-                      size: 40,
+                    IconButton(
+                      icon: Image.asset('assets/images/instagram_colored.png'),
+                      padding: EdgeInsets.all(0),
+                      onPressed: () {},
                     ),
                     SizedBox(height: 15),
                     Text(
