@@ -1,7 +1,15 @@
+import 'package:hive/hive.dart';
+
+part 'token.g.dart';
+
+@HiveType(typeId: 1)
 class Token {
-  String? accessToken;
-  int? expiresIn;
-  String? refreshToken;
+  @HiveField(0)
+  String accessToken;
+  @HiveField(1)
+  int expiresIn;
+  @HiveField(2)
+  String refreshToken;
 
   Token({
     required this.accessToken,

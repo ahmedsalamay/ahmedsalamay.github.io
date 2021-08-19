@@ -43,7 +43,7 @@ class TokenRepository {
         'username': phone,
         'password': password,
         'grant_type': 'password',
-        'client_id': kIsWeb ? 'mvc' : 'mobile',
+        'client_id': 'mobile',
         'client_secret': 'secret',
         'response_type': 'id_token token',
         'scope': 'fimto_api offline_access openid profile',
