@@ -960,10 +960,10 @@ class S {
     );
   }
 
-  /// `Already have account`
+  /// `Already have account?`
   String get alreadyHaveAccount {
     return Intl.message(
-      'Already have account',
+      'Already have account?',
       name: 'alreadyHaveAccount',
       desc: '',
       args: [],
@@ -975,6 +975,66 @@ class S {
     return Intl.message(
       'Forgot Password?',
       name: 'forgotPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `3 Frames`
+  String get frames {
+    return Intl.message(
+      '3 Frames',
+      name: 'frames',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Extra Frame`
+  String get extraFrame {
+    return Intl.message(
+      'Extra Frame',
+      name: 'extraFrame',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delivery`
+  String get delivery {
+    return Intl.message(
+      'Delivery',
+      name: 'delivery',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `LE`
+  String get le {
+    return Intl.message(
+      'LE',
+      name: 'le',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Free`
+  String get free {
+    return Intl.message(
+      'Free',
+      name: 'free',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `PLease choose delivery date first`
+  String get pleaseChooseDate {
+    return Intl.message(
+      'PLease choose delivery date first',
+      name: 'pleaseChooseDate',
       desc: '',
       args: [],
     );

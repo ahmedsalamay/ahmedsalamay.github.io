@@ -30,7 +30,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "address": MessageLookupByLibrary.simpleMessage("Address"),
         "addressHint": MessageLookupByLibrary.simpleMessage("Address"),
         "alreadyHaveAccount":
-            MessageLookupByLibrary.simpleMessage("Already have account"),
+            MessageLookupByLibrary.simpleMessage("Already have account?"),
         "buildingNumberHint":
             MessageLookupByLibrary.simpleMessage("Building Number"),
         "canTrackYourOrder": MessageLookupByLibrary.simpleMessage(
@@ -67,6 +67,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "delivered": MessageLookupByLibrary.simpleMessage("delivered"),
         "deliveredForShipment":
             MessageLookupByLibrary.simpleMessage("Delivered for shipment"),
+        "delivery": MessageLookupByLibrary.simpleMessage("Delivery"),
         "deliveryTime": MessageLookupByLibrary.simpleMessage("Delivery Time"),
         "dismiss": MessageLookupByLibrary.simpleMessage("Dismiss"),
         "donnotHaveAccount":
@@ -74,6 +75,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "egyptwideShipping": MessageLookupByLibrary.simpleMessage(
             "Free Egyptwide shipping! At your doorstep in a week"),
         "email": MessageLookupByLibrary.simpleMessage("Email"),
+        "extraFrame": MessageLookupByLibrary.simpleMessage("Extra Frame"),
         "faq": MessageLookupByLibrary.simpleMessage("FAQ"),
         "fimtoArt": MessageLookupByLibrary.simpleMessage("Fimto Art"),
         "fimtoSoft": MessageLookupByLibrary.simpleMessage("Fimtosoft"),
@@ -85,8 +87,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Forgot Password?"),
         "frameYourMoment":
             MessageLookupByLibrary.simpleMessage("Frame your moments"),
+        "frames": MessageLookupByLibrary.simpleMessage("3 Frames"),
         "framesStickWall": MessageLookupByLibrary.simpleMessage(
             "Our frames stick to any walls"),
+        "free": MessageLookupByLibrary.simpleMessage("Free"),
         "getThreeFrames": MessageLookupByLibrary.simpleMessage(
             "Get three Frames with 270 LE only"),
         "gift": MessageLookupByLibrary.simpleMessage("Gift"),
@@ -96,6 +100,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Import From Facebook"),
         "importFromInstagram":
             MessageLookupByLibrary.simpleMessage("Import From Instagram"),
+        "le": MessageLookupByLibrary.simpleMessage("LE"),
         "leaveMessage": MessageLookupByLibrary.simpleMessage("Leave a message"),
         "letsGo": MessageLookupByLibrary.simpleMessage("Let\'s Go"),
         "loadingData": MessageLookupByLibrary.simpleMessage(
@@ -130,6 +135,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Not Valid Phone number"),
         "pickUpSomePhotos": MessageLookupByLibrary.simpleMessage(
             "Pick some photos to get started"),
+        "pleaseChooseDate": MessageLookupByLibrary.simpleMessage(
+            "PLease choose delivery date first"),
         "pleaseTransferAmountTo": MessageLookupByLibrary.simpleMessage(
             "Please transfer the total amount to"),
         "processing": MessageLookupByLibrary.simpleMessage("Processing"),

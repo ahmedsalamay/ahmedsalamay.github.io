@@ -90,6 +90,12 @@
   "sorry": "Sorry",
   "donnotHaveAccount": "Don't Have Account?",
   "register": "Register",
-  "alreadyHaveAccount": "Already have account",
-  "forgotPassword": "Forgot Password?"
+  "alreadyHaveAccount": "Already have account?",
+  "forgotPassword": "Forgot Password?",
+  "frames": "3 Frames",
+  "extraFrame": "Extra Frame",
+  "delivery": "Delivery",
+  "le": "LE",
+  "free": "Free",
+  "pleaseChooseDate":"PLease choose delivery date first"
 }

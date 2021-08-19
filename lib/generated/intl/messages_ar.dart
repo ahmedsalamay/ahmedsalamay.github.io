@@ -28,11 +28,11 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("أضف طريقة الدفع"),
         "addPromoCode": MessageLookupByLibrary.simpleMessage("اضافة برومو كود"),
         "address": MessageLookupByLibrary.simpleMessage("العنوان"),
-        "addressHint": MessageLookupByLibrary.simpleMessage("Address"),
+        "addressHint": MessageLookupByLibrary.simpleMessage("العنوان"),
         "alreadyHaveAccount":
-            MessageLookupByLibrary.simpleMessage("Already have account"),
+            MessageLookupByLibrary.simpleMessage("لديك حساب بالفعل؟"),
         "buildingNumberHint":
-            MessageLookupByLibrary.simpleMessage("Building Number"),
+            MessageLookupByLibrary.simpleMessage("رقم المبنى"),
         "canTrackYourOrder":
             MessageLookupByLibrary.simpleMessage("يمكنك تتبع الطلب من هنا"),
         "changLocation": MessageLookupByLibrary.simpleMessage(
@@ -46,7 +46,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "chooseYourFrame":
             MessageLookupByLibrary.simpleMessage("اختار نوع البرواز"),
         "confirmAddress":
-            MessageLookupByLibrary.simpleMessage("Confirm The Address"),
+            MessageLookupByLibrary.simpleMessage("قم بتأكيد العنوان\n"),
         "confirmOrder": MessageLookupByLibrary.simpleMessage("تأكيد الطلب"),
         "confirmPaymentMethod":
             MessageLookupByLibrary.simpleMessage("تأكيد طريقة الدفع"),
@@ -64,44 +64,49 @@ class MessageLookup extends MessageLookupByLibrary {
         "delivered": MessageLookupByLibrary.simpleMessage("تم التوصيل"),
         "deliveredForShipment":
             MessageLookupByLibrary.simpleMessage("البرواز فى شرك الشحن"),
+        "delivery": MessageLookupByLibrary.simpleMessage("توصيل"),
         "deliveryTime": MessageLookupByLibrary.simpleMessage("وقت وصول الطلب"),
         "dismiss": MessageLookupByLibrary.simpleMessage("الغاء"),
         "donnotHaveAccount":
-            MessageLookupByLibrary.simpleMessage("Don\'t Have Account?"),
+            MessageLookupByLibrary.simpleMessage("ليس لديك حساب؟"),
         "egyptwideShipping": MessageLookupByLibrary.simpleMessage(
             "Free Egyptwide shipping! At your doorstep in a week"),
         "email": MessageLookupByLibrary.simpleMessage("البريد الإلكتروني"),
+        "extraFrame": MessageLookupByLibrary.simpleMessage("إطار إضافى"),
         "faq": MessageLookupByLibrary.simpleMessage("الأسئلة الشائعة"),
         "fimtoArt": MessageLookupByLibrary.simpleMessage("Fimto Art"),
         "fimtoSoft": MessageLookupByLibrary.simpleMessage("Fimtosoft"),
-        "floorHint": MessageLookupByLibrary.simpleMessage("Floor"),
+        "floorHint": MessageLookupByLibrary.simpleMessage("طابق"),
         "followUs": MessageLookupByLibrary.simpleMessage("تابعنا"),
         "forMe": MessageLookupByLibrary.simpleMessage("البرواز لى"),
         "forPerson": MessageLookupByLibrary.simpleMessage("لشخص غالى"),
         "forgotPassword":
-            MessageLookupByLibrary.simpleMessage("Forgot Password?"),
+            MessageLookupByLibrary.simpleMessage("هل نسيت كلمة السر؟"),
         "frameYourMoment":
             MessageLookupByLibrary.simpleMessage("اجعل نفسك محاط بأسعد لحظاتك"),
+        "frames": MessageLookupByLibrary.simpleMessage("3 إطارات"),
         "framesStickWall": MessageLookupByLibrary.simpleMessage(
             "Our frames stick to any walls"),
+        "free": MessageLookupByLibrary.simpleMessage("مجان"),
         "getThreeFrames": MessageLookupByLibrary.simpleMessage(
             "احصل على ثلاث براويز بسعر 269ج فقط"),
         "gift": MessageLookupByLibrary.simpleMessage("هدية"),
         "guaranteeOurFrames": MessageLookupByLibrary.simpleMessage(
             "نحن نثق فى البرواز الخاص بنا"),
         "importFromFacebook":
-            MessageLookupByLibrary.simpleMessage("Import From Facebook"),
+            MessageLookupByLibrary.simpleMessage("استيراد من Facebook"),
         "importFromInstagram":
-            MessageLookupByLibrary.simpleMessage("Import From Instagram"),
-        "leaveMessage": MessageLookupByLibrary.simpleMessage("Leave a message"),
+            MessageLookupByLibrary.simpleMessage("استيراد من Instagram"),
+        "le": MessageLookupByLibrary.simpleMessage("جم"),
+        "leaveMessage": MessageLookupByLibrary.simpleMessage("اترك رسالة"),
         "letsGo": MessageLookupByLibrary.simpleMessage("ابدأ الأن"),
         "loadingData": MessageLookupByLibrary.simpleMessage(
             "منفضلك انتظر لتحميل البيانات المطلوبة"),
         "login": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
         "mailHint": MessageLookupByLibrary.simpleMessage("E-Mail"),
-        "messageToYourDear": MessageLookupByLibrary.simpleMessage(
-            "Leave a message to your dear person"),
-        "nameHint": MessageLookupByLibrary.simpleMessage("Your Name"),
+        "messageToYourDear":
+            MessageLookupByLibrary.simpleMessage("اترك رسالة لشخصك العزيز"),
+        "nameHint": MessageLookupByLibrary.simpleMessage("اسمك"),
         "noAdditionalExpenses":
             MessageLookupByLibrary.simpleMessage("لا تتطلب اى مصاريف اضافية"),
         "noNails": MessageLookupByLibrary.simpleMessage("لا يحتاج الى مسامير"),
@@ -113,28 +118,31 @@ class MessageLookup extends MessageLookupByLibrary {
         "orderNumber": MessageLookupByLibrary.simpleMessage("رقم الطلب"),
         "orderSummary": MessageLookupByLibrary.simpleMessage("ملخص الطلب"),
         "password": MessageLookupByLibrary.simpleMessage("كلمه السر"),
-        "passwordError": MessageLookupByLibrary.simpleMessage("password error"),
+        "passwordError":
+            MessageLookupByLibrary.simpleMessage("خطأ في كلمة المرور"),
         "payment": MessageLookupByLibrary.simpleMessage("الدفع"),
         "paymentConfirmAutomatically": MessageLookupByLibrary.simpleMessage(
             "سيتم تأكيد الدفع تلقائيا اذا كان المرسل سجل طلبك اذا لم يتم. تواصل معنا لتاأكيد الطلب"),
         "paymentMethod": MessageLookupByLibrary.simpleMessage("طريقة الدفع"),
         "perfectSize": MessageLookupByLibrary.simpleMessage("مقاس مثالى 21x21"),
-        "phoneHint": MessageLookupByLibrary.simpleMessage("Phone Number"),
+        "phoneHint": MessageLookupByLibrary.simpleMessage("رقم التليفون"),
         "phoneNumber": MessageLookupByLibrary.simpleMessage("رقم التليفون"),
         "phoneNumberError":
-            MessageLookupByLibrary.simpleMessage("Not Valid Phone number"),
-        "pickUpSomePhotos": MessageLookupByLibrary.simpleMessage(
-            "Pick some photos to get started"),
+            MessageLookupByLibrary.simpleMessage("رقم الهاتف غير صالح"),
+        "pickUpSomePhotos":
+            MessageLookupByLibrary.simpleMessage("اختر بعض الصور للبدء"),
+        "pleaseChooseDate": MessageLookupByLibrary.simpleMessage(
+            "الرجاء اختيار تاريخ التسليم أولا"),
         "pleaseTransferAmountTo": MessageLookupByLibrary.simpleMessage(
             "من فضلك قم بتحويل المبلغ الى"),
         "processing": MessageLookupByLibrary.simpleMessage("جارى تنفيذ الطلب"),
-        "register": MessageLookupByLibrary.simpleMessage("Register"),
+        "register": MessageLookupByLibrary.simpleMessage("تسجيل"),
         "selectCreateFrames": MessageLookupByLibrary.simpleMessage(
             "من فضلك أخبرنا من الشخص الذى تريد ان ترسل اليه البرواز"),
         "selectToWho": MessageLookupByLibrary.simpleMessage("اختر لمن"),
         "shapeFrame":
             MessageLookupByLibrary.simpleMessage("Shape for your frames"),
-        "shipTo": MessageLookupByLibrary.simpleMessage("Ship To"),
+        "shipTo": MessageLookupByLibrary.simpleMessage("الشحن إلى"),
         "shippingAddress":
             MessageLookupByLibrary.simpleMessage("عنوان التوصيل "),
         "shippingFree":
@@ -147,7 +155,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "talkToUs": MessageLookupByLibrary.simpleMessage("تواصل معنا"),
         "total": MessageLookupByLibrary.simpleMessage("المجموع"),
         "trackYourOrder": MessageLookupByLibrary.simpleMessage("تتبع الطلب"),
-        "uploadPhotos": MessageLookupByLibrary.simpleMessage("Upload Photos"),
+        "uploadPhotos": MessageLookupByLibrary.simpleMessage("تحميل الصور"),
         "usePolicy": MessageLookupByLibrary.simpleMessage("سياسة الاستخدام"),
         "youCanChangeThePhoto": MessageLookupByLibrary.simpleMessage(
             "يمكنك تغير الصوره بداخل البرواز فى اى وقت"),
