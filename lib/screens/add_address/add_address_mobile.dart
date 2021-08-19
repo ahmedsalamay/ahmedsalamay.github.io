@@ -1,10 +1,9 @@
 import 'package:fimto_frame/models/city.dart';
 import 'package:fimto_frame/models/language.dart';
+import 'package:fimto_frame/models/order.dart';
 import 'package:fimto_frame/repository/remote/order_repository.dart';
 import 'package:fimto_frame/services/connection_service.dart';
 import 'package:fimto_frame/services/message_service.dart';
-import 'package:get/get.dart';
-import 'package:fimto_frame/routes/router_names.dart';
 import 'package:fimto_frame/themes/appBar.dart';
 import 'package:fimto_frame/themes/buttons.dart';
 import 'package:fimto_frame/themes/drawer.dart';
@@ -23,7 +22,8 @@ class AddAddressScreenMobile extends StatelessWidget {
         create: (_) => AddAddressViewModel(
             connectionService: context.read<ConnectionService>(),
             messageService: context.read<MessageService>(),
-            orderRepository: context.read<OrderRepository>()),
+            orderRepository: context.read<OrderRepository>(),
+            order: context.read<Order>()),
         child: Scaffold(
           backgroundColor: Colors.white,
           endDrawer: language.currentLocale.languageCode == 'en'
@@ -40,6 +40,7 @@ class AddAddressScreenMobile extends StatelessWidget {
 class _Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    var vm = context.read<AddAddressViewModel>();
     return SafeArea(
       child: Container(
           height: double.infinity,
@@ -54,7 +55,7 @@ class _Body extends StatelessWidget {
               ),
               GradientButton(
                 text: S.of(context).confirmAddress,
-                onTap: () => Get.toNamed(addPaymentMethodRoute),
+                onTap: () => vm.confirmAddressAction(),
               )
             ],
           )),

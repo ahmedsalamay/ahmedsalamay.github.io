@@ -100,11 +100,13 @@ class RequestProvider {
 
     _client.options.responseType = ResponseType.json;
     _client.options.baseUrl = '';
+    _client.options.connectTimeout = 10 * 1000;
+    _client.options.receiveTimeout = 10 * 1000;
     _client.options.headers = {
       'accept': 'application/json',
       'Content-Type': 'application/json',
-      "Access-Control-Allow-Origin: *"
-              'Accept-Language':
+      'Access-Control-Allow-Origin': '*',
+      'Accept-Language':
           language!.languageCode == Language.arabicCode ? 'ar-EG' : 'en-US',
     };
   }

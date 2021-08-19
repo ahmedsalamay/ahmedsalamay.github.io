@@ -1,5 +1,6 @@
 import 'package:card_swiper/card_swiper.dart';
 import 'package:fimto_frame/models/facebook_photo.dart';
+import 'package:fimto_frame/models/order.dart';
 import 'package:fimto_frame/repository/remote/facebook_repository.dart';
 import 'package:fimto_frame/themes/theme.dart';
 import 'package:get/get.dart';
@@ -18,7 +19,9 @@ class ChooseFrameMobile extends StatelessWidget {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<ChooseFrameViewModel>(
         create: (_) => ChooseFrameViewModel(
-            facebookRepository: context.read<FacebookRepository>()),
+              facebookRepository: context.read<FacebookRepository>(),
+              order: context.read<Order>(),
+            ),
         child: Scaffold(
           backgroundColor: Colors.white,
           endDrawer: CustomDrawer(),
@@ -64,7 +67,9 @@ class _Body extends StatelessWidget {
                     showModalBottomSheet(
                         context: context,
                         builder: (builder) {
-                          return _BottomSheet();
+                          return _BottomSheet(
+                            buildContext: context,
+                          );
                         });
                   })
             ],
@@ -432,10 +437,12 @@ class _AddMore extends StatelessWidget {
 }
 
 class _BottomSheet extends StatelessWidget {
-  const _BottomSheet({Key? key}) : super(key: key);
+  final BuildContext buildContext;
+  const _BottomSheet({Key? key, required this.buildContext}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    var vm = buildContext.read<ChooseFrameViewModel>();
     return Container(
       height: 250.0,
       color: Colors.white,
@@ -448,15 +455,15 @@ class _BottomSheet extends StatelessWidget {
                   topRight: const Radius.circular(15.0))),
           child: Column(
             children: [
-              _SheetRowItem('3 Frames', '269LE'),
-              _SheetRowItem('Extra Frame', '74LE'),
-              _SheetRowItem('Delivery', 'Free'),
+              _SheetRowItem(S.of(context).frames, '269LE'),
+              _SheetRowItem(S.of(context).extraFrame, '74LE'),
+              _SheetRowItem(S.of(context).delivery, S.of(context).free),
               Divider(),
-              _SheetTotal('Total', '343LE'),
+              _SheetTotal(S.of(context).total, '343LE'),
               Spacer(),
               GradientButton(
                   text: S.of(context).addAddress,
-                  onTap: () => Get.toNamed(addAddressRoute))
+                  onTap: () => vm.checkoutAction())
             ],
           )),
     );

@@ -1,4 +1,5 @@
 import 'package:fimto_frame/generated/l10n.dart';
+import 'package:fimto_frame/models/order.dart';
 import 'package:fimto_frame/screens/select_to_who/select_to_who_viewmodel.dart';
 import 'package:fimto_frame/themes/appBar.dart';
 import 'package:fimto_frame/themes/buttons.dart';
@@ -14,7 +15,7 @@ class SelectToWhoDesktop extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<SelectToWhoViewModel>(
-        create: (_) => SelectToWhoViewModel(),
+        create: (_) => SelectToWhoViewModel(order: context.read<Order>()),
         child: Scaffold(
           backgroundColor: Colors.white,
           endDrawer: CustomDrawer(),

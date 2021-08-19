@@ -4,6 +4,7 @@ import 'package:fimto_frame/models/constants.dart';
 import 'package:fimto_frame/models/facebook_album.dart';
 import 'package:fimto_frame/models/facebook_photo.dart';
 import 'package:fimto_frame/models/home_page_configuration.dart';
+import 'package:fimto_frame/models/order.dart';
 import 'package:fimto_frame/models/payments_methods.dart';
 import 'package:fimto_frame/models/social_reviews.dart';
 import 'package:fimto_frame/services/request_provider.dart';
@@ -45,6 +46,22 @@ class OrderRepository {
       }
     } on DioError {
       return Result.error(DioError);
+    }
+  }
+
+  Future<Result<void>> submitOrder(Order order) async {
+    try {
+      var body = json.encode(order.toJson());
+      var response =
+          await requestProvider.postAsync(resource: 'api/Order', body: body);
+
+      if (response.statusCode == 200) {
+        return Result.value('');
+      } else {
+        return Result.error(S.current.connectionErrorHeader);
+      }
+    } on DioError {
+      return Result.error(S.current.connectionErrorHeader);
     }
   }
 }

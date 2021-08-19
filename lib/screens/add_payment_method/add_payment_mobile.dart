@@ -1,11 +1,9 @@
 import 'dart:convert';
-import 'dart:typed_data';
-
 import 'package:fimto_frame/generated/l10n.dart';
 import 'package:fimto_frame/models/language.dart';
+import 'package:fimto_frame/models/order.dart';
 import 'package:fimto_frame/models/payments_methods.dart';
 import 'package:fimto_frame/repository/remote/order_repository.dart';
-import 'package:fimto_frame/routes/router_names.dart';
 import 'package:fimto_frame/services/connection_service.dart';
 import 'package:fimto_frame/services/message_service.dart';
 import 'package:fimto_frame/themes/appBar.dart';
@@ -14,7 +12,6 @@ import 'package:fimto_frame/themes/drawer.dart';
 import 'package:fimto_frame/themes/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_shimmer/flutter_shimmer.dart';
-import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'add_payment_method_viewmodel.dart';
 
@@ -27,7 +24,8 @@ class AddPaymentMethodScreenMobile extends StatelessWidget {
         create: (_) => AddPaymentMethodViewModel(
             connectionService: context.read<ConnectionService>(),
             messageService: context.read<MessageService>(),
-            orderRepository: context.read<OrderRepository>()),
+            orderRepository: context.read<OrderRepository>(),
+            order: context.read<Order>()),
         child: Scaffold(
           backgroundColor: Colors.white,
           endDrawer: language.currentLocale.languageCode == 'en'
@@ -61,7 +59,7 @@ class _Body extends StatelessWidget {
                 visible: vm.selectedPaymentMethods != null,
                 child: GradientButton(
                   text: S.of(context).confirmPaymentMethod,
-                  onTap: () => Get.toNamed(confirmOrderRoute),
+                  onTap: () => vm.onConfirmPaymentMethodAction(),
                 ),
               )
             ],
@@ -144,7 +142,9 @@ class __PaymentMethodsState extends State<_PaymentMethods> {
                   Theme.of(context).textTheme.headline5!.copyWith(fontSize: 14),
               textAlign: TextAlign.center,
             ),
-          )
+          ),
+          SizedBox(height: 6),
+          _PromoCode()
         ],
       ),
     );
@@ -290,7 +290,7 @@ class _PaymentButton extends StatelessWidget {
                 child: Image.memory(base64Decode(paymentsMethod.image)),
               ),
               SizedBox(width: 10),
-              Text(paymentsMethod.phoneNumber,
+              Text(paymentsMethod.companyName,
                   style: Theme.of(context).textTheme.headline5!.copyWith(
                       fontSize: 16,
                       fontWeight: vm.selectedPaymentMethods?.companyName ==
@@ -311,6 +311,119 @@ class _PaymentButton extends StatelessWidget {
                   Icons.done,
                   color: Colors.white,
                   size: 20,
+                ),
+              )
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _PromoCodeButton extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    var vm = Provider.of<AddPaymentMethodViewModel>(context);
+    return InkWell(
+      onTap: () => vm.applyPromoCode(),
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: SizedBox(
+          height: 48,
+          child: Container(
+            child: Center(
+              child: vm.isPromoCodeLoading
+                  ? CircularProgressIndicator(
+                      backgroundColor: Colors.white,
+                    )
+                  : Text(
+                      vm.isPromoCodeActivated ? 'activated' : 'redeem',
+                      style: TextStyle(
+                          fontSize: 16,
+                          color: Colors.white,
+                          fontWeight: FontWeight.w400),
+                    ),
+            ),
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(6),
+                color:
+                    vm.isPromoCodeActivated ? Colors.green : Colors.deepOrange),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _PromoCode extends StatelessWidget {
+  bool isLoading = false;
+  bool isValidCode = false;
+
+  @override
+  Widget build(BuildContext context) {
+    var vm = Provider.of<AddPaymentMethodViewModel>(context);
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      width: double.infinity,
+      child: Flexible(
+        fit: FlexFit.loose,
+        child: Container(
+          width: double.infinity,
+          padding: EdgeInsets.all(8),
+          decoration: BoxDecoration(
+            color: Colors.grey[200],
+            borderRadius: new BorderRadius.all(
+              new Radius.circular(8.0),
+            ),
+          ),
+          child: Column(
+            children: [
+              Row(
+                children: [
+                  Expanded(
+                    flex: 5,
+                    child: SizedBox(
+                      height: 48,
+                      child: TextField(
+                        onChanged: (value) {
+                          // if (value.isNotEmpty && value != "") {
+                          //   vm.changePromoCodeButtonEnabled(true);
+                          // } else {
+                          //   vm.changePromoCodeButtonEnabled(false);
+                          // }
+                          vm.promoCode = value;
+                        },
+                        autofocus: false,
+                        decoration: InputDecoration(
+                          contentPadding: EdgeInsets.all(6),
+                          hintText: 'enterPromoCode',
+                          hintStyle: TextStyle(fontSize: 16),
+                          fillColor: Colors.white,
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(8)),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                                color: vm.isPromoCodeActivated
+                                    ? Colors.green
+                                    : Colors.white,
+                                width: 1),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Expanded(flex: 2, child: _PromoCodeButton())
+                ],
+              ),
+              SizedBox(height: 4),
+              Visibility(
+                visible: vm.isPromoCodeActivated,
+                child: Text(
+                  'promoCodeAdded',
+                  style: TextStyle(
+                      color: Colors.green, fontWeight: FontWeight.w500),
+                  textAlign: TextAlign.center,
                 ),
               )
             ],

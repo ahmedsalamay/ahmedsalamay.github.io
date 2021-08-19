@@ -139,8 +139,7 @@ class _Title extends StatelessWidget {
               future: context.read<HomeViewModel>().loadHomePageConfiguration(),
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
-                  return _Video(
-                      videoId: snapshot.data!.videoLink.split('=')[1]);
+                  return _Video(videoId: snapshot.data!.videoLink);
                 } else if (snapshot.hasError) {
                   return Text('Error');
                 }
@@ -289,8 +288,6 @@ class _SocialPosts extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final TabController? controller = DefaultTabController.of(context);
-
     return Container(
       width: MediaQuery.of(context).size.width * 0.75,
       height: 300,
@@ -325,48 +322,6 @@ class _SocialPosts extends StatelessWidget {
               hasBottomFirstLine: true,
             );
           }),
-      /*DefaultTabController(
-          length: 3,
-          child: Column(
-            children: [
-              Expanded(
-                child: TabBarView(
-                  controller: controller,
-                  physics: AlwaysScrollableScrollPhysics(),
-                  children: [
-                    Container(
-                      width: 250,
-                      child: Image(
-                        fit: BoxFit.contain,
-                        image: AssetImage('assets/images/social_post.png'),
-                      ),
-                    ),
-                    Container(
-                      width: 250,
-                      child: Image(
-                        fit: BoxFit.contain,
-                        image: AssetImage('assets/images/social_post.png'),
-                      ),
-                    ),
-                    Container(
-                      width: 250,
-                      child: Image(
-                        fit: BoxFit.contain,
-                        image: AssetImage('assets/images/social_post.png'),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(height: 20),
-              TabPageSelector(
-                controller: controller,
-                color: Colors.grey[300],
-                selectedColor: FimtoColors.primaryColor,
-              ),
-            ],
-          ),
-        )*/
     );
   }
 }

@@ -1,12 +1,15 @@
 import 'package:fimto_frame/generated/l10n.dart';
 import 'package:fimto_frame/models/home_page_configuration.dart';
+import 'package:fimto_frame/models/social_reviews.dart';
 import 'package:fimto_frame/repository/remote/configuration_repository.dart';
+import 'package:fimto_frame/routes/router_names.dart';
 import 'package:fimto_frame/services/connection_service.dart';
 import 'package:fimto_frame/services/message_service.dart';
 import 'package:fimto_frame/themes/footer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_shimmer/flutter_shimmer.dart';
+import 'package:get/get.dart';
 import 'components/header.dart';
 import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 import 'package:provider/provider.dart';
@@ -132,8 +135,7 @@ class _Title extends StatelessWidget {
                     context.read<HomeViewModel>().loadHomePageConfiguration(),
                 builder: (context, snapshot) {
                   if (snapshot.hasData) {
-                    return _Video(
-                        videoId: snapshot.data!.videoLink.split('=')[1]);
+                    return _Video(videoId: snapshot.data!.videoLink);
                   } else if (snapshot.hasError) {
                     return Text('Error');
                   }
@@ -226,7 +228,7 @@ class _FrameYourMoment extends StatelessWidget {
           ),
           SizedBox(height: 25),
           ElevatedButton(
-              onPressed: () {},
+              onPressed: () => Get.toNamed(selectToWhoRoute),
               child: Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 100, vertical: 15),
@@ -354,26 +356,38 @@ class _SocialPosts extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 400,
-      padding: EdgeInsets.symmetric(horizontal: 25, vertical: 15),
-      child: SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
-        child: Row(
-          children: [1, 2, 3, 4, 5, 6, 7, 8, 9]
-              .map((e) => Container(
-                    height: 400,
-                    width: 350,
-                    padding: EdgeInsets.all(15),
-                    child: Placeholder()
-                    /* Image(
+        height: 400,
+        padding: EdgeInsets.symmetric(horizontal: 25, vertical: 15),
+        child: FutureBuilder<List<SocialReviews>>(
+            future: context.read<HomeViewModel>().loadHomeSocialReviews(),
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                return SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    children: snapshot.data!
+                        .map((e) => Container(
+                              height: 400,
+                              width: 350,
+                              padding: EdgeInsets.all(15),
+                              child: Placeholder(
+                                strokeWidth: 3,
+                              )
+                              /* Image(
                       fit: BoxFit.fill,
                       image: AssetImage('assets/images/social_post.png'),
                     )*/
-                    ,
-                  ))
-              .toList(),
-        ),
-      ),
-    );
+                              ,
+                            ))
+                        .toList(),
+                  ),
+                );
+              } else if (snapshot.hasError) {
+                return Text('Error');
+              }
+              return PlayStoreShimmer(
+                hasBottomFirstLine: true,
+              );
+            }));
   }
 }

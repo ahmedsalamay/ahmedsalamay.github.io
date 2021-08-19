@@ -1,11 +1,12 @@
 import 'package:fimto_frame/generated/l10n.dart';
-import 'package:fimto_frame/routes/router_names.dart';
+import 'package:fimto_frame/models/order.dart';
+import 'package:fimto_frame/repository/remote/order_repository.dart';
 import 'package:fimto_frame/screens/congratulation/congratulation_desktop.dart';
+import 'package:fimto_frame/services/connection_service.dart';
+import 'package:fimto_frame/services/message_service.dart';
 import 'package:fimto_frame/themes/buttons.dart';
-import 'package:fimto_frame/themes/drawer.dart';
 import 'package:fimto_frame/themes/theme.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'confirm_order_viewmodel.dart';
 
@@ -13,7 +14,11 @@ class ConfirmOrderScreenDesktop extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<ConfirmOrderViewModel>(
-        create: (_) => ConfirmOrderViewModel(),
+        create: (_) => ConfirmOrderViewModel(
+            connectionService: context.read<ConnectionService>(),
+            messageService: context.read<MessageService>(),
+            orderRepository: context.read<OrderRepository>(),
+            order: context.read<Order>()),
         child: Scaffold(
           backgroundColor: Colors.white,
           body: _Body(),
@@ -37,17 +42,25 @@ class _Body extends StatelessWidget {
                 child: Column(
                   children: [
                     _OrderSummary(),
-                    SizedBox(height: 60),
+                    SizedBox(height: 40),
+                    Visibility(
+                        visible: vm.isLoading,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: CircularProgressIndicator(),
+                        )),
                     SizedBox(
                       width: 130,
                       child: GradientButton(
                         text: S.of(context).confirmOrder,
-                        //onTap: () => Get.toNamed(congratulationRoute),
                         onTap: () {
-                          showDialog(
-                              context: context,
-                              builder: (builder) {
-                                return CongratulationsDesktop();
+                          vm.onConfirmOrderActionWeb().then((value) => {
+                                showDialog(
+                                    //TODO handle order creation on web
+                                    context: context,
+                                    builder: (builder) {
+                                      return CongratulationsDesktop();
+                                    })
                               });
                         },
                       ),
@@ -78,16 +91,13 @@ class _OrderSummary extends StatelessWidget {
           SizedBox(height: 15),
           _OrderSummaryItem(
             title: S.of(context).address,
-            value: 'sherry st..',
+            value: vm.order.address!,
           ),
           _OrderSummaryItem(
             title: S.of(context).paymentMethod,
-            value: 'Vodafone cash',
+            value: vm.order.paymentMethod!,
           ),
-          _OrderSummaryItem(
-            title: S.of(context).deliveryTime,
-            value: '27 May 2021, 22:00 Am',
-          ),
+          _DatePicker(),
           _PriceSummary()
         ],
       ),
@@ -224,8 +234,10 @@ class _OrderSummaryItem extends StatelessWidget {
         children: [
           Text(
             title,
-            style:
-                Theme.of(context).textTheme.headline5!.copyWith(fontSize: 19),
+            style: Theme.of(context)
+                .textTheme
+                .headline3!
+                .copyWith(fontSize: 19, fontWeight: FontWeight.w600),
           ),
           SizedBox(height: 8),
           Container(
@@ -262,11 +274,11 @@ class _PriceSummary extends StatelessWidget {
           padding: EdgeInsets.symmetric(vertical: 40, horizontal: 12),
           child: Column(
             children: [
-              _PruceSummaryRowItem('3 Frames', '269LE'),
-              _PruceSummaryRowItem('Extra Frame', '74LE'),
-              _PruceSummaryRowItem('Delivery', 'Free'),
+              _PruceSummaryRowItem(S.of(context).frames, '269LE'),
+              _PruceSummaryRowItem(S.of(context).extraFrame, '74LE'),
+              _PruceSummaryRowItem(S.of(context).delivery, S.of(context).free),
               Divider(),
-              _PriceTotal('Total', '343LE'),
+              _PriceTotal(S.of(context).total, '343LE'),
             ],
           )),
     );
@@ -336,5 +348,79 @@ class _PriceTotal extends StatelessWidget {
         ],
       ),
     );
+  }
+}
+
+class _DatePicker extends StatelessWidget {
+  const _DatePicker({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    var vm = context.watch<ConfirmOrderViewModel>();
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          S.of(context).deliveryTime,
+          style: Theme.of(context)
+              .textTheme
+              .headline3!
+              .copyWith(fontSize: 19, fontWeight: FontWeight.w600),
+        ),
+        SizedBox(height: 8),
+        MaterialButton(
+          onPressed: () => _showDatePicker(context),
+          padding: EdgeInsets.all(0),
+          child: Container(
+            width: MediaQuery.of(context).size.width,
+            padding: EdgeInsets.symmetric(vertical: 10),
+            constraints: BoxConstraints(
+                maxWidth: MediaQuery.of(context).size.width * 0.5),
+            decoration: BoxDecoration(
+                color: Color(0xFFe4e4e4),
+                borderRadius: BorderRadius.circular(10)),
+            child: Row(
+              children: [
+                SizedBox(width: 12),
+                Icon(Icons.calendar_today),
+                SizedBox(width: 12),
+                Text(
+                  vm.deliveryDate ?? '',
+                  style: Theme.of(context)
+                      .textTheme
+                      .headline3!
+                      .copyWith(fontSize: 16, fontWeight: FontWeight.w500),
+                )
+              ],
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Future<void> _showDatePicker(BuildContext context) async {
+    var vm = context.read<ConfirmOrderViewModel>();
+    final picked = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now().add(Duration(hours: 12)),
+      firstDate: DateTime.now().add(Duration(hours: 24)),
+      lastDate: DateTime.now().add(Duration(hours: 4320)),
+    );
+    if (picked != null) {
+      vm.selectDeliveryDate(picked);
+      _showTimePicker(context);
+    }
+  }
+
+  Future<void> _showTimePicker(BuildContext context) async {
+    var vm = context.read<ConfirmOrderViewModel>();
+    final picked = await showTimePicker(
+      context: context,
+      initialTime: TimeOfDay.fromDateTime(DateTime.now()),
+    );
+    if (picked != null) {
+      vm.selectDeliveryTime(picked);
+    }
   }
 }

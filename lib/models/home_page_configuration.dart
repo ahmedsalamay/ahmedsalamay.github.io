@@ -19,7 +19,7 @@ class HomePageConfiguration {
 
   factory HomePageConfiguration.fromJson(Map<String, dynamic> json) =>
       HomePageConfiguration(
-        videoLink: json["videoLink"],
+        videoLink: json["videoLink"].split('v=')[1].split('&')[0],
         imageLink: json["imageLink"],
         textOffer: json["textOffer"],
       );

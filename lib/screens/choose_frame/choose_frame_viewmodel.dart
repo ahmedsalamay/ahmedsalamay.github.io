@@ -4,27 +4,28 @@ import 'dart:typed_data';
 import 'package:dio/dio.dart';
 import 'package:fimto_frame/models/constants.dart';
 import 'package:fimto_frame/models/facebook_photo.dart';
+import 'package:fimto_frame/models/order.dart';
 import 'package:fimto_frame/repository/remote/facebook_repository.dart';
+import 'package:fimto_frame/routes/router_names.dart';
 import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:get/get.dart';
 import 'package:logger/logger.dart';
-import 'package:http/http.dart' as http;
-
 import 'package:flutter/foundation.dart' show kIsWeb;
 
 class ChooseFrameViewModel extends ChangeNotifier {
   final FacebookRepository facebookRepository;
+  final Order order;
+
+  ChooseFrameViewModel({required this.facebookRepository, required this.order});
+
   var logger = Logger();
 
   Map<String, dynamic>? _userData;
   AccessToken? _accessToken;
 
   final List<Uint8List> _pickedFiles = [];
-
-  ChooseFrameViewModel({required this.facebookRepository});
 
   List<Uint8List> get pickedFiles => _pickedFiles;
 
@@ -139,5 +140,14 @@ class ChooseFrameViewModel extends ChangeNotifier {
     if (!kIsWeb) {
       Get.back();
     }
+  }
+
+  void checkoutAction() {
+    order
+      ..frame = _selectedFrame.toString().split('.')[1]
+      ..imageNo = _pickedFiles.length
+      ..images = _pickedFiles.map((e) => base64Encode(e).toString()).toList()
+      ..wallName = 'Montaser'; //TODO remove
+    Get.toNamed(addAddressRoute);
   }
 }

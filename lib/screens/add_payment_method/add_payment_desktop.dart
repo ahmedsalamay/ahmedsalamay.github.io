@@ -1,5 +1,9 @@
+import 'dart:convert';
+
 import 'package:fimto_frame/generated/l10n.dart';
 import 'package:fimto_frame/models/language.dart';
+import 'package:fimto_frame/models/order.dart';
+import 'package:fimto_frame/models/payments_methods.dart';
 import 'package:fimto_frame/repository/remote/order_repository.dart';
 import 'package:fimto_frame/routes/router_names.dart';
 import 'package:fimto_frame/services/connection_service.dart';
@@ -7,6 +11,7 @@ import 'package:fimto_frame/services/message_service.dart';
 import 'package:fimto_frame/themes/buttons.dart';
 import 'package:fimto_frame/themes/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_shimmer/flutter_shimmer.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'add_payment_method_viewmodel.dart';
@@ -14,13 +19,12 @@ import 'add_payment_method_viewmodel.dart';
 class AddPaymentMethodScreenDesktop extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-
     return ChangeNotifierProvider<AddPaymentMethodViewModel>(
         create: (_) => AddPaymentMethodViewModel(
             connectionService: context.read<ConnectionService>(),
             messageService: context.read<MessageService>(),
-            orderRepository: context.read<OrderRepository>()
-        ),
+            orderRepository: context.read<OrderRepository>(),
+            order: context.read<Order>()),
         child: Scaffold(
           backgroundColor: Colors.white,
           body: _Body(),
@@ -47,9 +51,12 @@ class _Body extends StatelessWidget {
                     SizedBox(height: 40),
                     SizedBox(
                         width: 230,
-                        child: GradientButton(
-                          text: S.of(context).confirmPaymentMethod,
-                          onTap: () => Get.toNamed(confirmOrderRoute),
+                        child: Visibility(
+                          visible: vm.selectedPaymentMethods != null,
+                          child: GradientButton(
+                            text: S.of(context).confirmPaymentMethod,
+                            onTap: () => vm.onConfirmPaymentMethodAction(),
+                          ),
                         ))
                   ],
                 ),
@@ -60,7 +67,20 @@ class _Body extends StatelessWidget {
   }
 }
 
-class _PaymentMethods extends StatelessWidget {
+class _PaymentMethods extends StatefulWidget {
+  @override
+  __PaymentMethodsState createState() => __PaymentMethodsState();
+}
+
+class __PaymentMethodsState extends State<_PaymentMethods> {
+  late Future<List<PaymentsMethods>> paymentFuture;
+  @override
+  void initState() {
+    super.initState();
+    paymentFuture =
+        context.read<AddPaymentMethodViewModel>().loadPaymentMethods();
+  }
+
   @override
   Widget build(BuildContext context) {
     var vm = context.watch<AddPaymentMethodViewModel>();
@@ -68,6 +88,7 @@ class _PaymentMethods extends StatelessWidget {
       padding: const EdgeInsets.all(16),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           SizedBox(height: 30),
           Text(
@@ -75,43 +96,49 @@ class _PaymentMethods extends StatelessWidget {
             style: Theme.of(context).textTheme.headline3,
           ),
           SizedBox(height: 35),
-          _PaymentButton(
-            onTap: () =>
-                vm.selectPaymentMethodAction(paymentMethods.VodafoneCash),
-            text: 'Vodafone Cash',
-            icon: 'vodafone',
-            isSelected: vm.isVodafoneSelected(),
-          ),
-          _PaymentButton(
-            onTap: () =>
-                vm.selectPaymentMethodAction(paymentMethods.EtisalatCash),
-            text: 'Etisalat Cash',
-            icon: 'etisalat',
-            isSelected: vm.isEtisalatSelected(),
-          ),
-          _PaymentButton(
-            onTap: () =>
-                vm.selectPaymentMethodAction(paymentMethods.OrangeCash),
-            text: 'Orange Cash',
-            icon: 'orange',
-            isSelected: vm.isOrangeSelected(),
+          FutureBuilder<List<PaymentsMethods>>(
+            future: paymentFuture,
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                return Center(
+                  child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: snapshot.data!
+                          .map((e) => _PaymentButton(
+                                paymentsMethod: e,
+                              ))
+                          .toList()),
+                );
+              } else if (snapshot.hasError) {
+                return Center(child: Text('Error happened'));
+              }
+              return Center(
+                child: PlayStoreShimmer(
+                  hasBottomFirstLine: true,
+                ),
+              );
+            },
           ),
           SizedBox(height: 45),
-          Center(
-            child: Text(
-              S.of(context).pleaseTransferAmountTo,
-              style: Theme.of(context).textTheme.headline5,
-              textAlign: TextAlign.center,
-            ),
-          ),
+          vm.selectedPaymentMethods != null
+              ? Center(
+                  child: Text(
+                    S.of(context).pleaseTransferAmountTo,
+                    style: Theme.of(context).textTheme.headline5,
+                    textAlign: TextAlign.center,
+                  ),
+                )
+              : SizedBox(),
           SizedBox(height: 10),
-          Center(
-            child: SelectableText(
-              '+201090928586',
-              style: Theme.of(context).textTheme.headline2,
-              textAlign: TextAlign.center,
-            ),
-          ),
+          vm.selectedPaymentMethods != null
+              ? Center(
+                  child: SelectableText(
+                    vm.selectedPaymentMethods!.phoneNumber,
+                    style: Theme.of(context).textTheme.headline2,
+                    textAlign: TextAlign.center,
+                  ),
+                )
+              : SizedBox(),
           SizedBox(height: 10),
           Center(
             child: Text(
@@ -239,74 +266,69 @@ class _Stepper extends StatelessWidget {
 }
 
 class _PaymentButton extends StatelessWidget {
-  final VoidCallback onTap;
-  final bool isSelected;
-  final String icon;
-  final String text;
+  final PaymentsMethods paymentsMethod;
+
   const _PaymentButton({
-    required this.onTap,
-    required this.isSelected,
-    required this.icon,
-    required this.text,
+    required this.paymentsMethod,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-        child: InkWell(
-          onTap: onTap,
-          child: Container(
-            padding: EdgeInsets.all(4),
-            constraints: BoxConstraints(
-                maxWidth: MediaQuery.of(context).size.width * 0.4),
-            height: 60,
-            width: MediaQuery.of(context).size.width * 0.9,
-            decoration: BoxDecoration(
-              color: isSelected ? Color(0xffffe2db) : Colors.white,
-              border: Border.all(
-                color: Color(0xffededed),
-                width: 1.0,
-                style: BorderStyle.solid,
-              ),
-              borderRadius: BorderRadius.all(
-                Radius.circular(8),
-              ),
+    var vm = context.watch<AddPaymentMethodViewModel>();
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+      child: InkWell(
+        onTap: () => vm.onPaymentMethodSelection(paymentsMethod),
+        child: Container(
+          padding: EdgeInsets.all(4),
+          height: 60,
+          constraints:
+              BoxConstraints(maxWidth: MediaQuery.of(context).size.width * 0.4),
+          decoration: BoxDecoration(
+            color: vm.selectedPaymentMethods?.companyName ==
+                    paymentsMethod.companyName
+                ? Color(0xffffe2db)
+                : Colors.white,
+            border: Border.all(
+              color: Color(0xffededed),
+              width: 1.0,
+              style: BorderStyle.solid,
             ),
-            child: Row(
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Image(
-                    height: 30,
-                    width: 30,
-                    fit: BoxFit.fill,
-                    image: AssetImage('assets/images/${icon}.png'),
-                  ),
+            borderRadius: BorderRadius.all(
+              Radius.circular(8),
+            ),
+          ),
+          child: Row(
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Image.memory(base64Decode(paymentsMethod.image)),
+              ),
+              SizedBox(width: 10),
+              Text(paymentsMethod.companyName,
+                  style: Theme.of(context).textTheme.headline5!.copyWith(
+                      fontSize: 16,
+                      fontWeight: vm.selectedPaymentMethods?.companyName ==
+                              paymentsMethod.companyName
+                          ? FontWeight.w900
+                          : FontWeight.w400)),
+              Spacer(),
+              Container(
+                padding: EdgeInsets.all(2),
+                margin: EdgeInsets.all(8),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(25),
+                    color: vm.selectedPaymentMethods?.companyName ==
+                            paymentsMethod.companyName
+                        ? Color(0xffff3400)
+                        : Color(0xffd4d3d2)),
+                child: Icon(
+                  Icons.done,
+                  color: Colors.white,
+                  size: 20,
                 ),
-                SizedBox(width: 10),
-                Text(text,
-                    style: Theme.of(context).textTheme.headline5!.copyWith(
-                        fontSize: 16,
-                        fontWeight:
-                            isSelected ? FontWeight.w900 : FontWeight.w400)),
-                Spacer(),
-                Container(
-                  padding: EdgeInsets.all(2),
-                  margin: EdgeInsets.all(8),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(25),
-                      color:
-                          isSelected ? Color(0xffff3400) : Color(0xffd4d3d2)),
-                  child: Icon(
-                    Icons.done,
-                    color: Colors.white,
-                    size: 20,
-                  ),
-                )
-              ],
-            ),
+              )
+            ],
           ),
         ),
       ),

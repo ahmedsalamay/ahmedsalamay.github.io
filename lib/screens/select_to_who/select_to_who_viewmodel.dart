@@ -1,14 +1,12 @@
-import 'dart:io';
-import 'dart:typed_data';
-
+import 'package:fimto_frame/models/order.dart';
 import 'package:fimto_frame/routes/router_names.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:file_picker/file_picker.dart';
-import 'package:flutter/foundation.dart' show kIsWeb;
+import 'package:fimto_frame/models/constants.dart';
 
 class SelectToWhoViewModel extends ChangeNotifier {
-  SelectToWhoViewModel();
+  final Order order;
+  SelectToWhoViewModel({required this.order});
 
   Future<void> initAsync() async {}
 
@@ -34,39 +32,10 @@ class SelectToWhoViewModel extends ChangeNotifier {
 
   void continueAction() async {
     if (_forMeSelected) {
-      if (kIsWeb) {
-        // FilePickerResult? result = await FilePicker.platform.pickFiles(
-        //     allowMultiple: true,
-        //     type: FileType.image,
-        //     onFileLoading: (status) {
-        //       print('FilePickerStatus: $status');
-        //       if (status == FilePickerStatus.done) {
-        //         print('FilePickerStatus: $status');
-        //
-        //       }
-        //     });
-        // if (result != null) {
-        //   List<Uint8List> files = result.files.map((e) => e.bytes!).toList();
-        //   // List<File> files = result.files.map((e) => File(e.path!)).toList();
-        //   Get.toNamed(chooseFrameRoute, arguments: files);
-        // }
-        Get.toNamed(chooseFrameRoute);
-      } else {
-        // final List<PickedFile>? pickedFiles = await _picker.getMultiImage();
-        // if (pickedFiles != null)
-        //   Get.toNamed(chooseFrameRoute, arguments: pickedFiles);
-        // FilePickerResult? result = await FilePicker.platform.pickFiles(
-        //   allowMultiple: true,
-        //   type: FileType.image,
-        // );
-        // if (result != null) {
-        //   List<File> files = result.paths.map((path) => File(path!)).toList();
-        //   // List<File> files = result.files.map((e) => File(e.path!)).toList();
-        //   Get.toNamed(chooseFrameRoute, arguments: files);
-        // }
-        Get.toNamed(chooseFrameRoute);
-      }
+      order.typeofOrder = orderType.forMe.toString().split('.')[1];
+      Get.toNamed(chooseFrameRoute);
     } else {
+      order.typeofOrder = orderType.gift.toString().split('.')[1];
       Get.toNamed(leaveMessageRoute);
     }
   }
