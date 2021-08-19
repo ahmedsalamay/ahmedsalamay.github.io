@@ -90,7 +90,6 @@ class __PaymentMethodsState extends State<_PaymentMethods> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(height: 30),
           Text(
             S.of(context).choosePaymentMethod,
             style: Theme.of(context).textTheme.headline3,
