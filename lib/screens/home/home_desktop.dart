@@ -1,5 +1,6 @@
 import 'package:fimto_frame/generated/l10n.dart';
 import 'package:fimto_frame/models/home_page_configuration.dart';
+import 'package:fimto_frame/models/order.dart';
 import 'package:fimto_frame/models/social_reviews.dart';
 import 'package:fimto_frame/repository/remote/configuration_repository.dart';
 import 'package:fimto_frame/routes/router_names.dart';
@@ -22,6 +23,7 @@ class HomeViewDesktop extends StatelessWidget {
         create: (_) => HomeViewModel(
             connectionService: context.read<ConnectionService>(),
             messageService: context.read<MessageService>(),
+            order: context.read<Order>(),
             configurationRepository: context.read<ConfigurationRepository>()),
         child: _Body());
   }

@@ -235,6 +235,7 @@ class _PriceSummary extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var vm = context.watch<ConfirmOrderViewModel>();
     return Container(
       height: 250.0,
       color: Colors.white,
@@ -247,11 +248,17 @@ class _PriceSummary extends StatelessWidget {
                   topRight: const Radius.circular(15.0))),
           child: Column(
             children: [
-              _PruceSummaryRowItem(S.of(context).frames, '269LE'),
-              _PruceSummaryRowItem(S.of(context).extraFrame, '74LE'),
-              _PruceSummaryRowItem(S.of(context).delivery, S.of(context).free),
+              _PruceSummaryRowItem(vm.packageSize + S.of(context).frames,
+                  vm.packagePrice + S.of(context).le),
+              Visibility(
+                  //TODO Show Extra frame or not when no extra
+                  visible: true, //vm.isExtraFrames,
+                  child: _PruceSummaryRowItem(S.of(context).extraFrame,
+                      vm.extraFramesPrice + S.of(context).le)),
+              _PruceSummaryRowItem(S.of(context).delivery, vm.deliveryFees),
+              _PruceSummaryRowItem(S.of(context).discount, vm.discount),
               Divider(),
-              _PriceTotal(S.of(context).total, '343LE'),
+              _PriceTotal(S.of(context).total, vm.total + S.of(context).le),
             ],
           )),
     );

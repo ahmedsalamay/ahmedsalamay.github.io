@@ -87,7 +87,6 @@ class __AddressFormState extends State<_AddressForm> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: 30),
             Text(
               S.of(context).shipTo,
               style: Theme.of(context).textTheme.headline3,
@@ -185,7 +184,7 @@ class _RegionDropDown extends StatelessWidget {
         items: vm.regions?.map((Region region) {
           return DropdownMenuItem<Region>(
             value: region,
-            child: Text(region.nameEn,
+            child: Text(region.name,
                 style: Theme.of(context)
                     .textTheme
                     .headline3!
@@ -227,7 +226,7 @@ class _CityDropDown extends StatelessWidget {
         items: vm.cities?.map((City city) {
           return DropdownMenuItem<City>(
             value: city,
-            child: Text(city.nameEn,
+            child: Text(city.name,
                 style: Theme.of(context)
                     .textTheme
                     .headline3!

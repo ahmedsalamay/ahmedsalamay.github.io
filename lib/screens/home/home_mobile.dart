@@ -1,6 +1,7 @@
 import 'package:fimto_frame/generated/l10n.dart';
 import 'package:fimto_frame/models/home_page_configuration.dart';
 import 'package:fimto_frame/models/language.dart';
+import 'package:fimto_frame/models/order.dart';
 import 'package:fimto_frame/models/social_reviews.dart';
 import 'package:fimto_frame/repository/remote/configuration_repository.dart';
 import 'package:fimto_frame/routes/router_names.dart';
@@ -27,6 +28,7 @@ class HomeViewMobile extends StatelessWidget {
         create: (_) => HomeViewModel(
             connectionService: context.read<ConnectionService>(),
             messageService: context.read<MessageService>(),
+            order: context.read<Order>(),
             configurationRepository: context.read<ConfigurationRepository>()),
         child: Scaffold(
           backgroundColor: Colors.white,
@@ -119,6 +121,7 @@ class _VideoState extends State<_Video> {
 class _Title extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    var vm = context.watch<HomeViewModel>();
     return Container(
       width: double.infinity,
       padding: EdgeInsets.all(15),
@@ -136,7 +139,7 @@ class _Title extends StatelessWidget {
           ),
           SizedBox(height: 25),
           FutureBuilder<HomePageConfiguration>(
-              future: context.read<HomeViewModel>().loadHomePageConfiguration(),
+              future: vm.homePageConfiguration,
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
                   return _Video(videoId: snapshot.data!.videoLink);

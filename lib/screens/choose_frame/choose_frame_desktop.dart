@@ -6,7 +6,6 @@ import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'choose_frame_viewmodel.dart';
 import '../../models/constants.dart';
-import 'package:fimto_frame/routes/router_names.dart';
 import 'package:fimto_frame/themes/appBar.dart';
 import 'package:fimto_frame/themes/buttons.dart';
 import 'package:fimto_frame/themes/drawer.dart';
@@ -141,19 +140,24 @@ class __FramesState extends State<_Frames> {
             ),
           ),
           SizedBox(
-            width: 200,
-            child: GradientButton(
-                text: S.of(context).checkout,
-                onTap: () {
-                  showDialog(
-                      context: context,
-                      builder: (builder) {
-                        return _CheckoutDialog(
-                          buildContext: context,
-                        );
-                      });
-                }),
-          )
+              width: 200,
+              child: vm.showCheckOutButton
+                  ? GradientButton(
+                      text: S.of(context).checkout,
+                      onTap: () {
+                        showDialog(
+                            context: context,
+                            builder: (builder) {
+                              return _CheckoutDialog(
+                                buildContext: context,
+                              );
+                            });
+                      })
+                  : Padding(
+                      padding: const EdgeInsets.all(25.0),
+                      child:
+                          Text('${vm.pickedFiles.length} / ${vm.packageSize}'),
+                    ))
         ],
       ),
     );
@@ -320,7 +324,7 @@ class _ImportPhoto extends StatelessWidget {
               child: Row(
                 children: [
                   IconButton(
-                    icon: Image.asset('assets/images/instagram_colored.png'),
+                    icon: Image.asset('assets/images/instagm_colored.png'),
                     padding: EdgeInsets.all(0),
                     onPressed: () {},
                   ),
@@ -480,11 +484,16 @@ class _CheckoutDialog extends StatelessWidget {
               borderRadius: BorderRadius.all(const Radius.circular(15.0))),
           child: Column(
             children: [
-              _SheetRowItem(S.of(context).frames, '269LE'),
-              _SheetRowItem(S.of(context).extraFrame, '74LE'),
-              _SheetRowItem(S.of(context).delivery, S.of(context).free),
+              _SheetRowItem(vm.packageSize + S.of(context).frames,
+                  vm.packagePrice + S.of(context).le),
+              Visibility(
+                  //TODO Show Extra frame or not when no extra
+                  visible: true, //vm.isExtraFrames,
+                  child: _SheetRowItem(S.of(context).extraFrame,
+                      vm.extraFramesPrice + S.of(context).le)),
+              _SheetRowItem(S.of(context).delivery, vm.deliveryFees),
               Divider(),
-              _SheetTotal(S.of(context).total, '343LE'),
+              _SheetTotal(S.of(context).total, vm.total + S.of(context).le),
               Spacer(),
               SizedBox(
                 width: 120,

@@ -69,6 +69,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Delivered for shipment"),
         "delivery": MessageLookupByLibrary.simpleMessage("Delivery"),
         "deliveryTime": MessageLookupByLibrary.simpleMessage("Delivery Time"),
+        "discount": MessageLookupByLibrary.simpleMessage("Discount"),
         "dismiss": MessageLookupByLibrary.simpleMessage("Dismiss"),
         "donnotHaveAccount":
             MessageLookupByLibrary.simpleMessage("Don\'t Have Account?"),
@@ -87,7 +88,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Forgot Password?"),
         "frameYourMoment":
             MessageLookupByLibrary.simpleMessage("Frame your moments"),
-        "frames": MessageLookupByLibrary.simpleMessage("3 Frames"),
+        "frames": MessageLookupByLibrary.simpleMessage("Frames"),
         "framesStickWall": MessageLookupByLibrary.simpleMessage(
             "Our frames stick to any walls"),
         "free": MessageLookupByLibrary.simpleMessage("Free"),

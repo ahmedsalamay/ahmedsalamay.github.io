@@ -66,6 +66,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("البرواز فى شرك الشحن"),
         "delivery": MessageLookupByLibrary.simpleMessage("توصيل"),
         "deliveryTime": MessageLookupByLibrary.simpleMessage("وقت وصول الطلب"),
+        "discount": MessageLookupByLibrary.simpleMessage("خصم"),
         "dismiss": MessageLookupByLibrary.simpleMessage("الغاء"),
         "donnotHaveAccount":
             MessageLookupByLibrary.simpleMessage("ليس لديك حساب؟"),
@@ -84,7 +85,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("هل نسيت كلمة السر؟"),
         "frameYourMoment":
             MessageLookupByLibrary.simpleMessage("اجعل نفسك محاط بأسعد لحظاتك"),
-        "frames": MessageLookupByLibrary.simpleMessage("3 إطارات"),
+        "frames": MessageLookupByLibrary.simpleMessage("إطارات"),
         "framesStickWall": MessageLookupByLibrary.simpleMessage(
             "Our frames stick to any walls"),
         "free": MessageLookupByLibrary.simpleMessage("مجان"),

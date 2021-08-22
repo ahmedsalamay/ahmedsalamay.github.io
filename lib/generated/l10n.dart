@@ -980,10 +980,10 @@ class S {
     );
   }
 
-  /// `3 Frames`
+  /// `Frames`
   String get frames {
     return Intl.message(
-      '3 Frames',
+      'Frames',
       name: 'frames',
       desc: '',
       args: [],
@@ -1025,6 +1025,16 @@ class S {
     return Intl.message(
       'Free',
       name: 'free',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Discount`
+  String get discount {
+    return Intl.message(
+      'Discount',
+      name: 'discount',
       desc: '',
       args: [],
     );

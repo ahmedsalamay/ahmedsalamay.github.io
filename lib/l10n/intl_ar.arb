@@ -92,11 +92,12 @@
   "register": "تسجيل",
   "alreadyHaveAccount": "لديك حساب بالفعل؟",
   "forgotPassword": "هل نسيت كلمة السر؟",
-  "frames": "3 إطارات",
+  "frames": "إطارات",
   "extraFrame": "إطار إضافى",
   "delivery": "توصيل",
   "le": "جم",
   "free": "مجان",
+  "discount": "خصم",
   "pleaseChooseDate":"الرجاء اختيار تاريخ التسليم أولا"
 
 

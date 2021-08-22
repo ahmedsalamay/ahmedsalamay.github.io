@@ -68,20 +68,7 @@ class _Body extends StatelessWidget {
   }
 }
 
-class _PaymentMethods extends StatefulWidget {
-  @override
-  __PaymentMethodsState createState() => __PaymentMethodsState();
-}
-
-class __PaymentMethodsState extends State<_PaymentMethods> {
-  late Future<List<PaymentsMethods>> paymentFuture;
-  @override
-  void initState() {
-    super.initState();
-    paymentFuture =
-        context.read<AddPaymentMethodViewModel>().loadPaymentMethods();
-  }
-
+class _PaymentMethods extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var vm = context.watch<AddPaymentMethodViewModel>();
@@ -96,7 +83,7 @@ class __PaymentMethodsState extends State<_PaymentMethods> {
           ),
           SizedBox(height: 15),
           FutureBuilder<List<PaymentsMethods>>(
-            future: paymentFuture,
+            future: vm.paymentFuture,
             builder: (context, snapshot) {
               if (snapshot.hasData) {
                 return Column(
@@ -323,110 +310,108 @@ class _PaymentButton extends StatelessWidget {
 class _PromoCodeButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    var vm = Provider.of<AddPaymentMethodViewModel>(context);
-    return InkWell(
-      onTap: () => vm.applyPromoCode(),
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: SizedBox(
-          height: 48,
-          child: Container(
-            child: Center(
-              child: vm.isPromoCodeLoading
-                  ? CircularProgressIndicator(
-                      backgroundColor: Colors.white,
-                    )
-                  : Text(
+    var vm = context.watch<AddPaymentMethodViewModel>();
+    return vm.isPromoCodeLoading
+        ? Padding(
+            padding: EdgeInsets.symmetric(horizontal: 25, vertical: 6),
+            child: CircularProgressIndicator(
+              backgroundColor: Colors.white,
+              //strokeWidth: 2,
+            ),
+          )
+        : InkWell(
+            onTap: () => vm.applyPromoCode(),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: SizedBox(
+                height: 48,
+                child: Container(
+                  child: Center(
+                    child: Text(
                       vm.isPromoCodeActivated ? 'activated' : 'redeem',
                       style: TextStyle(
                           fontSize: 16,
                           color: Colors.white,
-                          fontWeight: FontWeight.w400),
+                          fontWeight: FontWeight.w600),
                     ),
+                  ),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(6),
+                      color: vm.isPromoCodeActivated
+                          ? Colors.green
+                          : FimtoColors.primaryColor),
+                ),
+              ),
             ),
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(6),
-                color:
-                    vm.isPromoCodeActivated ? Colors.green : Colors.deepOrange),
-          ),
-        ),
-      ),
-    );
+          );
   }
 }
 
 class _PromoCode extends StatelessWidget {
-  bool isLoading = false;
-  bool isValidCode = false;
-
   @override
   Widget build(BuildContext context) {
-    var vm = Provider.of<AddPaymentMethodViewModel>(context);
+    var vm = context.watch<AddPaymentMethodViewModel>();
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       width: double.infinity,
-      child: Flexible(
-        fit: FlexFit.loose,
-        child: Container(
-          width: double.infinity,
-          padding: EdgeInsets.all(8),
-          decoration: BoxDecoration(
-            color: Colors.grey[200],
-            borderRadius: new BorderRadius.all(
-              new Radius.circular(8.0),
-            ),
+      child: Container(
+        padding: EdgeInsets.all(8),
+        decoration: BoxDecoration(
+          color: Colors.grey[200],
+          borderRadius: BorderRadius.all(
+            Radius.circular(8.0),
           ),
-          child: Column(
-            children: [
-              Row(
-                children: [
-                  Expanded(
-                    flex: 5,
-                    child: SizedBox(
-                      height: 48,
-                      child: TextField(
-                        onChanged: (value) {
-                          // if (value.isNotEmpty && value != "") {
-                          //   vm.changePromoCodeButtonEnabled(true);
-                          // } else {
-                          //   vm.changePromoCodeButtonEnabled(false);
-                          // }
-                          vm.promoCode = value;
-                        },
-                        autofocus: false,
-                        decoration: InputDecoration(
-                          contentPadding: EdgeInsets.all(6),
-                          hintText: 'enterPromoCode',
-                          hintStyle: TextStyle(fontSize: 16),
-                          fillColor: Colors.white,
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(8)),
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                                color: vm.isPromoCodeActivated
-                                    ? Colors.green
-                                    : Colors.white,
-                                width: 1),
-                          ),
+        ),
+        child: Column(
+          children: [
+            Row(
+              children: [
+                Expanded(
+                  flex: 5,
+                  child: SizedBox(
+                    height: 48,
+                    child: TextField(
+                      onChanged: (value) {
+                        // if (value.isNotEmpty && value != "") {
+                        //   vm.changePromoCodeButtonEnabled(true);
+                        // } else {
+                        //   vm.changePromoCodeButtonEnabled(false);
+                        // }
+                        vm.promoCode = value;
+                      },
+                      autofocus: false,
+                      decoration: InputDecoration(
+                        contentPadding: EdgeInsets.all(6),
+                        hintText: 'enterPromoCode',
+                        hintStyle: TextStyle(fontSize: 16),
+                        fillColor: Colors.white,
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(8)),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              color: vm.isPromoCodeActivated
+                                  ? Colors.green
+                                  : Colors.white,
+                              width: 1),
                         ),
                       ),
                     ),
                   ),
-                  Expanded(flex: 2, child: _PromoCodeButton())
-                ],
-              ),
-              SizedBox(height: 4),
-              Visibility(
-                visible: vm.isPromoCodeActivated,
-                child: Text(
-                  'promoCodeAdded',
-                  style: TextStyle(
-                      color: Colors.green, fontWeight: FontWeight.w500),
-                  textAlign: TextAlign.center,
                 ),
-              )
-            ],
-          ),
+                Expanded(flex: 2, child: _PromoCodeButton())
+              ],
+            ),
+            SizedBox(height: 4),
+            Visibility(
+              visible: vm.isPromoCodeActivated,
+              child: Text(
+                'promoCodeAdded',
+                style:
+                    TextStyle(color: Colors.green, fontWeight: FontWeight.w500),
+                textAlign: TextAlign.center,
+              ),
+            )
+          ],
         ),
       ),
     );

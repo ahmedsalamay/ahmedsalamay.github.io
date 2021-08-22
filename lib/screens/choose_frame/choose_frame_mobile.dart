@@ -61,17 +61,23 @@ class _Body extends StatelessWidget {
                   ),
                 ),
               ),
-              GradientButton(
-                  text: S.of(context).checkout,
-                  onTap: () {
-                    showModalBottomSheet(
-                        context: context,
-                        builder: (builder) {
-                          return _BottomSheet(
-                            buildContext: context,
-                          );
-                        });
-                  })
+              vm.showCheckOutButton
+                  ? GradientButton(
+                      text: S.of(context).checkout,
+                      onTap: () {
+                        showModalBottomSheet(
+                            context: context,
+                            builder: (builder) {
+                              return _BottomSheet(
+                                buildContext: context,
+                              );
+                            });
+                      })
+                  : Padding(
+                      padding: const EdgeInsets.all(25.0),
+                      child:
+                          Text('${vm.pickedFiles.length} / ${vm.packageSize}'),
+                    )
             ],
           ),
           Visibility(
@@ -444,7 +450,7 @@ class _BottomSheet extends StatelessWidget {
   Widget build(BuildContext context) {
     var vm = buildContext.read<ChooseFrameViewModel>();
     return Container(
-      height: 250.0,
+      height: 280.0,
       color: Colors.white,
       child: Container(
           padding: EdgeInsets.symmetric(vertical: 16, horizontal: 16),
@@ -455,11 +461,16 @@ class _BottomSheet extends StatelessWidget {
                   topRight: const Radius.circular(15.0))),
           child: Column(
             children: [
-              _SheetRowItem(S.of(context).frames, '269LE'),
-              _SheetRowItem(S.of(context).extraFrame, '74LE'),
-              _SheetRowItem(S.of(context).delivery, S.of(context).free),
+              _SheetRowItem(vm.packageSize + S.of(context).frames,
+                  vm.packagePrice + S.of(context).le),
+              Visibility(
+                  //TODO Show Extra frame or not when no extra
+                  visible: true, //vm.isExtraFrames,
+                  child: _SheetRowItem(S.of(context).extraFrame,
+                      vm.extraFramesPrice + S.of(context).le)),
+              _SheetRowItem(S.of(context).delivery, vm.deliveryFees),
               Divider(),
-              _SheetTotal(S.of(context).total, '343LE'),
+              _SheetTotal(S.of(context).total, vm.total + S.of(context).le),
               Spacer(),
               GradientButton(
                   text: S.of(context).addAddress,

@@ -8,45 +8,37 @@ String cityToJson(List<City> data) =>
 
 class City {
   City({
-    required this.nameEn,
-    required this.nameAr,
+    required this.name,
     required this.regions,
   });
 
-  final String nameEn;
-  final String nameAr;
+  final String name;
   final List<Region> regions;
 
   factory City.fromJson(Map<String, dynamic> json) => City(
-        nameEn: json["nameEn"],
-        nameAr: json["nameAr"],
+        name: json["nameEn"],
         regions:
             List<Region>.from(json["regions"].map((x) => Region.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
-        "nameEn": nameEn,
-        "nameAr": nameAr,
+        "nameEn": name,
         "regions": List<dynamic>.from(regions.map((x) => x.toJson())),
       };
 }
 
 class Region {
   Region({
-    required this.nameEn,
-    required this.nameAr,
+    required this.name,
   });
 
-  final String nameEn;
-  final String nameAr;
+  final String name;
 
   factory Region.fromJson(Map<String, dynamic> json) => Region(
-        nameEn: json["nameEn"] == null ? null : json["nameEn"],
-        nameAr: json["nameAr"] == null ? null : json["nameAr"],
+        name: json["nameEn"] == null ? null : json["nameEn"],
       );
 
   Map<String, dynamic> toJson() => {
-        "nameEn": nameEn,
-        "nameAr": nameAr,
+        "name": name,
       };
 }

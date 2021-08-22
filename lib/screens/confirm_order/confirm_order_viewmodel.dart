@@ -21,6 +21,16 @@ class ConfirmOrderViewModel extends ChangeNotifier {
       required this.orderRepository,
       required this.order});
 
+  String get packageSize => order.packageSize.toString();
+  String get packagePrice => order.packagePrice.toString();
+  String get extraFramesPrice =>
+      ((order.imageNo! - order.packageSize!) * order.extraImagePrice!)
+          .toString();
+  bool get isExtraFrames => order.imageNo! > order.packageSize!;
+  String get deliveryFees =>
+      order.deliveryFee! > 0 ? order.deliveryFee.toString() : S.current.free;
+  String get total => order.total.toString();
+  String get discount => order.discount.toString();
   DateTime? _deliveryDate;
   String? get deliveryDate => _deliveryDate?.toIso8601String();
 
@@ -48,6 +58,7 @@ class ConfirmOrderViewModel extends ChangeNotifier {
       return;
     }
     order.deliveryDate = _deliveryDate!;
+    order.wallName = 'Montaser2';
     setLoadingState(true);
     var response = await orderRepository.submitOrder(order);
     setLoadingState(false);

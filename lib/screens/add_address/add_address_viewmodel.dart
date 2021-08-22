@@ -94,8 +94,8 @@ class AddAddressViewModel extends ChangeNotifier {
     order
       ..name = _userName
       ..phone = _phoneNumber
-      ..city = _selectedCity!.nameEn
-      ..region = _selectedRegion!.nameEn
+      ..city = _selectedCity!.name
+      ..region = _selectedRegion!.name
       ..address = _address
       ..buildingNo = _buildNo
       ..floor = _floor

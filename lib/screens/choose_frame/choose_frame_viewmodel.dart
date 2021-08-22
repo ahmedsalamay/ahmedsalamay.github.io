@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:typed_data';
 import 'package:dio/dio.dart';
+import 'package:fimto_frame/generated/l10n.dart';
 import 'package:fimto_frame/models/constants.dart';
 import 'package:fimto_frame/models/facebook_photo.dart';
 import 'package:fimto_frame/models/order.dart';
@@ -19,6 +20,20 @@ class ChooseFrameViewModel extends ChangeNotifier {
   final Order order;
 
   ChooseFrameViewModel({required this.facebookRepository, required this.order});
+
+  String get packageSize => order.packageSize.toString();
+  String get packagePrice => order.packagePrice.toString();
+  String get extraFramesPrice =>
+      ((_pickedFiles.length - order.packageSize!) * order.extraImagePrice!)
+          .toString();
+  bool get isExtraFrames => _pickedFiles.length > order.packageSize!;
+  String get deliveryFees =>
+      order.deliveryFee! > 0 ? order.deliveryFee.toString() : S.current.free;
+  String get total => (order.packagePrice! +
+          (_pickedFiles.length - order.packageSize!) * order.extraImagePrice!)
+      .toString();
+
+  bool get showCheckOutButton => _pickedFiles.length >= order.packageSize!;
 
   var logger = Logger();
 
@@ -41,6 +56,7 @@ class ChooseFrameViewModel extends ChangeNotifier {
       var response = await Dio()
           .get(source, options: Options(responseType: ResponseType.bytes));
       _pickedFiles.add(response.data);
+      order.calculateTotal();
       notifyListeners();
     }
     setLoadingState(false);
@@ -90,6 +106,7 @@ class ChooseFrameViewModel extends ChangeNotifier {
         if (kIsWeb) {
           List<Uint8List> files = result.files.map((e) => e.bytes!).toList();
           _pickedFiles.addAll(files);
+          order.calculateTotal();
           notifyListeners();
         } else {
           List<File> files = result.files.map((e) => File(e.path!)).toList();
@@ -99,6 +116,7 @@ class ChooseFrameViewModel extends ChangeNotifier {
                     notifyListeners();
                   }))
               .toList();
+          order.calculateTotal();
           notifyListeners();
         }
       }

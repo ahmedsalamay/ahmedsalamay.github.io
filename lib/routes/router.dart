@@ -6,6 +6,7 @@ import 'package:fimto_frame/screens/add_payment_method/add_payment_method_view.d
 import 'package:fimto_frame/screens/choose_frame/choose_frame_view.dart';
 import 'package:fimto_frame/screens/confirm_order/confirm_order_view.dart';
 import 'package:fimto_frame/screens/congratulation/congratulation_view.dart';
+import 'package:fimto_frame/screens/current_orders/current_orders_view.dart';
 import 'package:fimto_frame/screens/home/home_view.dart';
 import 'package:fimto_frame/screens/leave_message/leave_message_view.dart';
 import 'package:fimto_frame/screens/login/login_view.dart';
@@ -56,9 +57,12 @@ Route onGenerateRoute(RouteSettings settings) {
     case loginRoute:
       return MaterialPageRoute(
           builder: (context) => LoginScreen(), settings: settings);
-      case registerRoute:
+    case registerRoute:
       return MaterialPageRoute(
           builder: (context) => RegisterScreen(), settings: settings);
+    case currentOrdersRoute:
+      return MaterialPageRoute(
+          builder: (context) => CurrentOrdersScreen(), settings: settings);
 
     default:
       return MaterialPageRoute(

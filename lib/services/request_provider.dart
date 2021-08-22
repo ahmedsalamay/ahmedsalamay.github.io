@@ -19,7 +19,7 @@ class RequestProvider {
   }) {
     _client.interceptors.add(dioLoggerInterceptor);
 
-    /* _client.interceptors.add(InterceptorsWrapper(
+    _client.interceptors.add(InterceptorsWrapper(
       onError: (DioError error, handler) async {
         if (error.response!.statusCode == HttpStatus.unauthorized) {
           if (refreshTokenInProgress != null) {
@@ -96,7 +96,7 @@ class RequestProvider {
         _client.interceptors.requestLock.unlock();
         return handler.next(options);
       },
-    ));*/
+    ));
 
     _client.options.responseType = ResponseType.json;
     _client.options.baseUrl = '';
@@ -105,7 +105,7 @@ class RequestProvider {
     _client.options.headers = {
       'accept': 'application/json',
       'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*',
+      //'Access-Control-Allow-Origin': '*',
       'Accept-Language':
           language!.languageCode == Language.arabicCode ? 'ar-EG' : 'en-US',
     };

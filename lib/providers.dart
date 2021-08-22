@@ -1,3 +1,4 @@
+import 'package:fimto_frame/models/home_page_configuration.dart';
 import 'package:fimto_frame/models/language.dart';
 import 'package:fimto_frame/repository/remote/configuration_repository.dart';
 import 'package:fimto_frame/repository/remote/facebook_repository.dart';

@@ -12,14 +12,14 @@ class MessageService {
       title,
       message,
       instantInit: true,
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.red,
       snackPosition: SnackPosition.BOTTOM,
       snackStyle: SnackStyle.FLOATING,
       duration: Duration(seconds: 5),
       messageText: Text(
         message,
         textAlign: TextAlign.center,
-        style: TextStyle(fontSize: 24, color: FimtoColors.errorColor),
+        style: TextStyle(fontSize: 24, color: Colors.white),
       ),
     );
   }

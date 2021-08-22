@@ -1,7 +1,9 @@
 import 'package:fimto_frame/generated/l10n.dart';
 import 'package:fimto_frame/models/language.dart';
+import 'package:fimto_frame/routes/router_names.dart';
 import 'package:fimto_frame/themes/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
 class CustomDrawer extends StatelessWidget {
@@ -14,8 +16,8 @@ class CustomDrawer extends StatelessWidget {
     return ConstrainedBox(
       constraints: BoxConstraints(maxWidth: 240),
       child: ClipRRect(
-        borderRadius: BorderRadius.only(
-            bottomLeft: Radius.circular(30), topLeft: Radius.circular(30)),
+        // borderRadius: BorderRadius.only(
+        //     bottomLeft: Radius.circular(30), topLeft: Radius.circular(30)),
         child: Drawer(
           child: Container(
             decoration: BoxDecoration(),
@@ -79,7 +81,7 @@ class _DrawerItems extends StatelessWidget {
                   ),
                 ),
                 ListTile(
-                  onTap: () {},
+                  onTap: () => Get.toNamed(currentOrdersRoute),
                   title: Text(
                     S.of(context).yourOrders,
                     style: Theme.of(context).textTheme.headline3,

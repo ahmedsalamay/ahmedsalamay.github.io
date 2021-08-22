@@ -40,6 +40,27 @@ class Order {
   String? giftText;
   DateTime? deliveryDate;
   List<String>? images;
+  PromoCode? promoCode;
+  double? packagePrice;
+  double? packageSize;
+  double? extraImagePrice;
+  double? deliveryFee;
+  double total = 0;
+  double discount = 0;
+
+  void applyPromoCode(PromoCode value) {
+    promoCode = value;
+  }
+
+  void calculateTotal() {
+    total = packagePrice!;
+    if (imageNo! > packageSize!)
+      total += (imageNo! - packageSize!) * extraImagePrice!;
+    if (promoCode != null) {
+      discount = total * promoCode!.percentage;
+      total -= discount;
+    }
+  }
 
   factory Order.fromJson(Map<String, dynamic> json) => Order(
         name: json["name"] == null ? null : json["name"],
@@ -80,9 +101,25 @@ class Order {
         "wallname": wallName == null ? null : wallName,
         "typeofOrder": typeofOrder == null ? null : typeofOrder,
         "gifttext": giftText == null ? null : giftText,
+        "promocode": promoCode != null ? promoCode!.code : null,
         "deliverydate":
             deliveryDate == null ? null : deliveryDate!.toIso8601String(),
         "images":
             images == null ? null : List<dynamic>.from(images!.map((x) => x)),
       };
+}
+
+class PromoCode {
+  final String code;
+  final double percentage;
+  final bool used;
+
+  PromoCode(this.code, this.percentage, this.used);
+
+  factory PromoCode.fromJson(String code, Map<String, dynamic> json) =>
+      PromoCode(
+        code,
+        json['percent'],
+        json['used'],
+      );
 }
