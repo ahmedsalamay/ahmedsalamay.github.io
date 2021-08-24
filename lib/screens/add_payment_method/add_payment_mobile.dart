@@ -29,10 +29,10 @@ class AddPaymentMethodScreenMobile extends StatelessWidget {
         child: Scaffold(
           backgroundColor: Colors.white,
           endDrawer: language.currentLocale.languageCode == 'en'
-              ? CustomDrawer()
+              ? const CustomDrawer()
               : null,
           drawer: language.currentLocale.languageCode == 'ar'
-              ? CustomDrawer()
+              ? const CustomDrawer()
               : null,
           body: _Body(),
         ));
@@ -44,12 +44,12 @@ class _Body extends StatelessWidget {
   Widget build(BuildContext context) {
     final vm = context.watch<AddPaymentMethodViewModel>();
     return SafeArea(
-      child: Container(
+      child: SizedBox(
           height: double.infinity,
           child: Column(
             children: [
               CustomAppBar(title: S.of(context).addPaymentMethod),
-              _Stepper(),
+              const _Stepper(),
               Expanded(
                 child: SingleChildScrollView(
                   child: _PaymentMethods(),
@@ -81,7 +81,7 @@ class _PaymentMethods extends StatelessWidget {
             S.of(context).choosePaymentMethod,
             style: Theme.of(context).textTheme.headline3,
           ),
-          SizedBox(height: 15),
+          const SizedBox(height: 15),
           FutureBuilder<List<PaymentsMethods>>(
             future: vm.paymentFuture,
             builder: (context, snapshot) {
@@ -93,14 +93,14 @@ class _PaymentMethods extends StatelessWidget {
                             ))
                         .toList());
               } else if (snapshot.hasError) {
-                return Center(child: Text('Error happened'));
+                return const Center(child: Text('Error happened'));
               }
-              return PlayStoreShimmer(
+              return const PlayStoreShimmer(
                 hasBottomFirstLine: true,
               );
             },
           ),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           vm.selectedPaymentMethods != null
               ? Center(
                   child: Text(
@@ -109,8 +109,8 @@ class _PaymentMethods extends StatelessWidget {
                     textAlign: TextAlign.center,
                   ),
                 )
-              : SizedBox(),
-          SizedBox(height: 10),
+              : const SizedBox(),
+          const SizedBox(height: 10),
           vm.selectedPaymentMethods != null
               ? Center(
                   child: SelectableText(
@@ -119,8 +119,8 @@ class _PaymentMethods extends StatelessWidget {
                     textAlign: TextAlign.center,
                   ),
                 )
-              : SizedBox(),
-          SizedBox(height: 10),
+              : const SizedBox(),
+          const SizedBox(height: 10),
           Center(
             child: Text(
               S.of(context).paymentConfirmAutomatically,
@@ -129,7 +129,7 @@ class _PaymentMethods extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
           ),
-          SizedBox(height: 6),
+          const SizedBox(height: 6),
           _PromoCode()
         ],
       ),
@@ -143,7 +143,7 @@ class _Stepper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(15),
+      padding: const EdgeInsets.all(15),
       child: Column(
         children: [
           Padding(
@@ -156,7 +156,7 @@ class _Stepper extends StatelessWidget {
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(25),
                       color: FimtoColors.primaryColor),
-                  child: Center(
+                  child: const Center(
                     child: Text(
                       '1',
                       style: TextStyle(
@@ -166,7 +166,7 @@ class _Stepper extends StatelessWidget {
                     ),
                   ),
                 ),
-                Expanded(
+                const Expanded(
                     child:
                         Divider(thickness: 4, color: FimtoColors.primaryColor)),
                 Container(
@@ -175,7 +175,7 @@ class _Stepper extends StatelessWidget {
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(25),
                       color: FimtoColors.primaryColor),
-                  child: Center(
+                  child: const Center(
                       child: Text(
                     '2',
                     style: TextStyle(
@@ -184,7 +184,7 @@ class _Stepper extends StatelessWidget {
                         fontWeight: FontWeight.w800),
                   )),
                 ),
-                Expanded(child: Divider(thickness: 4)),
+                const Expanded(child: Divider(thickness: 4)),
                 Container(
                   width: 50,
                   height: 50,
@@ -192,7 +192,7 @@ class _Stepper extends StatelessWidget {
                       borderRadius: BorderRadius.circular(25),
                       border: Border.all(
                           color: FimtoColors.dividerColor, width: 3)),
-                  child: Center(
+                  child: const Center(
                     child: Text(
                       '3',
                       style: TextStyle(
@@ -210,21 +210,21 @@ class _Stepper extends StatelessWidget {
             children: [
               Text(
                 S.of(context).addAddress,
-                style: TextStyle(
+                style: const TextStyle(
                     color: Colors.black,
                     fontSize: 16,
                     fontWeight: FontWeight.w500),
               ),
               Text(
                 S.of(context).payment,
-                style: TextStyle(
+                style: const TextStyle(
                     color: Colors.black,
                     fontSize: 16,
                     fontWeight: FontWeight.w500),
               ),
               Text(
                 S.of(context).confirmation,
-                style: TextStyle(
+                style: const TextStyle(
                     color: FimtoColors.dividerColor,
                     fontSize: 16,
                     fontWeight: FontWeight.w800),
@@ -252,20 +252,20 @@ class _PaymentButton extends StatelessWidget {
       child: InkWell(
         onTap: () => vm.onPaymentMethodSelection(paymentsMethod),
         child: Container(
-          padding: EdgeInsets.all(4),
+          padding: const EdgeInsets.all(4),
           height: 60,
           width: MediaQuery.of(context).size.width * 0.9,
           decoration: BoxDecoration(
             color: vm.selectedPaymentMethods?.companyName ==
                     paymentsMethod.companyName
-                ? Color(0xffffe2db)
+                ? const Color(0xffffe2db)
                 : Colors.white,
             border: Border.all(
-              color: Color(0xffededed),
+              color: const Color(0xffededed),
               width: 1.0,
               style: BorderStyle.solid,
             ),
-            borderRadius: BorderRadius.all(
+            borderRadius: const BorderRadius.all(
               Radius.circular(8),
             ),
           ),
@@ -275,7 +275,7 @@ class _PaymentButton extends StatelessWidget {
                 padding: const EdgeInsets.all(8.0),
                 child: Image.memory(base64Decode(paymentsMethod.image)),
               ),
-              SizedBox(width: 10),
+              const SizedBox(width: 10),
               Text(paymentsMethod.companyName,
                   style: Theme.of(context).textTheme.headline5!.copyWith(
                       fontSize: 16,
@@ -283,17 +283,17 @@ class _PaymentButton extends StatelessWidget {
                               paymentsMethod.companyName
                           ? FontWeight.w900
                           : FontWeight.w400)),
-              Spacer(),
+              const Spacer(),
               Container(
-                padding: EdgeInsets.all(2),
-                margin: EdgeInsets.all(8),
+                padding: const EdgeInsets.all(2),
+                margin: const EdgeInsets.all(8),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(25),
                     color: vm.selectedPaymentMethods?.companyName ==
                             paymentsMethod.companyName
-                        ? Color(0xffff3400)
-                        : Color(0xffd4d3d2)),
-                child: Icon(
+                        ? const Color(0xffff3400)
+                        : const Color(0xffd4d3d2)),
+                child: const Icon(
                   Icons.done,
                   color: Colors.white,
                   size: 20,
@@ -312,7 +312,7 @@ class _PromoCodeButton extends StatelessWidget {
   Widget build(BuildContext context) {
     var vm = context.watch<AddPaymentMethodViewModel>();
     return vm.isPromoCodeLoading
-        ? Padding(
+        ? const Padding(
             padding: EdgeInsets.symmetric(horizontal: 25, vertical: 6),
             child: CircularProgressIndicator(
               backgroundColor: Colors.white,
@@ -329,7 +329,7 @@ class _PromoCodeButton extends StatelessWidget {
                   child: Center(
                     child: Text(
                       vm.isPromoCodeActivated ? 'activated' : 'redeem',
-                      style: TextStyle(
+                      style: const TextStyle(
                           fontSize: 16,
                           color: Colors.white,
                           fontWeight: FontWeight.w600),
@@ -355,10 +355,10 @@ class _PromoCode extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       width: double.infinity,
       child: Container(
-        padding: EdgeInsets.all(8),
+        padding: const EdgeInsets.all(8),
         decoration: BoxDecoration(
           color: Colors.grey[200],
-          borderRadius: BorderRadius.all(
+          borderRadius: const BorderRadius.all(
             Radius.circular(8.0),
           ),
         ),
@@ -381,9 +381,9 @@ class _PromoCode extends StatelessWidget {
                       },
                       autofocus: false,
                       decoration: InputDecoration(
-                        contentPadding: EdgeInsets.all(6),
+                        contentPadding: const EdgeInsets.all(6),
                         hintText: 'enterPromoCode',
-                        hintStyle: TextStyle(fontSize: 16),
+                        hintStyle: const TextStyle(fontSize: 16),
                         fillColor: Colors.white,
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(8)),
@@ -401,10 +401,10 @@ class _PromoCode extends StatelessWidget {
                 Expanded(flex: 2, child: _PromoCodeButton())
               ],
             ),
-            SizedBox(height: 4),
+            const SizedBox(height: 4),
             Visibility(
               visible: vm.isPromoCodeActivated,
-              child: Text(
+              child: const Text(
                 'promoCodeAdded',
                 style:
                     TextStyle(color: Colors.green, fontWeight: FontWeight.w500),

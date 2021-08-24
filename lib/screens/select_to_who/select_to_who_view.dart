@@ -11,16 +11,16 @@ class SelectToWhoScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return ScreenTypeLayout(
       mobile: OrientationLayout(
-        portrait: SelectToWhoMobile(),
-        landscape: SelectToWhoMobile(),
+        portrait: const SelectToWhoMobile(),
+        landscape: const SelectToWhoMobile(),
       ),
       tablet: OrientationLayout(
-        portrait: SelectToWhoDesktop(),
-        landscape: SelectToWhoDesktop(),
+        portrait: const SelectToWhoDesktop(),
+        landscape: const SelectToWhoDesktop(),
       ),
       desktop: OrientationLayout(
-        landscape: SelectToWhoDesktop(),
-        portrait: SelectToWhoDesktop(),
+        landscape: const SelectToWhoDesktop(),
+        portrait: const SelectToWhoDesktop(),
       ),
     );
   }

@@ -25,10 +25,10 @@ class AddAddressScreenDesktop extends StatelessWidget {
         child: Scaffold(
           backgroundColor: Colors.white,
           endDrawer: language.currentLocale.languageCode == 'en'
-              ? CustomDrawer()
+              ? const CustomDrawer()
               : null,
           drawer: language.currentLocale.languageCode == 'ar'
-              ? CustomDrawer()
+              ? const CustomDrawer()
               : null,
           body: _Body(),
         ));
@@ -46,13 +46,13 @@ class _Body extends StatelessWidget {
           width: double.infinity,
           child: Row(
             children: [
-              _Stepper(),
+              const _Stepper(),
               Expanded(
                 flex: 3,
                 child: Column(
                   children: [
                     _AddressForm(),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     SizedBox(
                       width: 180,
                       child: GradientButton(
@@ -88,7 +88,7 @@ class __AddressFormState extends State<_AddressForm> {
     var vm = context.watch<AddAddressViewModel>();
     return Padding(
       padding: const EdgeInsets.all(16),
-      child: Container(
+      child: SizedBox(
         height: MediaQuery.of(context).size.height * 0.6,
         width: double.infinity,
         child: Form(
@@ -96,12 +96,12 @@ class __AddressFormState extends State<_AddressForm> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: 50),
+              const SizedBox(height: 50),
               Text(
                 S.of(context).shipTo,
                 style: Theme.of(context).textTheme.headline3,
               ),
-              SizedBox(height: 35),
+              const SizedBox(height: 35),
               Row(
                 children: [
                   Expanded(
@@ -114,7 +114,7 @@ class __AddressFormState extends State<_AddressForm> {
                           InputDecoration(hintText: S.of(context).nameHint),
                     ),
                   ),
-                  SizedBox(width: 12),
+                  const SizedBox(width: 12),
                   Expanded(
                     child: TextFormField(
                       textAlign: TextAlign.start,
@@ -127,15 +127,15 @@ class __AddressFormState extends State<_AddressForm> {
                   ),
                 ],
               ),
-              SizedBox(height: 12),
+              const SizedBox(height: 12),
               Row(
                 children: [
                   Expanded(child: _CityDropDown()),
-                  SizedBox(width: 12),
+                  const SizedBox(width: 12),
                   Expanded(child: _RegionDropDown())
                 ],
               ),
-              SizedBox(height: 12),
+              const SizedBox(height: 12),
               Row(
                 children: [
                   Expanded(
@@ -148,7 +148,7 @@ class __AddressFormState extends State<_AddressForm> {
                           hintText: S.of(context).buildingNumberHint),
                     ),
                   ),
-                  SizedBox(width: 12),
+                  const SizedBox(width: 12),
                   Expanded(
                     child: TextFormField(
                       textAlign: TextAlign.start,
@@ -162,7 +162,7 @@ class __AddressFormState extends State<_AddressForm> {
                   ),
                 ],
               ),
-              SizedBox(height: 12),
+              const SizedBox(height: 12),
               TextFormField(
                 textAlign: TextAlign.start,
                 onChanged: (value) => vm.onAddressChange(value),
@@ -193,21 +193,22 @@ class _RegionDropDown extends StatelessWidget {
   Widget build(BuildContext context) {
     var vm = context.watch<AddAddressViewModel>();
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 12),
+      padding: const EdgeInsets.symmetric(horizontal: 12),
       decoration: BoxDecoration(
-          color: Color(0xffe4e4e4), borderRadius: BorderRadius.circular(10)),
+          color: const Color(0xffe4e4e4),
+          borderRadius: BorderRadius.circular(10)),
       child: DropdownButton<Region>(
         isExpanded: true,
         value: vm.selectedRegion,
-        hint: Text(
+        hint: const Text(
           '',
           textAlign: TextAlign.center,
         ),
         iconSize: 24,
         elevation: 16,
         icon: vm.isLoading
-            ? CircularProgressIndicator(strokeWidth: 2)
-            : Icon(Icons.arrow_drop_down, size: 36),
+            ? const CircularProgressIndicator(strokeWidth: 2)
+            : const Icon(Icons.arrow_drop_down, size: 36),
         underline: Container(
           height: 2,
           color: Colors.transparent,
@@ -235,21 +236,22 @@ class _CityDropDown extends StatelessWidget {
   Widget build(BuildContext context) {
     var vm = context.watch<AddAddressViewModel>();
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 12),
+      padding: const EdgeInsets.symmetric(horizontal: 12),
       decoration: BoxDecoration(
-          color: Color(0xffe4e4e4), borderRadius: BorderRadius.circular(10)),
+          color: const Color(0xffe4e4e4),
+          borderRadius: BorderRadius.circular(10)),
       child: DropdownButton<City>(
         isExpanded: true,
         value: vm.selectedCity,
-        hint: Text(
+        hint: const Text(
           '',
           textAlign: TextAlign.center,
         ),
         iconSize: 24,
         elevation: 16,
         icon: vm.isLoading
-            ? CircularProgressIndicator(strokeWidth: 2)
-            : Icon(Icons.arrow_drop_down, size: 36),
+            ? const CircularProgressIndicator(strokeWidth: 2)
+            : const Icon(Icons.arrow_drop_down, size: 36),
         underline: Container(
           height: 2,
           color: Colors.transparent,
@@ -278,14 +280,14 @@ class _Stepper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      constraints: BoxConstraints(maxWidth: 300),
+      constraints: const BoxConstraints(maxWidth: 300),
       height: double.infinity,
-      color: Color(0xFFf9f9f9),
+      color: const Color(0xFFf9f9f9),
       child: Row(
         children: [
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-            constraints: BoxConstraints(maxHeight: 400),
+            constraints: const BoxConstraints(maxHeight: 400),
             child: Column(
               children: [
                 Container(
@@ -294,7 +296,7 @@ class _Stepper extends StatelessWidget {
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(25),
                       color: FimtoColors.primaryColor),
-                  child: Center(
+                  child: const Center(
                     child: Text(
                       '1',
                       style: TextStyle(
@@ -304,7 +306,7 @@ class _Stepper extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(height: 12),
+                const SizedBox(height: 12),
                 const Expanded(
                     child: VerticalDivider(
                   thickness: 4,
@@ -351,13 +353,13 @@ class _Stepper extends StatelessWidget {
           ),
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
-            constraints: BoxConstraints(maxHeight: 400),
+            constraints: const BoxConstraints(maxHeight: 400),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
                   S.of(context).addAddress,
-                  style: TextStyle(
+                  style: const TextStyle(
                       color: Colors.black,
                       fontSize: 16,
                       fontWeight: FontWeight.w500),

@@ -10,7 +10,7 @@ class Footer extends StatelessWidget {
   Widget build(BuildContext context) {
     var language = context.watch<Language>();
 
-    return Container(
+    return SizedBox(
       height: MediaQuery.of(context).size.height * 0.27,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 60, vertical: 15),
@@ -18,8 +18,8 @@ class Footer extends StatelessWidget {
           children: [
             Row(
               children: [
-                Icon(Icons.language),
-                SizedBox(width: 6),
+                const Icon(Icons.language),
+                const SizedBox(width: 6),
                 TextButton(
                   onPressed: () => language.currentLocale.languageCode == 'en'
                       ? language.changeToArLanguage()
@@ -70,7 +70,7 @@ class Footer extends StatelessWidget {
                 Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [_FollowUs(), _PaymentMethod()],
+                  children: const [_FollowUs(), _PaymentMethod()],
                 )
               ],
             ),
@@ -86,7 +86,7 @@ class _FollowUs extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -97,12 +97,12 @@ class _FollowUs extends StatelessWidget {
               style: textTheme,
             ),
           ),
-          SizedBox(height: 6),
+          const SizedBox(height: 6),
           Row(
             children: [
               IconButton(
                 onPressed: () {},
-                icon: Image(
+                icon: const Image(
                   height: 20,
                   width: 20,
                   fit: BoxFit.fill,
@@ -111,7 +111,7 @@ class _FollowUs extends StatelessWidget {
               ),
               IconButton(
                 onPressed: () {},
-                icon: Image(
+                icon: const Image(
                   height: 20,
                   width: 20,
                   fit: BoxFit.fill,
@@ -120,7 +120,7 @@ class _FollowUs extends StatelessWidget {
               ),
               IconButton(
                 onPressed: () {},
-                icon: Image(
+                icon: const Image(
                   height: 20,
                   width: 20,
                   fit: BoxFit.fill,
@@ -129,7 +129,7 @@ class _FollowUs extends StatelessWidget {
               ),
               IconButton(
                 onPressed: () {},
-                icon: Image(
+                icon: const Image(
                   height: 20,
                   width: 20,
                   fit: BoxFit.fill,
@@ -149,7 +149,7 @@ class _PaymentMethod extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -160,12 +160,12 @@ class _PaymentMethod extends StatelessWidget {
               style: textTheme,
             ),
           ),
-          SizedBox(height: 6),
+          const SizedBox(height: 6),
           Row(
             children: [
               IconButton(
                 onPressed: () {},
-                icon: Image(
+                icon: const Image(
                   height: 20,
                   width: 20,
                   fit: BoxFit.fill,
@@ -174,7 +174,7 @@ class _PaymentMethod extends StatelessWidget {
               ),
               IconButton(
                 onPressed: () {},
-                icon: Image(
+                icon: const Image(
                   height: 20,
                   width: 20,
                   fit: BoxFit.fill,
@@ -183,7 +183,7 @@ class _PaymentMethod extends StatelessWidget {
               ),
               IconButton(
                 onPressed: () {},
-                icon: Image(
+                icon: const Image(
                   height: 20,
                   width: 20,
                   fit: BoxFit.fill,

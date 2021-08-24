@@ -1,4 +1,5 @@
 import 'package:fimto_frame/generated/l10n.dart';
+import 'package:fimto_frame/models/language.dart';
 import 'package:fimto_frame/themes/appBar.dart';
 import 'package:fimto_frame/themes/buttons.dart';
 import 'package:fimto_frame/themes/drawer.dart';
@@ -12,12 +13,18 @@ class CongratulationsMobile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var language = context.watch<Language>();
     return ChangeNotifierProvider<CongratulationViewModel>(
         create: (_) => CongratulationViewModel(),
         child: Scaffold(
           backgroundColor: Colors.white,
-          endDrawer: CustomDrawer(),
-          body: _Body(),
+          endDrawer: language.currentLocale.languageCode == 'en'
+              ? const CustomDrawer()
+              : null,
+          drawer: language.currentLocale.languageCode == 'ar'
+              ? const CustomDrawer()
+              : null,
+          body: const _Body(),
         ));
   }
 }
@@ -39,7 +46,7 @@ class __BodyState extends State<_Body> with SingleTickerProviderStateMixin {
     super.initState();
     controller = AnimationController(
       vsync: this,
-      duration: Duration(seconds: 2),
+      duration: const Duration(seconds: 2),
     );
     _animation = CurvedAnimation(
       parent: controller,
@@ -68,21 +75,21 @@ class __BodyState extends State<_Body> with SingleTickerProviderStateMixin {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    SizedBox(height: 35),
+                    const SizedBox(height: 35),
                     Text(
                       S.of(context).orderConfirmed,
                       style: Theme.of(context).textTheme.headline2,
                       textAlign: TextAlign.center,
                     ),
-                    SizedBox(height: 25),
+                    const SizedBox(height: 25),
                     ScaleTransition(
                       scale: _animation,
-                      child: Image(
+                      child: const Image(
                         height: 230,
                         image: AssetImage('assets/images/congratulations.png'),
                       ),
                     ),
-                    SizedBox(height: 25),
+                    const SizedBox(height: 25),
                     Text(
                       S.of(context).congratulations,
                       style: Theme.of(context)
@@ -91,7 +98,7 @@ class __BodyState extends State<_Body> with SingleTickerProviderStateMixin {
                           .copyWith(fontSize: 26),
                       textAlign: TextAlign.center,
                     ),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     Text(
                       S.of(context).successfulPurchase,
                       style: Theme.of(context)
@@ -100,7 +107,7 @@ class __BodyState extends State<_Body> with SingleTickerProviderStateMixin {
                           .copyWith(fontSize: 18, fontWeight: FontWeight.w500),
                       textAlign: TextAlign.center,
                     ),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     Text(
                       S.of(context).orderNumber,
                       style: Theme.of(context)
@@ -109,7 +116,7 @@ class __BodyState extends State<_Body> with SingleTickerProviderStateMixin {
                           .copyWith(fontSize: 18, fontWeight: FontWeight.w500),
                       textAlign: TextAlign.center,
                     ),
-                    SizedBox(height: 40),
+                    const SizedBox(height: 40),
                     Text(
                       S.of(context).canTrackYourOrder,
                       style: Theme.of(context)

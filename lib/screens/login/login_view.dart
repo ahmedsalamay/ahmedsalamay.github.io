@@ -11,16 +11,16 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return ScreenTypeLayout(
       mobile: OrientationLayout(
-        portrait: LoginScreenMobile(),
-        landscape: LoginScreenMobile(),
+        portrait: const LoginScreenMobile(),
+        landscape: const LoginScreenMobile(),
       ),
       tablet: OrientationLayout(
-        portrait: LoginScreenDesktop(),
-        landscape: LoginScreenDesktop(),
+        portrait: const LoginScreenDesktop(),
+        landscape: const LoginScreenDesktop(),
       ),
       desktop: OrientationLayout(
-        landscape: LoginScreenDesktop(),
-        portrait: LoginScreenDesktop(),
+        landscape: const LoginScreenDesktop(),
+        portrait: const LoginScreenDesktop(),
       ),
     );
   }

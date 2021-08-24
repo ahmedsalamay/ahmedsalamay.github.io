@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 class ErrorDialog extends StatelessWidget {
   final String? title;
   final String? message;
-  const ErrorDialog({required this.title, required this.message});
+  const ErrorDialog({required this.title, required this.message,Key? key}):super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
         child: Column(
@@ -20,12 +20,12 @@ class ErrorDialog extends StatelessWidget {
             //   fit: BoxFit.fill,
             //   height: 60,
             // ),
-            SizedBox(height: 25),
+            const SizedBox(height: 25),
             Text(
               title!,
               style: Theme.of(context).textTheme.headline4,
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Text(
               message!,
               textAlign: TextAlign.center,
@@ -42,29 +42,29 @@ class ErrorDialog extends StatelessWidget {
 class SuccessDialog extends StatelessWidget {
   final String? title;
   final String? message;
-  const SuccessDialog({required this.title, required this.message});
+  const SuccessDialog({required this.title, required this.message,Key? key}):super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Image(
+            const Image(
               image: AssetImage(
                 'assets/images/success.png',
               ),
               fit: BoxFit.fill,
               height: 60,
             ),
-            SizedBox(height: 25),
+            const SizedBox(height: 25),
             Text(
               title!,
               style: Theme.of(context).textTheme.headline4,
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Text(
               message!,
               textAlign: TextAlign.center,

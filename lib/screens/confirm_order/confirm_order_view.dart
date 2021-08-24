@@ -10,16 +10,16 @@ class ConfirmOrderScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return ScreenTypeLayout(
       mobile: OrientationLayout(
-        portrait: ConfirmOrderScreenMobile(),
-        landscape: ConfirmOrderScreenMobile(),
+        portrait: const ConfirmOrderScreenMobile(),
+        landscape: const ConfirmOrderScreenMobile(),
       ),
       tablet: OrientationLayout(
-        portrait: ConfirmOrderScreenDesktop(),
-        landscape: ConfirmOrderScreenDesktop(),
+        portrait: const ConfirmOrderScreenDesktop(),
+        landscape: const ConfirmOrderScreenDesktop(),
       ),
       desktop: OrientationLayout(
-        landscape: ConfirmOrderScreenDesktop(),
-        portrait: ConfirmOrderScreenDesktop(),
+        landscape: const ConfirmOrderScreenDesktop(),
+        portrait: const ConfirmOrderScreenDesktop(),
       ),
     );
   }

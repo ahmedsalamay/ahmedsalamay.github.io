@@ -61,15 +61,15 @@ class MyApp extends StatelessWidget {
       providers: providers,
       child: GetMaterialApp(
         debugShowCheckedModeBanner: false,
-        navigatorObservers: [
+        navigatorObservers: const [
           //FirebaseAnalyticsObserver(analytics: analytics),
         ],
         key: Key("app-" + context.watch<Language>().currentLocale.languageCode),
-        supportedLocales: [
-          const Locale(Language.englishCode),
-          const Locale(Language.arabicCode),
+        supportedLocales: const [
+          Locale(Language.englishCode),
+          Locale(Language.arabicCode),
         ],
-        localizationsDelegates: [
+        localizationsDelegates: const [
           S.delegate,
           GlobalMaterialLocalizations.delegate,
           GlobalWidgetsLocalizations.delegate,
@@ -78,7 +78,7 @@ class MyApp extends StatelessWidget {
         locale: context.watch<Language>().currentLocale,
         title: 'Fimto',
         theme: myTheme,
-        initialRoute: chooseFrameRoute, //isUserLogged ? homeRoute : loginRoute,
+        initialRoute: isUserLogged ? homeRoute : loginRoute,
         onGenerateRoute: onGenerateRoute,
         defaultTransition: Transition.fade,
         opaqueRoute: Get.isOpaqueRouteDefault,

@@ -11,16 +11,16 @@ class HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ScreenTypeLayout(
       mobile: OrientationLayout(
-        portrait: HomeViewMobile(),
-        landscape: HomeViewMobile(),
+        portrait: const HomeViewMobile(),
+        landscape: const HomeViewMobile(),
       ),
       tablet: OrientationLayout(
-        portrait: HomeViewDesktop(),
-        landscape: HomeViewDesktop(),
+        portrait: const HomeViewDesktop(),
+        landscape: const HomeViewDesktop(),
       ),
       desktop: OrientationLayout(
-        landscape: HomeViewDesktop(),
-        portrait: HomeViewDesktop(),
+        landscape:const HomeViewDesktop(),
+        portrait:const HomeViewDesktop(),
       ),
     );
   }

@@ -13,16 +13,16 @@ class TrackOrderScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return ScreenTypeLayout(
       mobile: OrientationLayout(
-        portrait: TrackOrderMobile(),
-        landscape: TrackOrderMobile(),
+        portrait: const TrackOrderMobile(),
+        landscape: const TrackOrderMobile(),
       ),
       tablet: OrientationLayout(
-        portrait: TrackOrderMobile(),
-        landscape: TrackOrderMobile(),
+        portrait: const TrackOrderMobile(),
+        landscape: const TrackOrderMobile(),
       ),
       desktop: OrientationLayout(
-        landscape: TrackOrderMobile(),
-        portrait: TrackOrderMobile(),
+        landscape: const TrackOrderMobile(),
+        portrait: const TrackOrderMobile(),
       ),
     );
   }
@@ -35,7 +35,7 @@ class TrackOrderMobile extends StatelessWidget {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<TrackOrderViewModel>(
         create: (_) => TrackOrderViewModel(),
-        child: Scaffold(
+        child: const Scaffold(
           backgroundColor: Colors.white,
           body: _Body(),
         ));
@@ -63,10 +63,10 @@ class _Body extends StatelessWidget {
                   //SizedBox(height: 35),
                   Image(
                     height: MediaQuery.of(context).size.height * 0.25,
-                    image: AssetImage('assets/images/confirm.png'),
+                    image: const AssetImage('assets/images/confirm.png'),
                   ),
-                  SizedBox(height: 15),
-                  _Stepper()
+                  const SizedBox(height: 15),
+                  const _Stepper()
                 ],
               ),
             ),
@@ -82,7 +82,7 @@ class _Stepper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
         child: Column(
@@ -96,14 +96,14 @@ class _Stepper extends StatelessWidget {
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(25),
                       color: FimtoColors.successColor),
-                  child: Center(
+                  child: const Center(
                       child: Icon(
                     Icons.check,
                     size: 35,
                     color: Colors.white,
                   )),
                 ),
-                SizedBox(width: 15),
+                const SizedBox(width: 15),
                 Text(
                   S.of(context).orderIsConfirmed,
                   style: Theme.of(context)
@@ -114,9 +114,9 @@ class _Stepper extends StatelessWidget {
               ],
             ),
             Container(
-              margin: EdgeInsets.only(left: 16, right: 16),
+              margin: const EdgeInsets.only(left: 16, right: 16),
               height: 30,
-              child: VerticalDivider(
+              child: const VerticalDivider(
                 thickness: 4,
                 color: FimtoColors.successColor,
               ),
@@ -129,14 +129,14 @@ class _Stepper extends StatelessWidget {
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(25),
                       color: FimtoColors.successColor),
-                  child: Center(
+                  child: const Center(
                       child: Icon(
                     Icons.check,
                     size: 35,
                     color: Colors.white,
                   )),
                 ),
-                SizedBox(width: 15),
+                const SizedBox(width: 15),
                 Text(
                   S.of(context).processing,
                   style: Theme.of(context)
@@ -147,9 +147,9 @@ class _Stepper extends StatelessWidget {
               ],
             ),
             Container(
-              margin: EdgeInsets.only(left: 16, right: 16),
+              margin: const EdgeInsets.only(left: 16, right: 16),
               height: 30,
-              child: VerticalDivider(
+              child: const VerticalDivider(
                 thickness: 4,
                 color: FimtoColors.successColor,
               ),
@@ -162,14 +162,14 @@ class _Stepper extends StatelessWidget {
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(25),
                       color: FimtoColors.successColor),
-                  child: Center(
+                  child: const Center(
                       child: Icon(
                     Icons.check,
                     size: 35,
                     color: Colors.white,
                   )),
                 ),
-                SizedBox(width: 15),
+                const SizedBox(width: 15),
                 Text(
                   S.of(context).deliveredForShipment,
                   style: Theme.of(context)
@@ -180,9 +180,9 @@ class _Stepper extends StatelessWidget {
               ],
             ),
             Container(
-              margin: EdgeInsets.only(left: 16, right: 16),
+              margin: const EdgeInsets.only(left: 16, right: 16),
               height: 30,
-              child: VerticalDivider(
+              child: const VerticalDivider(
                 thickness: 4,
                 color: FimtoColors.successColor,
               ),
@@ -195,14 +195,14 @@ class _Stepper extends StatelessWidget {
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(25),
                       color: FimtoColors.successColor),
-                  child: Center(
+                  child: const Center(
                       child: Icon(
                     Icons.check,
                     size: 35,
                     color: Colors.white,
                   )),
                 ),
-                SizedBox(width: 15),
+                const SizedBox(width: 15),
                 Text(
                   S.of(context).delivered,
                   style: Theme.of(context)

@@ -27,10 +27,10 @@ class AddAddressScreenMobile extends StatelessWidget {
         child: Scaffold(
           backgroundColor: Colors.white,
           endDrawer: language.currentLocale.languageCode == 'en'
-              ? CustomDrawer()
+              ? const CustomDrawer()
               : null,
           drawer: language.currentLocale.languageCode == 'ar'
-              ? CustomDrawer()
+              ? const CustomDrawer()
               : null,
           body: _Body(),
         ));
@@ -42,12 +42,12 @@ class _Body extends StatelessWidget {
   Widget build(BuildContext context) {
     var vm = context.read<AddAddressViewModel>();
     return SafeArea(
-      child: Container(
+      child: SizedBox(
           height: double.infinity,
           child: Column(
             children: [
               CustomAppBar(title: S.of(context).addAddress),
-              _Stepper(),
+              const _Stepper(),
               Expanded(
                 child: SingleChildScrollView(
                   child: _AddressForm(),
@@ -91,7 +91,7 @@ class __AddressFormState extends State<_AddressForm> {
               S.of(context).shipTo,
               style: Theme.of(context).textTheme.headline3,
             ),
-            SizedBox(height: 15),
+            const SizedBox(height: 15),
             TextFormField(
               textAlign: TextAlign.start,
               onChanged: (value) => vm.onUserNameChange(value),
@@ -99,7 +99,7 @@ class __AddressFormState extends State<_AddressForm> {
               textInputAction: TextInputAction.next,
               decoration: InputDecoration(hintText: S.of(context).nameHint),
             ),
-            SizedBox(height: 12),
+            const SizedBox(height: 12),
             TextFormField(
               textAlign: TextAlign.start,
               onChanged: (value) => vm.onPhoneNumberChange(value),
@@ -108,11 +108,11 @@ class __AddressFormState extends State<_AddressForm> {
               keyboardType: TextInputType.phone,
               decoration: InputDecoration(hintText: S.of(context).phoneHint),
             ),
-            SizedBox(height: 12),
+            const SizedBox(height: 12),
             _CityDropDown(),
-            SizedBox(height: 12),
+            const SizedBox(height: 12),
             _RegionDropDown(),
-            SizedBox(height: 12),
+            const SizedBox(height: 12),
             TextFormField(
               textAlign: TextAlign.start,
               onChanged: (value) => vm.onAddressChange(value),
@@ -120,7 +120,7 @@ class __AddressFormState extends State<_AddressForm> {
               textInputAction: TextInputAction.done,
               decoration: InputDecoration(hintText: S.of(context).addressHint),
             ),
-            SizedBox(height: 12),
+            const SizedBox(height: 12),
             TextFormField(
               textAlign: TextAlign.start,
               onChanged: (value) => vm.onBuildNoChange(value),
@@ -129,7 +129,7 @@ class __AddressFormState extends State<_AddressForm> {
               decoration:
                   InputDecoration(hintText: S.of(context).buildingNumberHint),
             ),
-            SizedBox(height: 12),
+            const SizedBox(height: 12),
             TextFormField(
               textAlign: TextAlign.start,
               onChanged: (value) => vm.onFloorChange(value),
@@ -138,7 +138,7 @@ class __AddressFormState extends State<_AddressForm> {
               keyboardType: TextInputType.number,
               decoration: InputDecoration(hintText: S.of(context).floorHint),
             ),
-            SizedBox(height: 12),
+            const SizedBox(height: 12),
             TextFormField(
               textAlign: TextAlign.start,
               onChanged: (value) => vm.onEmailChange(value),
@@ -159,21 +159,22 @@ class _RegionDropDown extends StatelessWidget {
   Widget build(BuildContext context) {
     var vm = context.watch<AddAddressViewModel>();
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 12),
+      padding: const EdgeInsets.symmetric(horizontal: 12),
       decoration: BoxDecoration(
-          color: Color(0xffe4e4e4), borderRadius: BorderRadius.circular(10)),
+          color: const Color(0xffe4e4e4),
+          borderRadius: BorderRadius.circular(10)),
       child: DropdownButton<Region>(
         isExpanded: true,
         value: vm.selectedRegion,
-        hint: Text(
+        hint: const Text(
           '',
           textAlign: TextAlign.center,
         ),
         iconSize: 24,
         elevation: 16,
         icon: vm.isLoading
-            ? CircularProgressIndicator(strokeWidth: 2)
-            : Icon(Icons.arrow_drop_down, size: 36),
+            ? const CircularProgressIndicator(strokeWidth: 2)
+            : const Icon(Icons.arrow_drop_down, size: 36),
         underline: Container(
           height: 2,
           color: Colors.transparent,
@@ -201,21 +202,22 @@ class _CityDropDown extends StatelessWidget {
   Widget build(BuildContext context) {
     var vm = context.watch<AddAddressViewModel>();
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 12),
+      padding: const EdgeInsets.symmetric(horizontal: 12),
       decoration: BoxDecoration(
-          color: Color(0xffe4e4e4), borderRadius: BorderRadius.circular(10)),
+          color: const Color(0xffe4e4e4),
+          borderRadius: BorderRadius.circular(10)),
       child: DropdownButton<City>(
         isExpanded: true,
         value: vm.selectedCity,
-        hint: Text(
+        hint: const Text(
           '',
           textAlign: TextAlign.center,
         ),
         iconSize: 24,
         elevation: 16,
         icon: vm.isLoading
-            ? CircularProgressIndicator(strokeWidth: 2)
-            : Icon(Icons.arrow_drop_down, size: 36),
+            ? const CircularProgressIndicator(strokeWidth: 2)
+            : const Icon(Icons.arrow_drop_down, size: 36),
         underline: Container(
           height: 2,
           color: Colors.transparent,
@@ -244,7 +246,7 @@ class _Stepper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(15),
+      padding: const EdgeInsets.all(15),
       child: Column(
         children: [
           Padding(
@@ -257,7 +259,7 @@ class _Stepper extends StatelessWidget {
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(25),
                       color: FimtoColors.primaryColor),
-                  child: Center(
+                  child: const Center(
                     child: Text(
                       '1',
                       style: TextStyle(
@@ -267,7 +269,7 @@ class _Stepper extends StatelessWidget {
                     ),
                   ),
                 ),
-                Expanded(child: Divider(thickness: 4)),
+                const Expanded(child: Divider(thickness: 4)),
                 Container(
                   width: 50,
                   height: 50,
@@ -275,7 +277,7 @@ class _Stepper extends StatelessWidget {
                       borderRadius: BorderRadius.circular(25),
                       border: Border.all(
                           color: FimtoColors.dividerColor, width: 3)),
-                  child: Center(
+                  child: const Center(
                       child: Text(
                     '2',
                     style: TextStyle(
@@ -284,7 +286,7 @@ class _Stepper extends StatelessWidget {
                         fontWeight: FontWeight.w800),
                   )),
                 ),
-                Expanded(child: Divider(thickness: 4)),
+                const Expanded(child: Divider(thickness: 4)),
                 Container(
                   width: 50,
                   height: 50,
@@ -292,7 +294,7 @@ class _Stepper extends StatelessWidget {
                       borderRadius: BorderRadius.circular(25),
                       border: Border.all(
                           color: FimtoColors.dividerColor, width: 3)),
-                  child: Center(
+                  child: const Center(
                     child: Text(
                       '3',
                       style: TextStyle(
@@ -310,21 +312,21 @@ class _Stepper extends StatelessWidget {
             children: [
               Text(
                 S.of(context).addAddress,
-                style: TextStyle(
+                style: const TextStyle(
                     color: Colors.black,
                     fontSize: 16,
                     fontWeight: FontWeight.w500),
               ),
               Text(
                 S.of(context).payment,
-                style: TextStyle(
+                style: const TextStyle(
                     color: FimtoColors.dividerColor,
                     fontSize: 16,
                     fontWeight: FontWeight.w800),
               ),
               Text(
                 S.of(context).confirmation,
-                style: TextStyle(
+                style: const TextStyle(
                     color: FimtoColors.dividerColor,
                     fontSize: 16,
                     fontWeight: FontWeight.w800),

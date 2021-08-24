@@ -22,7 +22,7 @@ class AddAddressViewModel extends ChangeNotifier {
   bool _isLoading = true;
   bool get isLoading => _isLoading;
 
-  List<OrderStatus> _currentOrders = [];
+  final List<OrderStatus> _currentOrders = [];
   List<OrderStatus> get currentOrders => _currentOrders;
 
   Future<void> initAsync() async {

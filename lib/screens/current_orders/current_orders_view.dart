@@ -11,16 +11,16 @@ class CurrentOrdersScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return ScreenTypeLayout(
       mobile: OrientationLayout(
-        portrait: CurrentOrdersScreenMobile(),
-        landscape: CurrentOrdersScreenMobile(),
+        portrait: const CurrentOrdersScreenMobile(),
+        landscape: const CurrentOrdersScreenMobile(),
       ),
       tablet: OrientationLayout(
-        portrait: CurrentOrdersScreenDesktop(),
-        landscape: CurrentOrdersScreenDesktop(),
+        portrait: const CurrentOrdersScreenDesktop(),
+        landscape:const CurrentOrdersScreenDesktop(),
       ),
       desktop: OrientationLayout(
-        landscape: CurrentOrdersScreenDesktop(),
-        portrait: CurrentOrdersScreenDesktop(),
+        landscape: const CurrentOrdersScreenDesktop(),
+        portrait: const CurrentOrdersScreenDesktop(),
       ),
     );
   }

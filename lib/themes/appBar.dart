@@ -5,14 +5,14 @@ import 'package:get/get.dart';
 class CustomAppBar extends StatelessWidget {
   final String title;
 
-  const CustomAppBar({required this.title});
+  const CustomAppBar({required this.title, Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Directionality(
       textDirection: TextDirection.ltr,
       child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 8),
+        padding: const EdgeInsets.symmetric(horizontal: 8),
         decoration: BoxDecoration(color: Colors.white, boxShadow: [
           BoxShadow(
             color: Colors.grey.withOpacity(0.2),

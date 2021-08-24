@@ -25,25 +25,27 @@ Route onGenerateRoute(RouteSettings settings) {
           builder: (context) => OnBoardView(), settings: settings);
     case homeRoute:
       return MaterialPageRoute(
-          builder: (context) => HomeView(), settings: settings);
+          builder: (context) => const HomeView(), settings: settings);
     case addAddressRoute:
       return MaterialPageRoute(
-          builder: (context) => AddAddressScreen(), settings: settings);
+          builder: (context) => const AddAddressScreen(), settings: settings);
     case selectToWhoRoute:
       return MaterialPageRoute(
-          builder: (context) => SelectToWhoScreen(), settings: settings);
+          builder: (context) => const SelectToWhoScreen(), settings: settings);
     case addPaymentMethodRoute:
       return MaterialPageRoute(
-          builder: (context) => AddPaymentMethodScreen(), settings: settings);
+          builder: (context) => const AddPaymentMethodScreen(),
+          settings: settings);
     case confirmOrderRoute:
       return MaterialPageRoute(
-          builder: (context) => ConfirmOrderScreen(), settings: settings);
+          builder: (context) => const ConfirmOrderScreen(), settings: settings);
     case leaveMessageRoute:
       return MaterialPageRoute(
-          builder: (context) => LeaveMessageScreen(), settings: settings);
+          builder: (context) => const LeaveMessageScreen(), settings: settings);
     case congratulationRoute:
       return MaterialPageRoute(
-          builder: (context) => CongratulationsScreen(), settings: settings);
+          builder: (context) => const CongratulationsScreen(),
+          settings: settings);
     case trackOrderRoute:
       return MaterialPageRoute(
           builder: (context) => const TrackOrderScreen(), settings: settings);
@@ -55,13 +57,14 @@ Route onGenerateRoute(RouteSettings settings) {
           builder: (context) => const LoginScreen(), settings: settings);
     case registerRoute:
       return MaterialPageRoute(
-          builder: (context) => RegisterScreen(), settings: settings);
+          builder: (context) => const RegisterScreen(), settings: settings);
     case currentOrdersRoute:
       return MaterialPageRoute(
-          builder: (context) => CurrentOrdersScreen(), settings: settings);
+          builder: (context) => const CurrentOrdersScreen(),
+          settings: settings);
 
     default:
       return MaterialPageRoute(
-          builder: (context) => HomeView(), settings: settings);
+          builder: (context) => const HomeView(), settings: settings);
   }
 }

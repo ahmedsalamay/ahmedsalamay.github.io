@@ -1,3 +1,4 @@
+import 'package:fimto_frame/models/language.dart';
 import 'package:provider/provider.dart';
 import 'leave_message_viewmodel.dart';
 import 'package:fimto_frame/themes/appBar.dart';
@@ -11,12 +12,18 @@ class LeaveMessageDesktop extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var language = context.watch<Language>();
     return ChangeNotifierProvider<LeaveMessageViewModel>(
         create: (_) => LeaveMessageViewModel(),
         child: Scaffold(
           backgroundColor: Colors.white,
-          endDrawer: CustomDrawer(),
-          body: _Body(),
+          endDrawer: language.currentLocale.languageCode == 'en'
+              ? const CustomDrawer()
+              : null,
+          drawer: language.currentLocale.languageCode == 'ar'
+              ? const CustomDrawer()
+              : null,
+          body: const _Body(),
         ));
   }
 }
@@ -40,18 +47,19 @@ class _Body extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    SizedBox(height: 35),
-                    Image(
+                    const SizedBox(height: 35),
+                    const Image(
                       height: 150,
                       image: AssetImage('assets/images/leave_message.png'),
                     ),
-                    SizedBox(height: 25),
+                    const SizedBox(height: 25),
                     Text(
                       S.of(context).messageToYourDear,
-                      style: TextStyle(fontSize: 26, color: Color(0xFF737888)),
+                      style: const TextStyle(
+                          fontSize: 26, color: Color(0xFF737888)),
                       textAlign: TextAlign.center,
                     ),
-                    SizedBox(height: 25),
+                    const SizedBox(height: 25),
                   ],
                 ),
               ),

@@ -11,16 +11,16 @@ class RegisterScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return ScreenTypeLayout(
       mobile: OrientationLayout(
-        portrait: RegisterScreenMobile(),
-        landscape: RegisterScreenMobile(),
+        portrait: const RegisterScreenMobile(),
+        landscape: const RegisterScreenMobile(),
       ),
       tablet: OrientationLayout(
-        portrait: RegisterScreenDesktop(),
-        landscape: RegisterScreenDesktop(),
+        portrait: const RegisterScreenDesktop(),
+        landscape: const RegisterScreenDesktop(),
       ),
       desktop: OrientationLayout(
-        landscape: RegisterScreenDesktop(),
-        portrait: RegisterScreenDesktop(),
+        landscape: const RegisterScreenDesktop(),
+        portrait: const RegisterScreenDesktop(),
       ),
     );
   }

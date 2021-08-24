@@ -9,6 +9,8 @@ import 'package:flutter/material.dart';
 import 'current_orders_viewmodel.dart';
 
 class CurrentOrdersScreenDesktop extends StatelessWidget {
+  const CurrentOrdersScreenDesktop({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     var language = context.watch<Language>();
@@ -21,10 +23,10 @@ class CurrentOrdersScreenDesktop extends StatelessWidget {
         child: Scaffold(
           backgroundColor: Colors.white,
           endDrawer: language.currentLocale.languageCode == 'en'
-              ? CustomDrawer()
+              ? const CustomDrawer()
               : null,
           drawer: language.currentLocale.languageCode == 'ar'
-              ? CustomDrawer()
+              ? const CustomDrawer()
               : null,
           body: _Body(),
         ));
@@ -35,10 +37,10 @@ class _Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Container(
+      child: SizedBox(
           height: double.infinity,
           child: Column(
-            children: [],
+            children: const[],
           )),
     );
   }

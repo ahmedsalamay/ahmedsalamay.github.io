@@ -5,34 +5,38 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class OnBoardView extends StatelessWidget {
+  const OnBoardView({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return ScreenTypeLayout(
       mobile: OrientationLayout(
-        portrait: OnBordingMobileView(),
-        landscape: OnBordingMobileView(),
+        portrait: const OnBordingMobileView(),
+        landscape: const OnBordingMobileView(),
       ),
       tablet: OrientationLayout(
-        portrait: OnBordingMobileView(),
-        landscape: OnBordingMobileView(),
+        portrait: const OnBordingMobileView(),
+        landscape: const OnBordingMobileView(),
       ),
       desktop: OrientationLayout(
-        landscape: OnBordingMobileView(),
-        portrait: OnBordingMobileView(),
+        landscape: const OnBordingMobileView(),
+        portrait: const OnBordingMobileView(),
       ),
     );
   }
 }
 
 class OnBordingMobileView extends StatelessWidget {
+  const OnBordingMobileView({Key? key}) : super(key: key);
+
   getOnBordingPages(BuildContext context) {
     final List<OnBording> onBordingPages = <OnBording>[
-      OnBording(Color(0xFF331f28), 'onboard1.png', S.of(context).noNails,
+      OnBording(const Color(0xFF331f28), 'onboard1.png', S.of(context).noNails,
           S.of(context).framesStickWall),
-      OnBording(Color(0xFFa5a5a5), 'onboard2.png', S.of(context).shapeFrame,
-          S.of(context).suitableShape),
-      OnBording(Color(0xFFe63716), 'onboard3.png', S.of(context).shippingFree,
-          S.of(context).egyptwideShipping),
+      OnBording(const Color(0xFFa5a5a5), 'onboard2.png',
+          S.of(context).shapeFrame, S.of(context).suitableShape),
+      OnBording(const Color(0xFFe63716), 'onboard3.png',
+          S.of(context).shippingFree, S.of(context).egyptwideShipping),
     ];
     return onBordingPages;
   }
@@ -70,7 +74,7 @@ class _PageSelector extends StatelessWidget {
     return Stack(
       children: <Widget>[
         TabBarView(
-          physics: AlwaysScrollableScrollPhysics(),
+          physics: const AlwaysScrollableScrollPhysics(),
           children: onbordingPages
               .map(
                 (page) => Container(
@@ -84,12 +88,12 @@ class _PageSelector extends StatelessWidget {
                       Image(
                         image: AssetImage('assets/images/' + page.imagePath),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 42,
                       ),
                       Text(page.title,
                           style: Theme.of(context).textTheme.headline1),
-                      SizedBox(
+                      const SizedBox(
                         height: 16,
                       ),
                       Padding(
@@ -128,7 +132,7 @@ class _PageSelector extends StatelessWidget {
                     ],
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 16,
                 ),
                 MaterialButton(
@@ -136,7 +140,7 @@ class _PageSelector extends StatelessWidget {
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(22.0)),
                   onPressed: () => Get.toNamed(homeRoute),
-                  child: Text(
+                  child: const Text(
                     'Next',
                     style: TextStyle(color: Colors.black, fontSize: 20),
                   ),

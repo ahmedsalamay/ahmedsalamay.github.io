@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'register_viewmodel.dart';
 
 class RegisterScreenDesktop extends StatelessWidget {
+  const RegisterScreenDesktop({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<RegisterViewModel>(
@@ -18,7 +19,7 @@ class RegisterScreenDesktop extends StatelessWidget {
               tokenService: context.read<TokenService>(),
             ),
         child: Scaffold(
-          backgroundColor: Color(0xFFf6fafb),
+          backgroundColor: const Color(0xFFf6fafb),
           body: _Body(),
         ));
   }
@@ -30,12 +31,12 @@ class _Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final vm = context.watch<RegisterViewModel>();
-    var size = MediaQuery.of(context).size;
+    final size = MediaQuery.of(context).size;
     return SafeArea(
       child: Center(
         child: Column(
           children: [
-            _Header(),
+            const _Header(),
             SizedBox(height: size.height * 0.1),
             Container(
               height: 450,
@@ -48,7 +49,7 @@ class _Body extends StatelessWidget {
                     color: Colors.grey.withOpacity(0.2),
                     spreadRadius: 2,
                     blurRadius: 2,
-                    offset: Offset(0, 2), // changes position of shadow
+                    offset: const Offset(0, 2), // changes position of shadow
                   )
                 ],
               ),
@@ -60,9 +61,9 @@ class _Body extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       Visibility(
-                        child: Center(child: CircularProgressIndicator()),
+                        child: const Center(child: CircularProgressIndicator()),
                         visible: vm.isLoading,
                       ),
                       TextFormField(
@@ -72,10 +73,10 @@ class _Body extends StatelessWidget {
                         keyboardType: TextInputType.phone,
                         textInputAction: TextInputAction.next,
                         decoration: InputDecoration(
-                            prefixIcon: Icon(Icons.phone),
+                            prefixIcon: const Icon(Icons.phone),
                             hintText: S.of(context).phoneNumber),
                       ),
-                      SizedBox(height: 15),
+                      const SizedBox(height: 15),
                       TextFormField(
                         textAlign: TextAlign.start,
                         onChanged: (value) => vm.onEmailChange(value),
@@ -83,10 +84,10 @@ class _Body extends StatelessWidget {
                         keyboardType: TextInputType.emailAddress,
                         textInputAction: TextInputAction.next,
                         decoration: InputDecoration(
-                            prefixIcon: Icon(Icons.email),
+                            prefixIcon: const Icon(Icons.email),
                             hintText: S.of(context).email),
                       ),
-                      SizedBox(height: 15),
+                      const SizedBox(height: 15),
                       TextFormField(
                         textAlign: TextAlign.start,
                         onChanged: (value) => vm.onPasswordChange(value),
@@ -94,15 +95,15 @@ class _Body extends StatelessWidget {
                         textInputAction: TextInputAction.done,
                         obscureText: true,
                         decoration: InputDecoration(
-                            prefixIcon: Icon(Icons.lock_outline),
+                            prefixIcon: const Icon(Icons.lock_outline),
                             hintText: S.of(context).password),
                       ),
-                      SizedBox(height: 40),
+                      const SizedBox(height: 40),
                       SolidButton(
                         text: S.of(context).register,
                         onTap: () => vm.registerAction(_formKey),
                       ),
-                      SizedBox(height: 30),
+                      const SizedBox(height: 30),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -138,9 +139,9 @@ class _Header extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 30, vertical: 25),
+      padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 25),
       child: Row(
-        children: [
+        children: const [
           Image(
             fit: BoxFit.contain,
             height: 30,

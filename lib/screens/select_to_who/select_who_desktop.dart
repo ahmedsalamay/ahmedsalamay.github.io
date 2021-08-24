@@ -1,4 +1,5 @@
 import 'package:fimto_frame/generated/l10n.dart';
+import 'package:fimto_frame/models/language.dart';
 import 'package:fimto_frame/models/order.dart';
 import 'package:fimto_frame/screens/select_to_who/select_to_who_viewmodel.dart';
 import 'package:fimto_frame/themes/appBar.dart';
@@ -14,12 +15,18 @@ class SelectToWhoDesktop extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var language = context.watch<Language>();
     return ChangeNotifierProvider<SelectToWhoViewModel>(
         create: (_) => SelectToWhoViewModel(order: context.read<Order>()),
         child: Scaffold(
           backgroundColor: Colors.white,
-          endDrawer: CustomDrawer(),
-          body: _Body(),
+          endDrawer: language.currentLocale.languageCode == 'en'
+              ? const CustomDrawer()
+              : null,
+          drawer: language.currentLocale.languageCode == 'ar'
+              ? const CustomDrawer()
+              : null,
+          body: const _Body(),
         ));
   }
 }
@@ -44,17 +51,18 @@ class _Body extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    SizedBox(height: 35),
+                    const SizedBox(height: 35),
                     Text(
                       S.of(context).selectCreateFrames,
-                      style: TextStyle(fontSize: 26, color: Color(0xFF737888)),
+                      style: const TextStyle(
+                          fontSize: 26, color: Color(0xFF737888)),
                       textAlign: TextAlign.center,
                     ),
-                    SizedBox(height: 150),
+                    const SizedBox(height: 150),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [GiftCard(), ForMeCard()],
+                      children: const [GiftCard(), ForMeCard()],
                     )
                   ],
                 ),

@@ -9,25 +9,25 @@ final ThemeData myTheme = ThemeData(
   primaryColorDark: FimtoColors.darkPrimaryColor,
   accentColor: FimtoColors.accentColor,
   accentColorBrightness: Brightness.dark,
-  canvasColor: Color(0xfffafafa),
+  canvasColor: const Color(0xfffafafa),
   scaffoldBackgroundColor: FimtoColors.surfaceColor,
-  bottomAppBarColor: Color(0xffffffff),
+  bottomAppBarColor: const Color(0xffffffff),
   cardColor: FimtoColors.surfaceColor,
   dividerColor: FimtoColors.dividerColor,
-  highlightColor: Color(0x66bcbcbc),
+  highlightColor: const Color(0x66bcbcbc),
   splashColor: Colors.transparent,
-  selectedRowColor: Color(0xfff5f5f5),
-  unselectedWidgetColor: Color(0x8a000000),
-  disabledColor: Color(0x61000000),
+  selectedRowColor: const Color(0xfff5f5f5),
+  unselectedWidgetColor: const Color(0x8a000000),
+  disabledColor: const Color(0x61000000),
   buttonColor: FimtoColors.primaryColor,
-  toggleableActiveColor: Color(0xff1e88e5),
-  secondaryHeaderColor: Color(0xffe3f2fd),
-  backgroundColor: Color(0xff90caf9),
-  dialogBackgroundColor: Color(0xffffffff),
+  toggleableActiveColor: const Color(0xff1e88e5),
+  secondaryHeaderColor: const Color(0xffe3f2fd),
+  backgroundColor: const Color(0xff90caf9),
+  dialogBackgroundColor: const Color(0xffffffff),
   indicatorColor: FimtoColors.secondaryColor,
   hintColor: FimtoColors.hintColor,
   errorColor: FimtoColors.errorColor,
-  buttonTheme: ButtonThemeData(
+  buttonTheme: const ButtonThemeData(
     textTheme: ButtonTextTheme.normal,
     minWidth: 88,
     height: 36,
@@ -63,7 +63,7 @@ final ThemeData myTheme = ThemeData(
       brightness: Brightness.light,
     ),
   ),
-  textTheme: TextTheme(
+  textTheme: const TextTheme(
     headline1: TextStyle(
       color: Colors.white,
       fontSize: 24,
@@ -131,7 +131,7 @@ final ThemeData myTheme = ThemeData(
       fontStyle: FontStyle.normal,
     ),
   ),
-  accentTextTheme: TextTheme(
+  accentTextTheme: const TextTheme(
     headline1: TextStyle(
       color: FimtoColors.primaryTextColor,
       fontSize: 16,
@@ -158,25 +158,25 @@ final ThemeData myTheme = ThemeData(
     ),
   ),
   inputDecorationTheme: InputDecorationTheme(
-    labelStyle: TextStyle(
+    labelStyle: const TextStyle(
       color: Color(0xdd000000),
       fontSize: 16,
       fontWeight: FontWeight.w400,
       fontStyle: FontStyle.normal,
     ),
-    helperStyle: TextStyle(
+    helperStyle: const TextStyle(
       color: Color(0xdd000000),
       fontSize: 16,
       fontWeight: FontWeight.w400,
       fontStyle: FontStyle.normal,
     ),
-    hintStyle: TextStyle(
+    hintStyle: const TextStyle(
       color: FimtoColors.hintColor,
       fontSize: 16,
       fontWeight: FontWeight.w400,
       fontStyle: FontStyle.normal,
     ),
-    errorStyle: TextStyle(
+    errorStyle: const TextStyle(
       color: FimtoColors.errorColor,
       fontSize: 16,
       fontWeight: FontWeight.w400,
@@ -184,31 +184,32 @@ final ThemeData myTheme = ThemeData(
     ),
     errorMaxLines: 2,
     isDense: false,
-    contentPadding: EdgeInsets.only(top: 12, bottom: 12, left: 15, right: 15),
+    contentPadding:
+        const EdgeInsets.only(top: 12, bottom: 12, left: 15, right: 15),
     isCollapsed: false,
-    prefixStyle: TextStyle(
+    prefixStyle: const TextStyle(
       color: FimtoColors.iconsColor,
       fontSize: 16,
       fontWeight: FontWeight.w400,
       fontStyle: FontStyle.normal,
     ),
-    suffixStyle: TextStyle(
+    suffixStyle: const TextStyle(
       color: FimtoColors.iconsColor,
       fontSize: 16,
       fontWeight: FontWeight.w400,
       fontStyle: FontStyle.normal,
     ),
-    counterStyle: TextStyle(
+    counterStyle: const TextStyle(
       color: FimtoColors.iconsColor,
       fontSize: 16,
       fontWeight: FontWeight.w400,
       fontStyle: FontStyle.normal,
     ),
     filled: true,
-    fillColor: Color(0xffe4e4e4),
+    fillColor: const Color(0xffe4e4e4),
     errorBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(10),
-      borderSide: BorderSide(
+      borderSide: const BorderSide(
         width: 2,
         style: BorderStyle.solid,
         color: FimtoColors.errorColor,
@@ -216,7 +217,7 @@ final ThemeData myTheme = ThemeData(
     ),
     focusedBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(10),
-      borderSide: BorderSide(
+      borderSide: const BorderSide(
         width: 2,
         style: BorderStyle.solid,
         color: Color(0xffe4e4e4),
@@ -224,7 +225,7 @@ final ThemeData myTheme = ThemeData(
     ),
     focusedErrorBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(10),
-      borderSide: BorderSide(
+      borderSide: const BorderSide(
         width: 2,
         style: BorderStyle.solid,
         color: FimtoColors.errorColor,
@@ -232,7 +233,7 @@ final ThemeData myTheme = ThemeData(
     ),
     disabledBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(10),
-      borderSide: BorderSide(
+      borderSide: const BorderSide(
         width: 2,
         style: BorderStyle.solid,
         color: Color(0xffe4e4e4),
@@ -240,7 +241,7 @@ final ThemeData myTheme = ThemeData(
     ),
     enabledBorder: OutlineInputBorder(
       borderRadius: BorderRadius.circular(10),
-      borderSide: BorderSide(
+      borderSide: const BorderSide(
         width: 2,
         style: BorderStyle.solid,
         color: Color(0xffe4e4e4),
@@ -248,53 +249,53 @@ final ThemeData myTheme = ThemeData(
     ),
     border: OutlineInputBorder(
       borderRadius: BorderRadius.circular(10),
-      borderSide: BorderSide(
+      borderSide: const BorderSide(
         width: 2,
         style: BorderStyle.solid,
         color: Color(0xffb4bcc7),
       ),
     ),
   ),
-  iconTheme: IconThemeData(color: FimtoColors.iconsColor, size: 26),
-  primaryIconTheme: IconThemeData(
+  iconTheme: const IconThemeData(color: FimtoColors.iconsColor, size: 26),
+  primaryIconTheme: const IconThemeData(
     color: Color(0xffffffff),
     opacity: 1,
     size: 24,
   ),
-  accentIconTheme: IconThemeData(
+  accentIconTheme: const IconThemeData(
     color: Color(0xffffffff),
     opacity: 1,
     size: 24,
   ),
-  tabBarTheme: TabBarTheme(
+  tabBarTheme: const TabBarTheme(
     indicatorSize: TabBarIndicatorSize.tab,
     labelColor: Color(0xffffffff),
     unselectedLabelColor: Color(0xb2ffffff),
   ),
-  dialogTheme: DialogTheme(
+  dialogTheme: const DialogTheme(
       shape: RoundedRectangleBorder(
     side: BorderSide(
-      color: Color(0xffffff),
+      color: Color(0xFFffffff),
       width: 0,
       style: BorderStyle.none,
     ),
     borderRadius: BorderRadius.all(Radius.circular(0.0)),
   )),
-  primaryTextTheme: TextTheme(
+  primaryTextTheme: const TextTheme(
     headline6: TextStyle(color: FimtoColors.appBarTitleColor),
   ),
-  appBarTheme: AppBarTheme(
+  appBarTheme: const AppBarTheme(
     brightness: Brightness.light,
     color: Colors.transparent,
     centerTitle: true,
     elevation: 0,
     iconTheme: IconThemeData(color: FimtoColors.appBarTitleColor),
   ),
-  dividerTheme: DividerThemeData(
+  dividerTheme: const DividerThemeData(
     thickness: 2,
     color: FimtoColors.dividerColor,
   ),
-  textSelectionTheme: TextSelectionThemeData(
+  textSelectionTheme: const TextSelectionThemeData(
     cursorColor: Color(0xff4285f4),
     selectionColor: Color(0xff90caf9),
     selectionHandleColor: Color(0xff64b5f6),

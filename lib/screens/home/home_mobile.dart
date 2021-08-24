@@ -21,6 +21,8 @@ import 'package:shimmer_animation/shimmer_animation.dart';
 import 'home_viewmodel.dart';
 
 class HomeViewMobile extends StatelessWidget {
+  const HomeViewMobile({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     var language = context.watch<Language>();
@@ -36,23 +38,23 @@ class HomeViewMobile extends StatelessWidget {
             child: Scaffold(
               backgroundColor: Colors.white,
               endDrawer: language.currentLocale.languageCode == 'en'
-                  ? CustomDrawer()
+                  ? const CustomDrawer()
                   : null,
               drawer: language.currentLocale.languageCode == 'ar'
-                  ? CustomDrawer()
+                  ? const CustomDrawer()
                   : null,
               body: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  CustomAppBar(title: ''),
+                  const CustomAppBar(title: ''),
                   Expanded(
                     child: SingleChildScrollView(
                       child: Column(
                         children: [
                           _Title(),
-                          _FramesPrice(),
-                          SizedBox(height: 15),
-                          _MoreInfo(),
+                          const _FramesPrice(),
+                          const SizedBox(height: 15),
+                          const _MoreInfo(),
                         ],
                       ),
                     ),
@@ -124,43 +126,43 @@ class _Title extends StatelessWidget {
     var vm = context.watch<HomeViewModel>();
     return Container(
       width: double.infinity,
-      padding: EdgeInsets.all(15),
+      padding: const EdgeInsets.all(15),
       decoration: BoxDecoration(
         // color: Colors.grey[300],
         borderRadius: BorderRadius.circular(8),
       ),
       child: Column(
         children: [
-          Image(
+          const Image(
             fit: BoxFit.contain,
             height: 50,
             color: FimtoColors.primaryColor,
             image: AssetImage('assets/images/logo.png'),
           ),
-          SizedBox(height: 25),
+          const SizedBox(height: 25),
           FutureBuilder<HomePageConfiguration>(
               future: vm.homePageConfiguration,
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
                   return _Video(videoId: snapshot.data!.videoLink);
                 } else if (snapshot.hasError) {
-                  return Text('Error');
+                  return const Text('Error');
                 }
                 return Shimmer(
-                  duration: Duration(milliseconds: 500), //Default value
-                  interval: Duration(
+                  duration: const Duration(milliseconds: 500), //Default value
+                  interval: const Duration(
                       milliseconds: 500), //Default value: Duration(seconds: 0)
                   color: Colors.grey.shade600, //Default value
                   colorOpacity: 0.3, //Default value
                   enabled: true, //Default value
-                  direction: ShimmerDirection.fromLTRB(), //Default Value
+                  direction: const ShimmerDirection.fromLTRB(), //Default Value
                   child: Container(
                     color: Colors.grey.shade300,
                     height: 250,
                   ),
                 );
               }),
-          SizedBox(height: 25),
+          const SizedBox(height: 25),
           Text(
             S.of(context).frameYourMoment,
             style: Theme.of(context).textTheme.headline2,
@@ -176,12 +178,12 @@ class _FramesPrice extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       child: Column(
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [
+            children: const [
               Image(
                 fit: BoxFit.fill,
                 height: 35,
@@ -201,16 +203,16 @@ class _FramesPrice extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(width: 16),
+          const SizedBox(width: 16),
           Text(
             S.of(context).getThreeFrames,
             style:
                 Theme.of(context).textTheme.headline2!.copyWith(fontSize: 20),
           ),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           Text(
             S.of(context).youCanExtraFrame,
-            style: TextStyle(
+            style: const TextStyle(
                 fontSize: 16, color: Colors.black, fontWeight: FontWeight.w500),
           ),
         ],
@@ -226,8 +228,8 @@ class _CustomContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 8, vertical: 20),
-      margin: EdgeInsets.symmetric(horizontal: 8, vertical: 6),
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 20),
+      margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
       width: MediaQuery.of(context).size.width * 0.83,
       decoration: BoxDecoration(
         color: Colors.white,
@@ -236,7 +238,7 @@ class _CustomContainer extends StatelessWidget {
       child: Text(
         text,
         textAlign: TextAlign.center,
-        style: TextStyle(
+        style: const TextStyle(
           color: Colors.black,
           fontWeight: FontWeight.w500,
           fontSize: 17,
@@ -253,7 +255,7 @@ class _MoreInfo extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      padding: EdgeInsets.all(15),
+      padding: const EdgeInsets.all(15),
       decoration: BoxDecoration(
         color: Colors.grey[200],
         borderRadius: BorderRadius.circular(6),
@@ -264,27 +266,27 @@ class _MoreInfo extends StatelessWidget {
           _CustomContainer(text: S.of(context).changLocation),
           _CustomContainer(text: S.of(context).shippingFree),
           _CustomContainer(text: S.of(context).suitableShape),
-          SizedBox(height: 15),
-          _SocialPosts(),
-          SizedBox(height: 15),
+          const SizedBox(height: 15),
+          const _SocialPosts(),
+          const SizedBox(height: 15),
           _CustomContainer(text: S.of(context).perfectSize),
           _CustomContainer(text: S.of(context).youCanChangeThePhoto),
           _CustomContainer(text: S.of(context).addAestheticTouch),
-          SizedBox(height: 25),
+          const SizedBox(height: 25),
           Text(
             S.of(context).guaranteeOurFrames,
             textAlign: TextAlign.center,
-            style: TextStyle(
+            style: const TextStyle(
               color: Colors.black,
               fontWeight: FontWeight.w600,
               fontSize: 14,
             ),
           ),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           Text(
             S.of(context).youCanRetrieve,
             textAlign: TextAlign.center,
-            style: TextStyle(
+            style: const TextStyle(
               color: Colors.black,
               fontWeight: FontWeight.w400,
               fontSize: 12,
@@ -302,7 +304,7 @@ class _SocialPosts extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var vm = context.watch<HomeViewModel>();
-    return Container(
+    return SizedBox(
       width: MediaQuery.of(context).size.width * 0.75,
       height: 300,
       child: FutureBuilder<List<SocialReviews>>(
@@ -316,8 +318,8 @@ class _SocialPosts extends StatelessWidget {
                       .map((e) => Container(
                             height: 400,
                             width: 300,
-                            padding: EdgeInsets.all(15),
-                            child: Placeholder(
+                            padding: const EdgeInsets.all(15),
+                            child: const Placeholder(
                               strokeWidth: 3,
                             )
                             /* Image(
@@ -330,16 +332,16 @@ class _SocialPosts extends StatelessWidget {
                 ),
               );
             } else if (snapshot.hasError) {
-              return Text('Error');
+              return const Text('Error');
             }
             return Shimmer(
-              duration: Duration(milliseconds: 500), //Default value
-              interval: Duration(
+              duration: const Duration(milliseconds: 500), //Default value
+              interval: const Duration(
                   milliseconds: 500), //Default value: Duration(seconds: 0)
               color: Colors.grey.shade600, //Default value
               colorOpacity: 0.3, //Default value
               enabled: true, //Default value
-              direction: ShimmerDirection.fromLTRB(), //Default Value
+              direction: const ShimmerDirection.fromLTRB(), //Default Value
               child: Container(
                 color: Colors.grey.shade300,
               ),

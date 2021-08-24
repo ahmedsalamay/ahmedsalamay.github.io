@@ -6,12 +6,13 @@ class SolidButton extends StatelessWidget {
   final void Function()? onTap;
   final Color background;
   final bool isLoading;
-  const SolidButton({
-    this.onTap,
-    required this.text,
-    this.background = FimtoColors.primaryColor,
-    this.isLoading = false,
-  });
+  const SolidButton(
+      {this.onTap,
+      required this.text,
+      this.background = FimtoColors.primaryColor,
+      this.isLoading = false,
+      Key? key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +26,7 @@ class SolidButton extends StatelessWidget {
         height: 50,
         child: Center(
           child: isLoading
-              ? CircularProgressIndicator()
+              ? const CircularProgressIndicator()
               : Text(
                   text!,
                   style: Theme.of(context).textTheme.button,
@@ -42,13 +43,14 @@ class SolidButtonWithIcon extends StatelessWidget {
   final Color background;
   final bool isLoading;
   final IconData iconData;
-  const SolidButtonWithIcon({
-    this.onTap,
-    required this.text,
-    required this.iconData,
-    this.background = FimtoColors.primaryColor,
-    this.isLoading = false,
-  });
+  const SolidButtonWithIcon(
+      {this.onTap,
+      required this.text,
+      required this.iconData,
+      this.background = FimtoColors.primaryColor,
+      this.isLoading = false,
+      Key? key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +64,7 @@ class SolidButtonWithIcon extends StatelessWidget {
         height: 50,
         child: Center(
             child: isLoading
-                ? CircularProgressIndicator()
+                ? const CircularProgressIndicator()
                 : Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
@@ -84,10 +86,8 @@ class SolidButtonWithIcon extends StatelessWidget {
 class GradientButton extends StatelessWidget {
   final String? text;
   final void Function()? onTap;
-  const GradientButton({
-    this.onTap,
-    required this.text,
-  });
+  const GradientButton({this.onTap, required this.text, Key? key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -95,7 +95,7 @@ class GradientButton extends StatelessWidget {
       onTap: onTap,
       child: Container(
         height: 45,
-        margin: EdgeInsets.symmetric(vertical: 6),
+        margin: const EdgeInsets.symmetric(vertical: 6),
         width: MediaQuery.of(context).size.width * 0.75,
         child: Center(
             child: Text(
@@ -119,7 +119,7 @@ class GradientButton extends StatelessWidget {
 
 class DefaultOutlineBorder extends StatelessWidget {
   final Widget child;
-  const DefaultOutlineBorder({required this.child});
+  const DefaultOutlineBorder({required this.child, Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

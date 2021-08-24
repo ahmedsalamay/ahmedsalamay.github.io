@@ -11,6 +11,8 @@ import 'package:provider/provider.dart';
 import 'confirm_order_viewmodel.dart';
 
 class ConfirmOrderScreenDesktop extends StatelessWidget {
+  const ConfirmOrderScreenDesktop({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<ConfirmOrderViewModel>(
@@ -31,22 +33,22 @@ class _Body extends StatelessWidget {
   Widget build(BuildContext context) {
     final vm = context.watch<ConfirmOrderViewModel>();
     return SafeArea(
-      child: Container(
+      child: SizedBox(
           height: double.infinity,
           width: double.infinity,
           child: Row(
             children: [
-              Expanded(flex: 1, child: _Stepper()),
+              const Expanded(flex: 1, child: _Stepper()),
               Expanded(
                 flex: 3,
                 child: Column(
                   children: [
                     _OrderSummary(),
-                    SizedBox(height: 40),
+                    const SizedBox(height: 40),
                     Visibility(
                         visible: vm.isLoading,
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
+                        child: const Padding(
+                          padding: EdgeInsets.all(8.0),
                           child: CircularProgressIndicator(),
                         )),
                     SizedBox(
@@ -83,12 +85,12 @@ class _OrderSummary extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(height: 30),
+          const SizedBox(height: 30),
           Text(
             S.of(context).orderSummary,
             style: Theme.of(context).textTheme.headline3,
           ),
-          SizedBox(height: 15),
+          const SizedBox(height: 15),
           _OrderSummaryItem(
             title: S.of(context).address,
             value: vm.order.address!,
@@ -97,8 +99,8 @@ class _OrderSummary extends StatelessWidget {
             title: S.of(context).paymentMethod,
             value: vm.order.paymentMethod!,
           ),
-          _DatePicker(),
-          _PriceSummary()
+          const _DatePicker(),
+          const _PriceSummary()
         ],
       ),
     );
@@ -111,14 +113,14 @@ class _Stepper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      constraints: BoxConstraints(maxWidth: 300),
+      constraints: const BoxConstraints(maxWidth: 300),
       height: double.infinity,
-      color: Color(0xFFf9f9f9),
+      color: const Color(0xFFf9f9f9),
       child: Row(
         children: [
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-            constraints: BoxConstraints(maxHeight: 400),
+            constraints: const BoxConstraints(maxHeight: 400),
             child: Column(
               children: [
                 Container(
@@ -127,47 +129,47 @@ class _Stepper extends StatelessWidget {
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(25),
                       color: FimtoColors.successColor),
-                  child: Center(
+                  child: const Center(
                       child: Icon(
                     Icons.check,
                     color: Colors.white,
                     size: 30,
                   )),
                 ),
-                SizedBox(height: 12),
-                Expanded(
+                const SizedBox(height: 12),
+                const Expanded(
                     child: VerticalDivider(
                   thickness: 4,
                   color: FimtoColors.successColor,
                 )),
-                SizedBox(height: 12),
+                const SizedBox(height: 12),
                 Container(
                   width: 50,
                   height: 50,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(25),
                       color: FimtoColors.successColor),
-                  child: Center(
+                  child: const Center(
                       child: Icon(
                     Icons.check,
                     color: Colors.white,
                     size: 30,
                   )),
                 ),
-                SizedBox(height: 12),
-                Expanded(
+                const SizedBox(height: 12),
+                const Expanded(
                     child: VerticalDivider(
                   thickness: 4,
                   color: FimtoColors.successColor,
                 )),
-                SizedBox(height: 12),
+                const SizedBox(height: 12),
                 Container(
                   width: 50,
                   height: 50,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(25),
                       color: FimtoColors.primaryColor),
-                  child: Center(
+                  child: const Center(
                     child: Text(
                       '3',
                       style: TextStyle(
@@ -182,27 +184,27 @@ class _Stepper extends StatelessWidget {
           ),
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
-            constraints: BoxConstraints(maxHeight: 400),
+            constraints: const BoxConstraints(maxHeight: 400),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
                   S.of(context).addAddress,
-                  style: TextStyle(
+                  style: const TextStyle(
                       color: Colors.black,
                       fontSize: 16,
                       fontWeight: FontWeight.w700),
                 ),
                 Text(
                   S.of(context).payment,
-                  style: TextStyle(
+                  style: const TextStyle(
                       color: Colors.black,
                       fontSize: 16,
                       fontWeight: FontWeight.w700),
                 ),
                 Text(
                   S.of(context).confirmation,
-                  style: TextStyle(
+                  style: const TextStyle(
                       color: Colors.black,
                       fontSize: 16,
                       fontWeight: FontWeight.w700),
@@ -239,10 +241,10 @@ class _OrderSummaryItem extends StatelessWidget {
                 .headline3!
                 .copyWith(fontSize: 19, fontWeight: FontWeight.w600),
           ),
-          SizedBox(height: 8),
+          const SizedBox(height: 8),
           Container(
             width: MediaQuery.of(context).size.width,
-            padding: EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
             child: Text(
               value,
               style: Theme.of(context).textTheme.headline5!.copyWith(
@@ -251,7 +253,7 @@ class _OrderSummaryItem extends StatelessWidget {
                   ),
             ),
             decoration: BoxDecoration(
-                color: Color(0xFFe4e4e4),
+                color: const Color(0xFFe4e4e4),
                 borderRadius: BorderRadius.circular(10)),
           ),
         ],
@@ -271,13 +273,13 @@ class _PriceSummary extends StatelessWidget {
           BoxConstraints(maxWidth: MediaQuery.of(context).size.width * 0.5),
       color: Colors.white,
       child: Container(
-          padding: EdgeInsets.symmetric(vertical: 40, horizontal: 12),
+          padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 12),
           child: Column(
             children: [
               _PruceSummaryRowItem(S.of(context).frames, '269LE'),
               _PruceSummaryRowItem(S.of(context).extraFrame, '74LE'),
               _PruceSummaryRowItem(S.of(context).delivery, S.of(context).free),
-              Divider(),
+              const Divider(),
               _PriceTotal(S.of(context).total, '343LE'),
             ],
           )),
@@ -300,7 +302,7 @@ class _PruceSummaryRowItem extends StatelessWidget {
         children: [
           Text(
             title,
-            style: TextStyle(
+            style: const TextStyle(
                 fontSize: 16,
                 color: Color(0xFF737888),
                 fontWeight: FontWeight.w600),
@@ -308,7 +310,7 @@ class _PruceSummaryRowItem extends StatelessWidget {
           ),
           Text(
             value,
-            style: TextStyle(
+            style: const TextStyle(
                 fontSize: 18,
                 color: Color(0xFF737888),
                 fontWeight: FontWeight.w600),
@@ -335,13 +337,13 @@ class _PriceTotal extends StatelessWidget {
         children: [
           Text(
             title,
-            style: TextStyle(
+            style: const TextStyle(
                 fontSize: 20, color: Colors.black, fontWeight: FontWeight.w800),
             textAlign: TextAlign.center,
           ),
           Text(
             value,
-            style: TextStyle(
+            style: const TextStyle(
                 fontSize: 20, color: Colors.black, fontWeight: FontWeight.w800),
             textAlign: TextAlign.center,
           ),
@@ -367,23 +369,23 @@ class _DatePicker extends StatelessWidget {
               .headline3!
               .copyWith(fontSize: 19, fontWeight: FontWeight.w600),
         ),
-        SizedBox(height: 8),
+        const SizedBox(height: 8),
         MaterialButton(
           onPressed: () => _showDatePicker(context),
-          padding: EdgeInsets.all(0),
+          padding: const EdgeInsets.all(0),
           child: Container(
             width: MediaQuery.of(context).size.width,
-            padding: EdgeInsets.symmetric(vertical: 10),
+            padding: const EdgeInsets.symmetric(vertical: 10),
             constraints: BoxConstraints(
                 maxWidth: MediaQuery.of(context).size.width * 0.5),
             decoration: BoxDecoration(
-                color: Color(0xFFe4e4e4),
+                color: const Color(0xFFe4e4e4),
                 borderRadius: BorderRadius.circular(10)),
             child: Row(
               children: [
-                SizedBox(width: 12),
-                Icon(Icons.calendar_today),
-                SizedBox(width: 12),
+                const SizedBox(width: 12),
+                const Icon(Icons.calendar_today),
+                const SizedBox(width: 12),
                 Text(
                   vm.deliveryDate ?? '',
                   style: Theme.of(context)
@@ -403,9 +405,9 @@ class _DatePicker extends StatelessWidget {
     var vm = context.read<ConfirmOrderViewModel>();
     final picked = await showDatePicker(
       context: context,
-      initialDate: DateTime.now().add(Duration(hours: 12)),
-      firstDate: DateTime.now().add(Duration(hours: 24)),
-      lastDate: DateTime.now().add(Duration(hours: 4320)),
+      initialDate: DateTime.now().add(const Duration(hours: 12)),
+      firstDate: DateTime.now().add(const Duration(hours: 24)),
+      lastDate: DateTime.now().add(const Duration(hours: 4320)),
     );
     if (picked != null) {
       vm.selectDeliveryDate(picked);

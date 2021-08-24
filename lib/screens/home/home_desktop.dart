@@ -17,6 +17,8 @@ import 'package:provider/provider.dart';
 import 'home_viewmodel.dart';
 
 class HomeViewDesktop extends StatelessWidget {
+  const HomeViewDesktop({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<HomeViewModel>(
@@ -25,7 +27,7 @@ class HomeViewDesktop extends StatelessWidget {
             messageService: context.read<MessageService>(),
             order: context.read<Order>(),
             configurationRepository: context.read<ConfigurationRepository>()),
-        child: _Body());
+        child: const _Body());
   }
 }
 
@@ -42,17 +44,17 @@ class _Body extends StatelessWidget {
         body: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Header(),
-            SizedBox(height: 15),
+            const Header(),
+            const SizedBox(height: 15),
             Expanded(
               child: SingleChildScrollView(
                 child: Column(
                   children: [
                     _Title(),
-                    SizedBox(height: 15),
-                    _MoreInfo(),
-                    Divider(indent: 20, endIndent: 20),
-                    Footer()
+                    const SizedBox(height: 15),
+                    const _MoreInfo(),
+                    const Divider(indent: 20, endIndent: 20),
+                    const Footer()
                   ],
                 ),
               ),
@@ -125,7 +127,7 @@ class _Title extends StatelessWidget {
     var width = MediaQuery.of(context).size.width;
     return Container(
       width: double.infinity,
-      padding: EdgeInsets.fromLTRB(25, 100, 25, 25),
+      padding: const EdgeInsets.fromLTRB(25, 100, 25, 25),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
       ),
@@ -140,19 +142,21 @@ class _Title extends StatelessWidget {
                   if (snapshot.hasData) {
                     return _Video(videoId: snapshot.data!.videoLink);
                   } else if (snapshot.hasError) {
-                    return Text('Error');
+                    return const Text('Error');
                   }
                   return Padding(
                     padding: EdgeInsets.symmetric(horizontal: width * 0.07),
                     child: Shimmer(
-                      duration: Duration(milliseconds: 500), //Default value
-                      interval: Duration(
+                      duration:
+                          const Duration(milliseconds: 500), //Default value
+                      interval: const Duration(
                           milliseconds:
                               500), //Default value: Duration(seconds: 0)
                       color: Colors.grey.shade600, //Default value
                       colorOpacity: 0.3, //Default value
                       enabled: true, //Default value
-                      direction: ShimmerDirection.fromLTRB(), //Default Value
+                      direction:
+                          const ShimmerDirection.fromLTRB(), //Default Value
                       child: Container(
                         color: Colors.grey.shade300,
                         height: 350,
@@ -162,7 +166,7 @@ class _Title extends StatelessWidget {
                   );
                 }),
           ),
-          Expanded(flex: 2, child: _FrameYourMoment())
+          const Expanded(flex: 2, child: _FrameYourMoment())
         ],
       ),
     );
@@ -180,7 +184,7 @@ class _FramesPrices extends StatelessWidget {
       children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [
+          children: const [
             Image(
               fit: BoxFit.fill,
               height: 45,
@@ -200,15 +204,15 @@ class _FramesPrices extends StatelessWidget {
             ),
           ],
         ),
-        SizedBox(height: 15),
+        const SizedBox(height: 15),
         Text(
           S.of(context).getThreeFrames,
           style: Theme.of(context).textTheme.headline2!.copyWith(fontSize: 24),
         ),
-        SizedBox(height: 15),
+        const SizedBox(height: 15),
         Text(
           S.of(context).youCanExtraFrame,
-          style: TextStyle(
+          style: const TextStyle(
               fontSize: 22, color: Colors.black, fontWeight: FontWeight.w700),
         ),
       ],
@@ -223,7 +227,7 @@ class _FrameYourMoment extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 300,
-      padding: EdgeInsets.symmetric(horizontal: 50),
+      padding: const EdgeInsets.symmetric(horizontal: 50),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -233,7 +237,7 @@ class _FrameYourMoment extends StatelessWidget {
             style:
                 Theme.of(context).textTheme.headline3!.copyWith(fontSize: 40),
           ),
-          SizedBox(height: 25),
+          const SizedBox(height: 25),
           Expanded(
             child: Text(
               S.of(context).addAestheticTouch,
@@ -244,7 +248,7 @@ class _FrameYourMoment extends StatelessWidget {
                   .copyWith(fontSize: 16, fontWeight: FontWeight.w500),
             ),
           ),
-          SizedBox(height: 25),
+          const SizedBox(height: 25),
           ElevatedButton(
               onPressed: () => Get.toNamed(selectToWhoRoute),
               child: Padding(
@@ -252,14 +256,14 @@ class _FrameYourMoment extends StatelessWidget {
                     const EdgeInsets.symmetric(horizontal: 100, vertical: 15),
                 child: Text(S.of(context).letsGo),
               )),
-          SizedBox(height: 25),
+          const SizedBox(height: 25),
           Row(
             children: [
-              Icon(
+              const Icon(
                 Icons.delivery_dining,
                 color: Colors.black,
               ),
-              SizedBox(width: 10),
+              const SizedBox(width: 10),
               Text(
                 S.of(context).shippingFree,
                 maxLines: 2,
@@ -277,11 +281,13 @@ class _FrameYourMoment extends StatelessWidget {
 }
 
 class _CustomContainer extends StatelessWidget {
+  const _CustomContainer({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 6, vertical: 6),
-      margin: EdgeInsets.symmetric(horizontal: 8, vertical: 6),
+      padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 6),
+      margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
       height: 300,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -306,11 +312,11 @@ class _BulletPoint extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Icon(Icons.arrow_forward_ios_outlined, color: Colors.black),
-        SizedBox(width: 10),
+        const Icon(Icons.arrow_forward_ios_outlined, color: Colors.black),
+        const SizedBox(width: 10),
         Text(text,
             textAlign: TextAlign.center,
-            style: TextStyle(
+            style: const TextStyle(
               color: Colors.black,
               fontWeight: FontWeight.w600,
               fontSize: 18,
@@ -327,7 +333,7 @@ class _MoreInfo extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      padding: EdgeInsets.symmetric(vertical: 80, horizontal: 25),
+      padding: const EdgeInsets.symmetric(vertical: 80, horizontal: 25),
       decoration: BoxDecoration(
         // color: Colors.grey[200],
         borderRadius: BorderRadius.circular(6),
@@ -335,28 +341,28 @@ class _MoreInfo extends StatelessWidget {
       child: Column(
         children: [
           Row(
-            children: [
+            children: const [
               Expanded(flex: 3, child: _CustomContainer()),
               Expanded(flex: 2, child: _FramesPrices()),
             ],
           ),
-          SizedBox(height: 50),
-          _SocialPosts(),
-          SizedBox(height: 50),
+          const SizedBox(height: 50),
+          const _SocialPosts(),
+          const SizedBox(height: 50),
           Text(
             S.of(context).guaranteeOurFrames,
             textAlign: TextAlign.center,
-            style: TextStyle(
+            style: const TextStyle(
               color: Colors.black,
               fontWeight: FontWeight.w600,
               fontSize: 18,
             ),
           ),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           Text(
             S.of(context).youCanRetrieve,
             textAlign: TextAlign.center,
-            style: TextStyle(
+            style: const TextStyle(
               color: Colors.black,
               fontWeight: FontWeight.w400,
               fontSize: 16,
@@ -376,7 +382,7 @@ class _SocialPosts extends StatelessWidget {
     var vm = context.watch<HomeViewModel>();
     return Container(
         height: 400,
-        padding: EdgeInsets.symmetric(horizontal: 25, vertical: 15),
+        padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 15),
         child: FutureBuilder<List<SocialReviews>>(
             future: vm.socialReviews,
             builder: (context, snapshot) {
@@ -388,8 +394,8 @@ class _SocialPosts extends StatelessWidget {
                         .map((e) => Container(
                               height: 400,
                               width: 350,
-                              padding: EdgeInsets.all(15),
-                              child: Placeholder(
+                              padding: const EdgeInsets.all(15),
+                              child: const Placeholder(
                                 strokeWidth: 3,
                               )
                               /* Image(
@@ -402,16 +408,16 @@ class _SocialPosts extends StatelessWidget {
                   ),
                 );
               } else if (snapshot.hasError) {
-                return Text('Error');
+                return const Text('Error');
               }
               return Shimmer(
-                duration: Duration(milliseconds: 500), //Default value
-                interval: Duration(
+                duration: const Duration(milliseconds: 500), //Default value
+                interval: const Duration(
                     milliseconds: 500), //Default value: Duration(seconds: 0)
                 color: Colors.grey.shade600, //Default value
                 colorOpacity: 0.3, //Default value
                 enabled: true, //Default value
-                direction: ShimmerDirection.fromLTRB(), //Default Value
+                direction: const ShimmerDirection.fromLTRB(), //Default Value
                 child: Container(
                   color: Colors.grey.shade300,
                   height: 400,

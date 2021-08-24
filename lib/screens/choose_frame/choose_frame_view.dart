@@ -5,20 +5,22 @@ import 'choose_frame_desktop.dart';
 import 'choose_frame_mobile.dart';
 
 class ChooseFrameScreen extends StatelessWidget {
+  const ChooseFrameScreen({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return ScreenTypeLayout(
       mobile: OrientationLayout(
-        portrait: ChooseFrameMobile(),
-        landscape: ChooseFrameMobile(),
+        portrait: const ChooseFrameMobile(),
+        landscape: const ChooseFrameMobile(),
       ),
       tablet: OrientationLayout(
-        portrait: ChooseFrameDesktop(),
-        landscape: ChooseFrameDesktop(),
+        portrait: const ChooseFrameDesktop(),
+        landscape: const ChooseFrameDesktop(),
       ),
       desktop: OrientationLayout(
-        landscape: ChooseFrameDesktop(),
-        portrait: ChooseFrameDesktop(),
+        landscape: const ChooseFrameDesktop(),
+        portrait: const ChooseFrameDesktop(),
       ),
     );
   }

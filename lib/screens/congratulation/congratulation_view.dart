@@ -10,16 +10,16 @@ class CongratulationsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return ScreenTypeLayout(
       mobile: OrientationLayout(
-        portrait: CongratulationsMobile(),
-        landscape: CongratulationsMobile(),
+        portrait: const CongratulationsMobile(),
+        landscape: const CongratulationsMobile(),
       ),
       tablet: OrientationLayout(
-        portrait: CongratulationsDesktop(),
-        landscape: CongratulationsDesktop(),
+        portrait: const CongratulationsDesktop(),
+        landscape: const CongratulationsDesktop(),
       ),
       desktop: OrientationLayout(
-        landscape: CongratulationsDesktop(),
-        portrait: CongratulationsDesktop(),
+        landscape: const CongratulationsDesktop(),
+        portrait: const CongratulationsDesktop(),
       ),
     );
   }

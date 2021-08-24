@@ -1,5 +1,6 @@
 import 'package:card_swiper/card_swiper.dart';
 import 'package:fimto_frame/models/facebook_photo.dart';
+import 'package:fimto_frame/models/language.dart';
 import 'package:fimto_frame/models/order.dart';
 import 'package:fimto_frame/repository/remote/facebook_repository.dart';
 import 'package:fimto_frame/services/connection_service.dart';
@@ -16,8 +17,12 @@ import 'package:fimto_frame/generated/l10n.dart';
 import 'package:flutter/material.dart';
 
 class ChooseFrameMobile extends StatelessWidget {
+  const ChooseFrameMobile({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
+    var language = context.watch<Language>();
+
     return ChangeNotifierProvider<ChooseFrameViewModel>(
         create: (_) => ChooseFrameViewModel(
               facebookRepository: context.read<FacebookRepository>(),
@@ -27,8 +32,13 @@ class ChooseFrameMobile extends StatelessWidget {
             ),
         child: Scaffold(
           backgroundColor: Colors.white,
-          endDrawer: CustomDrawer(),
-          body: _Body(),
+          endDrawer: language.currentLocale.languageCode == 'en'
+              ? const CustomDrawer()
+              : null,
+          drawer: language.currentLocale.languageCode == 'ar'
+              ? const CustomDrawer()
+              : null,
+          body: const _Body(),
         ));
   }
 }
@@ -55,12 +65,14 @@ class _Body extends StatelessWidget {
                   child: SingleChildScrollView(
                     child: Column(
                       children: [
-                        SizedBox(height: 25),
-                        _Frames(),
-                        SizedBox(height: 20),
-                        vm.isImagesPicked ? _FramePreview() : _PickPhotos(),
-                        SizedBox(height: 15),
-                        _Walls(),
+                        const SizedBox(height: 25),
+                        const _Frames(),
+                        const SizedBox(height: 20),
+                        vm.isImagesPicked
+                            ? const _FramePreview()
+                            : const _PickPhotos(),
+                        const SizedBox(height: 15),
+                        const _Walls(),
                       ],
                     ),
                   ),
@@ -87,7 +99,7 @@ class _Body extends StatelessWidget {
           ),
           Visibility(
               visible: vm.isLoading,
-              child: Align(
+              child: const Align(
                   alignment: Alignment.center,
                   child: CircularProgressIndicator()))
         ],
@@ -103,13 +115,13 @@ class _Walls extends StatelessWidget {
   Widget build(BuildContext context) {
     var vm = context.watch<ChooseFrameViewModel>();
     var size = MediaQuery.of(context).size;
-    return Container(
+    return SizedBox(
       height: 300,
       width: 300,
       child: Stack(
         clipBehavior: Clip.hardEdge,
         children: [
-          Image(
+          const Image(
             height: 300,
             width: 300,
             fit: BoxFit.fill,
@@ -157,7 +169,7 @@ class _PickPhotos extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Container(
+      child: SizedBox(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -168,10 +180,10 @@ class _PickPhotos extends StatelessWidget {
                   .headline3!
                   .copyWith(fontWeight: FontWeight.w900, fontSize: 22),
             ),
-            SizedBox(height: 40),
-            _UploadPhoto(),
-            SizedBox(height: 35),
-            _ImportPhoto()
+            const SizedBox(height: 40),
+            const _UploadPhoto(),
+            const SizedBox(height: 35),
+            const _ImportPhoto()
           ],
         ),
       ),
@@ -189,14 +201,14 @@ class _UploadPhoto extends StatelessWidget {
       height: 150,
       width: 150,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(8)),
+        borderRadius: const BorderRadius.all(Radius.circular(8)),
         color: Colors.white,
         boxShadow: [
           BoxShadow(
             color: Colors.grey.withOpacity(0.2),
             spreadRadius: 2,
             blurRadius: 2,
-            offset: Offset(0, 2), // changes position of shadow
+            offset: const Offset(0, 2), // changes position of shadow
           )
         ],
       ),
@@ -206,12 +218,12 @@ class _UploadPhoto extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(
+            const Icon(
               Icons.camera_alt,
               color: FimtoColors.primaryColor,
               size: 40,
             ),
-            SizedBox(height: 15),
+            const SizedBox(height: 15),
             Text(
               S.of(context).uploadPhotos,
               style: Theme.of(context)
@@ -232,7 +244,7 @@ class _ImportPhoto extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var vm = context.read<ChooseFrameViewModel>();
-    return Container(
+    return SizedBox(
         height: 150,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -241,14 +253,14 @@ class _ImportPhoto extends StatelessWidget {
               height: 130,
               width: 130,
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(8)),
+                borderRadius: const BorderRadius.all(Radius.circular(8)),
                 color: Colors.white,
                 boxShadow: [
                   BoxShadow(
                     color: Colors.grey.withOpacity(0.2),
                     spreadRadius: 2,
                     blurRadius: 2,
-                    offset: Offset(0, 2), // changes position of shadow
+                    offset: const Offset(0, 2), // changes position of shadow
                   )
                 ],
               ),
@@ -267,10 +279,10 @@ class _ImportPhoto extends StatelessWidget {
                   children: [
                     IconButton(
                       icon: Image.asset('assets/images/facebook.png'),
-                      padding: EdgeInsets.all(0),
+                      padding: const EdgeInsets.all(0),
                       onPressed: () {},
                     ),
-                    SizedBox(height: 15),
+                    const SizedBox(height: 15),
                     Text(
                       S.of(context).importFromFacebook,
                       textAlign: TextAlign.center,
@@ -287,14 +299,14 @@ class _ImportPhoto extends StatelessWidget {
               height: 130,
               width: 130,
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(8)),
+                borderRadius: const BorderRadius.all(Radius.circular(8)),
                 color: Colors.white,
                 boxShadow: [
                   BoxShadow(
                     color: Colors.grey.withOpacity(0.2),
                     spreadRadius: 2,
                     blurRadius: 2,
-                    offset: Offset(0, 2), // changes position of shadow
+                    offset: const Offset(0, 2), // changes position of shadow
                   )
                 ],
               ),
@@ -313,10 +325,10 @@ class _ImportPhoto extends StatelessWidget {
                   children: [
                     IconButton(
                       icon: Image.asset('assets/images/instagram_colored.png'),
-                      padding: EdgeInsets.all(0),
+                      padding: const EdgeInsets.all(0),
                       onPressed: () {},
                     ),
-                    SizedBox(height: 15),
+                    const SizedBox(height: 15),
                     Text(
                       S.of(context).importFromInstagram,
                       textAlign: TextAlign.center,
@@ -340,7 +352,7 @@ class _Frames extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var vm = context.watch<ChooseFrameViewModel>();
-    return Container(
+    return SizedBox(
       child: Column(
         children: [
           Row(
@@ -352,7 +364,7 @@ class _Frames extends StatelessWidget {
                       child: Container(
                         padding: const EdgeInsets.all(4.0),
                         color: vm.selectedFrame == e
-                            ? Color(0xFFf4f4f4)
+                            ? const Color(0xFFf4f4f4)
                             : Colors.transparent,
                         child: Column(
                           children: [
@@ -362,7 +374,7 @@ class _Frames extends StatelessWidget {
                               image: AssetImage(
                                   'assets/images/${e.toString().split('.')[1]}.png'),
                             ),
-                            SizedBox(height: 6),
+                            const SizedBox(height: 6),
                             Text(
                               e.toString().split('.')[1],
                               style: Theme.of(context)
@@ -381,8 +393,8 @@ class _Frames extends StatelessWidget {
                     ))
                 .toList(),
           ),
-          SizedBox(height: 12),
-          Divider()
+          const SizedBox(height: 12),
+          const Divider()
         ],
       ),
     );
@@ -390,10 +402,10 @@ class _Frames extends StatelessWidget {
 }
 
 class _FramePreview extends StatelessWidget {
-  _FramePreview({Key? key}) : super(key: key);
+  const _FramePreview({Key? key}) : super(key: key);
 
-  final classicPadding = EdgeInsets.fromLTRB(24, 24, 49, 46);
-  final cleanPadding = EdgeInsets.fromLTRB(12, 12, 40, 38);
+  final classicPadding = const EdgeInsets.fromLTRB(24, 24, 49, 46);
+  final cleanPadding = const EdgeInsets.fromLTRB(12, 12, 40, 38);
 
   @override
   Widget build(BuildContext context) {
@@ -401,7 +413,7 @@ class _FramePreview extends StatelessWidget {
 
     return Column(
       children: [
-        Container(
+        SizedBox(
           height: 300,
           width: 600,
           child: Swiper(
@@ -414,7 +426,7 @@ class _FramePreview extends StatelessWidget {
                     builder: (builder) {
                       return _PhotoButtonSheet(index, context);
                     }),
-                child: Container(
+                child: SizedBox(
                   height: 300,
                   width: 300,
                   child: Stack(
@@ -446,7 +458,7 @@ class _FramePreview extends StatelessWidget {
                             top: 30,
                             child: IconButton(
                               onPressed: () => vm.removePhoto(index),
-                              icon: Icon(
+                              icon: const Icon(
                                 Icons.delete,
                                 size: 40,
                                 color: Colors.red,
@@ -464,8 +476,8 @@ class _FramePreview extends StatelessWidget {
             loop: false,
           ),
         ),
-        SizedBox(height: 30),
-        _AddMore()
+        const SizedBox(height: 30),
+        const _AddMore()
       ],
     );
   }
@@ -483,16 +495,16 @@ class _AddMore extends StatelessWidget {
         width: 50,
         decoration: BoxDecoration(
             color: Colors.white,
-            borderRadius: BorderRadius.all(Radius.circular(6)),
+            borderRadius: const BorderRadius.all(Radius.circular(6)),
             boxShadow: [
               BoxShadow(
                 color: Colors.grey.withOpacity(0.2),
                 spreadRadius: 2,
                 blurRadius: 2,
-                offset: Offset(0, 2), // changes position of shadow
+                offset: const Offset(0, 2), // changes position of shadow
               )
             ]),
-        child: Icon(
+        child: const Icon(
           Icons.add,
           size: 30,
           color: FimtoColors.primaryColor,
@@ -513,12 +525,12 @@ class _BottomSheet extends StatelessWidget {
       height: 280.0,
       color: Colors.white,
       child: Container(
-          padding: EdgeInsets.symmetric(vertical: 16, horizontal: 16),
-          decoration: BoxDecoration(
+          padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+          decoration: const BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.only(
-                  topLeft: const Radius.circular(15.0),
-                  topRight: const Radius.circular(15.0))),
+                  topLeft: Radius.circular(15.0),
+                  topRight: Radius.circular(15.0))),
           child: Column(
             children: [
               _SheetRowItem(vm.packageSize + S.of(context).frames,
@@ -529,9 +541,9 @@ class _BottomSheet extends StatelessWidget {
                   child: _SheetRowItem(S.of(context).extraFrame,
                       vm.extraFramesPrice + S.of(context).le)),
               _SheetRowItem(S.of(context).delivery, vm.deliveryFees),
-              Divider(),
+              const Divider(),
               _SheetTotal(S.of(context).total, vm.total + S.of(context).le),
-              Spacer(),
+              const Spacer(),
               GradientButton(
                   text: S.of(context).addAddress,
                   onTap: () => vm.checkoutAction())
@@ -551,7 +563,7 @@ class _PhotoButtonSheet extends StatelessWidget {
     var vm = buildContext.watch<ChooseFrameViewModel>();
     return Container(
       height: 150.0,
-      padding: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
+      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
       color: Colors.white,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -560,17 +572,17 @@ class _PhotoButtonSheet extends StatelessWidget {
           GestureDetector(
             child: Text(
               S.of(context).delete,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 18,
               ),
             ),
             onTap: () => vm.removePhoto(index),
           ),
-          Divider(height: 2),
+          const Divider(height: 2),
           GestureDetector(
               child: Text(
                 S.of(context).dismiss,
-                style: TextStyle(fontSize: 18, color: Colors.black),
+                style: const TextStyle(fontSize: 18, color: Colors.black),
               ),
               onTap: () => Navigator.pop(context))
         ],
@@ -594,7 +606,7 @@ class _SheetRowItem extends StatelessWidget {
         children: [
           Text(
             title,
-            style: TextStyle(
+            style: const TextStyle(
                 fontSize: 16,
                 color: Color(0xFF737888),
                 fontWeight: FontWeight.w600),
@@ -602,7 +614,7 @@ class _SheetRowItem extends StatelessWidget {
           ),
           Text(
             value,
-            style: TextStyle(
+            style: const TextStyle(
                 fontSize: 16,
                 color: Color(0xFF737888),
                 fontWeight: FontWeight.w600),
@@ -629,13 +641,13 @@ class _SheetTotal extends StatelessWidget {
         children: [
           Text(
             title,
-            style: TextStyle(
+            style: const TextStyle(
                 fontSize: 20, color: Colors.black, fontWeight: FontWeight.w800),
             textAlign: TextAlign.center,
           ),
           Text(
             value,
-            style: TextStyle(
+            style: const TextStyle(
                 fontSize: 20, color: Colors.black, fontWeight: FontWeight.w800),
             textAlign: TextAlign.center,
           ),
@@ -649,7 +661,7 @@ class FacebookPhotos extends StatefulWidget {
   final PhotoPaging photos;
   final Function addFacebookPhoto;
   final BuildContext buildContext;
-  FacebookPhotos(
+  const FacebookPhotos(
       {Key? key,
       required this.photos,
       required this.addFacebookPhoto,
@@ -667,7 +679,7 @@ class _FacebookPhotosState extends State<FacebookPhotos> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     var vm = widget.buildContext.watch<ChooseFrameViewModel>();
-    return Container(
+    return SizedBox(
       height: size.height * 0.7,
       width: size.width * 0.9,
       child: Padding(
@@ -681,7 +693,7 @@ class _FacebookPhotosState extends State<FacebookPhotos> {
                 child: ElevatedButton(
                     onPressed: () => vm.addFacebookPhoto(
                         selectedFaceBookPhotos.values.toList()),
-                    child: Text('Done')),
+                    child: const Text('Done')),
               ),
             ],
           ),
@@ -713,9 +725,10 @@ class _FacebookPhotosState extends State<FacebookPhotos> {
                         child: Padding(
                           padding: const EdgeInsets.all(6.0),
                           child: selectedFaceBookPhotos.containsKey(index)
-                              ? Icon(Icons.check_box_outlined,
+                              ? const Icon(Icons.check_box_outlined,
                                   color: Colors.blue)
-                              : Icon(Icons.check_box_outline_blank_outlined,
+                              : const Icon(
+                                  Icons.check_box_outline_blank_outlined,
                                   color: Colors.grey),
                         ),
                         alignment: Alignment.topRight,

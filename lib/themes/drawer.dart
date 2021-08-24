@@ -14,13 +14,13 @@ class CustomDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ConstrainedBox(
-      constraints: BoxConstraints(maxWidth: 240),
+      constraints: const BoxConstraints(maxWidth: 240),
       child: ClipRRect(
         // borderRadius: BorderRadius.only(
         //     bottomLeft: Radius.circular(30), topLeft: Radius.circular(30)),
         child: Drawer(
           child: Container(
-            decoration: BoxDecoration(),
+            decoration: const BoxDecoration(),
             child: _DrawerItems(),
           ),
         ),
@@ -33,22 +33,22 @@ class _DrawerItems extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
           // image: DecorationImage(
           //     image: AssetImage('assets/images/BACKGROUND.png'),
           //     fit: BoxFit.cover),
           ),
       child: Column(
         children: [
-          SizedBox(height: 45),
-          Image(
+          const SizedBox(height: 45),
+          const Image(
             height: 30,
             color: FimtoColors.primaryColor,
             image: AssetImage(
               'assets/images/logo.png',
             ),
           ),
-          SizedBox(height: 35),
+          const SizedBox(height: 35),
           Expanded(
             child: Column(
               children: [
@@ -101,8 +101,8 @@ class _DrawerItems extends StatelessWidget {
                     style: Theme.of(context).textTheme.headline3,
                   ),
                 ),
-                _LanguageTile(),
-                Spacer(),
+                const _LanguageTile(),
+                const Spacer(),
                 ListTile(
                   onTap: () {},
                   title: Text(
@@ -116,7 +116,7 @@ class _DrawerItems extends StatelessWidget {
                     children: [
                       IconButton(
                         onPressed: () {},
-                        icon: Image(
+                        icon: const Image(
                           height: 20,
                           width: 20,
                           fit: BoxFit.fill,
@@ -125,7 +125,7 @@ class _DrawerItems extends StatelessWidget {
                       ),
                       IconButton(
                         onPressed: () {},
-                        icon: Image(
+                        icon: const Image(
                           height: 20,
                           width: 20,
                           fit: BoxFit.fill,
@@ -134,7 +134,7 @@ class _DrawerItems extends StatelessWidget {
                       ),
                       IconButton(
                         onPressed: () {},
-                        icon: Image(
+                        icon: const Image(
                           height: 20,
                           width: 20,
                           fit: BoxFit.fill,
@@ -143,7 +143,7 @@ class _DrawerItems extends StatelessWidget {
                       ),
                       IconButton(
                         onPressed: () {},
-                        icon: Image(
+                        icon: const Image(
                           height: 20,
                           width: 20,
                           fit: BoxFit.fill,
@@ -153,7 +153,7 @@ class _DrawerItems extends StatelessWidget {
                     ],
                   ),
                 ),
-                SizedBox(height: 8),
+                const SizedBox(height: 8),
               ],
             ),
           )
@@ -177,11 +177,11 @@ class _LanguageTile extends StatelessWidget {
             onPressed: () => language.changeToEnLanguage(),
             child: Row(
               children: [
-                Image(
+                const Image(
                   image: AssetImage('assets/images/us.png'),
                   height: 15,
                 ),
-                SizedBox(width: 6),
+                const SizedBox(width: 6),
                 Text('En',
                     style: Theme.of(context)
                         .textTheme
@@ -190,16 +190,16 @@ class _LanguageTile extends StatelessWidget {
               ],
             ),
           ),
-          SizedBox(width: 25),
+          const SizedBox(width: 25),
           MaterialButton(
             onPressed: () => language.changeToArLanguage(),
             child: Row(
               children: [
-                Image(
+                const Image(
                   image: AssetImage('assets/images/egypt.png'),
                   height: 15,
                 ),
-                SizedBox(width: 6),
+                const SizedBox(width: 6),
                 Text('AR',
                     style: Theme.of(context)
                         .textTheme

@@ -9,8 +9,8 @@ import 'package:fimto_frame/models/token.dart';
 class TokenRepository {
   final Language? language;
 //TODO change
-  static const String _client_id = 'storekeeperclient';
-  static const String _client_secret =
+  static const String _clientId = 'storekeeperclient';
+  static const String _clientSecret =
       '6jtxzxpy+ImAVeo+I6VrcK4dFxE4SgQ00pACvyp6oOQ=';
   static const String _scope =
       'openid profile email roles storeKeeperapi offline_access';
@@ -87,7 +87,7 @@ class TokenRepository {
       var refreshToken = token.refreshToken;
       final response = await client.post('companyUrls!.tokenEndPoint!',
           data:
-              'grant_type=refresh_token&client_id=$_client_id&client_secret=$_client_secret&refresh_token=$refreshToken');
+              'grant_type=refresh_token&client_id=$_clientId&client_secret=$_clientSecret&refresh_token=$refreshToken');
       final newToken = Token.fromJson(response.data);
       return Result.value(newToken);
     } on DioError {

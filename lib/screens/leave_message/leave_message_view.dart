@@ -12,16 +12,16 @@ class LeaveMessageScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return ScreenTypeLayout(
       mobile: OrientationLayout(
-        portrait: LeaveMessageMobile(),
-        landscape: LeaveMessageMobile(),
+        portrait: const LeaveMessageMobile(),
+        landscape: const LeaveMessageMobile(),
       ),
       tablet: OrientationLayout(
-        portrait: LeaveMessageDesktop(),
-        landscape: LeaveMessageDesktop(),
+        portrait: const LeaveMessageDesktop(),
+        landscape: const LeaveMessageDesktop(),
       ),
       desktop: OrientationLayout(
-        landscape: LeaveMessageDesktop(),
-        portrait: LeaveMessageDesktop(),
+        landscape: const LeaveMessageDesktop(),
+        portrait: const LeaveMessageDesktop(),
       ),
     );
   }

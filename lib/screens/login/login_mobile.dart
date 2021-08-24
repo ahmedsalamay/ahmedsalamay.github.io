@@ -12,6 +12,8 @@ import 'package:flutter/material.dart';
 import 'login_viewmodel.dart';
 
 class LoginScreenMobile extends StatelessWidget {
+  const LoginScreenMobile({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<LoginViewModel>(
@@ -36,7 +38,7 @@ class _Body extends StatelessWidget {
     return SafeArea(
       child: Container(
         height: double.infinity,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           color: Colors.white,
         ),
         child: Padding(
@@ -47,25 +49,25 @@ class _Body extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   Align(
                       alignment: Alignment.centerRight,
                       child: InkWell(
                         onTap: () => vm.toggleLanguage(),
                         child: Row(
                           children: [
-                            Icon(
+                            const Icon(
                               Icons.language,
                               color: FimtoColors.primaryColor,
                             ),
-                            SizedBox(width: 6),
+                            const SizedBox(width: 6),
                             Text(S.of(context).changeLanguage,
                                 style: Theme.of(context).textTheme.headline5),
                           ],
                         ),
                       )),
-                  SizedBox(height: 90),
-                  Center(
+                  const SizedBox(height: 90),
+                  const Center(
                     child: Image(
                       image: AssetImage('assets/images/logo.png'),
                       fit: BoxFit.cover,
@@ -73,16 +75,16 @@ class _Body extends StatelessWidget {
                       height: 80,
                     ),
                   ),
-                  SizedBox(height: 100),
+                  const SizedBox(height: 100),
                   Visibility(
-                    child: Center(child: CircularProgressIndicator()),
+                    child: const Center(child: CircularProgressIndicator()),
                     visible: vm.isLoading,
                   ),
                   Text(
                     S.of(context).phoneNumber,
                     style: Theme.of(context).textTheme.headline3,
                   ),
-                  SizedBox(height: 15),
+                  const SizedBox(height: 15),
                   TextFormField(
                     textAlign: TextAlign.start,
                     onChanged: (value) => vm.onPhoneNumberChange(value),
@@ -90,15 +92,15 @@ class _Body extends StatelessWidget {
                     keyboardType: TextInputType.phone,
                     textInputAction: TextInputAction.next,
                     decoration: InputDecoration(
-                        prefixIcon: Icon(Icons.phone),
+                        prefixIcon: const Icon(Icons.phone),
                         hintText: S.of(context).phoneNumber),
                   ),
-                  SizedBox(height: 12),
+                  const SizedBox(height: 12),
                   Text(
                     S.of(context).password,
                     style: Theme.of(context).textTheme.headline3,
                   ),
-                  SizedBox(height: 15),
+                  const SizedBox(height: 15),
                   TextFormField(
                     textAlign: TextAlign.start,
                     onChanged: (value) => vm.onPasswordChange(value),
@@ -106,15 +108,15 @@ class _Body extends StatelessWidget {
                     textInputAction: TextInputAction.done,
                     obscureText: true,
                     decoration: InputDecoration(
-                        prefixIcon: Icon(Icons.lock_outline),
+                        prefixIcon: const Icon(Icons.lock_outline),
                         hintText: S.of(context).password),
                   ),
-                  SizedBox(height: 40),
+                  const SizedBox(height: 40),
                   SolidButton(
                     text: S.of(context).login,
                     onTap: () => vm.logInAction(_formKey),
                   ),
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   Align(
                     alignment: Alignment.bottomRight,
                     child: TextButton(
@@ -127,7 +129,7 @@ class _Body extends StatelessWidget {
                                   fontSize: 16, fontWeight: FontWeight.w500)),
                     ),
                   ),
-                  SizedBox(height: 30),
+                  const SizedBox(height: 30),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [

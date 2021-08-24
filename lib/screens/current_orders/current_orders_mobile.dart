@@ -13,6 +13,8 @@ import 'package:flutter/material.dart';
 import 'current_orders_viewmodel.dart';
 
 class CurrentOrdersScreenMobile extends StatelessWidget {
+  const CurrentOrdersScreenMobile({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     var language = context.watch<Language>();
@@ -25,10 +27,10 @@ class CurrentOrdersScreenMobile extends StatelessWidget {
         child: Scaffold(
           backgroundColor: Colors.white,
           endDrawer: language.currentLocale.languageCode == 'en'
-              ? CustomDrawer()
+              ? const CustomDrawer()
               : null,
           drawer: language.currentLocale.languageCode == 'ar'
-              ? CustomDrawer()
+              ? const CustomDrawer()
               : null,
           body: _Body(),
         ));
@@ -40,15 +42,15 @@ class _Body extends StatelessWidget {
   Widget build(BuildContext context) {
     var vm = context.watch<AddAddressViewModel>();
     return SafeArea(
-      child: Container(
+      child: SizedBox(
           height: double.infinity,
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
               CustomAppBar(title: S.of(context).addAddress),
               vm.isLoading
-                  ? Center(child: CircularProgressIndicator())
-                  : _CurrentOrders()
+                  ? const Center(child: CircularProgressIndicator())
+                  : const _CurrentOrders()
             ],
           )),
     );
@@ -77,7 +79,7 @@ class _OrderTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       child: Row(
         children: [
           Text(order.name),

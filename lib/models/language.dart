@@ -36,14 +36,14 @@ class Language extends ChangeNotifier {
 
   void changeToArLanguage() {
     newLocale = Language.arabicCode;
-    changeLanguage(Locale(Language.arabicCode));
+    changeLanguage(const Locale(Language.arabicCode));
     languageLocalRepository.saveLanguageCode(Language.arabicCode);
     notifyListeners();
   }
 
   void changeToEnLanguage() {
     newLocale = Language.englishCode;
-    changeLanguage(Locale(Language.englishCode));
+    changeLanguage(const Locale(Language.englishCode));
     languageLocalRepository.saveLanguageCode(Language.englishCode);
     notifyListeners();
   }

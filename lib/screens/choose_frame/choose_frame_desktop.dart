@@ -16,6 +16,8 @@ import 'package:flutter/material.dart';
 import 'package:card_swiper/card_swiper.dart';
 
 class ChooseFrameDesktop extends StatelessWidget {
+  const ChooseFrameDesktop({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<ChooseFrameViewModel>(
@@ -25,7 +27,7 @@ class ChooseFrameDesktop extends StatelessWidget {
               messageService: context.read<MessageService>(),
               order: context.read<Order>(),
             ),
-        child: Scaffold(
+        child: const Scaffold(
           backgroundColor: Colors.white,
           endDrawer: CustomDrawer(),
           body: _Body(),
@@ -71,12 +73,12 @@ class _Preview extends StatelessWidget {
   Widget build(BuildContext context) {
     var vm = context.watch<ChooseFrameViewModel>();
     return Container(
-      color: Color(0xFFf9f9f9),
+      color: const Color(0xFFf9f9f9),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          SizedBox(height: 130),
-          vm.isImagesPicked ? _FramePreview() : _PickPhotos(),
+          const SizedBox(height: 130),
+          vm.isImagesPicked ? const _FramePreview() : const _PickPhotos(),
         ],
       ),
     );
@@ -96,12 +98,12 @@ class __FramesState extends State<_Frames> {
     var vm = context.watch<ChooseFrameViewModel>();
     return Container(
       color: Colors.white,
-      padding: EdgeInsets.symmetric(horizontal: 25),
+      padding: const EdgeInsets.symmetric(horizontal: 25),
       width: 200,
       child: Column(
         children: [
           Container(
-            constraints: BoxConstraints(maxHeight: 500),
+            constraints: const BoxConstraints(maxHeight: 500),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: frames.values
@@ -110,9 +112,9 @@ class __FramesState extends State<_Frames> {
                         onPressed: () => vm.selectFrameAction(e),
                         splashColor: Colors.transparent,
                         child: Container(
-                          padding: EdgeInsets.all(16),
+                          padding: const EdgeInsets.all(16),
                           color: vm.selectedFrame == e
-                              ? Color(0xFFf4f4f4)
+                              ? const Color(0xFFf4f4f4)
                               : Colors.transparent,
                           child: Row(
                             children: [
@@ -123,7 +125,7 @@ class __FramesState extends State<_Frames> {
                                 image: AssetImage(
                                     'assets/images/${e.toString().split('.')[1]}.png'),
                               ),
-                              SizedBox(width: 6),
+                              const SizedBox(width: 6),
                               Text(
                                 e.toString().split('.')[1],
                                 style: Theme.of(context)
@@ -174,7 +176,7 @@ class _PickPhotos extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Container(
+      child: SizedBox(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -185,11 +187,11 @@ class _PickPhotos extends StatelessWidget {
                   .headline3!
                   .copyWith(fontWeight: FontWeight.w900, fontSize: 22),
             ),
-            SizedBox(height: 60),
+            const SizedBox(height: 60),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                _UploadPhoto(),
+                const _UploadPhoto(),
                 Padding(
                   padding: const EdgeInsets.all(30.0),
                   child: Text(
@@ -197,7 +199,7 @@ class _PickPhotos extends StatelessWidget {
                     style: Theme.of(context).textTheme.headline5,
                   ),
                 ),
-                _ImportPhoto()
+                const _ImportPhoto()
               ],
             )
           ],
@@ -217,14 +219,14 @@ class _UploadPhoto extends StatelessWidget {
       height: 180,
       width: 250,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(6)),
+        borderRadius: const BorderRadius.all(Radius.circular(6)),
         color: Colors.white,
         boxShadow: [
           BoxShadow(
             color: Colors.grey.withOpacity(0.2),
             spreadRadius: 2,
             blurRadius: 2,
-            offset: Offset(0, 2), // changes position of shadow
+            offset: const Offset(0, 2), // changes position of shadow
           )
         ],
       ),
@@ -234,12 +236,12 @@ class _UploadPhoto extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(
+            const Icon(
               Icons.camera_alt,
               color: FimtoColors.primaryColor,
               size: 40,
             ),
-            SizedBox(height: 15),
+            const SizedBox(height: 15),
             Text(
               S.of(context).uploadPhotos,
               style: Theme.of(context)
@@ -269,7 +271,7 @@ class _ImportPhoto extends StatelessWidget {
               addFacebookPhoto: vm.addFacebookPhoto,
             ))
           : () {}),
-      child: Container(
+      child: SizedBox(
         height: 180,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -277,16 +279,16 @@ class _ImportPhoto extends StatelessWidget {
             Container(
               height: 80,
               width: 250,
-              padding: EdgeInsets.all(15),
+              padding: const EdgeInsets.all(15),
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(6)),
+                borderRadius: const BorderRadius.all(Radius.circular(6)),
                 color: Colors.white,
                 boxShadow: [
                   BoxShadow(
                     color: Colors.grey.withOpacity(0.2),
                     spreadRadius: 2,
                     blurRadius: 2,
-                    offset: Offset(0, 2), // changes position of shadow
+                    offset: const Offset(0, 2), // changes position of shadow
                   )
                 ],
               ),
@@ -294,10 +296,10 @@ class _ImportPhoto extends StatelessWidget {
                 children: [
                   IconButton(
                     icon: Image.asset('assets/images/facebook.png'),
-                    padding: EdgeInsets.all(0),
+                    padding: const EdgeInsets.all(0),
                     onPressed: () {},
                   ),
-                  SizedBox(width: 15),
+                  const SizedBox(width: 15),
                   Text(
                     S.of(context).importFromFacebook,
                     style: Theme.of(context)
@@ -308,20 +310,20 @@ class _ImportPhoto extends StatelessWidget {
                 ],
               ),
             ),
-            Spacer(),
+            const Spacer(),
             Container(
               height: 80,
               width: 250,
-              padding: EdgeInsets.all(15),
+              padding: const EdgeInsets.all(15),
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(6)),
+                borderRadius: const BorderRadius.all(Radius.circular(6)),
                 color: Colors.white,
                 boxShadow: [
                   BoxShadow(
                     color: Colors.grey.withOpacity(0.2),
                     spreadRadius: 2,
                     blurRadius: 2,
-                    offset: Offset(0, 2), // changes position of shadow
+                    offset: const Offset(0, 2), // changes position of shadow
                   )
                 ],
               ),
@@ -329,10 +331,10 @@ class _ImportPhoto extends StatelessWidget {
                 children: [
                   IconButton(
                     icon: Image.asset('assets/images/instagm_colored.png'),
-                    padding: EdgeInsets.all(0),
+                    padding: const EdgeInsets.all(0),
                     onPressed: () {},
                   ),
-                  SizedBox(width: 15),
+                  const SizedBox(width: 15),
                   Text(
                     S.of(context).importFromInstagram,
                     style: Theme.of(context)
@@ -351,17 +353,17 @@ class _ImportPhoto extends StatelessWidget {
 }
 
 class _FramePreview extends StatelessWidget {
-  _FramePreview({Key? key}) : super(key: key);
+  const _FramePreview({Key? key}) : super(key: key);
 
-  final classicPadding = EdgeInsets.fromLTRB(24, 24, 200, 46);
-  final cleanPadding = EdgeInsets.fromLTRB(12, 12, 40, 38);
+  final classicPadding = const EdgeInsets.fromLTRB(24, 24, 200, 46);
+  final cleanPadding = const EdgeInsets.fromLTRB(12, 12, 40, 38);
 
   @override
   Widget build(BuildContext context) {
     var vm = context.watch<ChooseFrameViewModel>();
     return Column(
       children: [
-        Container(
+        SizedBox(
           height: 300,
           width: 600,
           child: Swiper(
@@ -371,7 +373,7 @@ class _FramePreview extends StatelessWidget {
               return MouseRegion(
                 onEnter: (_) => vm.showDeleteButton(),
                 onExit: (_) => vm.hideDeleteButton(),
-                child: Container(
+                child: SizedBox(
                   height: 300,
                   width: 300,
                   child: Stack(
@@ -410,7 +412,7 @@ class _FramePreview extends StatelessWidget {
                                   color: Colors.white),
                               child: IconButton(
                                 onPressed: () => vm.removePhoto(index),
-                                icon: Icon(
+                                icon: const Icon(
                                   Icons.delete,
                                   size: 25,
                                   color: Colors.black,
@@ -429,8 +431,8 @@ class _FramePreview extends StatelessWidget {
             loop: false,
           ),
         ),
-        SizedBox(height: 50),
-        _AddMore()
+        const SizedBox(height: 50),
+        const _AddMore()
       ],
     );
   }
@@ -448,16 +450,16 @@ class _AddMore extends StatelessWidget {
         width: 80,
         decoration: BoxDecoration(
             color: Colors.white,
-            borderRadius: BorderRadius.all(Radius.circular(6)),
+            borderRadius: const BorderRadius.all(Radius.circular(6)),
             boxShadow: [
               BoxShadow(
                 color: Colors.grey.withOpacity(0.2),
                 spreadRadius: 2,
                 blurRadius: 2,
-                offset: Offset(0, 2), // changes position of shadow
+                offset: const Offset(0, 2), // changes position of shadow
               )
             ]),
-        child: Icon(
+        child: const Icon(
           Icons.add,
           size: 45,
           color: FimtoColors.primaryColor,
@@ -476,16 +478,16 @@ class _CheckoutDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     var vm = buildContext.read<ChooseFrameViewModel>();
     return SimpleDialog(
-      shape: RoundedRectangleBorder(
+      shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(8))),
       children: [
         Container(
-          padding: EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+          padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
           height: 250.0,
           width: 350,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
               color: Colors.white,
-              borderRadius: BorderRadius.all(const Radius.circular(15.0))),
+              borderRadius: BorderRadius.all(Radius.circular(15.0))),
           child: Column(
             children: [
               _SheetRowItem(vm.packageSize + S.of(context).frames,
@@ -496,9 +498,9 @@ class _CheckoutDialog extends StatelessWidget {
                   child: _SheetRowItem(S.of(context).extraFrame,
                       vm.extraFramesPrice + S.of(context).le)),
               _SheetRowItem(S.of(context).delivery, vm.deliveryFees),
-              Divider(),
+              const Divider(),
               _SheetTotal(S.of(context).total, vm.total + S.of(context).le),
-              Spacer(),
+              const Spacer(),
               SizedBox(
                 width: 120,
                 child: GradientButton(
@@ -528,7 +530,7 @@ class _SheetRowItem extends StatelessWidget {
         children: [
           Text(
             title,
-            style: TextStyle(
+            style: const TextStyle(
                 fontSize: 16,
                 color: Color(0xFF737888),
                 fontWeight: FontWeight.w600),
@@ -536,7 +538,7 @@ class _SheetRowItem extends StatelessWidget {
           ),
           Text(
             value,
-            style: TextStyle(
+            style: const TextStyle(
                 fontSize: 16,
                 color: Color(0xFF737888),
                 fontWeight: FontWeight.w600),
@@ -563,13 +565,13 @@ class _SheetTotal extends StatelessWidget {
         children: [
           Text(
             title,
-            style: TextStyle(
+            style: const TextStyle(
                 fontSize: 20, color: Colors.black, fontWeight: FontWeight.w800),
             textAlign: TextAlign.center,
           ),
           Text(
             value,
-            style: TextStyle(
+            style: const TextStyle(
                 fontSize: 20, color: Colors.black, fontWeight: FontWeight.w800),
             textAlign: TextAlign.center,
           ),
@@ -601,7 +603,7 @@ class _FacebookPhotosState extends State<FacebookPhotos> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     var vm = widget.buildContext.watch<ChooseFrameViewModel>();
-    return Container(
+    return SizedBox(
       height: size.height * 0.7,
       width: size.width * 0.9,
       child: Padding(
@@ -615,7 +617,7 @@ class _FacebookPhotosState extends State<FacebookPhotos> {
                 child: ElevatedButton(
                     onPressed: () => vm.addFacebookPhoto(
                         selectedFaceBookPhotos.values.toList()),
-                    child: Text('Done')),
+                    child: const Text('Done')),
               ),
             ],
           ),
@@ -646,9 +648,10 @@ class _FacebookPhotosState extends State<FacebookPhotos> {
                         child: Padding(
                           padding: const EdgeInsets.all(6.0),
                           child: selectedFaceBookPhotos.containsKey(index)
-                              ? Icon(Icons.check_box_outlined,
+                              ? const Icon(Icons.check_box_outlined,
                                   color: Colors.blue)
-                              : Icon(Icons.check_box_outline_blank_outlined,
+                              : const Icon(
+                                  Icons.check_box_outline_blank_outlined,
                                   color: Colors.grey),
                         ),
                         alignment: Alignment.topRight,

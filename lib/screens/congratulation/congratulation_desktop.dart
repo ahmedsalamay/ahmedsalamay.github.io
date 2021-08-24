@@ -3,6 +3,8 @@ import 'package:fimto_frame/themes/buttons.dart';
 import 'package:flutter/material.dart';
 
 class CongratulationsDesktop extends StatefulWidget {
+  const CongratulationsDesktop({Key? key}) : super(key: key);
+
   @override
   _CongratulationsDesktopState createState() => _CongratulationsDesktopState();
 }
@@ -17,7 +19,7 @@ class _CongratulationsDesktopState extends State<CongratulationsDesktop>
     super.initState();
     controller = AnimationController(
       vsync: this,
-      duration: Duration(seconds: 2),
+      duration: const Duration(seconds: 2),
     );
     _animation = CurvedAnimation(
       parent: controller,
@@ -39,9 +41,9 @@ class _CongratulationsDesktopState extends State<CongratulationsDesktop>
         Container(
           height: 600,
           width: 600,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
               color: Colors.white,
-              borderRadius: BorderRadius.all(const Radius.circular(15.0))),
+              borderRadius: BorderRadius.all(Radius.circular(15.0))),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -51,22 +53,22 @@ class _CongratulationsDesktopState extends State<CongratulationsDesktop>
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      SizedBox(height: 35),
+                      const SizedBox(height: 35),
                       Text(
                         S.of(context).orderConfirmed,
                         style: Theme.of(context).textTheme.headline2,
                         textAlign: TextAlign.center,
                       ),
-                      SizedBox(height: 25),
+                      const SizedBox(height: 25),
                       ScaleTransition(
                         scale: _animation,
-                        child: Image(
+                        child: const Image(
                           height: 230,
                           image:
                               AssetImage('assets/images/congratulations.png'),
                         ),
                       ),
-                      SizedBox(height: 25),
+                      const SizedBox(height: 25),
                       Text(
                         S.of(context).congratulations,
                         style: Theme.of(context)
@@ -75,21 +77,21 @@ class _CongratulationsDesktopState extends State<CongratulationsDesktop>
                             .copyWith(fontSize: 26),
                         textAlign: TextAlign.center,
                       ),
-                      SizedBox(height: 20),
+                      const SizedBox(height: 20),
                       Text(
                         S.of(context).successfulPurchase,
                         style: Theme.of(context).textTheme.headline2!.copyWith(
                             fontSize: 18, fontWeight: FontWeight.w500),
                         textAlign: TextAlign.center,
                       ),
-                      SizedBox(height: 20),
+                      const SizedBox(height: 20),
                       Text(
                         S.of(context).orderNumber,
                         style: Theme.of(context).textTheme.headline2!.copyWith(
                             fontSize: 18, fontWeight: FontWeight.w500),
                         textAlign: TextAlign.center,
                       ),
-                      SizedBox(height: 40),
+                      const SizedBox(height: 40),
                       Text(
                         S.of(context).canTrackYourOrder,
                         style: Theme.of(context)

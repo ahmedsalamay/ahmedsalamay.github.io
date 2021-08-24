@@ -10,16 +10,16 @@ class Header extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 30, vertical: 25),
+      padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 25),
       child: Row(
         children: [
-          Image(
+          const Image(
             fit: BoxFit.contain,
             height: 30,
             color: FimtoColors.primaryColor,
             image: AssetImage('assets/images/logo.png'),
           ),
-          Spacer(),
+          const Spacer(),
           TextButton(
               onPressed: () {},
               child: Text(S.of(context).faq,
@@ -27,7 +27,7 @@ class Header extends StatelessWidget {
                       .textTheme
                       .headline3!
                       .copyWith(fontSize: 15))),
-          SizedBox(width: 25),
+          const SizedBox(width: 25),
           TextButton(
               onPressed: () {},
               child: Text(S.of(context).yourOrders,
@@ -35,11 +35,13 @@ class Header extends StatelessWidget {
                       .textTheme
                       .headline3!
                       .copyWith(fontSize: 15))),
-          SizedBox(width: 25),
+          const SizedBox(width: 25),
           OutlinedButton(
             style: OutlinedButton.styleFrom(
-                side: BorderSide(width: 2.0, color: FimtoColors.primaryColor),
-                padding: EdgeInsets.symmetric(horizontal: 50, vertical: 22)),
+                side: const BorderSide(
+                    width: 2.0, color: FimtoColors.primaryColor),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 50, vertical: 22)),
             onPressed: () => Get.toNamed(selectToWhoRoute),
             child: Text(S.of(context).letsGo),
           )
