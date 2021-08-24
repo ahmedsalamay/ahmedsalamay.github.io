@@ -72,7 +72,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "discount": MessageLookupByLibrary.simpleMessage("Discount"),
         "dismiss": MessageLookupByLibrary.simpleMessage("Dismiss"),
         "donnotHaveAccount":
-            MessageLookupByLibrary.simpleMessage("Don\'t Have Account?"),
+            MessageLookupByLibrary.simpleMessage("Don't Have Account?"),
         "egyptwideShipping": MessageLookupByLibrary.simpleMessage(
             "Free Egyptwide shipping! At your doorstep in a week"),
         "email": MessageLookupByLibrary.simpleMessage("Email"),
@@ -103,7 +103,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Import From Instagram"),
         "le": MessageLookupByLibrary.simpleMessage("LE"),
         "leaveMessage": MessageLookupByLibrary.simpleMessage("Leave a message"),
-        "letsGo": MessageLookupByLibrary.simpleMessage("Let\'s Go"),
+        "letsGo": MessageLookupByLibrary.simpleMessage("Let's Go"),
         "loadingData": MessageLookupByLibrary.simpleMessage(
             "Please Wait for data to be loaded"),
         "login": MessageLookupByLibrary.simpleMessage("Login"),
@@ -112,9 +112,9 @@ class MessageLookup extends MessageLookupByLibrary {
             "Leave a message to your dear person"),
         "nameHint": MessageLookupByLibrary.simpleMessage("Your Name"),
         "noAdditionalExpenses": MessageLookupByLibrary.simpleMessage(
-            "Don\'t require additional expenses"),
+            "Don't require additional expenses"),
         "noNails":
-            MessageLookupByLibrary.simpleMessage("It doesn\'t need a nails"),
+            MessageLookupByLibrary.simpleMessage("It doesn't need a nails"),
         "or": MessageLookupByLibrary.simpleMessage("OR"),
         "orderConfirmed": MessageLookupByLibrary.simpleMessage(
             "The Order has been confirmed"),
@@ -168,7 +168,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "youCanExtraFrame": MessageLookupByLibrary.simpleMessage(
             "You can add extra frame with only 74LE"),
         "youCanRetrieve": MessageLookupByLibrary.simpleMessage(
-            "You can retrieve it if it isn\'t in the required form"),
+            "You can retrieve it if it isn't in the required form"),
         "yourOrders": MessageLookupByLibrary.simpleMessage("Your orders")
       };
 }

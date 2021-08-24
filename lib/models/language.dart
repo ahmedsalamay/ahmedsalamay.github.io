@@ -8,7 +8,7 @@ class Language extends ChangeNotifier {
   static const String arabicCode = 'ar';
   static const String englishCode = 'en';
 
-  Locale _currentLocale = Locale(Language.englishCode);
+  Locale _currentLocale = const Locale(Language.englishCode);
   Locale get currentLocale => _currentLocale;
 
   set newLocale(String localeCode) {
@@ -24,10 +24,10 @@ class Language extends ChangeNotifier {
     if (_currentLocale == type) {
       return;
     }
-    if (type == Locale(arabicCode)) {
-      _currentLocale = Locale(arabicCode);
+    if (type == const Locale(arabicCode)) {
+      _currentLocale = const Locale(arabicCode);
     } else {
-      _currentLocale = Locale(englishCode);
+      _currentLocale = const Locale(englishCode);
     }
     notifyListeners();
   }

@@ -54,10 +54,10 @@ class FaceBookPhoto {
       );
 
   Map<String, dynamic> toJson() => {
-        "id": id == null ? null : id,
-        "width": width == null ? null : width,
-        "height": height == null ? null : height,
-        "source": source == null ? null : source,
+        "id": id,
+        "width": width,
+        "height": height,
+        "source": source,
         "name": name == null ? null : name,
       };
 }
@@ -94,7 +94,7 @@ class Cursors {
       );
 
   Map<String, dynamic> toJson() => {
-        "before": before == null ? null : before,
-        "after": after == null ? null : after,
+        "before": before,
+        "after": after,
       };
 }

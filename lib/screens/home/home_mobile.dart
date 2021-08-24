@@ -16,7 +16,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:youtube_player_iframe/youtube_player_iframe.dart';
-import 'package:flutter_shimmer/flutter_shimmer.dart';
+import 'package:shimmer_animation/shimmer_animation.dart';
 
 import 'home_viewmodel.dart';
 
@@ -146,8 +146,18 @@ class _Title extends StatelessWidget {
                 } else if (snapshot.hasError) {
                   return Text('Error');
                 }
-                return PlayStoreShimmer(
-                  hasBottomFirstLine: false,
+                return Shimmer(
+                  duration: Duration(milliseconds: 500), //Default value
+                  interval: Duration(
+                      milliseconds: 500), //Default value: Duration(seconds: 0)
+                  color: Colors.grey.shade600, //Default value
+                  colorOpacity: 0.3, //Default value
+                  enabled: true, //Default value
+                  direction: ShimmerDirection.fromLTRB(), //Default Value
+                  child: Container(
+                    color: Colors.grey.shade300,
+                    height: 250,
+                  ),
                 );
               }),
           SizedBox(height: 25),
@@ -291,11 +301,12 @@ class _SocialPosts extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var vm = context.watch<HomeViewModel>();
     return Container(
       width: MediaQuery.of(context).size.width * 0.75,
       height: 300,
       child: FutureBuilder<List<SocialReviews>>(
-          future: context.read<HomeViewModel>().loadHomeSocialReviews(),
+          future: vm.socialReviews,
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               return SingleChildScrollView(
@@ -321,8 +332,17 @@ class _SocialPosts extends StatelessWidget {
             } else if (snapshot.hasError) {
               return Text('Error');
             }
-            return PlayStoreShimmer(
-              hasBottomFirstLine: true,
+            return Shimmer(
+              duration: Duration(milliseconds: 500), //Default value
+              interval: Duration(
+                  milliseconds: 500), //Default value: Duration(seconds: 0)
+              color: Colors.grey.shade600, //Default value
+              colorOpacity: 0.3, //Default value
+              enabled: true, //Default value
+              direction: ShimmerDirection.fromLTRB(), //Default Value
+              child: Container(
+                color: Colors.grey.shade300,
+              ),
             );
           }),
     );

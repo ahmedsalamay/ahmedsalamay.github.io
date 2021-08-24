@@ -20,6 +20,13 @@ class AddAddressViewModel extends ChangeNotifier {
       required this.order});
 
   Future<void> initAsync() async {
+    var isConnected = await connectionService.checkConnection();
+    if (!isConnected) {
+      messageService.showErrorSnackBar(
+          title: S.current.connectionErrorHeader,
+          message: S.current.connectionErrorMsg);
+      return;
+    }
     var citiesResponse = await orderRepository.getCities();
     if (citiesResponse.isError) {}
     _cities = citiesResponse.asValue!.value;

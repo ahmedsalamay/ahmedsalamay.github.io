@@ -6,8 +6,6 @@ import 'package:fimto_frame/models/constants.dart';
 import 'package:fimto_frame/models/language.dart';
 import 'package:fimto_frame/models/token.dart';
 
-import 'package:flutter/foundation.dart' show kIsWeb;
-
 class TokenRepository {
   final Language? language;
 //TODO change

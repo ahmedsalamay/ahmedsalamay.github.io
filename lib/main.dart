@@ -78,7 +78,7 @@ class MyApp extends StatelessWidget {
         locale: context.watch<Language>().currentLocale,
         title: 'Fimto',
         theme: myTheme,
-        initialRoute: isUserLogged ? homeRoute : loginRoute,
+        initialRoute: chooseFrameRoute, //isUserLogged ? homeRoute : loginRoute,
         onGenerateRoute: onGenerateRoute,
         defaultTransition: Transition.fade,
         opaqueRoute: Get.isOpaqueRouteDefault,

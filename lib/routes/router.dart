@@ -1,6 +1,3 @@
-import 'dart:io';
-import 'dart:typed_data';
-
 import 'package:fimto_frame/screens/add_address/add_address_view.dart';
 import 'package:fimto_frame/screens/add_payment_method/add_payment_method_view.dart';
 import 'package:fimto_frame/screens/choose_frame/choose_frame_view.dart';
@@ -16,7 +13,6 @@ import 'package:fimto_frame/screens/select_to_who/select_to_who_view.dart';
 import 'package:fimto_frame/screens/splash/splash_view.dart';
 import 'package:fimto_frame/screens/track_order/track_order_view.dart';
 import 'package:flutter/material.dart';
-import '../main.dart';
 import 'router_names.dart';
 
 Route onGenerateRoute(RouteSettings settings) {
@@ -50,13 +46,13 @@ Route onGenerateRoute(RouteSettings settings) {
           builder: (context) => CongratulationsScreen(), settings: settings);
     case trackOrderRoute:
       return MaterialPageRoute(
-          builder: (context) => TrackOrderScreen(), settings: settings);
+          builder: (context) => const TrackOrderScreen(), settings: settings);
     case chooseFrameRoute:
       return MaterialPageRoute(
           builder: (context) => ChooseFrameScreen(), settings: settings);
     case loginRoute:
       return MaterialPageRoute(
-          builder: (context) => LoginScreen(), settings: settings);
+          builder: (context) => const LoginScreen(), settings: settings);
     case registerRoute:
       return MaterialPageRoute(
           builder: (context) => RegisterScreen(), settings: settings);

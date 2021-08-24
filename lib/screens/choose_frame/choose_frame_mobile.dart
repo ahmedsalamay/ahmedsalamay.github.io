@@ -2,12 +2,13 @@ import 'package:card_swiper/card_swiper.dart';
 import 'package:fimto_frame/models/facebook_photo.dart';
 import 'package:fimto_frame/models/order.dart';
 import 'package:fimto_frame/repository/remote/facebook_repository.dart';
+import 'package:fimto_frame/services/connection_service.dart';
+import 'package:fimto_frame/services/message_service.dart';
 import 'package:fimto_frame/themes/theme.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'choose_frame_viewmodel.dart';
 import '../../models/constants.dart';
-import 'package:fimto_frame/routes/router_names.dart';
 import 'package:fimto_frame/themes/appBar.dart';
 import 'package:fimto_frame/themes/buttons.dart';
 import 'package:fimto_frame/themes/drawer.dart';
@@ -20,6 +21,8 @@ class ChooseFrameMobile extends StatelessWidget {
     return ChangeNotifierProvider<ChooseFrameViewModel>(
         create: (_) => ChooseFrameViewModel(
               facebookRepository: context.read<FacebookRepository>(),
+              connectionService: context.read<ConnectionService>(),
+              messageService: context.read<MessageService>(),
               order: context.read<Order>(),
             ),
         child: Scaffold(
@@ -56,6 +59,8 @@ class _Body extends StatelessWidget {
                         _Frames(),
                         SizedBox(height: 20),
                         vm.isImagesPicked ? _FramePreview() : _PickPhotos(),
+                        SizedBox(height: 15),
+                        _Walls(),
                       ],
                     ),
                   ),
@@ -85,6 +90,61 @@ class _Body extends StatelessWidget {
               child: Align(
                   alignment: Alignment.center,
                   child: CircularProgressIndicator()))
+        ],
+      ),
+    );
+  }
+}
+
+class _Walls extends StatelessWidget {
+  const _Walls({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    var vm = context.watch<ChooseFrameViewModel>();
+    var size = MediaQuery.of(context).size;
+    return Container(
+      height: 300,
+      width: 300,
+      child: Stack(
+        clipBehavior: Clip.hardEdge,
+        children: [
+          Image(
+            height: 300,
+            width: 300,
+            fit: BoxFit.fill,
+            image: AssetImage('assets/images/01.png'),
+          ),
+          Positioned(
+            right: (674 * size.width / 1000) - 100,
+            bottom: (288 * size.height / 1000) - 100,
+            child: Image.memory(
+              vm.pickedFiles[0],
+              height: 60,
+              width: 60,
+              fit: BoxFit.cover,
+            ),
+          ),
+          Positioned(
+            right: (363 * size.width / 1000) - 100,
+            bottom: (449 * size.height / 1000) - 100,
+            child: Image.memory(
+              vm.pickedFiles[0],
+              height: 60,
+              width: 60,
+              fit: BoxFit.cover,
+            ),
+          ),
+          Positioned(
+            right: (1032 * size.width / 1000) - 100,
+            bottom: (443 * size.height / 1000) - 100,
+            child: Image.memory(
+              vm.pickedFiles[0],
+              height: 60,
+              width: 60,
+              fit: BoxFit.cover,
+            ),
+          ),
         ],
       ),
     );

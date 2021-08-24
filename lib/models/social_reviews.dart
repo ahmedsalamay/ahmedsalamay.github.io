@@ -30,9 +30,9 @@ class SocialReviews {
       );
 
   Map<String, dynamic> toJson() => {
-        "reviewLink": reviewLink == null ? null : reviewLink,
-        "reviewerName": reviewerName == null ? null : reviewerName,
-        "socialMediaType": socialMediaType == null ? null : socialMediaType,
-        "reviewText": reviewText == null ? null : reviewText,
+        "reviewLink":  reviewLink,
+        "reviewerName":reviewerName,
+        "socialMediaType":  socialMediaType,
+        "reviewText": reviewText,
       };
 }

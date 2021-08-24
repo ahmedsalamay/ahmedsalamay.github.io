@@ -171,7 +171,7 @@ class __AddressFormState extends State<_AddressForm> {
                 decoration:
                     InputDecoration(hintText: S.of(context).addressHint),
               ),
-              SizedBox(height: 12),
+              const SizedBox(height: 12),
               TextFormField(
                 textAlign: TextAlign.start,
                 onChanged: (value) => vm.onEmailChange(value),
@@ -305,11 +305,11 @@ class _Stepper extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: 12),
-                Expanded(
+                const Expanded(
                     child: VerticalDivider(
                   thickness: 4,
                 )),
-                SizedBox(height: 12),
+                const SizedBox(height: 12),
                 Container(
                   width: 50,
                   height: 50,
@@ -317,7 +317,7 @@ class _Stepper extends StatelessWidget {
                       borderRadius: BorderRadius.circular(25),
                       border: Border.all(
                           color: FimtoColors.dividerColor, width: 3)),
-                  child: Center(
+                  child: const Center(
                       child: Text(
                     '2',
                     style: TextStyle(
@@ -326,9 +326,9 @@ class _Stepper extends StatelessWidget {
                         fontWeight: FontWeight.w800),
                   )),
                 ),
-                SizedBox(height: 12),
-                Expanded(child: VerticalDivider(thickness: 4)),
-                SizedBox(height: 12),
+                const SizedBox(height: 12),
+                const Expanded(child: VerticalDivider(thickness: 4)),
+                const SizedBox(height: 12),
                 Container(
                   width: 50,
                   height: 50,
@@ -336,7 +336,7 @@ class _Stepper extends StatelessWidget {
                       borderRadius: BorderRadius.circular(25),
                       border: Border.all(
                           color: FimtoColors.dividerColor, width: 3)),
-                  child: Center(
+                  child: const Center(
                     child: Text(
                       '3',
                       style: TextStyle(

@@ -1,9 +1,6 @@
-import 'dart:typed_data';
 import 'package:fimto_frame/responsive/responsive_layout.dart';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import 'choose_frame_desktop.dart';
 import 'choose_frame_mobile.dart';
 

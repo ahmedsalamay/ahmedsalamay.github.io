@@ -57,6 +57,13 @@ class ConfirmOrderViewModel extends ChangeNotifier {
       messageService.showErrorInfoDialog('', S.current.pleaseChooseDate);
       return;
     }
+    var isConnected = await connectionService.checkConnection();
+    if (!isConnected) {
+      messageService.showErrorSnackBar(
+          title: S.current.connectionErrorHeader,
+          message: S.current.connectionErrorMsg);
+      return;
+    }
     order.deliveryDate = _deliveryDate!;
     order.wallName = 'Montaser2';
     setLoadingState(true);
@@ -74,6 +81,13 @@ class ConfirmOrderViewModel extends ChangeNotifier {
   Future<void> onConfirmOrderActionWeb() async {
     if (_deliveryDate == null) {
       messageService.showErrorInfoDialog('', S.current.pleaseChooseDate);
+      return;
+    }
+    var isConnected = await connectionService.checkConnection();
+    if (!isConnected) {
+      messageService.showErrorSnackBar(
+          title: S.current.connectionErrorHeader,
+          message: S.current.connectionErrorMsg);
       return;
     }
     order.deliveryDate = _deliveryDate!;

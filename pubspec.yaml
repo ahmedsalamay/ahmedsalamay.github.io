@@ -47,8 +47,10 @@ dependencies:
   http: ^0.13.3
   youtube_player_iframe: ^2.2.1
   flutter_shimmer: ^2.1.0
+  shimmer_animation: ^2.1.0+1
 
 dev_dependencies:
+  flutter_lints: ^1.0.4
   flutter_test:
     sdk: flutter
 
@@ -94,6 +96,7 @@ flutter:
     - assets/images/facebookGrey.png
     - assets/images/googleGrey.png
     - assets/images/us.png
+    - assets/images/01.png
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

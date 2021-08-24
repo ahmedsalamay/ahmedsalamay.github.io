@@ -1,16 +1,8 @@
-import 'package:fimto_frame/generated/l10n.dart';
-import 'package:fimto_frame/models/constants.dart';
-import 'package:fimto_frame/models/facebook_album.dart';
-import 'package:fimto_frame/models/facebook_photo.dart';
 import 'package:fimto_frame/models/home_page_configuration.dart';
 import 'package:fimto_frame/models/social_reviews.dart';
 import 'package:fimto_frame/services/request_provider.dart';
-import 'dart:convert';
 import 'package:async/async.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
-import 'package:get/get.dart';
 
 class ConfigurationRepository {
   final RequestProvider requestProvider;

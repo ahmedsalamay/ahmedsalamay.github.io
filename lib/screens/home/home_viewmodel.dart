@@ -18,14 +18,15 @@ class HomeViewModel extends ChangeNotifier {
       required this.order,
       required this.configurationRepository}) {
     _homePageConfiguration = loadHomePageConfiguration();
+    _socialReviews = loadHomeSocialReviews();
   }
 
   late Future<HomePageConfiguration> _homePageConfiguration;
   Future<HomePageConfiguration> get homePageConfiguration =>
       _homePageConfiguration;
 
-  List<SocialReviews> _socialReviews = [];
-  List<SocialReviews> get socialReviews => _socialReviews;
+  late Future<List<SocialReviews>> _socialReviews;
+  Future<List<SocialReviews>> get socialReviews => _socialReviews;
 
   bool _isLoadingConfigurations = true;
   bool get isLoadingConfigurations => _isLoadingConfigurations;

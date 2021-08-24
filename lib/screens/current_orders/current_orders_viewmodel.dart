@@ -1,13 +1,10 @@
 import 'package:fimto_frame/generated/l10n.dart';
-import 'package:fimto_frame/models/city.dart';
 import 'package:fimto_frame/models/order.dart';
 import 'package:fimto_frame/models/order_status.dart';
 import 'package:fimto_frame/repository/remote/order_repository.dart';
-import 'package:fimto_frame/routes/router_names.dart';
 import 'package:fimto_frame/services/connection_service.dart';
 import 'package:fimto_frame/services/message_service.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class AddAddressViewModel extends ChangeNotifier {
   final OrderRepository orderRepository;
@@ -29,6 +26,13 @@ class AddAddressViewModel extends ChangeNotifier {
   List<OrderStatus> get currentOrders => _currentOrders;
 
   Future<void> initAsync() async {
+    var isConnected = await connectionService.checkConnection();
+    if (!isConnected) {
+      messageService.showErrorSnackBar(
+          title: S.current.connectionErrorHeader,
+          message: S.current.connectionErrorMsg);
+      return;
+    }
     var ordersResponse = await orderRepository.getOrdersStatus();
     if (ordersResponse.isError) {
       messageService.showErrorSnackBar(title: '', message: 'Error Happened');

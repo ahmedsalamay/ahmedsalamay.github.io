@@ -70,24 +70,23 @@ class OrderStatus {
       );
 
   Map<String, dynamic> toJson() => {
-        "name": name == null ? null : name,
-        "phone": phone == null ? null : phone,
-        "email": email == null ? null : email,
-        "city": city == null ? null : city,
-        "region": region == null ? null : region,
-        "address": address == null ? null : address,
-        "buildingNo": buildingNo == null ? null : buildingNo,
-        "floor": floor == null ? null : floor,
+        "name": name,
+        "phone": phone,
+        "email": email,
+        "city": city,
+        "region": region,
+        "address": address,
+        "buildingNo": buildingNo,
+        "floor": floor,
         "paymentmethod": paymentMethod,
         "frame": frame,
-        "imageNo": imageNo == null ? null : imageNo,
+        "imageNo": imageNo,
         "wallname": wallName,
-        "typeofOrder": typeofOrder == null ? null : typeofOrder,
+        "typeofOrder": typeofOrder,
         "gifttext": giftText,
-        "deliverydate":
-            deliveryDate == null ? null : deliveryDate.toIso8601String(),
-        "paid": paid == null ? null : paid,
-        "status": status == null ? null : status,
-        "total": total == null ? null : total,
+        "deliverydate": deliveryDate.toIso8601String(),
+        "paid": paid,
+        "status": status,
+        "total": total,
       };
 }

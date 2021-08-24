@@ -1,6 +1,8 @@
 import 'package:fimto_frame/models/facebook_photo.dart';
 import 'package:fimto_frame/models/order.dart';
 import 'package:fimto_frame/repository/remote/facebook_repository.dart';
+import 'package:fimto_frame/services/connection_service.dart';
+import 'package:fimto_frame/services/message_service.dart';
 import 'package:fimto_frame/themes/theme.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
@@ -19,6 +21,8 @@ class ChooseFrameDesktop extends StatelessWidget {
     return ChangeNotifierProvider<ChooseFrameViewModel>(
         create: (_) => ChooseFrameViewModel(
               facebookRepository: context.read<FacebookRepository>(),
+              connectionService: context.read<ConnectionService>(),
+              messageService: context.read<MessageService>(),
               order: context.read<Order>(),
             ),
         child: Scaffold(

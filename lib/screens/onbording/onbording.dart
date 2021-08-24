@@ -1,7 +1,6 @@
 import 'package:fimto_frame/generated/l10n.dart';
 import 'package:fimto_frame/responsive/responsive_layout.dart';
 import 'package:fimto_frame/routes/router_names.dart';
-import 'package:fimto_frame/screens/home/home_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

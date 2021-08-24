@@ -107,7 +107,7 @@ class RequestProvider {
       'Content-Type': 'application/json',
       //'Access-Control-Allow-Origin': '*',
       'Accept-Language':
-          language!.languageCode == Language.arabicCode ? 'ar-EG' : 'en-US',
+          language.languageCode == Language.arabicCode ? 'ar-EG' : 'en-US',
     };
   }
 

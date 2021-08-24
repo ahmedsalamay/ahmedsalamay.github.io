@@ -8,6 +8,8 @@ import 'package:fimto_frame/models/facebook_photo.dart';
 import 'package:fimto_frame/models/order.dart';
 import 'package:fimto_frame/repository/remote/facebook_repository.dart';
 import 'package:fimto_frame/routes/router_names.dart';
+import 'package:fimto_frame/services/connection_service.dart';
+import 'package:fimto_frame/services/message_service.dart';
 import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
@@ -17,9 +19,15 @@ import 'package:flutter/foundation.dart' show kIsWeb;
 
 class ChooseFrameViewModel extends ChangeNotifier {
   final FacebookRepository facebookRepository;
+  final ConnectionService connectionService;
+  final MessageService messageService;
   final Order order;
 
-  ChooseFrameViewModel({required this.facebookRepository, required this.order});
+  ChooseFrameViewModel(
+      {required this.facebookRepository,
+      required this.order,
+        required this.messageService,
+      required this.connectionService});
 
   String get packageSize => order.packageSize.toString();
   String get packagePrice => order.packagePrice.toString();
@@ -33,7 +41,8 @@ class ChooseFrameViewModel extends ChangeNotifier {
           (_pickedFiles.length - order.packageSize!) * order.extraImagePrice!)
       .toString();
 
-  bool get showCheckOutButton => _pickedFiles.length >= order.packageSize!;
+  bool get showCheckOutButton =>
+      true; //_pickedFiles.length >= order.packageSize!;
 
   var logger = Logger();
 
@@ -49,6 +58,13 @@ class ChooseFrameViewModel extends ChangeNotifier {
   bool isDeleteButtonVisible = false;
 
   void addFacebookPhoto(List<String> sources) async {
+    var isConnected = await connectionService.checkConnection();
+    if (!isConnected) {
+      messageService.showErrorSnackBar(
+          title: S.current.connectionErrorHeader,
+          message: S.current.connectionErrorMsg);
+      return;
+    }
     Get.back();
     setLoadingState(true);
 
@@ -78,8 +94,6 @@ class ChooseFrameViewModel extends ChangeNotifier {
     isDeleteButtonVisible = false;
     notifyListeners();
   }
-
-  Future<void> initAsync() async {}
 
   frames _selectedFrame = frames.classic;
   frames get selectedFrame => _selectedFrame;

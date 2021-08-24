@@ -1,18 +1,14 @@
 import 'dart:convert';
-
 import 'package:fimto_frame/generated/l10n.dart';
-import 'package:fimto_frame/models/language.dart';
 import 'package:fimto_frame/models/order.dart';
 import 'package:fimto_frame/models/payments_methods.dart';
 import 'package:fimto_frame/repository/remote/order_repository.dart';
-import 'package:fimto_frame/routes/router_names.dart';
 import 'package:fimto_frame/services/connection_service.dart';
 import 'package:fimto_frame/services/message_service.dart';
 import 'package:fimto_frame/themes/buttons.dart';
 import 'package:fimto_frame/themes/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_shimmer/flutter_shimmer.dart';
-import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'add_payment_method_viewmodel.dart';
 
