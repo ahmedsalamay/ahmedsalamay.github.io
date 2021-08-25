@@ -11,16 +11,16 @@ class AddPaymentMethodScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return ScreenTypeLayout(
       mobile: OrientationLayout(
-        portrait: AddPaymentMethodScreenMobile(),
-        landscape: AddPaymentMethodScreenMobile(),
+        portrait: const AddPaymentMethodScreenMobile(),
+        landscape: const AddPaymentMethodScreenMobile(),
       ),
       tablet: OrientationLayout(
-        portrait: AddPaymentMethodScreenDesktop(),
-        landscape: AddPaymentMethodScreenDesktop(),
+        portrait: const AddPaymentMethodScreenDesktop(),
+        landscape: const AddPaymentMethodScreenDesktop(),
       ),
       desktop: OrientationLayout(
-        landscape: AddPaymentMethodScreenDesktop(),
-        portrait: AddPaymentMethodScreenDesktop(),
+        landscape: const AddPaymentMethodScreenDesktop(),
+        portrait: const AddPaymentMethodScreenDesktop(),
       ),
     );
   }

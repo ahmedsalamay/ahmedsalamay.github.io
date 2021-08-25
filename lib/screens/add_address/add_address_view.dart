@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'add_address_desktop.dart';
 import 'add_address_mobile.dart';
 
-
 class AddAddressScreen extends StatelessWidget {
   const AddAddressScreen({Key? key}) : super(key: key);
 
@@ -12,19 +11,17 @@ class AddAddressScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return ScreenTypeLayout(
       mobile: OrientationLayout(
-        portrait: AddAddressScreenMobile(),
-        landscape: AddAddressScreenMobile(),
+        portrait: const AddAddressScreenMobile(),
+        landscape: const AddAddressScreenMobile(),
       ),
       tablet: OrientationLayout(
-        portrait: AddAddressScreenDesktop(),
-        landscape: AddAddressScreenDesktop(),
+        portrait: const AddAddressScreenDesktop(),
+        landscape: const AddAddressScreenDesktop(),
       ),
       desktop: OrientationLayout(
-        landscape: AddAddressScreenDesktop(),
-        portrait: AddAddressScreenDesktop(),
+        landscape: const AddAddressScreenDesktop(),
+        portrait: const AddAddressScreenDesktop(),
       ),
     );
   }
 }
-
-

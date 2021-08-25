@@ -1,4 +1,6 @@
 import 'package:fimto_frame/models/language.dart';
+import 'package:fimto_frame/models/order.dart';
+import 'package:fimto_frame/services/message_service.dart';
 import 'package:provider/provider.dart';
 import 'leave_message_viewmodel.dart';
 import 'package:fimto_frame/themes/appBar.dart';
@@ -14,7 +16,9 @@ class LeaveMessageMobile extends StatelessWidget {
   Widget build(BuildContext context) {
     var language = context.watch<Language>();
     return ChangeNotifierProvider<LeaveMessageViewModel>(
-        create: (_) => LeaveMessageViewModel(),
+        create: (_) => LeaveMessageViewModel(
+            order: context.read<Order>(),
+            messageService: context.read<MessageService>()),
         child: Scaffold(
           backgroundColor: Colors.white,
           endDrawer: language.currentLocale.languageCode == 'en'
@@ -60,6 +64,7 @@ class _Body extends StatelessWidget {
                       textAlign: TextAlign.center,
                     ),
                     const SizedBox(height: 25),
+                    const _MessageField(),
                   ],
                 ),
               ),
@@ -69,6 +74,27 @@ class _Body extends StatelessWidget {
               text: S.of(context).continueBTN,
               onTap: context.read<LeaveMessageViewModel>().continueAction)
         ],
+      ),
+    );
+  }
+}
+
+class _MessageField extends StatelessWidget {
+  const _MessageField({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    var vm = context.read<LeaveMessageViewModel>();
+    var size = MediaQuery.of(context).size;
+    return SizedBox(
+      height: size.height * 0.6,
+      child: TextField(
+        minLines: 10,
+        maxLines: 15,
+        onChanged: (value) => vm.onMessageEntered(value),
+        decoration: const InputDecoration(
+          fillColor: Colors.white,
+        ),
       ),
     );
   }

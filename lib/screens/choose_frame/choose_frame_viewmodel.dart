@@ -26,7 +26,7 @@ class ChooseFrameViewModel extends ChangeNotifier {
   ChooseFrameViewModel(
       {required this.facebookRepository,
       required this.order,
-        required this.messageService,
+      required this.messageService,
       required this.connectionService});
 
   String get packageSize => order.packageSize.toString();
@@ -140,7 +140,13 @@ class ChooseFrameViewModel extends ChangeNotifier {
   Future<PhotoPaging?> facebookLogin() async {
     setLoadingState(true);
     final LoginResult result = await FacebookAuth.instance.login(
-      permissions: ['user_photos', 'email', 'public_profile'],
+      permissions: [
+        'user_photos',
+        'email',
+        'public_profile',
+        'instagram_basic',
+        'instagram_graph_user_profile'
+      ],
     ); // by default we request the email and the public profile
 
     if (result.status == LoginStatus.success) {

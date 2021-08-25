@@ -49,7 +49,7 @@ class _Body extends StatelessWidget {
           CustomAppBar(title: S.of(context).chooseYourFrame),
           Expanded(
             child: Row(
-              children: [
+              children: const [
                 Expanded(
                   flex: 3,
                   child: _Preview(),

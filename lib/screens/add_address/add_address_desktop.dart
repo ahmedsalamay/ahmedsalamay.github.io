@@ -13,6 +13,8 @@ import 'package:flutter/material.dart';
 import 'add_address_viewmodel.dart';
 
 class AddAddressScreenDesktop extends StatelessWidget {
+  const AddAddressScreenDesktop({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     var language = context.watch<Language>();
@@ -41,7 +43,7 @@ class _Body extends StatelessWidget {
     var vm = context.read<AddAddressViewModel>();
 
     return SafeArea(
-      child: Container(
+      child: SizedBox(
           height: double.infinity,
           width: double.infinity,
           child: Row(
@@ -366,14 +368,14 @@ class _Stepper extends StatelessWidget {
                 ),
                 Text(
                   S.of(context).payment,
-                  style: TextStyle(
+                  style: const TextStyle(
                       color: FimtoColors.dividerColor,
                       fontSize: 16,
                       fontWeight: FontWeight.w800),
                 ),
                 Text(
                   S.of(context).confirmation,
-                  style: TextStyle(
+                  style: const TextStyle(
                       color: FimtoColors.dividerColor,
                       fontSize: 16,
                       fontWeight: FontWeight.w800),

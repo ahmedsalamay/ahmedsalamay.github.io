@@ -16,6 +16,8 @@ import 'package:provider/provider.dart';
 import 'add_payment_method_viewmodel.dart';
 
 class AddPaymentMethodScreenMobile extends StatelessWidget {
+  const AddPaymentMethodScreenMobile({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     var language = context.watch<Language>();

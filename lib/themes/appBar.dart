@@ -18,7 +18,7 @@ class CustomAppBar extends StatelessWidget {
             color: Colors.grey.withOpacity(0.2),
             spreadRadius: 1,
             blurRadius: 2,
-            offset: Offset(0, 2), // changes position of shadow
+            offset: const Offset(0, 2), // changes position of shadow
           ),
         ]),
         child: Row(
@@ -28,7 +28,7 @@ class CustomAppBar extends StatelessWidget {
               flex: 1,
               child: IconButton(
                 onPressed: () => Get.back(),
-                icon: Image(
+                icon: const Image(
                   height: 20,
                   width: 20,
                   fit: BoxFit.fill,
@@ -48,7 +48,7 @@ class CustomAppBar extends StatelessWidget {
             Expanded(
               flex: 1,
               child: IconButton(
-                icon: Icon(Icons.menu, size: 30, color: Colors.black),
+                icon: const Icon(Icons.menu, size: 30, color: Colors.black),
                 onPressed: () => Scaffold.of(context).openEndDrawer(),
               ),
             ),

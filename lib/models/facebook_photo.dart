@@ -1,3 +1,5 @@
+// ignore: prefer_if_null_operators
+
 import 'dart:convert';
 
 PhotoPaging photoPagingFromJson(String str) =>

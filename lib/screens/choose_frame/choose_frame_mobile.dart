@@ -121,15 +121,22 @@ class _Walls extends StatelessWidget {
       child: Stack(
         clipBehavior: Clip.hardEdge,
         children: [
-          const Image(
-            height: 300,
-            width: 300,
-            fit: BoxFit.fill,
-            image: AssetImage('assets/images/01.png'),
+          GestureDetector(
+            onTapDown: (TapDownDetails details) {
+              print(details.globalPosition.dx.toString() +
+                  '----' +
+                  details.globalPosition.dy.toString());
+            },
+            child: const Image(
+              height: 300,
+              width: 300,
+              fit: BoxFit.fill,
+              image: AssetImage('assets/images/01.png'),
+            ),
           ),
           Positioned(
-            right: (674 * size.width / 1000) - 100,
-            bottom: (288 * size.height / 1000) - 100,
+            right: 0, //(0 * size.width / 1000) - 100,
+            bottom: (535 * size.height / 1000) - 100,
             child: Image.memory(
               vm.pickedFiles[0],
               height: 60,
@@ -138,8 +145,8 @@ class _Walls extends StatelessWidget {
             ),
           ),
           Positioned(
-            right: (363 * size.width / 1000) - 100,
-            bottom: (449 * size.height / 1000) - 100,
+            right: (785 * size.width / 1000) - 100,
+            bottom: (0 * size.height / 1000) - 100,
             child: Image.memory(
               vm.pickedFiles[0],
               height: 60,

@@ -19,10 +19,10 @@ Route onGenerateRoute(RouteSettings settings) {
   switch (settings.name) {
     case splashRoute:
       return MaterialPageRoute(
-          builder: (context) => SplashScreen(), settings: settings);
+          builder: (context) => const SplashScreen(), settings: settings);
     case onBoardRoute:
       return MaterialPageRoute(
-          builder: (context) => OnBoardView(), settings: settings);
+          builder: (context) => const OnBoardView(), settings: settings);
     case homeRoute:
       return MaterialPageRoute(
           builder: (context) => const HomeView(), settings: settings);
@@ -51,7 +51,7 @@ Route onGenerateRoute(RouteSettings settings) {
           builder: (context) => const TrackOrderScreen(), settings: settings);
     case chooseFrameRoute:
       return MaterialPageRoute(
-          builder: (context) => ChooseFrameScreen(), settings: settings);
+          builder: (context) => const ChooseFrameScreen(), settings: settings);
     case loginRoute:
       return MaterialPageRoute(
           builder: (context) => const LoginScreen(), settings: settings);

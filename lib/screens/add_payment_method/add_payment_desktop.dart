@@ -13,6 +13,8 @@ import 'package:provider/provider.dart';
 import 'add_payment_method_viewmodel.dart';
 
 class AddPaymentMethodScreenDesktop extends StatelessWidget {
+  const AddPaymentMethodScreenDesktop({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<AddPaymentMethodViewModel>(
@@ -158,7 +160,7 @@ class _Stepper extends StatelessWidget {
     return Container(
       constraints: const BoxConstraints(maxWidth: 300),
       height: double.infinity,
-      color:const  Color(0xFFf9f9f9),
+      color: const Color(0xFFf9f9f9),
       child: Row(
         children: [
           Container(
@@ -172,7 +174,7 @@ class _Stepper extends StatelessWidget {
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(25),
                       color: FimtoColors.successColor),
-                  child:const Center(
+                  child: const Center(
                       child: Icon(
                     Icons.check,
                     color: Colors.white,
@@ -193,7 +195,7 @@ class _Stepper extends StatelessWidget {
                       borderRadius: BorderRadius.circular(25),
                       border: Border.all(
                           color: FimtoColors.dividerColor, width: 3)),
-                  child:const Center(
+                  child: const Center(
                       child: Text(
                     '2',
                     style: TextStyle(
@@ -212,7 +214,7 @@ class _Stepper extends StatelessWidget {
                       borderRadius: BorderRadius.circular(25),
                       border: Border.all(
                           color: FimtoColors.dividerColor, width: 3)),
-                  child:const Center(
+                  child: const Center(
                     child: Text(
                       '3',
                       style: TextStyle(
@@ -240,7 +242,7 @@ class _Stepper extends StatelessWidget {
                 ),
                 Text(
                   S.of(context).payment,
-                  style:const TextStyle(
+                  style: const TextStyle(
                       color: Colors.black,
                       fontSize: 16,
                       fontWeight: FontWeight.w700),
@@ -318,7 +320,7 @@ class _PaymentButton extends StatelessWidget {
                             paymentsMethod.companyName
                         ? const Color(0xffff3400)
                         : const Color(0xffd4d3d2)),
-                child:const Icon(
+                child: const Icon(
                   Icons.done,
                   color: Colors.white,
                   size: 20,

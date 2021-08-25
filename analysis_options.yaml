@@ -43,7 +43,7 @@ linter:
     - overridden_fields
     - package_names
     - prefer_adjacent_string_concatenation
-#    - prefer_collection_literals
+    - prefer_collection_literals
     - prefer_conditional_assignment
     - prefer_contains
     - prefer_equal_for_default_values
@@ -69,9 +69,8 @@ linter:
     - unnecessary_this
     - use_function_type_syntax_for_parameters
     - use_rethrow_when_possible
+#    - prefer_if_null_operators
 
 # Additional information about this file can be found at
 # https://dart.dev/guides/language/analysis-options
 
-
-#    - prefer_if_null_operators

@@ -82,7 +82,7 @@ class Paging {
   final String? next;
 
   factory Paging.fromJson(Map<String, dynamic> json) => Paging(
-        next: json["next"] != null ? json["next"] : null,
+        next: json["next"] ?? null,
         cursors: Cursors.fromJson(json["cursors"]),
       );
 

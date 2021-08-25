@@ -15,6 +15,8 @@ import 'package:flutter/material.dart';
 import 'add_address_viewmodel.dart';
 
 class AddAddressScreenMobile extends StatelessWidget {
+  const AddAddressScreenMobile({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     var language = context.watch<Language>();
