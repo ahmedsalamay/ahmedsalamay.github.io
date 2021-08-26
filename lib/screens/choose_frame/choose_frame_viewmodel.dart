@@ -144,8 +144,6 @@ class ChooseFrameViewModel extends ChangeNotifier {
         'user_photos',
         'email',
         'public_profile',
-        'instagram_basic',
-        'instagram_graph_user_profile'
       ],
     ); // by default we request the email and the public profile
 

@@ -51,7 +51,6 @@ class _Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var vm = context.watch<ChooseFrameViewModel>();
-
     return SafeArea(
       child: Stack(
         children: [
@@ -72,7 +71,7 @@ class _Body extends StatelessWidget {
                             ? const _FramePreview()
                             : const _PickPhotos(),
                         const SizedBox(height: 15),
-                        const _Walls(),
+                        vm.isImagesPicked ? const _Walls() : const SizedBox(),
                       ],
                     ),
                   ),
@@ -135,33 +134,23 @@ class _Walls extends StatelessWidget {
             ),
           ),
           Positioned(
-            right: 0, //(0 * size.width / 1000) - 100,
-            bottom: (535 * size.height / 1000) - 100,
+            left: (0 * 300 / 1000),
+            top: (535 * 300 / 750),
             child: Image.memory(
               vm.pickedFiles[0],
-              height: 60,
-              width: 60,
-              fit: BoxFit.cover,
+              height: 80,
+              width: 80,
+              fit: BoxFit.fill,
             ),
           ),
           Positioned(
-            right: (785 * size.width / 1000) - 100,
-            bottom: (0 * size.height / 1000) - 100,
+            left: (785 * 300 / 1000),
+            top: (0 * 300 / 750),
             child: Image.memory(
               vm.pickedFiles[0],
-              height: 60,
-              width: 60,
-              fit: BoxFit.cover,
-            ),
-          ),
-          Positioned(
-            right: (1032 * size.width / 1000) - 100,
-            bottom: (443 * size.height / 1000) - 100,
-            child: Image.memory(
-              vm.pickedFiles[0],
-              height: 60,
-              width: 60,
-              fit: BoxFit.cover,
+              height: 80,
+              width: 80,
+              fit: BoxFit.fill,
             ),
           ),
         ],
@@ -423,67 +412,69 @@ class _FramePreview extends StatelessWidget {
         SizedBox(
           height: 300,
           width: 600,
-          child: Swiper(
-            itemHeight: 300,
-            itemWidth: 300,
-            itemBuilder: (BuildContext context, int index) {
-              return GestureDetector(
-                onTap: () => showModalBottomSheet(
-                    context: context,
-                    builder: (builder) {
-                      return _PhotoButtonSheet(index, context);
-                    }),
-                child: SizedBox(
-                  height: 300,
-                  width: 300,
-                  child: Stack(
-                    clipBehavior: Clip.hardEdge,
-                    children: [
-                      Image(
-                        height: 300,
-                        width: 300,
-                        fit: BoxFit.fill,
-                        image: AssetImage(
-                            'assets/images/${vm.selectedFrame.toString().split('.')[1]}.png'),
-                      ),
-                      Padding(
-                        padding: vm.selectedFrame == frames.classic ||
-                                vm.selectedFrame == frames.permise
-                            ? classicPadding
-                            : cleanPadding,
-                        child: Image.memory(
-                          vm.pickedFiles[index],
+          child: Directionality(
+            textDirection: TextDirection.ltr,
+            child: Swiper(
+              itemHeight: 300,
+              itemWidth: 300,
+              itemBuilder: (BuildContext context, int index) {
+                return GestureDetector(
+                  onTap: () => showModalBottomSheet(
+                      context: context,
+                      builder: (builder) {
+                        return _PhotoButtonSheet(index, context);
+                      }),
+                  child: SizedBox(
+                    height: 300,
+                    width: 300,
+                    child: Stack(
+                      clipBehavior: Clip.hardEdge,
+                      children: [
+                        Image(
                           height: 300,
-                          width: 250,
-                          fit: BoxFit.cover,
+                          width: 300,
+                          fit: BoxFit.fill,
+                          image: AssetImage(
+                              'assets/images/${vm.selectedFrame.toString().split('.')[1]}.png'),
                         ),
-                      ),
-                      Visibility(
-                        visible: vm.isDeleteButtonVisible,
-                        child: Positioned(
-                            left: 30,
-                            top: 30,
-                            child: IconButton(
-                              onPressed: () => vm.removePhoto(index),
-                              icon: const Icon(
-                                Icons.delete,
-                                size: 40,
-                                color: Colors.red,
-                              ),
-                            )),
-                      )
-                    ],
+                        Padding(
+                          padding: vm.selectedFrame == frames.classic ||
+                                  vm.selectedFrame == frames.permise
+                              ? classicPadding
+                              : cleanPadding,
+                          child: Image.memory(
+                            vm.pickedFiles[index],
+                            height: 300,
+                            width: 250,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                        Visibility(
+                          visible: vm.isDeleteButtonVisible,
+                          child: Positioned(
+                              left: 30,
+                              top: 30,
+                              child: IconButton(
+                                onPressed: () => vm.removePhoto(index),
+                                icon: const Icon(
+                                  Icons.delete,
+                                  size: 40,
+                                  color: Colors.red,
+                                ),
+                              )),
+                        )
+                      ],
+                    ),
                   ),
-                ),
-              );
-            },
-            itemCount: vm.pickedFiles.length,
-            viewportFraction: 0.8,
-            scale: 0.9,
-            loop: false,
+                );
+              },
+              itemCount: vm.pickedFiles.length,
+              viewportFraction: 0.8,
+              scale: 0.9,
+              loop: false,
+            ),
           ),
         ),
-        const SizedBox(height: 30),
         const _AddMore()
       ],
     );

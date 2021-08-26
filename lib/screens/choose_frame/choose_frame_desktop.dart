@@ -1,4 +1,5 @@
 import 'package:fimto_frame/models/facebook_photo.dart';
+import 'package:fimto_frame/models/language.dart';
 import 'package:fimto_frame/models/order.dart';
 import 'package:fimto_frame/repository/remote/facebook_repository.dart';
 import 'package:fimto_frame/services/connection_service.dart';
@@ -36,9 +37,7 @@ class ChooseFrameDesktop extends StatelessWidget {
 }
 
 class _Body extends StatelessWidget {
-  const _Body({
-    Key? key,
-  }) : super(key: key);
+  const _Body({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -74,11 +73,13 @@ class _Preview extends StatelessWidget {
     var vm = context.watch<ChooseFrameViewModel>();
     return Container(
       color: const Color(0xFFf9f9f9),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
+      child: ListView(
+        // mainAxisAlignment: MainAxisAlignment.start,
         children: [
           const SizedBox(height: 130),
           vm.isImagesPicked ? const _FramePreview() : const _PickPhotos(),
+          const SizedBox(height: 25),
+          vm.isImagesPicked ? const _Walls() : const SizedBox(),
         ],
       ),
     );
@@ -330,7 +331,7 @@ class _ImportPhoto extends StatelessWidget {
               child: Row(
                 children: [
                   IconButton(
-                    icon: Image.asset('assets/images/instagm_colored.png'),
+                    icon: Image.asset('assets/images/instagram_colored.png'),
                     padding: const EdgeInsets.all(0),
                     onPressed: () {},
                   ),
@@ -366,72 +367,75 @@ class _FramePreview extends StatelessWidget {
         SizedBox(
           height: 300,
           width: 600,
-          child: Swiper(
-            itemHeight: 300,
-            itemWidth: 300,
-            itemBuilder: (BuildContext context, int index) {
-              return MouseRegion(
-                onEnter: (_) => vm.showDeleteButton(),
-                onExit: (_) => vm.hideDeleteButton(),
-                child: SizedBox(
-                  height: 300,
-                  width: 300,
-                  child: Stack(
-                    clipBehavior: Clip.hardEdge,
-                    children: [
-                      Image(
-                        height: 300,
-                        width: 300,
-                        fit: BoxFit.fill,
-                        image: AssetImage(
-                            'assets/images/${vm.selectedFrame.toString().split('.')[1]}.png'),
-                      ),
-                      Padding(
-                        padding: vm.selectedFrame == frames.classic ||
-                                vm.selectedFrame == frames.permise
-                            ? classicPadding
-                            : cleanPadding,
-                        child: Image.memory(
-                          vm.pickedFiles[index],
+          child: Directionality(
+            textDirection: TextDirection.ltr,
+            child: Swiper(
+              itemHeight: 300,
+              itemWidth: 300,
+              itemBuilder: (BuildContext context, int index) {
+                return MouseRegion(
+                  onEnter: (_) => vm.showDeleteButton(),
+                  onExit: (_) => vm.hideDeleteButton(),
+                  child: SizedBox(
+                    height: 300,
+                    width: 300,
+                    child: Stack(
+                      clipBehavior: Clip.hardEdge,
+                      children: [
+                        Image(
                           height: 300,
-                          width: vm.selectedFrame == frames.classic ||
-                                  vm.selectedFrame == frames.permise
-                              ? 220
-                              : 250,
-                          fit: BoxFit.cover,
+                          width: 300,
+                          fit: BoxFit.fill,
+                          image: AssetImage(
+                              'assets/images/${vm.selectedFrame.toString().split('.')[1]}.png'),
                         ),
-                      ),
-                      Visibility(
-                        visible: vm.isDeleteButtonVisible,
-                        child: Positioned(
-                            left: 30,
-                            top: 30,
-                            child: Container(
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(8),
-                                  color: Colors.white),
-                              child: IconButton(
-                                onPressed: () => vm.removePhoto(index),
-                                icon: const Icon(
-                                  Icons.delete,
-                                  size: 25,
-                                  color: Colors.black,
+                        Padding(
+                          padding: vm.selectedFrame == frames.classic ||
+                                  vm.selectedFrame == frames.permise
+                              ? classicPadding
+                              : cleanPadding,
+                          child: Image.memory(
+                            vm.pickedFiles[index],
+                            height: 300,
+                            width: vm.selectedFrame == frames.classic ||
+                                    vm.selectedFrame == frames.permise
+                                ? 220
+                                : 250,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                        Visibility(
+                          visible: vm.isDeleteButtonVisible,
+                          child: Positioned(
+                              left: 30,
+                              top: 30,
+                              child: Container(
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(8),
+                                    color: Colors.white),
+                                child: IconButton(
+                                  onPressed: () => vm.removePhoto(index),
+                                  icon: const Icon(
+                                    Icons.delete,
+                                    size: 25,
+                                    color: Colors.black,
+                                  ),
                                 ),
-                              ),
-                            )),
-                      )
-                    ],
+                              )),
+                        )
+                      ],
+                    ),
                   ),
-                ),
-              );
-            },
-            itemCount: vm.pickedFiles.length,
-            viewportFraction: 0.8,
-            scale: 0.9,
-            loop: false,
+                );
+              },
+              itemCount: vm.pickedFiles.length,
+              viewportFraction: 0.8,
+              scale: 0.9,
+              loop: false,
+            ),
           ),
         ),
-        const SizedBox(height: 50),
+        const SizedBox(height: 20),
         const _AddMore()
       ],
     );
@@ -662,6 +666,59 @@ class _FacebookPhotosState extends State<FacebookPhotos> {
               }),
             ),
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class _Walls extends StatelessWidget {
+  const _Walls({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    var vm = context.watch<ChooseFrameViewModel>();
+    return Center(
+      child: SizedBox(
+        height: 300,
+        width: 300,
+        child: Stack(
+          clipBehavior: Clip.hardEdge,
+          children: [
+            GestureDetector(
+              onTapDown: (TapDownDetails details) {
+                print(details.globalPosition.dx.toString() +
+                    '----' +
+                    details.globalPosition.dy.toString());
+              },
+              child: const Image(
+                height: 300,
+                width: 300,
+                fit: BoxFit.fill,
+                image: AssetImage('assets/images/01.png'),
+              ),
+            ),
+            Positioned(
+              left: (0 * 300 / 1000),
+              top: (535 * 300 / 750),
+              child: Image.memory(
+                vm.pickedFiles[0],
+                height: 80,
+                width: 80,
+                fit: BoxFit.fill,
+              ),
+            ),
+            Positioned(
+              left: (785 * 300 / 1000),
+              top: (0 * 300 / 750),
+              child: Image.memory(
+                vm.pickedFiles[0],
+                height: 80,
+                width: 80,
+                fit: BoxFit.fill,
+              ),
+            ),
+          ],
         ),
       ),
     );
