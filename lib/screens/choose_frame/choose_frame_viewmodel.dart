@@ -42,7 +42,7 @@ class ChooseFrameViewModel extends ChangeNotifier {
       .toString();
 
   bool get showCheckOutButton =>
-      true; //_pickedFiles.length >= order.packageSize!;
+      true; //_pickedFiles.length >= order.packageSize!;//TODO
 
   var logger = Logger();
 
