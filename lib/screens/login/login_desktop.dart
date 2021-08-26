@@ -23,7 +23,7 @@ class LoginScreenDesktop extends StatelessWidget {
               tokenService: context.read<TokenService>(),
             ),
         child: Scaffold(
-          backgroundColor:const Color(0xFFf6fafb),
+          backgroundColor: const Color(0xFFf6fafb),
           body: _Body(),
         ));
   }
