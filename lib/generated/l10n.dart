@@ -1049,6 +1049,78 @@ class S {
       args: [],
     );
   }
+
+  /// `My Orders`
+  String get myOrders {
+    return Intl.message(
+      'My Orders',
+      name: 'myOrders',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Name:`
+  String get name {
+    return Intl.message(
+      'Name:',
+      name: 'name',
+      desc: '',
+      args: [],
+    );
+  }
+
+  // skipped getter for the 'total:' key
+
+  /// `Phone:`
+  String get phone {
+    return Intl.message(
+      'Phone:',
+      name: 'phone',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Status:`
+  String get status {
+    return Intl.message(
+      'Status:',
+      name: 'status',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Paid:`
+  String get paid {
+    return Intl.message(
+      'Paid:',
+      name: 'paid',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Yes`
+  String get yes {
+    return Intl.message(
+      'Yes',
+      name: 'yes',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No`
+  String get no {
+    return Intl.message(
+      'No',
+      name: 'no',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

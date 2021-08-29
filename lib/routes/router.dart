@@ -1,3 +1,4 @@
+import 'package:fimto_frame/models/order_status.dart';
 import 'package:fimto_frame/screens/add_address/add_address_view.dart';
 import 'package:fimto_frame/screens/add_payment_method/add_payment_method_view.dart';
 import 'package:fimto_frame/screens/choose_frame/choose_frame_view.dart';
@@ -48,7 +49,9 @@ Route onGenerateRoute(RouteSettings settings) {
           settings: settings);
     case trackOrderRoute:
       return MaterialPageRoute(
-          builder: (context) => const TrackOrderScreen(), settings: settings);
+          builder: (context) =>
+              TrackOrderScreen(order: settings.arguments as OrderStatus),
+          settings: settings);
     case chooseFrameRoute:
       return MaterialPageRoute(
           builder: (context) => const ChooseFrameScreen(), settings: settings);

@@ -100,8 +100,8 @@ class RequestProvider {
 
     _client.options.responseType = ResponseType.json;
     _client.options.baseUrl = '';
-    _client.options.connectTimeout = 10 * 1000;
-    _client.options.receiveTimeout = 10 * 1000;
+    _client.options.connectTimeout = 20 * 1000;
+    _client.options.receiveTimeout = 20 * 1000;
     _client.options.headers = {
       'accept': 'application/json',
       'Content-Type': 'application/json',

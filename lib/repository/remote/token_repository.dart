@@ -44,7 +44,7 @@ class TokenRepository {
         'client_id': 'mobile',
         'client_secret': 'secret',
         'response_type': 'id_token token',
-        'scope': 'fimto_api offline_access openid profile',
+        'scope': 'IdentityServerApi',
       };
 
       final response = await client.post(baseUrl + 'connect/token', data: data);

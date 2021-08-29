@@ -107,7 +107,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "mailHint": MessageLookupByLibrary.simpleMessage("E-Mail"),
         "messageToYourDear":
             MessageLookupByLibrary.simpleMessage("اترك رسالة لشخصك العزيز"),
+        "myOrders": MessageLookupByLibrary.simpleMessage("طلباتى"),
+        "name": MessageLookupByLibrary.simpleMessage("اسم:"),
         "nameHint": MessageLookupByLibrary.simpleMessage("اسمك"),
+        "no": MessageLookupByLibrary.simpleMessage("لا"),
         "noAdditionalExpenses":
             MessageLookupByLibrary.simpleMessage("لا تتطلب اى مصاريف اضافية"),
         "noNails": MessageLookupByLibrary.simpleMessage("لا يحتاج الى مسامير"),
@@ -118,6 +121,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("تم تأكيد الطلب"),
         "orderNumber": MessageLookupByLibrary.simpleMessage("رقم الطلب"),
         "orderSummary": MessageLookupByLibrary.simpleMessage("ملخص الطلب"),
+        "paid": MessageLookupByLibrary.simpleMessage("مدفوع:"),
         "password": MessageLookupByLibrary.simpleMessage("كلمه السر"),
         "passwordError":
             MessageLookupByLibrary.simpleMessage("خطأ في كلمة المرور"),
@@ -126,6 +130,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "سيتم تأكيد الدفع تلقائيا اذا كان المرسل سجل طلبك اذا لم يتم. تواصل معنا لتاأكيد الطلب"),
         "paymentMethod": MessageLookupByLibrary.simpleMessage("طريقة الدفع"),
         "perfectSize": MessageLookupByLibrary.simpleMessage("مقاس مثالى 21x21"),
+        "phone": MessageLookupByLibrary.simpleMessage("هاتف:"),
         "phoneHint": MessageLookupByLibrary.simpleMessage("رقم التليفون"),
         "phoneNumber": MessageLookupByLibrary.simpleMessage("رقم التليفون"),
         "phoneNumberError":
@@ -149,6 +154,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "shippingFree":
             MessageLookupByLibrary.simpleMessage("التوصيل دائما مانى"),
         "sorry": MessageLookupByLibrary.simpleMessage("عفوا"),
+        "status": MessageLookupByLibrary.simpleMessage("حالة:"),
         "successfulPurchase":
             MessageLookupByLibrary.simpleMessage("تم تأكيد شراء البرواز بنجاح"),
         "suitableShape": MessageLookupByLibrary.simpleMessage(
@@ -158,6 +164,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "trackYourOrder": MessageLookupByLibrary.simpleMessage("تتبع الطلب"),
         "uploadPhotos": MessageLookupByLibrary.simpleMessage("تحميل الصور"),
         "usePolicy": MessageLookupByLibrary.simpleMessage("سياسة الاستخدام"),
+        "yes": MessageLookupByLibrary.simpleMessage("نعم"),
         "youCanChangeThePhoto": MessageLookupByLibrary.simpleMessage(
             "يمكنك تغير الصوره بداخل البرواز فى اى وقت"),
         "youCanExtraFrame": MessageLookupByLibrary.simpleMessage(

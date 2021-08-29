@@ -3,6 +3,7 @@ import 'package:fimto_frame/models/city.dart';
 import 'package:fimto_frame/models/order.dart';
 import 'package:fimto_frame/models/order_status.dart';
 import 'package:fimto_frame/models/payments_methods.dart';
+import 'package:fimto_frame/models/walls.dart';
 import 'package:fimto_frame/services/request_provider.dart';
 import 'dart:convert';
 import 'package:async/async.dart';
@@ -52,8 +53,8 @@ class OrderRepository {
       } else {
         return Result.error(response.data.toString());
       }
-    } on DioError {
-      return Result.error(DioError);
+    } catch (err, _) {
+      return Result.error(err);
     }
   }
 
@@ -87,7 +88,19 @@ class OrderRepository {
       return Result.error(DioError);
     }
   }
-}
 
-const token =
-    'Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6IjIxQTc3MTg3NzNEQkNBRDlCMENGRUM0OEQ4M0UzOENGIiwidHlwIjoiYXQrand0In0.eyJuYmYiOjE2Mjk2NTA1NTcsImV4cCI6MTY0MDQ1MDU1NywiaXNzIjoiaHR0cHM6Ly9maW10b2ZyYW1lLmhhZGFmLndlYnNpdGUiLCJhdWQiOiJodHRwczovL2ZpbXRvZnJhbWUuaGFkYWYud2Vic2l0ZS9yZXNvdXJjZXMiLCJjbGllbnRfaWQiOiJtb2JpbGUiLCJzdWIiOiI2IiwiYXV0aF90aW1lIjoxNjI5NjUwNTU2LCJpZHAiOiJsb2NhbCIsImp0aSI6IjY4Q0ZENUFFMDJERTU4Q0MwOUI5MDI2NDgxMTY1QkM3IiwiaWF0IjoxNjI5NjUwNTU2LCJzY29wZSI6WyJmaW10b19hcGkiLCJvcGVuaWQiLCJwcm9maWxlIiwib2ZmbGluZV9hY2Nlc3MiXSwiYW1yIjpbInB3ZCJdfQ.PYyuFJmbTSdjWya6BVbCHR3FNRUxENCNHL0oCKHGz3v9jpD1l2fzldGbyV-KYRFISQInAc7C7uD5aReHB2m9HMgadIYyEE4ZbPPx9jWgKKP77sxtlTU-TQ1eaMqbv1eCNLX3H4HzD5y1toq2-X4vG4E4AD_FD0WGXSqcvDX77MecwEFjs3yG3DLngVrxPwj5ZkQPHbvOySzmxkPq2t-2WL6rOvRqBq16wrkjfOG0E82WWxwGNBH6JAaIzTkqeXUuyzTTA91olUpzPzNtxDOdKKxImTJDKSySnHk1bBub7HA9EtNgC9uQR3udOyOEoXJel2Qb1Eo-Pvh5aNGZ2Sx74Q';
+  Future<Result<List<Walls>>> getWalls() async {
+    try {
+      var response = await requestProvider.getAsync('api/Wall');
+      if (response.statusCode == 200) {
+        var walls =
+            List<Walls>.from(response.data.map((e) => Walls.fromJson(e)));
+        return Result.value(walls);
+      } else {
+        return Result.error(response.data.toString());
+      }
+    } on DioError {
+      return Result.error(DioError);
+    }
+  }
+}

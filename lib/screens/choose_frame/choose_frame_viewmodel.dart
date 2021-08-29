@@ -6,7 +6,9 @@ import 'package:fimto_frame/generated/l10n.dart';
 import 'package:fimto_frame/models/constants.dart';
 import 'package:fimto_frame/models/facebook_photo.dart';
 import 'package:fimto_frame/models/order.dart';
+import 'package:fimto_frame/models/walls.dart';
 import 'package:fimto_frame/repository/remote/facebook_repository.dart';
+import 'package:fimto_frame/repository/remote/order_repository.dart';
 import 'package:fimto_frame/routes/router_names.dart';
 import 'package:fimto_frame/services/connection_service.dart';
 import 'package:fimto_frame/services/message_service.dart';
@@ -21,13 +23,23 @@ class ChooseFrameViewModel extends ChangeNotifier {
   final FacebookRepository facebookRepository;
   final ConnectionService connectionService;
   final MessageService messageService;
+  final OrderRepository orderRepository;
   final Order order;
 
   ChooseFrameViewModel(
       {required this.facebookRepository,
       required this.order,
       required this.messageService,
-      required this.connectionService});
+      required this.orderRepository,
+      required this.connectionService}) {
+    loadWalls();
+  }
+
+  List<Walls>? _walls;
+  List<Walls>? get walls => _walls;
+  Walls get wall =>
+      _walls!.firstWhere((wall) => wall.noImage == _pickedFiles.length,
+          orElse: () => _walls!.first);
 
   String get packageSize => order.packageSize.toString();
   String get packagePrice => order.packagePrice.toString();
@@ -41,8 +53,7 @@ class ChooseFrameViewModel extends ChangeNotifier {
           (_pickedFiles.length - order.packageSize!) * order.extraImagePrice!)
       .toString();
 
-  bool get showCheckOutButton =>
-      true; //_pickedFiles.length >= order.packageSize!;//TODO
+  bool get showCheckOutButton => _pickedFiles.length >= order.packageSize!;
 
   var logger = Logger();
 
@@ -54,6 +65,7 @@ class ChooseFrameViewModel extends ChangeNotifier {
   List<Uint8List> get pickedFiles => _pickedFiles;
 
   bool get isImagesPicked => _pickedFiles.isNotEmpty;
+  bool get isWallVisible => _walls != null && _pickedFiles.isNotEmpty;
 
   bool isDeleteButtonVisible = false;
 
@@ -72,6 +84,8 @@ class ChooseFrameViewModel extends ChangeNotifier {
       var response = await Dio()
           .get(source, options: Options(responseType: ResponseType.bytes));
       _pickedFiles.add(response.data);
+      order.imageNo = _pickedFiles.length;
+
       order.calculateTotal();
       notifyListeners();
     }
@@ -120,6 +134,8 @@ class ChooseFrameViewModel extends ChangeNotifier {
         if (kIsWeb) {
           List<Uint8List> files = result.files.map((e) => e.bytes!).toList();
           _pickedFiles.addAll(files);
+          order.imageNo = _pickedFiles.length;
+
           order.calculateTotal();
           notifyListeners();
         } else {
@@ -130,6 +146,7 @@ class ChooseFrameViewModel extends ChangeNotifier {
                     notifyListeners();
                   }))
               .toList();
+          order.imageNo = _pickedFiles.length;
           order.calculateTotal();
           notifyListeners();
         }
@@ -178,12 +195,36 @@ class ChooseFrameViewModel extends ChangeNotifier {
     }
   }
 
+  Future<void> loadWalls() async {
+    var isConnected = await connectionService.checkConnection();
+    if (!isConnected) {
+      messageService.showErrorSnackBar(
+          title: S.current.connectionErrorHeader,
+          message: S.current.connectionErrorMsg);
+      return;
+    }
+    setLoadingState(true);
+    var response = await orderRepository.getWalls();
+    if (response.isError) {
+      setLoadingState(false);
+
+      messageService.showErrorSnackBar(
+          title: '', message: S.current.connectionErrorMsg);
+      return;
+    }
+    _walls = response.asValue!.value;
+    setLoadingState(false);
+  }
+
   void checkoutAction() {
     order
       ..frame = _selectedFrame.toString().split('.')[1]
       ..imageNo = _pickedFiles.length
       ..images = _pickedFiles.map((e) => base64Encode(e).toString()).toList()
-      ..wallName = 'Montaser'; //TODO remove
+      ..wallName = _walls!
+          .firstWhere((wall) => wall.noImage == _pickedFiles.length,
+              orElse: () => _walls!.first)
+          .wallName;
     Get.toNamed(addAddressRoute);
   }
 }

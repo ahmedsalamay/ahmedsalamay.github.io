@@ -2,16 +2,18 @@ import 'package:fimto_frame/generated/l10n.dart';
 import 'package:fimto_frame/models/order.dart';
 import 'package:fimto_frame/models/order_status.dart';
 import 'package:fimto_frame/repository/remote/order_repository.dart';
+import 'package:fimto_frame/routes/router_names.dart';
 import 'package:fimto_frame/services/connection_service.dart';
 import 'package:fimto_frame/services/message_service.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-class AddAddressViewModel extends ChangeNotifier {
+class CurrentOrdersViewModel extends ChangeNotifier {
   final OrderRepository orderRepository;
   final ConnectionService connectionService;
   final MessageService messageService;
   final Order order;
-  AddAddressViewModel(
+  CurrentOrdersViewModel(
       {required this.connectionService,
       required this.messageService,
       required this.orderRepository,
@@ -41,6 +43,10 @@ class AddAddressViewModel extends ChangeNotifier {
     }
     _currentOrders.addAll(ordersResponse.asValue!.value);
     setLoadingState(false);
+  }
+
+  void navigateToStatusScreen(OrderStatus order) {
+    Get.toNamed(trackOrderRoute, arguments: order);
   }
 
   void setLoadingState(bool value) {

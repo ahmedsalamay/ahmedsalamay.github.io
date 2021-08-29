@@ -2,6 +2,7 @@ import 'package:fimto_frame/models/facebook_photo.dart';
 import 'package:fimto_frame/models/language.dart';
 import 'package:fimto_frame/models/order.dart';
 import 'package:fimto_frame/repository/remote/facebook_repository.dart';
+import 'package:fimto_frame/repository/remote/order_repository.dart';
 import 'package:fimto_frame/services/connection_service.dart';
 import 'package:fimto_frame/services/message_service.dart';
 import 'package:fimto_frame/themes/theme.dart';
@@ -25,6 +26,7 @@ class ChooseFrameDesktop extends StatelessWidget {
         create: (_) => ChooseFrameViewModel(
               facebookRepository: context.read<FacebookRepository>(),
               connectionService: context.read<ConnectionService>(),
+              orderRepository: context.read<OrderRepository>(),
               messageService: context.read<MessageService>(),
               order: context.read<Order>(),
             ),
@@ -79,7 +81,7 @@ class _Preview extends StatelessWidget {
           const SizedBox(height: 130),
           vm.isImagesPicked ? const _FramePreview() : const _PickPhotos(),
           const SizedBox(height: 25),
-          vm.isImagesPicked ? const _Walls() : const SizedBox(),
+          vm.isWallVisible ? const _Walls() : const SizedBox(),
         ],
       ),
     );
@@ -684,42 +686,84 @@ class _Walls extends StatelessWidget {
         width: 300,
         child: Stack(
           clipBehavior: Clip.hardEdge,
-          children: [
-            GestureDetector(
-              onTapDown: (TapDownDetails details) {
-                print(details.globalPosition.dx.toString() +
-                    '----' +
-                    details.globalPosition.dy.toString());
-              },
-              child: const Image(
-                height: 300,
-                width: 300,
-                fit: BoxFit.fill,
-                image: AssetImage('assets/images/01.png'),
-              ),
-            ),
-            Positioned(
-              left: (0 * 300 / 1000),
-              top: (535 * 300 / 750),
-              child: Image.memory(
-                vm.pickedFiles[0],
-                height: 80,
-                width: 80,
-                fit: BoxFit.fill,
-              ),
-            ),
-            Positioned(
-              left: (785 * 300 / 1000),
-              top: (0 * 300 / 750),
-              child: Image.memory(
-                vm.pickedFiles[0],
-                height: 80,
-                width: 80,
-                fit: BoxFit.fill,
-              ),
-            ),
-          ],
+          children: <Widget>[
+                GestureDetector(
+                  onTapDown: (TapDownDetails details) {
+                    print(details.globalPosition.dx.toString() +
+                        '----' +
+                        details.globalPosition.dy.toString());
+                  },
+                  child: const Image(
+                    height: 300,
+                    width: 300,
+                    fit: BoxFit.fill,
+                    image: AssetImage('assets/images/01.png'),
+                  ),
+                ),
+              ] +
+              vm.wall.images
+                  .asMap()
+                  .entries
+                  .map(
+                    (image) => Positioned(
+                        left: (image.value.x * 300 / vm.wall.areaWidth),
+                        top: (image.value.y * 300 / vm.wall.areaHeight),
+                        child: _FramesForWall(
+                            index: image.key >= vm.pickedFiles.length
+                                ? 0
+                                : image.key)
+                        // Image.memory(
+                        //   vm.pickedFiles[
+                        //       image.key >= vm.pickedFiles.length ? 0 : image.key],
+                        //   height: 80,
+                        //   width: 80,
+                        //   fit: BoxFit.fill,
+                        // ),
+                        ),
+                  )
+                  .toList(),
         ),
+      ),
+    );
+  }
+}
+
+class _FramesForWall extends StatelessWidget {
+  final int index;
+  const _FramesForWall({Key? key, required this.index}) : super(key: key);
+
+  final classicPadding = const EdgeInsets.fromLTRB(7.2, 6.4, 13, 12.2);
+  final cleanPadding = const EdgeInsets.fromLTRB(3.2, 3.2, 10.6, 10.1);
+
+  @override
+  Widget build(BuildContext context) {
+    var vm = context.watch<ChooseFrameViewModel>();
+    return SizedBox(
+      height: 80,
+      width: 80,
+      child: Stack(
+        clipBehavior: Clip.hardEdge,
+        children: [
+          Image(
+            height: 80,
+            width: 80,
+            fit: BoxFit.fill,
+            image: AssetImage(
+                'assets/images/${vm.selectedFrame.toString().split('.')[1]}.png'),
+          ),
+          Padding(
+            padding: vm.selectedFrame == frames.classic ||
+                    vm.selectedFrame == frames.permise
+                ? classicPadding
+                : cleanPadding,
+            child: Image.memory(
+              vm.pickedFiles[index],
+              height: 80,
+              width: 65,
+              fit: BoxFit.cover,
+            ),
+          ),
+        ],
       ),
     );
   }

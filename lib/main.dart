@@ -18,15 +18,15 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   //await _initializeFlutterFire();
 
-  if (kIsWeb) {
-    // initialiaze the facebook javascript SDK
-    FacebookAuth.i.webInitialize(
-      appId: "420524549277950", //<-- YOUR APP_ID
-      cookie: true,
-      xfbml: true,
-      version: "v11.0",
-    );
-  }
+  // if (kIsWeb) {
+  //   // initialiaze the facebook javascript SDK
+  //   FacebookAuth.i.webInitialize(
+  //     appId: "420524549277950", //<-- YOUR APP_ID
+  //     cookie: true,
+  //     xfbml: true,
+  //     version: "v11.0",
+  //   );
+  // }
 
   var currentLanguage = await LanguageLocalRepository().getSavedLaunage();
   var tokenRepository = TokenLocalRepository();

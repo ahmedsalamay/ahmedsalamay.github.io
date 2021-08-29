@@ -72,7 +72,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "discount": MessageLookupByLibrary.simpleMessage("Discount"),
         "dismiss": MessageLookupByLibrary.simpleMessage("Dismiss"),
         "donnotHaveAccount":
-            MessageLookupByLibrary.simpleMessage("Don't Have Account?"),
+            MessageLookupByLibrary.simpleMessage("Don\'t Have Account?"),
         "egyptwideShipping": MessageLookupByLibrary.simpleMessage(
             "Free Egyptwide shipping! At your doorstep in a week"),
         "email": MessageLookupByLibrary.simpleMessage("Email"),
@@ -103,18 +103,21 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Import From Instagram"),
         "le": MessageLookupByLibrary.simpleMessage("LE"),
         "leaveMessage": MessageLookupByLibrary.simpleMessage("Leave a message"),
-        "letsGo": MessageLookupByLibrary.simpleMessage("Let's Go"),
+        "letsGo": MessageLookupByLibrary.simpleMessage("Let\'s Go"),
         "loadingData": MessageLookupByLibrary.simpleMessage(
             "Please Wait for data to be loaded"),
         "login": MessageLookupByLibrary.simpleMessage("Login"),
         "mailHint": MessageLookupByLibrary.simpleMessage("E-Mail"),
         "messageToYourDear": MessageLookupByLibrary.simpleMessage(
             "Leave a message to your dear person"),
+        "myOrders": MessageLookupByLibrary.simpleMessage("My Orders"),
+        "name": MessageLookupByLibrary.simpleMessage("Name:"),
         "nameHint": MessageLookupByLibrary.simpleMessage("Your Name"),
+        "no": MessageLookupByLibrary.simpleMessage("No"),
         "noAdditionalExpenses": MessageLookupByLibrary.simpleMessage(
-            "Don't require additional expenses"),
+            "Don\'t require additional expenses"),
         "noNails":
-            MessageLookupByLibrary.simpleMessage("It doesn't need a nails"),
+            MessageLookupByLibrary.simpleMessage("It doesn\'t need a nails"),
         "or": MessageLookupByLibrary.simpleMessage("OR"),
         "orderConfirmed": MessageLookupByLibrary.simpleMessage(
             "The Order has been confirmed"),
@@ -122,6 +125,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Order is confirmed"),
         "orderNumber": MessageLookupByLibrary.simpleMessage("Order Number"),
         "orderSummary": MessageLookupByLibrary.simpleMessage("Order Summary"),
+        "paid": MessageLookupByLibrary.simpleMessage("Paid:"),
         "password": MessageLookupByLibrary.simpleMessage("Password"),
         "passwordError": MessageLookupByLibrary.simpleMessage("password error"),
         "payment": MessageLookupByLibrary.simpleMessage("Payment"),
@@ -130,6 +134,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "paymentMethod": MessageLookupByLibrary.simpleMessage("Payment Method"),
         "perfectSize":
             MessageLookupByLibrary.simpleMessage("Perfect frame size 21X21"),
+        "phone": MessageLookupByLibrary.simpleMessage("Phone:"),
         "phoneHint": MessageLookupByLibrary.simpleMessage("Phone Number"),
         "phoneNumber": MessageLookupByLibrary.simpleMessage("Phone Number"),
         "phoneNumberError":
@@ -153,6 +158,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "shippingFree":
             MessageLookupByLibrary.simpleMessage("Shipping is always free"),
         "sorry": MessageLookupByLibrary.simpleMessage("Sorry"),
+        "status": MessageLookupByLibrary.simpleMessage("Status:"),
         "successfulPurchase": MessageLookupByLibrary.simpleMessage(
             "A successful purchase for your frames"),
         "suitableShape": MessageLookupByLibrary.simpleMessage(
@@ -163,12 +169,13 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Track Your Order"),
         "uploadPhotos": MessageLookupByLibrary.simpleMessage("Upload Photos"),
         "usePolicy": MessageLookupByLibrary.simpleMessage("Use policy"),
+        "yes": MessageLookupByLibrary.simpleMessage("Yes"),
         "youCanChangeThePhoto": MessageLookupByLibrary.simpleMessage(
             "You can change the photo inside the frame any time"),
         "youCanExtraFrame": MessageLookupByLibrary.simpleMessage(
             "You can add extra frame with only 74LE"),
         "youCanRetrieve": MessageLookupByLibrary.simpleMessage(
-            "You can retrieve it if it isn't in the required form"),
+            "You can retrieve it if it isn\'t in the required form"),
         "yourOrders": MessageLookupByLibrary.simpleMessage("Your orders")
       };
 }

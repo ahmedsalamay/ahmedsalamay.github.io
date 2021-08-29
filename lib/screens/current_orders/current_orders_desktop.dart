@@ -14,8 +14,8 @@ class CurrentOrdersScreenDesktop extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var language = context.watch<Language>();
-    return ChangeNotifierProvider<AddAddressViewModel>(
-        create: (_) => AddAddressViewModel(
+    return ChangeNotifierProvider<CurrentOrdersViewModel>(
+        create: (_) => CurrentOrdersViewModel(
             connectionService: context.read<ConnectionService>(),
             messageService: context.read<MessageService>(),
             orderRepository: context.read<OrderRepository>(),
@@ -40,7 +40,7 @@ class _Body extends StatelessWidget {
       child: SizedBox(
           height: double.infinity,
           child: Column(
-            children: const[],
+            children: const [],
           )),
     );
   }
