@@ -1121,6 +1121,36 @@ class S {
       args: [],
     );
   }
+
+  /// `Wrong phone number or password`
+  String get loginError {
+    return Intl.message(
+      'Wrong phone number or password',
+      name: 'loginError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Something went wrong please try again later`
+  String get somethingWentWrong {
+    return Intl.message(
+      'Something went wrong please try again later',
+      name: 'somethingWentWrong',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please Add All Fields`
+  String get addAllField {
+    return Intl.message(
+      'Please Add All Fields',
+      name: 'addAllField',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

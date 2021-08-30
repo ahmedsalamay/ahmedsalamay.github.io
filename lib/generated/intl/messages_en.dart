@@ -24,6 +24,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "addAddress": MessageLookupByLibrary.simpleMessage("Add Address"),
         "addAestheticTouch": MessageLookupByLibrary.simpleMessage(
             "We will add an Aesthetic touch to your photos"),
+        "addAllField":
+            MessageLookupByLibrary.simpleMessage("Please Add All Fields"),
         "addPaymentMethod":
             MessageLookupByLibrary.simpleMessage("Add Payment Method"),
         "addPromoCode": MessageLookupByLibrary.simpleMessage("Add promo code"),
@@ -107,6 +109,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "loadingData": MessageLookupByLibrary.simpleMessage(
             "Please Wait for data to be loaded"),
         "login": MessageLookupByLibrary.simpleMessage("Login"),
+        "loginError": MessageLookupByLibrary.simpleMessage(
+            "Wrong phone number or password"),
         "mailHint": MessageLookupByLibrary.simpleMessage("E-Mail"),
         "messageToYourDear": MessageLookupByLibrary.simpleMessage(
             "Leave a message to your dear person"),
@@ -157,6 +161,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Shipping Address"),
         "shippingFree":
             MessageLookupByLibrary.simpleMessage("Shipping is always free"),
+        "somethingWentWrong": MessageLookupByLibrary.simpleMessage(
+            "Something went wrong please try again later"),
         "sorry": MessageLookupByLibrary.simpleMessage("Sorry"),
         "status": MessageLookupByLibrary.simpleMessage("Status:"),
         "successfulPurchase": MessageLookupByLibrary.simpleMessage(

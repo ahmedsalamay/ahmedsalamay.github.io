@@ -59,8 +59,8 @@ class LoginViewModel extends ChangeNotifier {
   void _logIn() async {
     var isConnected = await connectionService.checkConnection();
     if (!isConnected) {
-      messageService.showErrorInfoDialog(
-          S.current.connectionErrorHeader, S.current.connectionErrorMsg);
+      messageService.showErrorSnackBar(
+          title: '', message: S.current.connectionErrorMsg);
       return;
     }
 
@@ -74,8 +74,8 @@ class LoginViewModel extends ChangeNotifier {
 
     var response = await tokenService.loginAsync(_phoneNumber!, _password!);
     if (response.isError) {
-      messageService.showErrorInfoDialog(
-          S.current.sorry, response.asError!.error.toString());
+      messageService.showErrorSnackBar(
+          title: '', message: response.asError!.error.toString());
       setLoadingState(false);
       return;
     }

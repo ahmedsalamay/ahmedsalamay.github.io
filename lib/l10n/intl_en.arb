@@ -106,5 +106,8 @@
   "status": "Status:",
   "paid": "Paid:",
   "yes": "Yes",
-  "no": "No"
+  "no": "No",
+  "loginError": "Wrong phone number or password",
+  "somethingWentWrong": "Something went wrong please try again later",
+  "addAllField": "Please Add All Fields"
 }

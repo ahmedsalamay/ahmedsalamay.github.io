@@ -24,6 +24,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "addAddress": MessageLookupByLibrary.simpleMessage("اضافة العنوان"),
         "addAestheticTouch": MessageLookupByLibrary.simpleMessage(
             "سوف نقوم باضافة لمسه جمالية على صورك لنجعلها تلازم البرواز الخاص بك"),
+        "addAllField":
+            MessageLookupByLibrary.simpleMessage("الرجاء إضافة كافة الحقول"),
         "addPaymentMethod":
             MessageLookupByLibrary.simpleMessage("أضف طريقة الدفع"),
         "addPromoCode": MessageLookupByLibrary.simpleMessage("اضافة برومو كود"),
@@ -104,6 +106,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "loadingData": MessageLookupByLibrary.simpleMessage(
             "منفضلك انتظر لتحميل البيانات المطلوبة"),
         "login": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
+        "loginError": MessageLookupByLibrary.simpleMessage(
+            "رقم الهاتف أو كلمة المرور خطأ"),
         "mailHint": MessageLookupByLibrary.simpleMessage("E-Mail"),
         "messageToYourDear":
             MessageLookupByLibrary.simpleMessage("اترك رسالة لشخصك العزيز"),
@@ -153,6 +157,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("عنوان التوصيل "),
         "shippingFree":
             MessageLookupByLibrary.simpleMessage("التوصيل دائما مانى"),
+        "somethingWentWrong": MessageLookupByLibrary.simpleMessage(
+            "حدث خطأ، يرجى المحاولة فى وقت لاحق"),
         "sorry": MessageLookupByLibrary.simpleMessage("عفوا"),
         "status": MessageLookupByLibrary.simpleMessage("حالة:"),
         "successfulPurchase":

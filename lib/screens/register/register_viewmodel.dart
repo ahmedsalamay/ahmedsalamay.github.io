@@ -66,8 +66,8 @@ class RegisterViewModel extends ChangeNotifier {
   void _register() async {
     var isConnected = await connectionService.checkConnection();
     if (!isConnected) {
-      messageService.showErrorInfoDialog(
-          S.current.connectionErrorHeader, S.current.connectionErrorMsg);
+      messageService.showErrorSnackBar(
+          title: '', message: S.current.connectionErrorMsg);
       return;
     }
 
@@ -82,8 +82,8 @@ class RegisterViewModel extends ChangeNotifier {
     var response =
         await tokenService.registerAsync(_phoneNumber!, _email!, _password!);
     if (response.isError) {
-      messageService.showErrorInfoDialog(
-          S.current.sorry, response.asError!.error.toString());
+      messageService.showErrorSnackBar(
+          title: '', message: response.asError!.error.toString());
       setLoadingState(false);
       return;
     }

@@ -97,7 +97,23 @@ class AddAddressViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
+  bool validateFields() {
+    return _userName != null &&
+        _phoneNumber != null &&
+        _selectedCity != null &&
+        _selectedRegion != null &&
+        _address != null &&
+        _buildNo != null &&
+        _floor != null &&
+        _email != null;
+  }
+
   void confirmAddressAction() {
+    if (!validateFields()) {
+      messageService.showErrorSnackBar(
+          title: '', message: S.current.addAllField);
+      return;
+    }
     order
       ..name = _userName
       ..phone = _phoneNumber
