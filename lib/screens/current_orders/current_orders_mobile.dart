@@ -43,6 +43,7 @@ class _Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var vm = context.watch<CurrentOrdersViewModel>();
+    final size = MediaQuery.of(context).size;
     return SafeArea(
       child: SizedBox(
           height: double.infinity,
@@ -51,7 +52,11 @@ class _Body extends StatelessWidget {
             children: [
               CustomAppBar(title: S.of(context).myOrders),
               vm.isLoading
-                  ? const Center(child: CircularProgressIndicator())
+                  ? Center(
+                      child: Padding(
+                      padding: EdgeInsets.only(top: size.height * 0.4),
+                      child: const CircularProgressIndicator(),
+                    ))
                   : const _CurrentOrders()
             ],
           )),

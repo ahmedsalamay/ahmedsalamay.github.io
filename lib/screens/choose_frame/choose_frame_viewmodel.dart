@@ -9,6 +9,7 @@ import 'package:fimto_frame/models/order.dart';
 import 'package:fimto_frame/models/walls.dart';
 import 'package:fimto_frame/repository/remote/facebook_repository.dart';
 import 'package:fimto_frame/repository/remote/order_repository.dart';
+import 'package:fimto_frame/repository/remote/preference.dart';
 import 'package:fimto_frame/routes/router_names.dart';
 import 'package:fimto_frame/services/connection_service.dart';
 import 'package:fimto_frame/services/message_service.dart';
@@ -39,7 +40,7 @@ class ChooseFrameViewModel extends ChangeNotifier {
   List<Walls>? get walls => _walls;
   Walls get wall =>
       _walls!.firstWhere((wall) => wall.noImage == _pickedFiles.length,
-          orElse: () => _walls!.first);
+          orElse: () => _walls!.last);
 
   String get packageSize => order.packageSize!.toInt().toString();
   String get packagePrice => order.packagePrice.toString();
@@ -216,7 +217,12 @@ class ChooseFrameViewModel extends ChangeNotifier {
     setLoadingState(false);
   }
 
-  void checkoutAction() {
+  Future<bool> isUserLogged() async {
+    final preferences = await Preferences.getInstance();
+    return preferences.getIsLogged();
+  }
+
+  void checkoutAction() async {
     order
       ..frame = _selectedFrame.toString().split('.')[1]
       ..imageNo = _pickedFiles.length

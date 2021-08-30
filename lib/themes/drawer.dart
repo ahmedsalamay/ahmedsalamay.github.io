@@ -62,13 +62,6 @@ class _DrawerItems extends StatelessWidget {
                 ListTile(
                   onTap: () {},
                   title: Text(
-                    S.of(context).addPromoCode,
-                    style: Theme.of(context).textTheme.headline3,
-                  ),
-                ),
-                ListTile(
-                  onTap: () {},
-                  title: Text(
                     S.of(context).faq,
                     style: Theme.of(context).textTheme.headline3,
                   ),

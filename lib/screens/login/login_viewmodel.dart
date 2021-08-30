@@ -53,7 +53,10 @@ class LoginViewModel extends ChangeNotifier {
     if (form.validate()) {
       _logIn();
     }
-    // Get.toNamed(homeRoute);
+  }
+
+  void continueAsGuestAction() {
+    Get.toNamed(homeRoute);
   }
 
   void _logIn() async {

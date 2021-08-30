@@ -111,10 +111,20 @@ class _Body extends StatelessWidget {
                         prefixIcon: const Icon(Icons.lock_outline),
                         hintText: S.of(context).password),
                   ),
-                  const SizedBox(height: 40),
+                  const SizedBox(height: 30),
                   SolidButton(
                     text: S.of(context).login,
                     onTap: () => vm.logInAction(_formKey),
+                  ),
+                  const SizedBox(height: 10),
+                  SizedBox(
+                    width: double.infinity,
+                    child: OutlinedButton(
+                        onPressed: () => vm.continueAsGuestAction(),
+                        child: const Padding(
+                          padding: EdgeInsets.all(15.0),
+                          child: Text('Continue as guest'),
+                        )),
                   ),
                   const SizedBox(height: 10),
                   Align(

@@ -37,8 +37,11 @@ class TokenService {
   }
 
   Future<String?> getAccessToken() async {
-    _token = await _tokenLocalRepository.loadToken();
-    return _token!.accessToken;
+    if (await _tokenLocalRepository.isTokenSaved()) {
+      _token = await _tokenLocalRepository.loadToken();
+      return _token!.accessToken;
+    }
+    return "";
   }
 
   Future<Token?> refreshToken() async {

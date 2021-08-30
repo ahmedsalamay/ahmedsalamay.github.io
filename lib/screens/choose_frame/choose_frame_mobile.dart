@@ -87,7 +87,17 @@ class _Body extends StatelessWidget {
               vm.showCheckOutButton
                   ? GradientButton(
                       text: S.of(context).checkout,
-                      onTap: () {
+                      onTap: () async {
+                        if (!await vm.isUserLogged()) {
+                          showModalBottomSheet(
+                              context: context,
+                              builder: (builder) {
+                                return Container(
+                                  //TODO show login in option
+                                );
+                              });
+                          return;
+                        }
                         showModalBottomSheet(
                             context: context,
                             builder: (builder) {

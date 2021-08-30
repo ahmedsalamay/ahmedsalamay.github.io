@@ -49,6 +49,7 @@ class Footer extends StatelessWidget {
                       child: Text(
                         S.of(context).faq,
                         style: textTheme,
+                        textAlign: TextAlign.start,
                       ),
                     ),
                     TextButton(

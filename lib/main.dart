@@ -34,8 +34,8 @@ void main() async {
   var tokenRepository = TokenLocalRepository();
   await tokenRepository.initDatabase();
   final preferences = await Preferences.getInstance();
-  final showOnBoardScreen = preferences.getIsFirstLaunch() && !kIsWeb;
   var isUserLoggedIn = preferences.getIsLogged();
+  var showOnBoardScreen = preferences.getIsFirstLaunch() && !kIsWeb;
 
   runZonedGuarded(() {
     runApp(

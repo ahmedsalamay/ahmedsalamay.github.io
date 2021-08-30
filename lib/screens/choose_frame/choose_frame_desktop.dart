@@ -697,7 +697,7 @@ class _Walls extends StatelessWidget {
                     height: 300,
                     width: 300,
                     fit: BoxFit.fill,
-                    image: AssetImage('assets/images/01.png'),
+                    image: AssetImage('assets/images/wall.jpg'),
                   ),
                 ),
               ] +
