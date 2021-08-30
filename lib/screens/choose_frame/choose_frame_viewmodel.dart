@@ -41,7 +41,7 @@ class ChooseFrameViewModel extends ChangeNotifier {
       _walls!.firstWhere((wall) => wall.noImage == _pickedFiles.length,
           orElse: () => _walls!.first);
 
-  String get packageSize => order.packageSize.toString();
+  String get packageSize => order.packageSize!.toInt().toString();
   String get packagePrice => order.packagePrice.toString();
   String get extraFramesPrice =>
       ((_pickedFiles.length - order.packageSize!) * order.extraImagePrice!)
