@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:fimto_frame/repository/local/token_local_repository.dart';
+import 'package:fimto_frame/repository/remote/preference.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
@@ -29,17 +30,22 @@ void main() async {
   // }
 
   var currentLanguage = await LanguageLocalRepository().getSavedLaunage();
+
   var tokenRepository = TokenLocalRepository();
   await tokenRepository.initDatabase();
-  var isUserLoggedIn = tokenRepository.isTokenSaved();
+  final preferences = await Preferences.getInstance();
+  final showOnBoardScreen = preferences.getIsFirstLaunch() && !kIsWeb;
+  var isUserLoggedIn = preferences.getIsLogged();
 
   runZonedGuarded(() {
     runApp(
       ChangeNotifierProvider(
         create: (context) => currentLanguage,
         child: Consumer<Language>(
-          builder: (context, provider, child) =>
-              MyApp(isUserLogged: isUserLoggedIn),
+          builder: (context, provider, child) => MyApp(
+            isUserLogged: isUserLoggedIn,
+            isFirstLaunch: showOnBoardScreen,
+          ),
         ),
       ),
     );
@@ -52,8 +58,11 @@ void main() async {
 class MyApp extends StatelessWidget {
 //  final FirebaseAnalytics analytics = FirebaseAnalytics();
   final bool isUserLogged;
+  final bool isFirstLaunch;
 
-  const MyApp({Key? key, required this.isUserLogged}) : super(key: key);
+  const MyApp(
+      {Key? key, required this.isUserLogged, required this.isFirstLaunch})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -78,7 +87,11 @@ class MyApp extends StatelessWidget {
         locale: context.watch<Language>().currentLocale,
         title: 'Fimto',
         theme: myTheme,
-        initialRoute: isUserLogged ? homeRoute : loginRoute,
+        initialRoute: isFirstLaunch
+            ? onBoardRoute
+            : isUserLogged
+                ? homeRoute
+                : loginRoute,
         onGenerateRoute: onGenerateRoute,
         defaultTransition: Transition.fade,
         opaqueRoute: Get.isOpaqueRouteDefault,
