@@ -118,7 +118,7 @@ class RequestProvider {
   }
 
   Future<Response> postAsync(
-      {required String resource, String? body, String? token}) {
+      {required String resource, dynamic body, String? token}) {
     return _client.post(
       baseUrl + resource,
       data: body,

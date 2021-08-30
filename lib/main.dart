@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:fimto_frame/repository/local/token_local_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+//import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 import 'package:provider/provider.dart';
 import 'package:get/get.dart';
 import 'package:fimto_frame/providers.dart';
@@ -32,6 +33,8 @@ void main() async {
   var tokenRepository = TokenLocalRepository();
   await tokenRepository.initDatabase();
   var isUserLoggedIn = tokenRepository.isTokenSaved();
+
+  //setUrlStrategy(PathUrlStrategy());
 
   runZonedGuarded(() {
     runApp(
@@ -78,7 +81,8 @@ class MyApp extends StatelessWidget {
         locale: context.watch<Language>().currentLocale,
         title: 'Fimto',
         theme: myTheme,
-        initialRoute: isUserLogged ? homeRoute : loginRoute,
+        initialRoute:
+            chooseFrameRoute, // isUserLogged ? homeRoute : loginRoute,
         onGenerateRoute: onGenerateRoute,
         defaultTransition: Transition.fade,
         opaqueRoute: Get.isOpaqueRouteDefault,

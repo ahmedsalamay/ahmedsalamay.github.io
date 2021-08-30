@@ -13,9 +13,12 @@ import 'package:fimto_frame/services/message_service.dart';
 import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
+import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 import 'package:get/get.dart';
 import 'package:logger/logger.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
+
+import 'choose_frame_mobile.dart';
 
 class ChooseFrameViewModel extends ChangeNotifier {
   final FacebookRepository facebookRepository;
@@ -135,6 +138,22 @@ class ChooseFrameViewModel extends ChangeNotifier {
         }
       }
     }
+  }
+
+  Future instgramLogin() async {
+    Get.dialog(WebViewDialogDemo());
+
+    final flutterWebviewPlugin = FlutterWebviewPlugin();
+    flutterWebviewPlugin.onUrlChanged.listen((String url) {
+      if (url.startsWith('https://hadaf.vemtto.pickinstagram.com')) {
+        Get.back();
+
+        var uri = Uri.parse(url);
+        final code = uri.queryParameters["code"];
+
+        Get.toNamed(instaPickerRoute, arguments: code);
+      }
+    });
   }
 
   Future<PhotoPaging?> facebookLogin() async {

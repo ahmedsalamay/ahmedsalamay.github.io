@@ -12,3 +12,4 @@ const String trackOrderRoute = 'track_order';
 const String loginRoute = 'login';
 const String registerRoute = 'register';
 const String currentOrdersRoute = 'current_orders';
+const String instaPickerRoute = 'insta_picker';

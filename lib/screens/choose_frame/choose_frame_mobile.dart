@@ -6,6 +6,7 @@ import 'package:fimto_frame/repository/remote/facebook_repository.dart';
 import 'package:fimto_frame/services/connection_service.dart';
 import 'package:fimto_frame/services/message_service.dart';
 import 'package:fimto_frame/themes/theme.dart';
+import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'choose_frame_viewmodel.dart';
@@ -72,7 +73,7 @@ class _Body extends StatelessWidget {
                             ? const _FramePreview()
                             : const _PickPhotos(),
                         const SizedBox(height: 15),
-                        const _Walls(),
+                        //   const _Walls(),
                       ],
                     ),
                   ),
@@ -319,13 +320,7 @@ class _ImportPhoto extends StatelessWidget {
               ),
               child: MaterialButton(
                 onPressed: () =>
-                    vm.facebookLogin().then((value) => value != null
-                        ? Get.dialog(FacebookPhotos(
-                            photos: value,
-                            buildContext: context,
-                            addFacebookPhoto: vm.addFacebookPhoto,
-                          ))
-                        : () {}),
+                    context.read<ChooseFrameViewModel>().instgramLogin(),
                 elevation: 1,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -333,7 +328,8 @@ class _ImportPhoto extends StatelessWidget {
                     IconButton(
                       icon: Image.asset('assets/images/instagram_colored.png'),
                       padding: const EdgeInsets.all(0),
-                      onPressed: () {},
+                      onPressed: () =>
+                          context.read<ChooseFrameViewModel>().instgramLogin(),
                     ),
                     const SizedBox(height: 15),
                     Text(
@@ -749,5 +745,24 @@ class _FacebookPhotosState extends State<FacebookPhotos> {
         ),
       ),
     );
+  }
+}
+
+class WebViewDialogDemo extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
+        child: WebviewScaffold(
+          url:
+              "https://api.instagram.com/oauth/authorize?&scope=user_profile,user_media&response_type=code&client_id=400912798059223&redirect_uri=https://hadaf.vemtto.pickinstagram.com/",
+          withZoom: true,
+          initialChild: Container(
+            color: Colors.redAccent,
+            child: const Center(
+              child: Text("Loading...."),
+            ),
+          ),
+        ));
   }
 }

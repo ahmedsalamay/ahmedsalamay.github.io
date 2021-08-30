@@ -5,6 +5,7 @@ import 'package:fimto_frame/screens/confirm_order/confirm_order_view.dart';
 import 'package:fimto_frame/screens/congratulation/congratulation_view.dart';
 import 'package:fimto_frame/screens/current_orders/current_orders_view.dart';
 import 'package:fimto_frame/screens/home/home_view.dart';
+import 'package:fimto_frame/screens/instagram_picker/instagram_picker_view.dart';
 import 'package:fimto_frame/screens/leave_message/leave_message_view.dart';
 import 'package:fimto_frame/screens/login/login_view.dart';
 import 'package:fimto_frame/screens/onbording/onbording.dart';
@@ -20,47 +21,67 @@ Route onGenerateRoute(RouteSettings settings) {
     case splashRoute:
       return MaterialPageRoute(
           builder: (context) => const SplashScreen(), settings: settings);
+
     case onBoardRoute:
       return MaterialPageRoute(
           builder: (context) => const OnBoardView(), settings: settings);
+
     case homeRoute:
       return MaterialPageRoute(
           builder: (context) => const HomeView(), settings: settings);
+
     case addAddressRoute:
       return MaterialPageRoute(
           builder: (context) => const AddAddressScreen(), settings: settings);
+
     case selectToWhoRoute:
       return MaterialPageRoute(
           builder: (context) => const SelectToWhoScreen(), settings: settings);
+
     case addPaymentMethodRoute:
       return MaterialPageRoute(
           builder: (context) => const AddPaymentMethodScreen(),
           settings: settings);
+
     case confirmOrderRoute:
       return MaterialPageRoute(
           builder: (context) => const ConfirmOrderScreen(), settings: settings);
+
     case leaveMessageRoute:
       return MaterialPageRoute(
           builder: (context) => const LeaveMessageScreen(), settings: settings);
+
     case congratulationRoute:
       return MaterialPageRoute(
           builder: (context) => const CongratulationsScreen(),
           settings: settings);
+
     case trackOrderRoute:
       return MaterialPageRoute(
           builder: (context) => const TrackOrderScreen(), settings: settings);
+
     case chooseFrameRoute:
       return MaterialPageRoute(
           builder: (context) => const ChooseFrameScreen(), settings: settings);
+
     case loginRoute:
       return MaterialPageRoute(
           builder: (context) => const LoginScreen(), settings: settings);
+
     case registerRoute:
       return MaterialPageRoute(
           builder: (context) => const RegisterScreen(), settings: settings);
+
     case currentOrdersRoute:
       return MaterialPageRoute(
           builder: (context) => const CurrentOrdersScreen(),
+          settings: settings);
+
+    case instaPickerRoute:
+      return MaterialPageRoute(
+          builder: (context) => InstgramPicker(
+                code: (settings.arguments) as String,
+              ),
           settings: settings);
 
     default:

@@ -263,20 +263,20 @@ class _ImportPhoto extends StatelessWidget {
   Widget build(BuildContext context) {
     var vm = context.read<ChooseFrameViewModel>();
 
-    return MaterialButton(
-      onPressed: () => vm.facebookLogin().then((value) => value != null
-          ? Get.dialog(FacebookPhotos(
-              photos: value,
-              buildContext: context,
-              addFacebookPhoto: vm.addFacebookPhoto,
-            ))
-          : () {}),
-      child: SizedBox(
-        height: 180,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Container(
+    return SizedBox(
+      height: 180,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          InkWell(
+            onTap: ()=>vm.facebookLogin().then((value) => value != null
+        ? Get.dialog(FacebookPhotos(
+            photos: value,
+            buildContext: context,
+            addFacebookPhoto: vm.addFacebookPhoto,
+          ))
+        : () {}),
+            child: Container(
               height: 80,
               width: 250,
               padding: const EdgeInsets.all(15),
@@ -310,43 +310,44 @@ class _ImportPhoto extends StatelessWidget {
                 ],
               ),
             ),
-            const Spacer(),
-            Container(
-              height: 80,
-              width: 250,
-              padding: const EdgeInsets.all(15),
-              decoration: BoxDecoration(
-                borderRadius: const BorderRadius.all(Radius.circular(6)),
-                color: Colors.white,
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.withOpacity(0.2),
-                    spreadRadius: 2,
-                    blurRadius: 2,
-                    offset: const Offset(0, 2), // changes position of shadow
-                  )
-                ],
-              ),
-              child: Row(
-                children: [
-                  IconButton(
-                    icon: Image.asset('assets/images/instagm_colored.png'),
-                    padding: const EdgeInsets.all(0),
-                    onPressed: () {},
-                  ),
-                  const SizedBox(width: 15),
-                  Text(
-                    S.of(context).importFromInstagram,
-                    style: Theme.of(context)
-                        .textTheme
-                        .headline3!
-                        .copyWith(fontSize: 14, fontWeight: FontWeight.w800),
-                  ),
-                ],
-              ),
+          ),
+          const Spacer(),
+          Container(
+            height: 80,
+            width: 250,
+            padding: const EdgeInsets.all(15),
+            decoration: BoxDecoration(
+              borderRadius: const BorderRadius.all(Radius.circular(6)),
+              color: Colors.white,
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.withOpacity(0.2),
+                  spreadRadius: 2,
+                  blurRadius: 2,
+                  offset: const Offset(0, 2), // changes position of shadow
+                )
+              ],
             ),
-          ],
-        ),
+            child: Row(
+              children: [
+                IconButton(
+                  icon: Image.asset('assets/images/instagm_colored.png'),
+                  padding: const EdgeInsets.all(0),
+                  onPressed: () =>
+                      context.read<ChooseFrameViewModel>().instgramLogin(),
+                ),
+                const SizedBox(width: 15),
+                Text(
+                  S.of(context).importFromInstagram,
+                  style: Theme.of(context)
+                      .textTheme
+                      .headline3!
+                      .copyWith(fontSize: 14, fontWeight: FontWeight.w800),
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
