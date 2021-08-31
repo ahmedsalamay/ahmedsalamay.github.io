@@ -1,3 +1,4 @@
+import 'package:fimto_frame/models/language.dart';
 import 'package:fimto_frame/services/connection_service.dart';
 import 'package:fimto_frame/services/message_service.dart';
 import 'package:fimto_frame/services/token_services.dart';
@@ -12,16 +13,20 @@ import 'package:flutter/material.dart';
 import 'login_viewmodel.dart';
 
 class LoginScreenMobile extends StatelessWidget {
-  const LoginScreenMobile({Key? key}) : super(key: key);
+  final bool isComingFromGuest;
+
+  const LoginScreenMobile({Key? key, required this.isComingFromGuest})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<LoginViewModel>(
         create: (_) => LoginViewModel(
-              connectionService: context.read<ConnectionService>(),
-              messageService: context.read<MessageService>(),
-              tokenService: context.read<TokenService>(),
-            ),
+            connectionService: context.read<ConnectionService>(),
+            messageService: context.read<MessageService>(),
+            language: context.read<Language>(),
+            tokenService: context.read<TokenService>(),
+            isComingFromGuest: isComingFromGuest),
         child: Scaffold(
           backgroundColor: Colors.white,
           body: _Body(),
@@ -35,6 +40,7 @@ class _Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final vm = context.watch<LoginViewModel>();
+    final height = MediaQuery.of(context).size.height;
     return SafeArea(
       child: Container(
         height: double.infinity,
@@ -62,27 +68,26 @@ class _Body extends StatelessWidget {
                             ),
                             const SizedBox(width: 6),
                             Text(S.of(context).changeLanguage,
-                                style: Theme.of(context).textTheme.headline5),
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .headline5!
+                                    .copyWith(fontSize: 16)),
                           ],
                         ),
                       )),
-                  const SizedBox(height: 90),
-                  const Center(
+                  SizedBox(height: height * 0.1),
+                  Center(
                     child: Image(
-                      image: AssetImage('assets/images/logo.png'),
+                      image: const AssetImage('assets/images/logo.png'),
                       fit: BoxFit.cover,
                       color: FimtoColors.primaryColor,
-                      height: 80,
+                      height: height * 0.09,
                     ),
                   ),
-                  const SizedBox(height: 100),
+                  SizedBox(height: height * 0.1),
                   Visibility(
                     child: const Center(child: CircularProgressIndicator()),
                     visible: vm.isLoading,
-                  ),
-                  Text(
-                    S.of(context).phoneNumber,
-                    style: Theme.of(context).textTheme.headline3,
                   ),
                   const SizedBox(height: 15),
                   TextFormField(
@@ -94,11 +99,6 @@ class _Body extends StatelessWidget {
                     decoration: InputDecoration(
                         prefixIcon: const Icon(Icons.phone),
                         hintText: S.of(context).phoneNumber),
-                  ),
-                  const SizedBox(height: 12),
-                  Text(
-                    S.of(context).password,
-                    style: Theme.of(context).textTheme.headline3,
                   ),
                   const SizedBox(height: 15),
                   TextFormField(
@@ -116,14 +116,14 @@ class _Body extends StatelessWidget {
                     text: S.of(context).login,
                     onTap: () => vm.logInAction(_formKey),
                   ),
-                  const SizedBox(height: 10),
+                  const SizedBox(height: 20),
                   SizedBox(
                     width: double.infinity,
                     child: OutlinedButton(
                         onPressed: () => vm.continueAsGuestAction(),
-                        child: const Padding(
-                          padding: EdgeInsets.all(15.0),
-                          child: Text('Continue as guest'),
+                        child: Padding(
+                          padding: const EdgeInsets.all(15.0),
+                          child: Text(S.of(context).continueAsGuest),
                         )),
                   ),
                   const SizedBox(height: 10),

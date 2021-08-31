@@ -62,6 +62,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Connection Error"),
         "connectionErrorMsg": MessageLookupByLibrary.simpleMessage(
             "No internet connection, Please check your wifi or cellular data"),
+        "continueAsGuest":
+            MessageLookupByLibrary.simpleMessage("Continue as guest"),
         "continueBTN": MessageLookupByLibrary.simpleMessage("Continue"),
         "decorateMyWall":
             MessageLookupByLibrary.simpleMessage("Decorate My Wall"),
@@ -71,6 +73,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Delivered for shipment"),
         "delivery": MessageLookupByLibrary.simpleMessage("Delivery"),
         "deliveryTime": MessageLookupByLibrary.simpleMessage("Delivery Time"),
+        "didntReceiveOtp":
+            MessageLookupByLibrary.simpleMessage("Didn\'t Receive OTP? "),
         "discount": MessageLookupByLibrary.simpleMessage("Discount"),
         "dismiss": MessageLookupByLibrary.simpleMessage("Dismiss"),
         "donnotHaveAccount":
@@ -78,6 +82,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "egyptwideShipping": MessageLookupByLibrary.simpleMessage(
             "Free Egyptwide shipping! At your doorstep in a week"),
         "email": MessageLookupByLibrary.simpleMessage("Email"),
+        "enterTheOtp":
+            MessageLookupByLibrary.simpleMessage("Enter the OTP sent to"),
         "extraFrame": MessageLookupByLibrary.simpleMessage("Extra Frame"),
         "faq": MessageLookupByLibrary.simpleMessage("FAQ"),
         "fimtoArt": MessageLookupByLibrary.simpleMessage("Fimto Art"),
@@ -111,6 +117,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "login": MessageLookupByLibrary.simpleMessage("Login"),
         "loginError": MessageLookupByLibrary.simpleMessage(
             "Wrong phone number or password"),
+        "logout": MessageLookupByLibrary.simpleMessage("Logout"),
         "mailHint": MessageLookupByLibrary.simpleMessage("E-Mail"),
         "messageToYourDear": MessageLookupByLibrary.simpleMessage(
             "Leave a message to your dear person"),
@@ -129,6 +136,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Order is confirmed"),
         "orderNumber": MessageLookupByLibrary.simpleMessage("Order Number"),
         "orderSummary": MessageLookupByLibrary.simpleMessage("Order Summary"),
+        "otpVerification":
+            MessageLookupByLibrary.simpleMessage("OTP Verification"),
         "paid": MessageLookupByLibrary.simpleMessage("Paid:"),
         "password": MessageLookupByLibrary.simpleMessage("Password"),
         "passwordError": MessageLookupByLibrary.simpleMessage("password error"),
@@ -151,6 +160,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Please transfer the total amount to"),
         "processing": MessageLookupByLibrary.simpleMessage("Processing"),
         "register": MessageLookupByLibrary.simpleMessage("Register"),
+        "resendOTP": MessageLookupByLibrary.simpleMessage("Resend OTP0"),
         "selectCreateFrames": MessageLookupByLibrary.simpleMessage(
             "Please select to who you are creating frames"),
         "selectToWho": MessageLookupByLibrary.simpleMessage("Select To Who"),
@@ -182,6 +192,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "You can add extra frame with only 74LE"),
         "youCanRetrieve": MessageLookupByLibrary.simpleMessage(
             "You can retrieve it if it isn\'t in the required form"),
+        "youHaveToLogin": MessageLookupByLibrary.simpleMessage(
+            "You have to login to continue"),
         "yourOrders": MessageLookupByLibrary.simpleMessage("Your orders")
       };
 }

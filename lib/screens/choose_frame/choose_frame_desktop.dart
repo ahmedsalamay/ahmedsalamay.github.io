@@ -1,10 +1,11 @@
 import 'package:fimto_frame/models/facebook_photo.dart';
-import 'package:fimto_frame/models/language.dart';
 import 'package:fimto_frame/models/order.dart';
 import 'package:fimto_frame/repository/remote/facebook_repository.dart';
 import 'package:fimto_frame/repository/remote/order_repository.dart';
+import 'package:fimto_frame/routes/router_names.dart';
 import 'package:fimto_frame/services/connection_service.dart';
 import 'package:fimto_frame/services/message_service.dart';
+import 'package:fimto_frame/services/token_services.dart';
 import 'package:fimto_frame/themes/theme.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
@@ -28,6 +29,7 @@ class ChooseFrameDesktop extends StatelessWidget {
               connectionService: context.read<ConnectionService>(),
               orderRepository: context.read<OrderRepository>(),
               messageService: context.read<MessageService>(),
+              tokenService: context.read<TokenService>(),
               order: context.read<Order>(),
             ),
         child: const Scaffold(
@@ -153,7 +155,15 @@ class __FramesState extends State<_Frames> {
               child: vm.showCheckOutButton
                   ? GradientButton(
                       text: S.of(context).checkout,
-                      onTap: () {
+                      onTap: () async {
+                        if (!await vm.isUserLogged()) {
+                          showDialog(
+                              context: context,
+                              builder: (builder) {
+                                return _LoginDialog(buildContext: context);
+                              });
+                          return;
+                        }
                         showDialog(
                             context: context,
                             builder: (builder) {
@@ -766,5 +776,115 @@ class _FramesForWall extends StatelessWidget {
         ],
       ),
     );
+  }
+}
+
+class _LoginDialog extends StatelessWidget {
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final BuildContext buildContext;
+  _LoginDialog({Key? key, required this.buildContext}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    var vm = buildContext.watch<ChooseFrameViewModel>();
+    return SimpleDialog(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+        children: [
+          Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(6),
+            ),
+            child: Column(
+              children: [
+                const SizedBox(height: 30),
+                SizedBox(
+                  height: 400,
+                  width: 400,
+                  child: Padding(
+                    padding: const EdgeInsets.all(15.0),
+                    child: Form(
+                      key: _formKey,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const SizedBox(height: 30),
+                          const Spacer(),
+                          Visibility(
+                            child: const Center(
+                                child: CircularProgressIndicator()),
+                            visible: vm.isLoadingLogin,
+                          ),
+                          const SizedBox(height: 15),
+                          TextFormField(
+                            textAlign: TextAlign.start,
+                            onChanged: (value) => vm.onPhoneNumberChange(value),
+                            validator: (value) => vm.validatePhoneNumber(value),
+                            keyboardType: TextInputType.phone,
+                            textInputAction: TextInputAction.next,
+                            decoration: InputDecoration(
+                                prefixIcon: const Icon(Icons.phone),
+                                hintText: S.of(context).phoneNumber),
+                          ),
+                          const SizedBox(height: 15),
+                          TextFormField(
+                            textAlign: TextAlign.start,
+                            onChanged: (value) => vm.onPasswordChange(value),
+                            validator: (value) => vm.validatePassword(value),
+                            textInputAction: TextInputAction.done,
+                            onFieldSubmitted: (_) => vm.logInAction(_formKey),
+                            obscureText: true,
+                            decoration: InputDecoration(
+                                prefixIcon: const Icon(Icons.lock_outline),
+                                hintText: S.of(context).password),
+                          ),
+                          const SizedBox(height: 40),
+                          Center(
+                            child: SizedBox(
+                              width: 140,
+                              child: SolidButton(
+                                text: S.of(context).login,
+                                onTap: () => vm.logInAction(_formKey),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(height: 10),
+                          Align(
+                            alignment: Alignment.bottomRight,
+                            child: TextButton(
+                              onPressed: () {},
+                              child: Text(S.of(context).forgotPassword,
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .headline3!
+                                      .copyWith(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w500)),
+                            ),
+                          ),
+                          const SizedBox(height: 20),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 15),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(S.of(context).donnotHaveAccount,
+                        style: Theme.of(context).textTheme.headline3!.copyWith(
+                            fontSize: 16, fontWeight: FontWeight.w500)),
+                    TextButton(
+                      onPressed: () => Get.toNamed(registerRoute),
+                      child: Text(S.of(context).register,
+                          style: Theme.of(context).textTheme.bodyText2),
+                    ),
+                  ],
+                )
+              ],
+            ),
+          ),
+        ]);
   }
 }

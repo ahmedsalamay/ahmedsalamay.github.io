@@ -1,3 +1,4 @@
+import 'package:fimto_frame/models/language.dart';
 import 'package:fimto_frame/services/connection_service.dart';
 import 'package:fimto_frame/services/message_service.dart';
 import 'package:fimto_frame/services/token_services.dart';
@@ -12,16 +13,20 @@ import 'package:flutter/material.dart';
 import 'login_viewmodel.dart';
 
 class LoginScreenDesktop extends StatelessWidget {
-  const LoginScreenDesktop({Key? key}) : super(key: key);
+  final bool isComingFromGuest;
+
+  const LoginScreenDesktop({Key? key, required this.isComingFromGuest})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<LoginViewModel>(
         create: (_) => LoginViewModel(
-              connectionService: context.read<ConnectionService>(),
-              messageService: context.read<MessageService>(),
-              tokenService: context.read<TokenService>(),
-            ),
+            connectionService: context.read<ConnectionService>(),
+            messageService: context.read<MessageService>(),
+            language: context.read<Language>(),
+            tokenService: context.read<TokenService>(),
+            isComingFromGuest: isComingFromGuest),
         child: Scaffold(
           backgroundColor: const Color(0xFFf6fafb),
           body: _Body(),

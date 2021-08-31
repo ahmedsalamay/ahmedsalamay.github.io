@@ -91,7 +91,7 @@ class MyApp extends StatelessWidget {
             ? onBoardRoute
             : isUserLogged
                 ? homeRoute
-                : loginRoute,
+                : homeRoute,
         onGenerateRoute: onGenerateRoute,
         defaultTransition: Transition.fade,
         opaqueRoute: Get.isOpaqueRouteDefault,

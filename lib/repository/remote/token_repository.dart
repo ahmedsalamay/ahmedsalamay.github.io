@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:async/async.dart';
 import 'package:fimto_frame/errors/auth_exception.dart';
+import 'package:fimto_frame/generated/l10n.dart';
 import 'package:fimto_frame/models/constants.dart';
 import 'package:fimto_frame/models/language.dart';
 import 'package:fimto_frame/models/token.dart';
@@ -60,7 +61,7 @@ class TokenRepository {
     }
   }
 
-  Future<Result<Token>> registerAsync(
+  Future<Result<bool>> registerAsync(
       String email, String phoneNumber, String password) async {
     try {
       var data = {
@@ -70,9 +71,10 @@ class TokenRepository {
       };
 
       final response = await client.post(baseUrl + 'Register', data: data);
-      final token = Token.fromJson(response.data);
-
-      return Result.value(token);
+      if (response.statusCode == 200) {
+        return Result.value(true);
+      }
+      return Result.error(S.current.somethingWentWrong);
     } on DioError catch (error) {
       if (error.response!.statusCode == HttpStatus.badRequest) {
         var errorMsg = error.response!.data;
@@ -92,6 +94,40 @@ class TokenRepository {
       return Result.value(newToken);
     } on DioError {
       throw AuthException(token);
+    }
+  }
+
+  Future<Result<bool>> resendActivationCode(String phoneNumber) async {
+    try {
+      final response = await client
+          .post(baseUrl + 'ResendActivationCode?phone=$phoneNumber');
+      if (response.statusCode == 200) {
+        return Result.value(true);
+      }
+      return Result.error(S.current.somethingWentWrong);
+    } on DioError catch (error) {
+      if (error.response!.statusCode == HttpStatus.badRequest) {
+        var errorMsg = error.response!.data;
+        return Result.error(errorMsg);
+      }
+      return Result.error('');
+    }
+  }
+
+  Future<Result<bool>> activateUser(String phoneNumber, String code) async {
+    try {
+      final response = await client
+          .post(baseUrl + 'ActivateUser?phone=$phoneNumber&Code=$code');
+      if (response.statusCode == 200) {
+        return Result.value(true);
+      }
+      return Result.error(S.current.somethingWentWrong);
+    } on DioError catch (error) {
+      if (error.response!.statusCode == HttpStatus.badRequest) {
+        var errorMsg = error.response!.data;
+        return Result.error(errorMsg);
+      }
+      return Result.error('');
     }
   }
 }

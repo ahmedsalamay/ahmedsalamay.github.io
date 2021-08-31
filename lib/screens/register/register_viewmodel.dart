@@ -87,9 +87,8 @@ class RegisterViewModel extends ChangeNotifier {
       setLoadingState(false);
       return;
     }
-
     setLoadingState(false);
-    Get.offAllNamed(homeRoute);
+    Get.offAllNamed(activateUserRoute, arguments: _phoneNumber);
   }
 
   bool _isEmailValid(String? email) {

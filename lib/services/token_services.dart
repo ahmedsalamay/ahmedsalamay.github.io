@@ -24,14 +24,13 @@ class TokenService {
     return Result.value(result.asValue!.value);
   }
 
-  Future<Result<Token>> registerAsync(
+  Future<Result<bool>> registerAsync(
       String phoneNumber, String email, String password) async {
     var result =
         await _tokenRepository.registerAsync(email, phoneNumber, password);
     if (result.isError) {
       return Result.error(result.asError!.error);
     }
-    await _tokenLocalRepository.saveToken(result.asValue!.value);
 
     return Result.value(result.asValue!.value);
   }

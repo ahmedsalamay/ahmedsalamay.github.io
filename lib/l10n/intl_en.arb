@@ -109,5 +109,12 @@
   "no": "No",
   "loginError": "Wrong phone number or password",
   "somethingWentWrong": "Something went wrong please try again later",
-  "addAllField": "Please Add All Fields"
+  "addAllField": "Please Add All Fields",
+  "continueAsGuest": "Continue as guest",
+  "youHaveToLogin": "You have to login to continue",
+  "logout": "Logout",
+  "otpVerification": "OTP Verification",
+  "enterTheOtp": "Enter the OTP sent to",
+  "didntReceiveOtp": "Didn't Receive OTP? ",
+  "resendOTP": "Resend OTP0"
 }

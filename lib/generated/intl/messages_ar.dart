@@ -59,6 +59,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("مشكلة في الاتصال بالانترنت"),
         "connectionErrorMsg": MessageLookupByLibrary.simpleMessage(
             "لا يوجد اتصال بالانترنت لتحميل البيانات الازمة , برجاء التاكد من الاتصال"),
+        "continueAsGuest": MessageLookupByLibrary.simpleMessage("اكمل كضيف"),
         "continueBTN": MessageLookupByLibrary.simpleMessage("استمرار"),
         "decorateMyWall":
             MessageLookupByLibrary.simpleMessage("لتزين جدارى الخاص"),
@@ -68,6 +69,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("البرواز فى شرك الشحن"),
         "delivery": MessageLookupByLibrary.simpleMessage("توصيل"),
         "deliveryTime": MessageLookupByLibrary.simpleMessage("وقت وصول الطلب"),
+        "didntReceiveOtp":
+            MessageLookupByLibrary.simpleMessage("لم تستلم OTP؟"),
         "discount": MessageLookupByLibrary.simpleMessage("خصم"),
         "dismiss": MessageLookupByLibrary.simpleMessage("الغاء"),
         "donnotHaveAccount":
@@ -75,6 +78,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "egyptwideShipping": MessageLookupByLibrary.simpleMessage(
             "Free Egyptwide shipping! At your doorstep in a week"),
         "email": MessageLookupByLibrary.simpleMessage("البريد الإلكتروني"),
+        "enterTheOtp":
+            MessageLookupByLibrary.simpleMessage("أدخل OTP المرسل إلى"),
         "extraFrame": MessageLookupByLibrary.simpleMessage("إطار إضافى"),
         "faq": MessageLookupByLibrary.simpleMessage("الأسئلة الشائعة"),
         "fimtoArt": MessageLookupByLibrary.simpleMessage("Fimto Art"),
@@ -108,6 +113,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "login": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
         "loginError": MessageLookupByLibrary.simpleMessage(
             "رقم الهاتف أو كلمة المرور خطأ"),
+        "logout": MessageLookupByLibrary.simpleMessage("تسجيل خروج"),
         "mailHint": MessageLookupByLibrary.simpleMessage("E-Mail"),
         "messageToYourDear":
             MessageLookupByLibrary.simpleMessage("اترك رسالة لشخصك العزيز"),
@@ -125,6 +131,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("تم تأكيد الطلب"),
         "orderNumber": MessageLookupByLibrary.simpleMessage("رقم الطلب"),
         "orderSummary": MessageLookupByLibrary.simpleMessage("ملخص الطلب"),
+        "otpVerification":
+            MessageLookupByLibrary.simpleMessage("التحقق من OTP"),
         "paid": MessageLookupByLibrary.simpleMessage("مدفوع:"),
         "password": MessageLookupByLibrary.simpleMessage("كلمه السر"),
         "passwordError":
@@ -147,6 +155,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "من فضلك قم بتحويل المبلغ الى"),
         "processing": MessageLookupByLibrary.simpleMessage("جارى تنفيذ الطلب"),
         "register": MessageLookupByLibrary.simpleMessage("تسجيل"),
+        "resendOTP": MessageLookupByLibrary.simpleMessage("إعادة إرسال OTP"),
         "selectCreateFrames": MessageLookupByLibrary.simpleMessage(
             "من فضلك أخبرنا من الشخص الذى تريد ان ترسل اليه البرواز"),
         "selectToWho": MessageLookupByLibrary.simpleMessage("اختر لمن"),
@@ -177,6 +186,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "يمكنك الحصول على اى برواز بسعر 74ج"),
         "youCanRetrieve": MessageLookupByLibrary.simpleMessage(
             "يمكنك استرجاعه ان لم يكن بالجودة المنتظرة"),
+        "youHaveToLogin": MessageLookupByLibrary.simpleMessage(
+            "يجب عليك تسجيل الدخول للمتابعة"),
         "yourOrders": MessageLookupByLibrary.simpleMessage("تابع طلباتك")
       };
 }
