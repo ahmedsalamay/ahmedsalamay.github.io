@@ -1,6 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:fimto_frame/generated/l10n.dart';
 import 'package:fimto_frame/models/instagram_page.dart';
 import 'package:fimto_frame/repository/remote/instagram_repository.dart';
+import 'package:fimto_frame/services/message_service.dart';
+import 'package:fimto_frame/themes/buttons.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -12,13 +15,16 @@ class InstgramPicker extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: ChangeNotifierProvider<InstagramPickerViewModel>(
-        create: (_) => InstagramPickerViewModel(
-          instagramAcessTokenCode: code,
-          instagramRepository: context.read<InstagramRepository>(),
+    return SafeArea(
+      child: Scaffold(
+        body: ChangeNotifierProvider<InstagramPickerViewModel>(
+          create: (_) => InstagramPickerViewModel(
+            instagramAcessTokenCode: code,
+            instagramRepository: context.read<InstagramRepository>(),
+            messageService: context.read<MessageService>(),
+          ),
+          builder: (context, child) => const _Body(),
         ),
-        builder: (context, child) => const _Body(),
       ),
     );
   }
@@ -40,7 +46,34 @@ class _BodyState extends State<_Body> {
 
   @override
   Widget build(BuildContext context) {
-    return const _ImagesListView();
+    return Stack(
+      children: [
+        Column(
+          children: [
+            AppBar(
+              backgroundColor: Colors.white,
+              elevation: 4.0,
+              title: Text(
+                S.of(context).importFromInstagram,
+                style: Theme.of(context).textTheme.headline3,
+                textAlign: TextAlign.center,
+                overflow: TextOverflow.clip,
+              ),
+              iconTheme: const IconThemeData(color: Colors.black),
+              centerTitle: true,
+            ),
+            const _ImagesListView(),
+            const _ConfirmButton(),
+          ],
+        ),
+        Center(
+          child: Visibility(
+            visible: context.watch<InstagramPickerViewModel>().isLoading,
+            child: const CircularProgressIndicator(),
+          ),
+        )
+      ],
+    );
   }
 }
 
@@ -49,17 +82,18 @@ class _ImagesListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GridView.builder(
-        itemCount: 5, //widget.medias.length,
-        gridDelegate:
-            const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
-        itemBuilder: (BuildContext _, index) {
-          //final Media media = widget.medias[index];
-          return _ImageListItem(
-            media: Media(caption: '',id: '',mediaType: '',mediaUrl: '',timestamp: '',username: '',),
-            onChanged: (v)=>{},
-          );
-        });
+    var medias = context.watch<InstagramPickerViewModel>().medias;
+
+    return Expanded(
+      child: GridView.builder(
+          itemCount: medias.length,
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 3),
+          itemBuilder: (BuildContext _, index) {
+            final media = medias[index];
+            return _ImageListItem(media: media);
+          }),
+    );
   }
 }
 
@@ -114,30 +148,49 @@ class _ZoomImage extends StatelessWidget {
 
 class _ImageListItem extends StatelessWidget {
   final Media media;
-  final Function onChanged;
 
   const _ImageListItem({
     Key? key,
     required this.media,
-    required this.onChanged,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    var isSelected = context
+        .watch<InstagramPickerViewModel>()
+        .selectedMedias
+        .any((element) => element == media);
+
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Stack(
         children: [
           _ZoomImage(imageUrl: media.mediaUrl),
           Positioned(
-              bottom: 0,
-              right: 0,
-              child: Checkbox(
-                value: false, //media.selected,
-                onChanged: (value) => {},
-              )),
+            bottom: 0,
+            right: 0,
+            child: Checkbox(
+              value: isSelected,
+              onChanged: (value) => context
+                  .read<InstagramPickerViewModel>()
+                  .onMediaSelectedAction(media),
+            ),
+          ),
         ],
       ),
+    );
+  }
+}
+
+class _ConfirmButton extends StatelessWidget {
+  const _ConfirmButton({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return GradientButton(
+      text: S.of(context).continueBTN,
+      onTap: () =>
+          context.read<InstagramPickerViewModel>().onConfirmSelectionAction(),
     );
   }
 }

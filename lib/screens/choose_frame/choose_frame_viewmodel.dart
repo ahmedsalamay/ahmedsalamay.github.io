@@ -5,6 +5,7 @@ import 'package:dio/dio.dart';
 import 'package:fimto_frame/generated/l10n.dart';
 import 'package:fimto_frame/models/constants.dart';
 import 'package:fimto_frame/models/facebook_photo.dart';
+import 'package:fimto_frame/models/instagram_page.dart';
 import 'package:fimto_frame/models/order.dart';
 import 'package:fimto_frame/models/walls.dart';
 import 'package:fimto_frame/repository/remote/facebook_repository.dart';
@@ -158,16 +159,18 @@ class ChooseFrameViewModel extends ChangeNotifier {
   }
 
   Future instgramLogin() async {
+    List<Media>? medias;
+
     if (kIsWeb) {
       /*  html.window.open(
           "https://api.instagram.com/oauth/authorize?&scope=user_profile,user_media&response_type=code&client_id=400912798059223&redirect_uri=https://localhost:65308/$instaPickerRoute",
           '_self');*/
     } else {
-       Get.dialog(WebViewDialogDemo());
+      Get.dialog(const WebViewDialogDemo());
 
       final flutterWebviewPlugin = FlutterWebviewPlugin();
       flutterWebviewPlugin.launch(InstagramConst.authorizeCodeApiUrl);
-      flutterWebviewPlugin.onUrlChanged.listen((String url) {
+      flutterWebviewPlugin.onUrlChanged.listen((String url) async {
         if (url.startsWith('https://hadaf.vemtto.pickinstagram.com')) {
           Get.back();
 
@@ -176,7 +179,21 @@ class ChooseFrameViewModel extends ChangeNotifier {
 
           flutterWebviewPlugin.close();
 
-          Get.toNamed(instaPickerRoute, arguments: code);
+          List<Media> result =
+              await Get.toNamed(instaPickerRoute, arguments: code);
+
+          setLoadingState(true);
+          
+          var sources = result.map((e) => e.mediaUrl).toList();
+          for (var source in sources) {
+            var response = await Dio().get(source,
+                options: Options(responseType: ResponseType.bytes));
+            _pickedFiles.add(response.data);
+          }
+
+          order.imageNo = _pickedFiles.length;
+          order.calculateTotal();
+          setLoadingState(false);
         }
       });
     }

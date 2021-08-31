@@ -787,18 +787,17 @@ class _FacebookPhotosState extends State<FacebookPhotos> {
 }
 
 class WebViewDialogDemo extends StatelessWidget {
+  const WebViewDialogDemo({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
-      child: WebviewScaffold(
+      child: const WebviewScaffold(
         url: InstagramConst.authorizeCodeApiUrl,
         withZoom: true,
-        initialChild: Container(
-          color: Colors.redAccent,
-          child: const Center(
-            child: Text("Loading...."),
-          ),
+        initialChild: Center(
+          child: Text("Loading...."),
         ),
       ),
     );

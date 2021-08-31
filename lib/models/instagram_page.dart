@@ -34,7 +34,7 @@ class Media {
     required this.mediaUrl,
     required this.username,
     required this.timestamp,
-    required this.caption,
+    this.caption,
   });
 
   final String id;
@@ -42,7 +42,7 @@ class Media {
   final String mediaUrl;
   final String username;
   final String timestamp;
-  final String caption;
+  final String? caption;
 
   Media copyWith({
     required String id,
@@ -50,7 +50,7 @@ class Media {
     required String mediaUrl,
     required String username,
     required String timestamp,
-    required String caption,
+    required String? caption,
   }) =>
       Media(
           id: id,
@@ -70,6 +70,12 @@ class Media {
         username: json["username"],
         timestamp: json["timestamp"],
       );
+
+  @override
+  bool operator ==(other) => ((other) as Media).id == id;
+
+  @override
+  int get hashCode => int.parse(id);
 }
 
 class Paging {
