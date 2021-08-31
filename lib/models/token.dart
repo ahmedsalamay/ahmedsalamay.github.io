@@ -20,6 +20,6 @@ class Token {
   factory Token.fromJson(Map<String, dynamic> json) => Token(
         accessToken: json['access_token'],
         expiresIn: json['expires_in'],
-        refreshToken: json['refresh_token'],
+        refreshToken: json['refresh_token'] ?? '',
       );
 }

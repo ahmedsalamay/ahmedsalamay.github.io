@@ -1,4 +1,6 @@
 import 'package:fimto_frame/generated/l10n.dart';
+import 'package:fimto_frame/models/constants.dart';
+import 'package:fimto_frame/models/order_status.dart';
 import 'package:fimto_frame/responsive/responsive_layout.dart';
 import 'package:fimto_frame/themes/appBar.dart';
 import 'package:fimto_frame/themes/theme.dart';
@@ -7,34 +9,37 @@ import 'package:provider/provider.dart';
 import 'track_order_viewmodel.dart';
 
 class TrackOrderScreen extends StatelessWidget {
-  const TrackOrderScreen({Key? key}) : super(key: key);
+  final OrderStatus order;
+  const TrackOrderScreen({Key? key, required this.order}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return ScreenTypeLayout(
       mobile: OrientationLayout(
-        portrait: const TrackOrderMobile(),
-        landscape: const TrackOrderMobile(),
+        portrait: TrackOrderMobile(order: order),
+        landscape: TrackOrderMobile(order: order),
       ),
       tablet: OrientationLayout(
-        portrait: const TrackOrderMobile(),
-        landscape: const TrackOrderMobile(),
+        portrait: TrackOrderMobile(order: order),
+        landscape: TrackOrderMobile(order: order),
       ),
       desktop: OrientationLayout(
-        landscape: const TrackOrderMobile(),
-        portrait: const TrackOrderMobile(),
+        landscape: TrackOrderMobile(order: order),
+        portrait: TrackOrderMobile(order: order),
       ),
     );
   }
 }
 
 class TrackOrderMobile extends StatelessWidget {
-  const TrackOrderMobile({Key? key}) : super(key: key);
+  final OrderStatus order;
+
+  const TrackOrderMobile({Key? key, required this.order}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<TrackOrderViewModel>(
-        create: (_) => TrackOrderViewModel(),
+        create: (_) => TrackOrderViewModel(order: order),
         child: const Scaffold(
           backgroundColor: Colors.white,
           body: _Body(),
@@ -82,6 +87,7 @@ class _Stepper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var vm = context.read<TrackOrderViewModel>();
     return SizedBox(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
@@ -95,7 +101,9 @@ class _Stepper extends StatelessWidget {
                   height: 50,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(25),
-                      color: FimtoColors.successColor),
+                      color: vm.order.status >= OrderStatesEn.Accecpted.index
+                          ? FimtoColors.successColor
+                          : Colors.transparent),
                   child: const Center(
                       child: Icon(
                     Icons.check,

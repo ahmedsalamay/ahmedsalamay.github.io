@@ -11,8 +11,8 @@ import 'package:fimto_frame/themes/buttons.dart';
 import 'package:fimto_frame/themes/drawer.dart';
 import 'package:fimto_frame/themes/theme.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_shimmer/flutter_shimmer.dart';
 import 'package:provider/provider.dart';
+import 'package:shimmer_animation/shimmer_animation.dart';
 import 'add_payment_method_viewmodel.dart';
 
 class AddPaymentMethodScreenMobile extends StatelessWidget {
@@ -97,8 +97,19 @@ class _PaymentMethods extends StatelessWidget {
               } else if (snapshot.hasError) {
                 return const Center(child: Text('Error happened'));
               }
-              return const PlayStoreShimmer(
-                hasBottomFirstLine: true,
+              return Shimmer(
+                duration: const Duration(milliseconds: 500), //Default value
+                interval: const Duration(
+                    milliseconds: 500), //Default value: Duration(seconds: 0)
+                color: Colors.grey.shade600, //Default value
+                colorOpacity: 0.3, //Default value
+                enabled: true, //Default value
+                direction: const ShimmerDirection.fromLTRB(), //Default Value
+                child: Container(
+                  color: Colors.grey.shade300,
+                  height: 350,
+                  width: 350,
+                ),
               );
             },
           ),

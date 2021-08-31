@@ -1,6 +1,8 @@
 import 'package:fimto_frame/models/facebook_photo.dart';
+import 'package:fimto_frame/models/language.dart';
 import 'package:fimto_frame/models/order.dart';
 import 'package:fimto_frame/repository/remote/facebook_repository.dart';
+import 'package:fimto_frame/repository/remote/order_repository.dart';
 import 'package:fimto_frame/services/connection_service.dart';
 import 'package:fimto_frame/services/message_service.dart';
 import 'package:fimto_frame/themes/theme.dart';
@@ -24,6 +26,7 @@ class ChooseFrameDesktop extends StatelessWidget {
         create: (_) => ChooseFrameViewModel(
               facebookRepository: context.read<FacebookRepository>(),
               connectionService: context.read<ConnectionService>(),
+              orderRepository: context.read<OrderRepository>(),
               messageService: context.read<MessageService>(),
               order: context.read<Order>(),
             ),
@@ -36,9 +39,7 @@ class ChooseFrameDesktop extends StatelessWidget {
 }
 
 class _Body extends StatelessWidget {
-  const _Body({
-    Key? key,
-  }) : super(key: key);
+  const _Body({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -74,11 +75,13 @@ class _Preview extends StatelessWidget {
     var vm = context.watch<ChooseFrameViewModel>();
     return Container(
       color: const Color(0xFFf9f9f9),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
+      child: ListView(
+        // mainAxisAlignment: MainAxisAlignment.start,
         children: [
           const SizedBox(height: 130),
           vm.isImagesPicked ? const _FramePreview() : const _PickPhotos(),
+          const SizedBox(height: 25),
+          vm.isWallVisible ? const _Walls() : const SizedBox(),
         ],
       ),
     );
@@ -310,6 +313,7 @@ class _ImportPhoto extends StatelessWidget {
                 ],
               ),
             ),
+<<<<<<< HEAD
           ),
           const Spacer(),
           Container(
@@ -327,6 +331,42 @@ class _ImportPhoto extends StatelessWidget {
                   offset: const Offset(0, 2), // changes position of shadow
                 )
               ],
+=======
+            const Spacer(),
+            Container(
+              height: 80,
+              width: 250,
+              padding: const EdgeInsets.all(15),
+              decoration: BoxDecoration(
+                borderRadius: const BorderRadius.all(Radius.circular(6)),
+                color: Colors.white,
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.2),
+                    spreadRadius: 2,
+                    blurRadius: 2,
+                    offset: const Offset(0, 2), // changes position of shadow
+                  )
+                ],
+              ),
+              child: Row(
+                children: [
+                  IconButton(
+                    icon: Image.asset('assets/images/instagram_colored.png'),
+                    padding: const EdgeInsets.all(0),
+                    onPressed: () {},
+                  ),
+                  const SizedBox(width: 15),
+                  Text(
+                    S.of(context).importFromInstagram,
+                    style: Theme.of(context)
+                        .textTheme
+                        .headline3!
+                        .copyWith(fontSize: 14, fontWeight: FontWeight.w800),
+                  ),
+                ],
+              ),
+>>>>>>> 54a93659219c9e8196dd1ee9c12c688d7a3a9de0
             ),
             child: Row(
               children: [
@@ -367,72 +407,75 @@ class _FramePreview extends StatelessWidget {
         SizedBox(
           height: 300,
           width: 600,
-          child: Swiper(
-            itemHeight: 300,
-            itemWidth: 300,
-            itemBuilder: (BuildContext context, int index) {
-              return MouseRegion(
-                onEnter: (_) => vm.showDeleteButton(),
-                onExit: (_) => vm.hideDeleteButton(),
-                child: SizedBox(
-                  height: 300,
-                  width: 300,
-                  child: Stack(
-                    clipBehavior: Clip.hardEdge,
-                    children: [
-                      Image(
-                        height: 300,
-                        width: 300,
-                        fit: BoxFit.fill,
-                        image: AssetImage(
-                            'assets/images/${vm.selectedFrame.toString().split('.')[1]}.png'),
-                      ),
-                      Padding(
-                        padding: vm.selectedFrame == frames.classic ||
-                                vm.selectedFrame == frames.permise
-                            ? classicPadding
-                            : cleanPadding,
-                        child: Image.memory(
-                          vm.pickedFiles[index],
+          child: Directionality(
+            textDirection: TextDirection.ltr,
+            child: Swiper(
+              itemHeight: 300,
+              itemWidth: 300,
+              itemBuilder: (BuildContext context, int index) {
+                return MouseRegion(
+                  onEnter: (_) => vm.showDeleteButton(),
+                  onExit: (_) => vm.hideDeleteButton(),
+                  child: SizedBox(
+                    height: 300,
+                    width: 300,
+                    child: Stack(
+                      clipBehavior: Clip.hardEdge,
+                      children: [
+                        Image(
                           height: 300,
-                          width: vm.selectedFrame == frames.classic ||
-                                  vm.selectedFrame == frames.permise
-                              ? 220
-                              : 250,
-                          fit: BoxFit.cover,
+                          width: 300,
+                          fit: BoxFit.fill,
+                          image: AssetImage(
+                              'assets/images/${vm.selectedFrame.toString().split('.')[1]}.png'),
                         ),
-                      ),
-                      Visibility(
-                        visible: vm.isDeleteButtonVisible,
-                        child: Positioned(
-                            left: 30,
-                            top: 30,
-                            child: Container(
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(8),
-                                  color: Colors.white),
-                              child: IconButton(
-                                onPressed: () => vm.removePhoto(index),
-                                icon: const Icon(
-                                  Icons.delete,
-                                  size: 25,
-                                  color: Colors.black,
+                        Padding(
+                          padding: vm.selectedFrame == frames.classic ||
+                                  vm.selectedFrame == frames.permise
+                              ? classicPadding
+                              : cleanPadding,
+                          child: Image.memory(
+                            vm.pickedFiles[index],
+                            height: 300,
+                            width: vm.selectedFrame == frames.classic ||
+                                    vm.selectedFrame == frames.permise
+                                ? 220
+                                : 250,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                        Visibility(
+                          visible: vm.isDeleteButtonVisible,
+                          child: Positioned(
+                              left: 30,
+                              top: 30,
+                              child: Container(
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(8),
+                                    color: Colors.white),
+                                child: IconButton(
+                                  onPressed: () => vm.removePhoto(index),
+                                  icon: const Icon(
+                                    Icons.delete,
+                                    size: 25,
+                                    color: Colors.black,
+                                  ),
                                 ),
-                              ),
-                            )),
-                      )
-                    ],
+                              )),
+                        )
+                      ],
+                    ),
                   ),
-                ),
-              );
-            },
-            itemCount: vm.pickedFiles.length,
-            viewportFraction: 0.8,
-            scale: 0.9,
-            loop: false,
+                );
+              },
+              itemCount: vm.pickedFiles.length,
+              viewportFraction: 0.8,
+              scale: 0.9,
+              loop: false,
+            ),
           ),
         ),
-        const SizedBox(height: 50),
+        const SizedBox(height: 20),
         const _AddMore()
       ],
     );
@@ -664,6 +707,101 @@ class _FacebookPhotosState extends State<FacebookPhotos> {
             ),
           ),
         ),
+      ),
+    );
+  }
+}
+
+class _Walls extends StatelessWidget {
+  const _Walls({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    var vm = context.watch<ChooseFrameViewModel>();
+    return Center(
+      child: SizedBox(
+        height: 300,
+        width: 300,
+        child: Stack(
+          clipBehavior: Clip.hardEdge,
+          children: <Widget>[
+                GestureDetector(
+                  onTapDown: (TapDownDetails details) {
+                    print(details.globalPosition.dx.toString() +
+                        '----' +
+                        details.globalPosition.dy.toString());
+                  },
+                  child: const Image(
+                    height: 300,
+                    width: 300,
+                    fit: BoxFit.fill,
+                    image: AssetImage('assets/images/01.png'),
+                  ),
+                ),
+              ] +
+              vm.wall.images
+                  .asMap()
+                  .entries
+                  .map(
+                    (image) => Positioned(
+                        left: (image.value.x * 300 / vm.wall.areaWidth),
+                        top: (image.value.y * 300 / vm.wall.areaHeight),
+                        child: _FramesForWall(
+                            index: image.key >= vm.pickedFiles.length
+                                ? 0
+                                : image.key)
+                        // Image.memory(
+                        //   vm.pickedFiles[
+                        //       image.key >= vm.pickedFiles.length ? 0 : image.key],
+                        //   height: 80,
+                        //   width: 80,
+                        //   fit: BoxFit.fill,
+                        // ),
+                        ),
+                  )
+                  .toList(),
+        ),
+      ),
+    );
+  }
+}
+
+class _FramesForWall extends StatelessWidget {
+  final int index;
+  const _FramesForWall({Key? key, required this.index}) : super(key: key);
+
+  final classicPadding = const EdgeInsets.fromLTRB(7.2, 6.4, 13, 12.2);
+  final cleanPadding = const EdgeInsets.fromLTRB(3.2, 3.2, 10.6, 10.1);
+
+  @override
+  Widget build(BuildContext context) {
+    var vm = context.watch<ChooseFrameViewModel>();
+    return SizedBox(
+      height: 80,
+      width: 80,
+      child: Stack(
+        clipBehavior: Clip.hardEdge,
+        children: [
+          Image(
+            height: 80,
+            width: 80,
+            fit: BoxFit.fill,
+            image: AssetImage(
+                'assets/images/${vm.selectedFrame.toString().split('.')[1]}.png'),
+          ),
+          Padding(
+            padding: vm.selectedFrame == frames.classic ||
+                    vm.selectedFrame == frames.permise
+                ? classicPadding
+                : cleanPadding,
+            child: Image.memory(
+              vm.pickedFiles[index],
+              height: 80,
+              width: 65,
+              fit: BoxFit.cover,
+            ),
+          ),
+        ],
       ),
     );
   }

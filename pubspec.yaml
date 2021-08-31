@@ -38,7 +38,7 @@ dependencies:
   logger: ^1.0.0
   hive: ^2.0.4
   hive_flutter: ^1.0.0
-  video_player: ^2.1.6
+#  video_player: ^2.1.6
   flutter_localizations:
     sdk: flutter
   intl: ^0.17.0
@@ -48,7 +48,6 @@ dependencies:
   flutter_facebook_auth: ^3.5.0
   http: ^0.13.3
   youtube_player_iframe: ^2.2.1
-  flutter_shimmer: ^2.1.0
   shimmer_animation: ^2.1.0+1
   flutter_webview_plugin: ^0.4.0
 
@@ -100,6 +99,7 @@ flutter:
     - assets/images/googleGrey.png
     - assets/images/us.png
     - assets/images/01.png
+    - assets/images/wall.jpg
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

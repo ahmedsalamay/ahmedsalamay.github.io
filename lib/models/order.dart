@@ -100,8 +100,8 @@ class Order {
         "imageNo": imageNo,
         "wallname": wallName,
         "typeofOrder": typeofOrder,
-        "gifttext": giftText ?? null,
-        "promocode": promoCode != null ? promoCode!.code : null,
+        "gifttext": giftText ?? '',
+        "promocode": promoCode != null ? promoCode!.code : '',
         "deliverydate":
             deliveryDate == null ? null : deliveryDate!.toIso8601String(),
         "images":

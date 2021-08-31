@@ -1,4 +1,5 @@
 import 'package:fimto_frame/generated/l10n.dart';
+import 'package:fimto_frame/repository/remote/preference.dart';
 import 'package:fimto_frame/responsive/responsive_layout.dart';
 import 'package:fimto_frame/routes/router_names.dart';
 import 'package:flutter/material.dart';
@@ -139,7 +140,12 @@ class _PageSelector extends StatelessWidget {
                   color: Colors.white,
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(22.0)),
-                  onPressed: () => Get.toNamed(homeRoute),
+                  onPressed: () async {
+                    final preferences = await Preferences.getInstance();
+                    final isUserLoggedIn = preferences.getIsLogged();
+                    preferences.setIsFirstLaunch(false);
+                    Get.toNamed(isUserLoggedIn ? homeRoute : loginRoute);
+                  },
                   child: const Text(
                     'Next',
                     style: TextStyle(color: Colors.black, fontSize: 20),

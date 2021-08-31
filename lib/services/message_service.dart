@@ -32,7 +32,7 @@ class MessageService {
       backgroundColor: FimtoColors.onPrimaryColor,
       snackPosition: SnackPosition.BOTTOM,
       snackStyle: SnackStyle.FLOATING,
-      duration:const Duration(seconds: 5),
+      duration: const Duration(seconds: 5),
       messageText: Text(
         message,
         textAlign: TextAlign.center,
@@ -133,7 +133,7 @@ class MessageService {
       title: title,
       titleStyle: Theme.of(Get.context!).textTheme.headline2,
       content: Padding(
-        padding:const EdgeInsets.symmetric(vertical: 8.0),
+        padding: const EdgeInsets.symmetric(vertical: 8.0),
         child: StatefulBuilder(
           builder: (_, StateSetter setState) => InkWell(
             onTap: () async {

@@ -3,6 +3,7 @@ import 'package:fimto_frame/models/facebook_photo.dart';
 import 'package:fimto_frame/models/language.dart';
 import 'package:fimto_frame/models/order.dart';
 import 'package:fimto_frame/repository/remote/facebook_repository.dart';
+import 'package:fimto_frame/repository/remote/order_repository.dart';
 import 'package:fimto_frame/services/connection_service.dart';
 import 'package:fimto_frame/services/message_service.dart';
 import 'package:fimto_frame/themes/theme.dart';
@@ -28,6 +29,7 @@ class ChooseFrameMobile extends StatelessWidget {
         create: (_) => ChooseFrameViewModel(
               facebookRepository: context.read<FacebookRepository>(),
               connectionService: context.read<ConnectionService>(),
+              orderRepository: context.read<OrderRepository>(),
               messageService: context.read<MessageService>(),
               order: context.read<Order>(),
             ),
@@ -52,7 +54,6 @@ class _Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var vm = context.watch<ChooseFrameViewModel>();
-
     return SafeArea(
       child: Stack(
         children: [
@@ -72,8 +73,17 @@ class _Body extends StatelessWidget {
                         vm.isImagesPicked
                             ? const _FramePreview()
                             : const _PickPhotos(),
+                        const SizedBox(height: 25),
+                        Text(
+                          S.of(context).chooseSuitableDesign,
+                          style: Theme.of(context).textTheme.headline3,
+                        ),
                         const SizedBox(height: 15),
+<<<<<<< HEAD
                         //   const _Walls(),
+=======
+                        vm.isWallVisible ? const _Walls() : const SizedBox(),
+>>>>>>> 54a93659219c9e8196dd1ee9c12c688d7a3a9de0
                       ],
                     ),
                   ),
@@ -115,54 +125,84 @@ class _Walls extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var vm = context.watch<ChooseFrameViewModel>();
-    var size = MediaQuery.of(context).size;
     return SizedBox(
       height: 300,
       width: 300,
       child: Stack(
         clipBehavior: Clip.hardEdge,
+        children: <Widget>[
+              GestureDetector(
+                onTapDown: (TapDownDetails details) {
+                  print(details.globalPosition.dx.toString() +
+                      '----' +
+                      details.globalPosition.dy.toString());
+                },
+                child: const Image(
+                  height: 300,
+                  width: 300,
+                  fit: BoxFit.fill,
+                  image: AssetImage('assets/images/wall.jpg'),
+                ),
+              ),
+            ] +
+            vm.wall.images
+                .asMap()
+                .entries
+                .map(
+                  (image) => Positioned(
+                    left: (image.value.x * 300 / vm.wall.areaWidth),
+                    top: (image.value.y * 300 / vm.wall.areaHeight),
+                    child: _FramesForWall(
+                        index:
+                            image.key >= vm.pickedFiles.length ? 0 : image.key),
+                    // child: Image.memory(
+                    //   vm.pickedFiles[
+                    //       image.key >= vm.pickedFiles.length ? 0 : image.key],
+                    //   height: 80,
+                    //   width: 80,
+                    //   fit: BoxFit.fill,
+                    // ),
+                  ),
+                )
+                .toList(),
+      ),
+    );
+  }
+}
+
+class _FramesForWall extends StatelessWidget {
+  final int index;
+  const _FramesForWall({Key? key, required this.index}) : super(key: key);
+
+  final classicPadding = const EdgeInsets.fromLTRB(7.2, 6.4, 13, 12.2);
+  final cleanPadding = const EdgeInsets.fromLTRB(3.2, 3.2, 10.6, 10.1);
+
+  @override
+  Widget build(BuildContext context) {
+    var vm = context.watch<ChooseFrameViewModel>();
+    return SizedBox(
+      height: 80,
+      width: 80,
+      child: Stack(
+        clipBehavior: Clip.hardEdge,
         children: [
-          GestureDetector(
-            onTapDown: (TapDownDetails details) {
-              print(details.globalPosition.dx.toString() +
-                  '----' +
-                  details.globalPosition.dy.toString());
-            },
-            child: const Image(
-              height: 300,
-              width: 300,
+          Image(
+            height: 80,
+            width: 80,
+            fit: BoxFit.fill,
+            image: AssetImage(
+                'assets/images/${vm.selectedFrame.toString().split('.')[1]}.png'),
+          ),
+          Padding(
+            padding: vm.selectedFrame == frames.classic ||
+                    vm.selectedFrame == frames.permise
+                ? classicPadding
+                : cleanPadding,
+            child: Image.memory(
+              vm.pickedFiles[index],
+              height: 80,
+              width: 65,
               fit: BoxFit.fill,
-              image: AssetImage('assets/images/01.png'),
-            ),
-          ),
-          Positioned(
-            right: 0, //(0 * size.width / 1000) - 100,
-            bottom: (535 * size.height / 1000) - 100,
-            child: Image.memory(
-              vm.pickedFiles[0],
-              height: 60,
-              width: 60,
-              fit: BoxFit.cover,
-            ),
-          ),
-          Positioned(
-            right: (785 * size.width / 1000) - 100,
-            bottom: (0 * size.height / 1000) - 100,
-            child: Image.memory(
-              vm.pickedFiles[0],
-              height: 60,
-              width: 60,
-              fit: BoxFit.cover,
-            ),
-          ),
-          Positioned(
-            right: (1032 * size.width / 1000) - 100,
-            bottom: (443 * size.height / 1000) - 100,
-            child: Image.memory(
-              vm.pickedFiles[0],
-              height: 60,
-              width: 60,
-              fit: BoxFit.cover,
             ),
           ),
         ],
@@ -419,67 +459,69 @@ class _FramePreview extends StatelessWidget {
         SizedBox(
           height: 300,
           width: 600,
-          child: Swiper(
-            itemHeight: 300,
-            itemWidth: 300,
-            itemBuilder: (BuildContext context, int index) {
-              return GestureDetector(
-                onTap: () => showModalBottomSheet(
-                    context: context,
-                    builder: (builder) {
-                      return _PhotoButtonSheet(index, context);
-                    }),
-                child: SizedBox(
-                  height: 300,
-                  width: 300,
-                  child: Stack(
-                    clipBehavior: Clip.hardEdge,
-                    children: [
-                      Image(
-                        height: 300,
-                        width: 300,
-                        fit: BoxFit.fill,
-                        image: AssetImage(
-                            'assets/images/${vm.selectedFrame.toString().split('.')[1]}.png'),
-                      ),
-                      Padding(
-                        padding: vm.selectedFrame == frames.classic ||
-                                vm.selectedFrame == frames.permise
-                            ? classicPadding
-                            : cleanPadding,
-                        child: Image.memory(
-                          vm.pickedFiles[index],
+          child: Directionality(
+            textDirection: TextDirection.ltr,
+            child: Swiper(
+              itemHeight: 300,
+              itemWidth: 300,
+              itemBuilder: (BuildContext context, int index) {
+                return GestureDetector(
+                  onTap: () => showModalBottomSheet(
+                      context: context,
+                      builder: (builder) {
+                        return _PhotoButtonSheet(index, context);
+                      }),
+                  child: SizedBox(
+                    height: 300,
+                    width: 300,
+                    child: Stack(
+                      clipBehavior: Clip.hardEdge,
+                      children: [
+                        Image(
                           height: 300,
-                          width: 250,
-                          fit: BoxFit.cover,
+                          width: 300,
+                          fit: BoxFit.fill,
+                          image: AssetImage(
+                              'assets/images/${vm.selectedFrame.toString().split('.')[1]}.png'),
                         ),
-                      ),
-                      Visibility(
-                        visible: vm.isDeleteButtonVisible,
-                        child: Positioned(
-                            left: 30,
-                            top: 30,
-                            child: IconButton(
-                              onPressed: () => vm.removePhoto(index),
-                              icon: const Icon(
-                                Icons.delete,
-                                size: 40,
-                                color: Colors.red,
-                              ),
-                            )),
-                      )
-                    ],
+                        Padding(
+                          padding: vm.selectedFrame == frames.classic ||
+                                  vm.selectedFrame == frames.permise
+                              ? classicPadding
+                              : cleanPadding,
+                          child: Image.memory(
+                            vm.pickedFiles[index],
+                            height: 300,
+                            width: 250,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                        Visibility(
+                          visible: vm.isDeleteButtonVisible,
+                          child: Positioned(
+                              left: 30,
+                              top: 30,
+                              child: IconButton(
+                                onPressed: () => vm.removePhoto(index),
+                                icon: const Icon(
+                                  Icons.delete,
+                                  size: 40,
+                                  color: Colors.red,
+                                ),
+                              )),
+                        )
+                      ],
+                    ),
                   ),
-                ),
-              );
-            },
-            itemCount: vm.pickedFiles.length,
-            viewportFraction: 0.8,
-            scale: 0.9,
-            loop: false,
+                );
+              },
+              itemCount: vm.pickedFiles.length,
+              viewportFraction: 0.8,
+              scale: 0.9,
+              loop: false,
+            ),
           ),
         ),
-        const SizedBox(height: 30),
         const _AddMore()
       ],
     );

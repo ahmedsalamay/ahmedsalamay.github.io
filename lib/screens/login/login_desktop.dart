@@ -23,7 +23,7 @@ class LoginScreenDesktop extends StatelessWidget {
               tokenService: context.read<TokenService>(),
             ),
         child: Scaffold(
-          backgroundColor:const Color(0xFFf6fafb),
+          backgroundColor: const Color(0xFFf6fafb),
           body: _Body(),
         ));
   }
@@ -68,7 +68,7 @@ class _Body extends StatelessWidget {
                       const SizedBox(height: 30),
                       const Spacer(),
                       Visibility(
-                        child:const Center(child: CircularProgressIndicator()),
+                        child: const Center(child: CircularProgressIndicator()),
                         visible: vm.isLoading,
                       ),
                       const SizedBox(height: 15),
@@ -79,7 +79,7 @@ class _Body extends StatelessWidget {
                         keyboardType: TextInputType.phone,
                         textInputAction: TextInputAction.next,
                         decoration: InputDecoration(
-                            prefixIcon:const Icon(Icons.phone),
+                            prefixIcon: const Icon(Icons.phone),
                             hintText: S.of(context).phoneNumber),
                       ),
                       const SizedBox(height: 15),
@@ -88,9 +88,10 @@ class _Body extends StatelessWidget {
                         onChanged: (value) => vm.onPasswordChange(value),
                         validator: (value) => vm.validatePassword(value),
                         textInputAction: TextInputAction.done,
+                        onFieldSubmitted: (_) => vm.logInAction(_formKey),
                         obscureText: true,
                         decoration: InputDecoration(
-                            prefixIcon:const Icon(Icons.lock_outline),
+                            prefixIcon: const Icon(Icons.lock_outline),
                             hintText: S.of(context).password),
                       ),
                       const SizedBox(height: 40),
@@ -152,9 +153,9 @@ class _Header extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding:const EdgeInsets.symmetric(horizontal: 30, vertical: 25),
+      padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 25),
       child: Row(
-        children:const [
+        children: const [
           Image(
             fit: BoxFit.contain,
             height: 30,

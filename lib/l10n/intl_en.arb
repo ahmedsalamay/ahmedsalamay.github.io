@@ -98,5 +98,13 @@
   "le": "LE",
   "free": "Free",
   "discount": "Discount",
-  "pleaseChooseDate":"PLease choose delivery date first"
+  "pleaseChooseDate":"PLease choose delivery date first",
+  "myOrders": "My Orders",
+  "name": "Name:",
+  "total:": "Total:",
+  "phone": "Phone:",
+  "status": "Status:",
+  "paid": "Paid:",
+  "yes": "Yes",
+  "no": "No"
 }

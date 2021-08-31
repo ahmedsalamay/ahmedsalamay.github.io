@@ -54,7 +54,8 @@ class ConfirmOrderViewModel extends ChangeNotifier {
 
   void onConfirmOrderAction() async {
     if (_deliveryDate == null) {
-      messageService.showErrorInfoDialog('', S.current.pleaseChooseDate);
+      messageService.showErrorSnackBar(
+          title: '', message: S.current.pleaseChooseDate);
       return;
     }
     var isConnected = await connectionService.checkConnection();
@@ -65,13 +66,12 @@ class ConfirmOrderViewModel extends ChangeNotifier {
       return;
     }
     order.deliveryDate = _deliveryDate!;
-    order.wallName = 'Montaser2';
     setLoadingState(true);
     var response = await orderRepository.submitOrder(order);
     setLoadingState(false);
     if (response.isError) {
-      messageService.showErrorInfoDialog(
-          '', response.asError!.error.toString());
+      messageService.showErrorSnackBar(
+          title: '', message: response.asError!.error.toString());
 
       return;
     }
@@ -80,7 +80,8 @@ class ConfirmOrderViewModel extends ChangeNotifier {
 
   Future<void> onConfirmOrderActionWeb() async {
     if (_deliveryDate == null) {
-      messageService.showErrorInfoDialog('', S.current.pleaseChooseDate);
+      messageService.showErrorSnackBar(
+          title: '', message: S.current.pleaseChooseDate);
       return;
     }
     var isConnected = await connectionService.checkConnection();
@@ -95,8 +96,8 @@ class ConfirmOrderViewModel extends ChangeNotifier {
     var response = await orderRepository.submitOrder(order);
     setLoadingState(false);
     if (response.isError) {
-      messageService.showErrorInfoDialog(
-          '', response.asError!.error.toString());
+      messageService.showErrorSnackBar(
+          title: '', message: response.asError!.error.toString());
 
       return Future.error('');
     }

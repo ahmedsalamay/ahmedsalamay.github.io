@@ -1,5 +1,6 @@
 import 'package:fimto_frame/generated/l10n.dart';
 import 'package:fimto_frame/models/constants.dart';
+import 'package:fimto_frame/repository/remote/preference.dart';
 import 'package:fimto_frame/routes/router_names.dart';
 import 'package:fimto_frame/services/connection_service.dart';
 import 'package:fimto_frame/services/message_service.dart';
@@ -78,8 +79,9 @@ class LoginViewModel extends ChangeNotifier {
       setLoadingState(false);
       return;
     }
-
     setLoadingState(false);
+    final preferences = await Preferences.getInstance();
+    preferences.setIsLogged(true);
     Get.offAllNamed(homeRoute);
   }
 

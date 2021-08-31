@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:fimto_frame/repository/local/token_local_repository.dart';
+import 'package:fimto_frame/repository/remote/preference.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 //import 'package:flutter_web_plugins/flutter_web_plugins.dart';
@@ -19,20 +20,23 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   //await _initializeFlutterFire();
 
-  if (kIsWeb) {
-    // initialiaze the facebook javascript SDK
-    FacebookAuth.i.webInitialize(
-      appId: "420524549277950", //<-- YOUR APP_ID
-      cookie: true,
-      xfbml: true,
-      version: "v11.0",
-    );
-  }
+  // if (kIsWeb) {
+  //   // initialiaze the facebook javascript SDK
+  //   FacebookAuth.i.webInitialize(
+  //     appId: "420524549277950", //<-- YOUR APP_ID
+  //     cookie: true,
+  //     xfbml: true,
+  //     version: "v11.0",
+  //   );
+  // }
 
   var currentLanguage = await LanguageLocalRepository().getSavedLaunage();
+
   var tokenRepository = TokenLocalRepository();
   await tokenRepository.initDatabase();
-  var isUserLoggedIn = tokenRepository.isTokenSaved();
+  final preferences = await Preferences.getInstance();
+  final showOnBoardScreen = preferences.getIsFirstLaunch() && !kIsWeb;
+  var isUserLoggedIn = preferences.getIsLogged();
 
   //setUrlStrategy(PathUrlStrategy());
 
@@ -41,8 +45,10 @@ void main() async {
       ChangeNotifierProvider(
         create: (context) => currentLanguage,
         child: Consumer<Language>(
-          builder: (context, provider, child) =>
-              MyApp(isUserLogged: isUserLoggedIn),
+          builder: (context, provider, child) => MyApp(
+            isUserLogged: isUserLoggedIn,
+            isFirstLaunch: showOnBoardScreen,
+          ),
         ),
       ),
     );
@@ -55,8 +61,11 @@ void main() async {
 class MyApp extends StatelessWidget {
 //  final FirebaseAnalytics analytics = FirebaseAnalytics();
   final bool isUserLogged;
+  final bool isFirstLaunch;
 
-  const MyApp({Key? key, required this.isUserLogged}) : super(key: key);
+  const MyApp(
+      {Key? key, required this.isUserLogged, required this.isFirstLaunch})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -81,8 +90,16 @@ class MyApp extends StatelessWidget {
         locale: context.watch<Language>().currentLocale,
         title: 'Fimto',
         theme: myTheme,
+<<<<<<< HEAD
         initialRoute:
             chooseFrameRoute, // isUserLogged ? homeRoute : loginRoute,
+=======
+        initialRoute: isFirstLaunch
+            ? onBoardRoute
+            : isUserLogged
+                ? homeRoute
+                : loginRoute,
+>>>>>>> 54a93659219c9e8196dd1ee9c12c688d7a3a9de0
         onGenerateRoute: onGenerateRoute,
         defaultTransition: Transition.fade,
         opaqueRoute: Get.isOpaqueRouteDefault,
