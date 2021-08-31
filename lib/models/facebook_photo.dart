@@ -48,11 +48,11 @@ class FaceBookPhoto {
   final String? name;
 
   factory FaceBookPhoto.fromJson(Map<String, dynamic> json) => FaceBookPhoto(
-        id: json["id"] == null ? null : json["id"],
-        width: json["width"] == null ? null : json["width"],
-        height: json["height"] == null ? null : json["height"],
-        source: json["source"] == null ? null : json["source"],
-        name: json["name"] == null ? null : json["name"],
+        id: json["id"],
+        width: json["width"],
+        height: json["height"],
+        source: json["source"],
+        name: json["name"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -60,7 +60,7 @@ class FaceBookPhoto {
         "width": width,
         "height": height,
         "source": source,
-        "name": name == null ? null : name,
+        "name": name,
       };
 }
 
@@ -91,8 +91,8 @@ class Cursors {
   final String after;
 
   factory Cursors.fromJson(Map<String, dynamic> json) => Cursors(
-        before: json["before"] == null ? null : json["before"],
-        after: json["after"] == null ? null : json["after"],
+        before: json["before"],
+        after: json["after"],
       );
 
   Map<String, dynamic> toJson() => {
