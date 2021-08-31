@@ -41,7 +41,7 @@ class ChooseFrameMobile extends StatelessWidget {
           drawer: language.currentLocale.languageCode == 'ar'
               ? const CustomDrawer()
               : null,
-          body:  InstagramAPIWebView(),
+          body: const _Body(),
         ));
   }
 }
@@ -790,92 +790,17 @@ class WebViewDialogDemo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
-        child: WebviewScaffold(
-          url:
-              "https://api.instagram.com/oauth/authorize?&scope=user_profile,user_media&response_type=code&client_id=400912798059223&redirect_uri=https://hadaf.vemtto.pickinstagram.com/",
-          withZoom: true,
-          initialChild: Container(
-            color: Colors.redAccent,
-            child: const Center(
-              child: Text("Loading...."),
-            ),
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
+      child: WebviewScaffold(
+        url: InstagramConst.authorizeCodeApiUrl,
+        withZoom: true,
+        initialChild: Container(
+          color: Colors.redAccent,
+          child: const Center(
+            child: Text("Loading...."),
           ),
-        ));
-  }
-}
-
-class InstagramAPIWebView extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    // INIT THE INSTAGRAM CLASS
-    final Instagram instagram = Instagram();
-    // INIT THE WEBVIEW
-    final flutterWebviewPlugin = new FlutterWebviewPlugin();
-    // OPEN WEBVIEW ACCORDING TO URL GIVEN
-    flutterWebviewPlugin.launch(Instagram.url);
-    // LISTEN CHANGES
-    flutterWebviewPlugin.onUrlChanged.listen((String url) async {
-      // IF SUCCESS LOGIN
-      if (url.contains(Instagram.redirectUri)) {
-        // instagram.getAuthorizationCode(url);
-        //instagram.getTokenAndUserID().then((isDone) {
-        /*     if (isDone) {
-            instagram.getUserProfile().then((isDone) {
-              instagram.getAllMedias().then((mds) {
-                medias = mds;
-                // NOW WE CAN CLOSE THE WEBVIEW
-                flutterWebviewPlugin.close();
-                // WE PUSH A NEW ROUTE FOR SELECTING OUR MEDIAS
-                Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (BuildContext ctx) {
-                  // ADDING OUR SELECTION PAGE
-                  return InstagramSelectionPage(
-                    medias: medias,
-                    onPressedConfirmation: () {
-                      // RETURNING AFTER SELECTION OUR MEDIAS LIST
-                      Navigator.of(ctx).pop();
-                      Navigator.of(context).pop(medias);
-                    },
-                  );
-                }));
-              });
-            });
-          }
-        });*/
-      }
-    });
-
-    return WebviewScaffold(
-      resizeToAvoidBottomInset: true,
-      url: Instagram.url,
-      appBar: AppBar(),
+        ),
+      ),
     );
   }
-}
-
-class Instagram {
-  /// [clientID], [appSecret], [redirectUri] from your facebook developer basic display panel.
-  /// [scope] choose what kind of data you're wishing to get.
-  /// [responseType] I recommend only 'code', I try on DEV MODE with token, it wasn't working.
-  /// [url] simply the url used to communicate with Instagram API at the beginning.
-  static const String clientID = '400912798059223';
-  static const String appSecret = '327b32bfc8045243dc58863df2f4f37a';
-  static const String redirectUri = 'https://mahmoudatef955.github.io/';
-  static const String scope = 'user_profile,user_media';
-  static const String responseType = 'code';
-  static const String url =
-      'https://api.instagram.com/oauth/authorize?client_id=${clientID}&redirect_uri=${redirectUri}&scope=${scope}&response_type=${responseType}';
-
-  /// Presets your required fields on each call api.
-  /// Please refers to https://developers.facebook.com/docs/instagram-basic-display-api/reference .
-  List<String> userFields = ['id', 'username'];
-  List<String> mediasListFields = ['id', 'caption'];
-  List<String> mediaFields = [
-    'id',
-    'media_type',
-    'media_url',
-    'username',
-    'timestamp'
-  ];
 }

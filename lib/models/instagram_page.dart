@@ -6,11 +6,11 @@ class InstagramPage {
     required this.paging,
   });
 
-  final List<Data> data;
+  final List<Media> data;
   final Paging paging;
 
   InstagramPage copyWith({
-    required List<Data> data,
+    required List<Media> data,
     required Paging paging,
   }) =>
       InstagramPage(
@@ -21,50 +21,55 @@ class InstagramPage {
   factory InstagramPage.fromRawJson(String str) =>
       InstagramPage.fromJson(json.decode(str));
 
-  String toRawJson() => json.encode(toJson());
-
   factory InstagramPage.fromJson(Map<String, dynamic> json) => InstagramPage(
-        data: List<Data>.from(json["data"].map((x) => Data.fromJson(x))),
+        data: List<Media>.from(json["data"].map((x) => Media.fromJson(x))),
         paging: Paging.fromJson(json["paging"]),
       );
-
-  Map<String, dynamic> toJson() => {
-        "data": List<dynamic>.from(data.map((x) => x.toJson())),
-        "paging": paging.toJson(),
-      };
 }
 
-class Data {
-  Data({
+class Media {
+  Media({
     required this.id,
+    required this.mediaType,
+    required this.mediaUrl,
+    required this.username,
+    required this.timestamp,
     required this.caption,
   });
 
   final String id;
+  final String mediaType;
+  final String mediaUrl;
+  final String username;
+  final String timestamp;
   final String caption;
 
-  Data copyWith({
+  Media copyWith({
     required String id,
+    required String mediaType,
+    required String mediaUrl,
+    required String username,
+    required String timestamp,
     required String caption,
   }) =>
-      Data(
-        id: id,
-        caption: caption,
-      );
+      Media(
+          id: id,
+          caption: caption,
+          mediaType: mediaType,
+          mediaUrl: mediaUrl,
+          timestamp: timestamp,
+          username: username);
 
-  factory Data.fromRawJson(String str) => Data.fromJson(json.decode(str));
+  factory Media.fromRawJson(String str) => Media.fromJson(json.decode(str));
 
-  String toRawJson() => json.encode(toJson());
-
-  factory Data.fromJson(Map<String, dynamic> json) => Data(
+  factory Media.fromJson(Map<String, dynamic> json) => Media(
         id: json["id"],
         caption: json["caption"],
+        mediaType: json["media_type"],
+        mediaUrl: json["media_url"],
+        username: json["username"],
+        timestamp: json["timestamp"],
       );
-
-  Map<String, dynamic> toJson() => {
-        "id": id,
-        "caption": caption,
-      };
 }
 
 class Paging {
@@ -74,7 +79,7 @@ class Paging {
   });
 
   final Cursors cursors;
-  final String next;
+  final String? next;
 
   Paging copyWith({
     required Cursors cursors,
@@ -87,17 +92,10 @@ class Paging {
 
   factory Paging.fromRawJson(String str) => Paging.fromJson(json.decode(str));
 
-  String toRawJson() => json.encode(toJson());
-
   factory Paging.fromJson(Map<String, dynamic> json) => Paging(
         cursors: Cursors.fromJson(json["cursors"]),
         next: json["next"],
       );
-
-  Map<String, dynamic> toJson() => {
-        "cursors": cursors,
-        "next": next,
-      };
 }
 
 class Cursors {
@@ -120,15 +118,8 @@ class Cursors {
 
   factory Cursors.fromRawJson(String str) => Cursors.fromJson(json.decode(str));
 
-  String toRawJson() => json.encode(toJson());
-
   factory Cursors.fromJson(Map<String, dynamic> json) => Cursors(
         after: json["after"],
         before: json["before"],
       );
-
-  Map<String, dynamic> toJson() => {
-        "after": after,
-        "before": before,
-      };
 }

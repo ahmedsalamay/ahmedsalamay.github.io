@@ -159,19 +159,22 @@ class ChooseFrameViewModel extends ChangeNotifier {
 
   Future instgramLogin() async {
     if (kIsWeb) {
-    /*  html.window.open(
+      /*  html.window.open(
           "https://api.instagram.com/oauth/authorize?&scope=user_profile,user_media&response_type=code&client_id=400912798059223&redirect_uri=https://localhost:65308/$instaPickerRoute",
           '_self');*/
     } else {
-      //Get.dialog(WebViewDialogDemo());
+       Get.dialog(WebViewDialogDemo());
 
       final flutterWebviewPlugin = FlutterWebviewPlugin();
+      flutterWebviewPlugin.launch(InstagramConst.authorizeCodeApiUrl);
       flutterWebviewPlugin.onUrlChanged.listen((String url) {
         if (url.startsWith('https://hadaf.vemtto.pickinstagram.com')) {
           Get.back();
 
           var uri = Uri.parse(url);
           final code = uri.queryParameters["code"];
+
+          flutterWebviewPlugin.close();
 
           Get.toNamed(instaPickerRoute, arguments: code);
         }

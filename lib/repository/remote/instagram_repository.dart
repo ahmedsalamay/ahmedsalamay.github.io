@@ -10,7 +10,7 @@ class InstagramRepository {
     try {
       var data = {
         'grant_type': InstagramConst.grantTypeCode,
-        'client_id': InstagramConst.clientID,
+        'client_id': InstagramConst.clientId,
         'client_secret': InstagramConst.appSecret,
         'code': code,
         'redirect_uri': InstagramConst.redirectUri,
