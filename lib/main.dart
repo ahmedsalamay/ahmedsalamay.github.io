@@ -30,6 +30,9 @@ void main() async {
   //   );
   // }
 
+     // setUrlStrategy(PathUrlStrategy());
+
+
   var currentLanguage = await LanguageLocalRepository().getSavedLaunage();
 
   var tokenRepository = TokenLocalRepository();
@@ -90,16 +93,11 @@ class MyApp extends StatelessWidget {
         locale: context.watch<Language>().currentLocale,
         title: 'Fimto',
         theme: myTheme,
-<<<<<<< HEAD
-        initialRoute:
-            chooseFrameRoute, // isUserLogged ? homeRoute : loginRoute,
-=======
         initialRoute: isFirstLaunch
             ? onBoardRoute
             : isUserLogged
                 ? homeRoute
                 : loginRoute,
->>>>>>> 54a93659219c9e8196dd1ee9c12c688d7a3a9de0
         onGenerateRoute: onGenerateRoute,
         defaultTransition: Transition.fade,
         opaqueRoute: Get.isOpaqueRouteDefault,

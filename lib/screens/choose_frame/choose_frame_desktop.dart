@@ -272,13 +272,13 @@ class _ImportPhoto extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           InkWell(
-            onTap: ()=>vm.facebookLogin().then((value) => value != null
-        ? Get.dialog(FacebookPhotos(
-            photos: value,
-            buildContext: context,
-            addFacebookPhoto: vm.addFacebookPhoto,
-          ))
-        : () {}),
+            onTap: () => vm.facebookLogin().then((value) => value != null
+                ? Get.dialog(FacebookPhotos(
+                    photos: value,
+                    buildContext: context,
+                    addFacebookPhoto: vm.addFacebookPhoto,
+                  ))
+                : () {}),
             child: Container(
               height: 80,
               width: 250,
@@ -313,7 +313,6 @@ class _ImportPhoto extends StatelessWidget {
                 ],
               ),
             ),
-<<<<<<< HEAD
           ),
           const Spacer(),
           Container(
@@ -331,47 +330,11 @@ class _ImportPhoto extends StatelessWidget {
                   offset: const Offset(0, 2), // changes position of shadow
                 )
               ],
-=======
-            const Spacer(),
-            Container(
-              height: 80,
-              width: 250,
-              padding: const EdgeInsets.all(15),
-              decoration: BoxDecoration(
-                borderRadius: const BorderRadius.all(Radius.circular(6)),
-                color: Colors.white,
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.withOpacity(0.2),
-                    spreadRadius: 2,
-                    blurRadius: 2,
-                    offset: const Offset(0, 2), // changes position of shadow
-                  )
-                ],
-              ),
-              child: Row(
-                children: [
-                  IconButton(
-                    icon: Image.asset('assets/images/instagram_colored.png'),
-                    padding: const EdgeInsets.all(0),
-                    onPressed: () {},
-                  ),
-                  const SizedBox(width: 15),
-                  Text(
-                    S.of(context).importFromInstagram,
-                    style: Theme.of(context)
-                        .textTheme
-                        .headline3!
-                        .copyWith(fontSize: 14, fontWeight: FontWeight.w800),
-                  ),
-                ],
-              ),
->>>>>>> 54a93659219c9e8196dd1ee9c12c688d7a3a9de0
             ),
             child: Row(
               children: [
                 IconButton(
-                  icon: Image.asset('assets/images/instagm_colored.png'),
+                  icon: Image.asset('assets/images/instagram_colored.png'),
                   padding: const EdgeInsets.all(0),
                   onPressed: () =>
                       context.read<ChooseFrameViewModel>().instgramLogin(),

@@ -19,7 +19,7 @@ import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 import 'package:get/get.dart';
 import 'package:logger/logger.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
-
+//import 'dart:html' as html;
 import 'choose_frame_mobile.dart';
 
 class ChooseFrameViewModel extends ChangeNotifier {
@@ -158,19 +158,25 @@ class ChooseFrameViewModel extends ChangeNotifier {
   }
 
   Future instgramLogin() async {
-    Get.dialog(WebViewDialogDemo());
+    if (kIsWeb) {
+    /*  html.window.open(
+          "https://api.instagram.com/oauth/authorize?&scope=user_profile,user_media&response_type=code&client_id=400912798059223&redirect_uri=https://localhost:65308/$instaPickerRoute",
+          '_self');*/
+    } else {
+      //Get.dialog(WebViewDialogDemo());
 
-    final flutterWebviewPlugin = FlutterWebviewPlugin();
-    flutterWebviewPlugin.onUrlChanged.listen((String url) {
-      if (url.startsWith('https://hadaf.vemtto.pickinstagram.com')) {
-        Get.back();
+      final flutterWebviewPlugin = FlutterWebviewPlugin();
+      flutterWebviewPlugin.onUrlChanged.listen((String url) {
+        if (url.startsWith('https://hadaf.vemtto.pickinstagram.com')) {
+          Get.back();
 
-        var uri = Uri.parse(url);
-        final code = uri.queryParameters["code"];
+          var uri = Uri.parse(url);
+          final code = uri.queryParameters["code"];
 
-        Get.toNamed(instaPickerRoute, arguments: code);
-      }
-    });
+          Get.toNamed(instaPickerRoute, arguments: code);
+        }
+      });
+    }
   }
 
   Future<PhotoPaging?> facebookLogin() async {

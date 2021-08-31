@@ -59,14 +59,10 @@ Route onGenerateRoute(RouteSettings settings) {
 
     case trackOrderRoute:
       return MaterialPageRoute(
-<<<<<<< HEAD
-          builder: (context) => const TrackOrderScreen(), settings: settings);
-
-=======
           builder: (context) =>
               TrackOrderScreen(order: settings.arguments as OrderStatus),
           settings: settings);
->>>>>>> 54a93659219c9e8196dd1ee9c12c688d7a3a9de0
+
     case chooseFrameRoute:
       return MaterialPageRoute(
           builder: (context) => const ChooseFrameScreen(), settings: settings);
