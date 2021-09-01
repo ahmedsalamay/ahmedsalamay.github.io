@@ -15,11 +15,13 @@ class MessageService {
       backgroundColor: Colors.red,
       snackPosition: SnackPosition.BOTTOM,
       snackStyle: SnackStyle.FLOATING,
+      borderRadius: 15,
+      margin: const EdgeInsets.all(0),
       duration: const Duration(seconds: 5),
       messageText: Text(
         message,
         textAlign: TextAlign.center,
-        style: const TextStyle(fontSize: 24, color: Colors.white),
+        style: const TextStyle(fontSize: 19, color: Colors.white),
       ),
     );
   }
@@ -29,14 +31,14 @@ class MessageService {
       title,
       message,
       instantInit: true,
-      backgroundColor: FimtoColors.onPrimaryColor,
+      backgroundColor: FimtoColors.successColor,
       snackPosition: SnackPosition.BOTTOM,
       snackStyle: SnackStyle.FLOATING,
       duration: const Duration(seconds: 5),
       messageText: Text(
         message,
         textAlign: TextAlign.center,
-        style: const TextStyle(fontSize: 24, color: FimtoColors.primaryColor),
+        style: const TextStyle(fontSize: 24, color: Colors.white),
       ),
     );
   }

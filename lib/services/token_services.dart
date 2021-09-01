@@ -1,4 +1,5 @@
 import 'package:async/async.dart';
+import 'package:fimto_frame/generated/l10n.dart';
 import 'package:fimto_frame/models/token.dart';
 import 'package:fimto_frame/repository/local/token_local_repository.dart';
 import 'package:fimto_frame/repository/remote/token_repository.dart';
@@ -13,28 +14,33 @@ class TokenService {
   Future<Result<Token>> loginAsync(String phoneNumber, String password) async {
     var result = await _tokenRepository.loginAsync(phoneNumber, password);
     if (result.isError) {
-      return Result.error(result.asError!.error);
+      if (result.asError!.error == '') {
+        return Result.error(S.current.loginError);
+      }
+      return Result.error(S.current.somethingWentWrong);
     }
     await _tokenLocalRepository.saveToken(result.asValue!.value);
 
     return Result.value(result.asValue!.value);
   }
 
-  Future<Result<Token>> registerAsync(
+  Future<Result<bool>> registerAsync(
       String phoneNumber, String email, String password) async {
     var result =
         await _tokenRepository.registerAsync(email, phoneNumber, password);
     if (result.isError) {
       return Result.error(result.asError!.error);
     }
-    await _tokenLocalRepository.saveToken(result.asValue!.value);
 
     return Result.value(result.asValue!.value);
   }
 
   Future<String?> getAccessToken() async {
-    _token = await _tokenLocalRepository.loadToken();
-    return _token!.accessToken;
+    if (await _tokenLocalRepository.isTokenSaved()) {
+      _token = await _tokenLocalRepository.loadToken();
+      return _token!.accessToken;
+    }
+    return "";
   }
 
   Future<Token?> refreshToken() async {

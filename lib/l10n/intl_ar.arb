@@ -106,6 +106,24 @@
   "status": "حالة:",
   "paid": "مدفوع:",
   "yes": "نعم",
-  "no": "لا"
+  "no": "لا",
+  "loginError": "رقم الهاتف أو كلمة المرور خطأ",
+  "somethingWentWrong": "حدث خطأ، يرجى المحاولة فى وقت لاحق",
+  "addAllField": "الرجاء إضافة كافة الحقول",
+  "continueAsGuest": "اكمل كضيف",
+  "youHaveToLogin": "يجب عليك تسجيل الدخول للمتابعة",
+  "logout": "تسجيل خروج",
+  "otpVerification": "التحقق من OTP",
+  "enterTheOtp": "أدخل OTP المرسل إلى",
+  "didntReceiveOtp": "لم تستلم OTP؟",
+  "resendOTP": "إعادة إرسال OTP"
+
+
+
+
+
+
+
+
 
 }

@@ -1,4 +1,6 @@
 import 'package:fimto_frame/models/order_status.dart';
+import 'package:fimto_frame/screens/activate_user/activate_user_desktop.dart';
+import 'package:fimto_frame/screens/activate_user/activate_user_view.dart';
 import 'package:fimto_frame/screens/add_address/add_address_view.dart';
 import 'package:fimto_frame/screens/add_payment_method/add_payment_method_view.dart';
 import 'package:fimto_frame/screens/choose_frame/choose_frame_view.dart';
@@ -69,8 +71,12 @@ Route onGenerateRoute(RouteSettings settings) {
 
     case loginRoute:
       return MaterialPageRoute(
-          builder: (context) => const LoginScreen(), settings: settings);
-
+          builder: (context) => LoginScreen(
+              isComingFromGuest: settings.arguments != null
+                  ? settings.arguments as bool
+                  : false),
+          settings: settings);
+          
     case registerRoute:
       return MaterialPageRoute(
           builder: (context) => const RegisterScreen(), settings: settings);
@@ -78,6 +84,11 @@ Route onGenerateRoute(RouteSettings settings) {
     case currentOrdersRoute:
       return MaterialPageRoute(
           builder: (context) => const CurrentOrdersScreen(),
+          settings: settings);
+    case activateUserRoute:
+      return MaterialPageRoute(
+          builder: (context) =>
+              ActivateUserScreen(phoneNumber: settings.arguments as String),
           settings: settings);
 
     case instaPickerRoute:

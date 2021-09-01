@@ -1,5 +1,6 @@
 import 'package:fimto_frame/generated/l10n.dart';
 import 'package:fimto_frame/models/language.dart';
+import 'package:fimto_frame/repository/remote/preference.dart';
 import 'package:fimto_frame/routes/router_names.dart';
 import 'package:fimto_frame/themes/theme.dart';
 import 'package:flutter/material.dart';
@@ -62,13 +63,6 @@ class _DrawerItems extends StatelessWidget {
                 ListTile(
                   onTap: () {},
                   title: Text(
-                    S.of(context).addPromoCode,
-                    style: Theme.of(context).textTheme.headline3,
-                  ),
-                ),
-                ListTile(
-                  onTap: () {},
-                  title: Text(
                     S.of(context).faq,
                     style: Theme.of(context).textTheme.headline3,
                   ),
@@ -98,6 +92,17 @@ class _DrawerItems extends StatelessWidget {
                   onTap: () {},
                   title: Text(
                     S.of(context).fimtoArt,
+                    style: Theme.of(context).textTheme.headline3,
+                  ),
+                ),
+                ListTile(
+                  onTap: () async {
+                    final preferences = await Preferences.getInstance();
+                    preferences.setIsLogged(false);
+                    Get.offAllNamed(loginRoute);
+                  },
+                  title: Text(
+                    S.of(context).logout,
                     style: Theme.of(context).textTheme.headline3,
                   ),
                 ),

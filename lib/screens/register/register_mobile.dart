@@ -33,6 +33,7 @@ class _Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final vm = context.watch<RegisterViewModel>();
+    final height = MediaQuery.of(context).size.height;
     return SafeArea(
       child: Container(
         height: double.infinity,
@@ -60,27 +61,26 @@ class _Body extends StatelessWidget {
                             ),
                             const SizedBox(width: 6),
                             Text(S.of(context).changeLanguage,
-                                style: Theme.of(context).textTheme.headline5),
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .headline5!
+                                    .copyWith(fontSize: 16)),
                           ],
                         ),
                       )),
-                  const SizedBox(height: 90),
-                  const Center(
+                  SizedBox(height: height * 0.09),
+                  Center(
                     child: Image(
-                      image: AssetImage('assets/images/logo.png'),
+                      image: const AssetImage('assets/images/logo.png'),
                       fit: BoxFit.cover,
                       color: FimtoColors.primaryColor,
-                      height: 80,
+                      height: height * 0.1,
                     ),
                   ),
-                  const SizedBox(height: 100),
+                  SizedBox(height: height * 0.12),
                   Visibility(
                     child: const Center(child: CircularProgressIndicator()),
                     visible: vm.isLoading,
-                  ),
-                  Text(
-                    S.of(context).phoneNumber,
-                    style: Theme.of(context).textTheme.headline3,
                   ),
                   const SizedBox(height: 15),
                   TextFormField(
@@ -90,13 +90,8 @@ class _Body extends StatelessWidget {
                     keyboardType: TextInputType.phone,
                     textInputAction: TextInputAction.next,
                     decoration: InputDecoration(
-                        prefixIcon:const Icon(Icons.phone),
+                        prefixIcon: const Icon(Icons.phone),
                         hintText: S.of(context).phoneNumber),
-                  ),
-                  const SizedBox(height: 12),
-                  Text(
-                    S.of(context).email,
-                    style: Theme.of(context).textTheme.headline3,
                   ),
                   const SizedBox(height: 15),
                   TextFormField(
@@ -106,13 +101,8 @@ class _Body extends StatelessWidget {
                     keyboardType: TextInputType.emailAddress,
                     textInputAction: TextInputAction.next,
                     decoration: InputDecoration(
-                        prefixIcon:const Icon(Icons.email),
+                        prefixIcon: const Icon(Icons.email),
                         hintText: S.of(context).email),
-                  ),
-                  const SizedBox(height: 12),
-                  Text(
-                    S.of(context).password,
-                    style: Theme.of(context).textTheme.headline3,
                   ),
                   const SizedBox(height: 15),
                   TextFormField(

@@ -1,3 +1,4 @@
+import 'package:fimto_frame/generated/l10n.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -15,9 +16,9 @@ class CustomAppBar extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 8),
         decoration: BoxDecoration(color: Colors.white, boxShadow: [
           BoxShadow(
-            color: Colors.grey.withOpacity(0.2),
+            color: Colors.grey.withOpacity(0.1),
             spreadRadius: 1,
-            blurRadius: 2,
+            blurRadius: 1,
             offset: const Offset(0, 2), // changes position of shadow
           ),
         ]),

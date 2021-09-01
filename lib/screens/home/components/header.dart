@@ -42,8 +42,8 @@ class Header extends StatelessWidget {
                     width: 2.0, color: FimtoColors.primaryColor),
                 padding:
                     const EdgeInsets.symmetric(horizontal: 50, vertical: 22)),
-            onPressed: () => Get.toNamed(selectToWhoRoute),
-            child: Text(S.of(context).letsGo),
+            onPressed: () => Get.toNamed(loginRoute),
+            child: Text(S.of(context).login),
           )
         ],
       ),

@@ -1,5 +1,6 @@
 import 'package:fimto_frame/generated/l10n.dart';
 import 'package:fimto_frame/models/constants.dart';
+import 'package:fimto_frame/models/language.dart';
 import 'package:fimto_frame/repository/remote/preference.dart';
 import 'package:fimto_frame/routes/router_names.dart';
 import 'package:fimto_frame/services/connection_service.dart';
@@ -12,10 +13,14 @@ class LoginViewModel extends ChangeNotifier {
   final ConnectionService connectionService;
   final MessageService messageService;
   final TokenService tokenService;
+  final Language language;
+  final bool isComingFromGuest;
 
   LoginViewModel(
       {required this.connectionService,
       required this.messageService,
+      required this.language,
+      required this.isComingFromGuest,
       required this.tokenService});
 
   Future<void> initAsync() async {}
@@ -46,21 +51,28 @@ class LoginViewModel extends ChangeNotifier {
   String? validatePassword(String? password) =>
       password!.isEmpty ? S.current.passwordError : null;
 
-  void toggleLanguage() {}
+  void toggleLanguage() {
+    language.currentLocale.languageCode == 'ar'
+        ? language.changeToEnLanguage()
+        : language.changeToArLanguage();
+  }
 
   void logInAction(GlobalKey<FormState> formKey) {
     final form = formKey.currentState!;
     if (form.validate()) {
       _logIn();
     }
-    // Get.toNamed(homeRoute);
+  }
+
+  void continueAsGuestAction() {
+    Get.toNamed(homeRoute);
   }
 
   void _logIn() async {
     var isConnected = await connectionService.checkConnection();
     if (!isConnected) {
-      messageService.showErrorInfoDialog(
-          S.current.connectionErrorHeader, S.current.connectionErrorMsg);
+      messageService.showErrorSnackBar(
+          title: '', message: S.current.connectionErrorMsg);
       return;
     }
 
@@ -74,15 +86,15 @@ class LoginViewModel extends ChangeNotifier {
 
     var response = await tokenService.loginAsync(_phoneNumber!, _password!);
     if (response.isError) {
-      messageService.showErrorInfoDialog(
-          S.current.sorry, response.asError!.error.toString());
+      messageService.showErrorSnackBar(
+          title: '', message: response.asError!.error.toString());
       setLoadingState(false);
       return;
     }
     setLoadingState(false);
     final preferences = await Preferences.getInstance();
     preferences.setIsLogged(true);
-    Get.offAllNamed(homeRoute);
+    isComingFromGuest ? Get.back(result: true) : Get.offAllNamed(homeRoute);
   }
 
   bool _isValidPhoneNumber(String? value) {

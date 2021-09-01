@@ -1121,6 +1121,106 @@ class S {
       args: [],
     );
   }
+
+  /// `Wrong phone number or password`
+  String get loginError {
+    return Intl.message(
+      'Wrong phone number or password',
+      name: 'loginError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Something went wrong please try again later`
+  String get somethingWentWrong {
+    return Intl.message(
+      'Something went wrong please try again later',
+      name: 'somethingWentWrong',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please Add All Fields`
+  String get addAllField {
+    return Intl.message(
+      'Please Add All Fields',
+      name: 'addAllField',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Continue as guest`
+  String get continueAsGuest {
+    return Intl.message(
+      'Continue as guest',
+      name: 'continueAsGuest',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You have to login to continue`
+  String get youHaveToLogin {
+    return Intl.message(
+      'You have to login to continue',
+      name: 'youHaveToLogin',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Logout`
+  String get logout {
+    return Intl.message(
+      'Logout',
+      name: 'logout',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `OTP Verification`
+  String get otpVerification {
+    return Intl.message(
+      'OTP Verification',
+      name: 'otpVerification',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter the OTP sent to`
+  String get enterTheOtp {
+    return Intl.message(
+      'Enter the OTP sent to',
+      name: 'enterTheOtp',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Didn't Receive OTP? `
+  String get didntReceiveOtp {
+    return Intl.message(
+      'Didn\'t Receive OTP? ',
+      name: 'didntReceiveOtp',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Resend OTP0`
+  String get resendOTP {
+    return Intl.message(
+      'Resend OTP0',
+      name: 'resendOTP',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

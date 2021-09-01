@@ -27,7 +27,9 @@ class TokenLocalRepository {
     return token;
   }
 
-  bool isTokenSaved() {
+  Future<bool> isTokenSaved() async {
+    await Hive.initFlutter();
+    tokenBox = Hive.box('token');
     return tokenBox.values.isNotEmpty;
   }
 

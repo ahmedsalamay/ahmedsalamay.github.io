@@ -10,9 +10,11 @@ import 'package:fimto_frame/models/order.dart';
 import 'package:fimto_frame/models/walls.dart';
 import 'package:fimto_frame/repository/remote/facebook_repository.dart';
 import 'package:fimto_frame/repository/remote/order_repository.dart';
+import 'package:fimto_frame/repository/remote/preference.dart';
 import 'package:fimto_frame/routes/router_names.dart';
 import 'package:fimto_frame/services/connection_service.dart';
 import 'package:fimto_frame/services/message_service.dart';
+import 'package:fimto_frame/services/token_services.dart';
 import 'package:flutter/material.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
@@ -28,6 +30,7 @@ class ChooseFrameViewModel extends ChangeNotifier {
   final ConnectionService connectionService;
   final MessageService messageService;
   final OrderRepository orderRepository;
+  final TokenService? tokenService;
   final Order order;
 
   ChooseFrameViewModel(
@@ -35,6 +38,7 @@ class ChooseFrameViewModel extends ChangeNotifier {
       required this.order,
       required this.messageService,
       required this.orderRepository,
+      this.tokenService,
       required this.connectionService}) {
     loadWalls();
   }
@@ -43,9 +47,9 @@ class ChooseFrameViewModel extends ChangeNotifier {
   List<Walls>? get walls => _walls;
   Walls get wall =>
       _walls!.firstWhere((wall) => wall.noImage == _pickedFiles.length,
-          orElse: () => _walls!.first);
+          orElse: () => _walls!.last);
 
-  String get packageSize => order.packageSize.toString();
+  String get packageSize => order.packageSize!.toInt().toString();
   String get packagePrice => order.packagePrice.toString();
   String get extraFramesPrice =>
       ((_pickedFiles.length - order.packageSize!) * order.extraImagePrice!)
@@ -73,6 +77,68 @@ class ChooseFrameViewModel extends ChangeNotifier {
 
   bool isDeleteButtonVisible = false;
 
+  String? _phoneNumber;
+  String? _password;
+
+  void onPhoneNumberChange(String userName) {
+    _phoneNumber = userName;
+    notifyListeners();
+  }
+
+  void onPasswordChange(String password) {
+    _password = password;
+    notifyListeners();
+  }
+
+  String? validatePhoneNumber(String? phone) =>
+      !_isValidPhoneNumber(phone) ? S.current.phoneNumberError : null;
+
+  String? validatePassword(String? password) =>
+      password!.isEmpty ? S.current.passwordError : null;
+
+  void logInAction(GlobalKey<FormState> formKey) {
+    final form = formKey.currentState!;
+    if (form.validate()) {
+      _logIn();
+    }
+  }
+
+  void _logIn() async {
+    var isConnected = await connectionService.checkConnection();
+    if (!isConnected) {
+      messageService.showErrorSnackBar(
+          title: '', message: S.current.connectionErrorMsg);
+      return;
+    }
+
+    if (_isLoading) {
+      messageService.showErrorSnackBar(
+          title: '', message: S.current.loadingData);
+      return;
+    }
+
+    setLoadingLogin(true);
+
+    var response = await tokenService!.loginAsync(_phoneNumber!, _password!);
+    if (response.isError) {
+      messageService.showErrorSnackBar(
+          title: '', message: response.asError!.error.toString());
+      setLoadingLogin(false);
+      return;
+    }
+    setLoadingLogin(false);
+    final preferences = await Preferences.getInstance();
+    preferences.setIsLogged(true);
+    Get.back(result: true);
+  }
+
+  bool _isValidPhoneNumber(String? value) {
+    if (value == null || value.isEmpty) {
+      return false;
+    }
+    return value.length == minNumber;
+  }
+
   void addFacebookPhoto(List<String> sources) async {
     var isConnected = await connectionService.checkConnection();
     if (!isConnected) {
@@ -82,7 +148,7 @@ class ChooseFrameViewModel extends ChangeNotifier {
       return;
     }
     Get.back();
-    setLoadingState(true);
+    setLoadingLogin(true);
 
     for (var source in sources) {
       var response = await Dio()
@@ -100,6 +166,13 @@ class ChooseFrameViewModel extends ChangeNotifier {
   bool get isLoading => _isLoading;
   void setLoadingState(bool value) {
     _isLoading = value;
+    notifyListeners();
+  }
+
+  bool _isLoadingLogin = false;
+  bool get isLoadingLogin => _isLoadingLogin;
+  void setLoadingLogin(bool value) {
+    _isLoadingLogin = value;
     notifyListeners();
   }
 
@@ -261,7 +334,17 @@ class ChooseFrameViewModel extends ChangeNotifier {
     setLoadingState(false);
   }
 
-  void checkoutAction() {
+  Future<bool> isUserLogged() async {
+    final preferences = await Preferences.getInstance();
+    return preferences.getIsLogged();
+  }
+
+  Future<void> navigateToLogin() async {
+    var isLogged = await Get.toNamed(loginRoute, arguments: true);
+    if (isLogged ?? false) {}
+  }
+
+  void checkoutAction() async {
     order
       ..frame = _selectedFrame.toString().split('.')[1]
       ..imageNo = _pickedFiles.length

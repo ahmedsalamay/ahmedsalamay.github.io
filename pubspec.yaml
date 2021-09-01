@@ -50,11 +50,25 @@ dependencies:
   shimmer_animation: ^2.1.0+1
   flutter_webview_plugin: ^0.4.0
   cached_network_image: ^3.1.0
+  otp_text_field: ^1.1.1
+  flutter_launcher_icons:
+
+flutter_icons:
+  #  image_path: "assets/images/icon-128x128.png"
+  image_path_android: "assets/icon/icon.png"
+  image_path_ios: "assets/icon/icon.png"
+  android: true # can specify file name here e.g. "ic_launcher"
+  ios: true # can specify file name here e.g. "My-Launcher-Icon"
+  adaptive_icon_background: "assets/icon/icon.png" # only available for Android 8.0 devices and above
+  adaptive_icon_foreground: "assets/icon/icon.png" # only available for Android 8.0 devices and above
+
 
 dev_dependencies:
   flutter_lints: ^1.0.4
   flutter_test:
     sdk: flutter
+
+
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
