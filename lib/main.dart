@@ -3,7 +3,7 @@ import 'package:fimto_frame/repository/local/token_local_repository.dart';
 import 'package:fimto_frame/repository/remote/preference.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-//import 'package:flutter_web_plugins/flutter_web_plugins.dart';
+import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 import 'package:provider/provider.dart';
 import 'package:get/get.dart';
 import 'package:fimto_frame/providers.dart';
@@ -30,8 +30,7 @@ void main() async {
   //   );
   // }
 
-     // setUrlStrategy(PathUrlStrategy());
-
+  setUrlStrategy(PathUrlStrategy());
 
   var currentLanguage = await LanguageLocalRepository().getSavedLaunage();
 

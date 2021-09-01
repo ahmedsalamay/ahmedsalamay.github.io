@@ -1,3 +1,5 @@
+import 'package:fimto_frame/routes/router_names.dart';
+
 enum frames { clean, classic, permise, shaded }
 enum orderType { gift, forMe }
 enum OrderStatesEn {
@@ -26,7 +28,10 @@ const int minNumber = 11;
 class InstagramConst {
   static const String clientId = '400912798059223';
   static const String appSecret = '327b32bfc8045243dc58863df2f4f37a';
-  static const String redirectUri = 'https://hadaf.vemtto.pickinstagram.com/';
+  //static const String redirectUri = 'https://localhost:55116/$instaPickerRoute/';
+  //static const String redirectUri = 'https://hadaf.vemtto.pickinstagram.com/';
+  static const String redirectUri = 'https://ahmedsalamay.github.io/$instaPickerRoute/';
+
   static const String scope = 'user_profile,user_media';
   static const String responseType = 'code';
   static const String grantTypeCode = 'authorization_code';

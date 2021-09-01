@@ -4,11 +4,11 @@ import 'package:fimto_frame/services/message_service.dart';
 import 'package:fimto_frame/generated/l10n.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
-//import 'dart:html' as html;
+import 'dart:html' as html;
 
 class InstagramPickerViewModel with ChangeNotifier {
   final InstagramRepository instagramRepository;
-  final String instagramAcessTokenCode;
+  String instagramAcessTokenCode;
   final MessageService messageService;
 
   InstagramPickerViewModel({
@@ -19,9 +19,9 @@ class InstagramPickerViewModel with ChangeNotifier {
 
   Future initAsync() async {
     if (kIsWeb) {
-      /*   final loc = Uri.parse(html.window.location.href);
+      final loc = Uri.parse(html.window.location.href);
       final code = loc.queryParameters["code"];
-      instagramAcessTokenCode = code!;*/
+      instagramAcessTokenCode = code!;
     }
 
     var tokenResponse =

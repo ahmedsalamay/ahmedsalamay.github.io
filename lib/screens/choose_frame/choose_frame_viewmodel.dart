@@ -22,7 +22,7 @@ import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 import 'package:get/get.dart';
 import 'package:logger/logger.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
-//import 'dart:html' as html;
+import 'dart:html' as html;
 import 'choose_frame_mobile.dart';
 
 class ChooseFrameViewModel extends ChangeNotifier {
@@ -235,16 +235,16 @@ class ChooseFrameViewModel extends ChangeNotifier {
     List<Media>? medias;
 
     if (kIsWeb) {
-      /*  html.window.open(
-          "https://api.instagram.com/oauth/authorize?&scope=user_profile,user_media&response_type=code&client_id=400912798059223&redirect_uri=https://localhost:65308/$instaPickerRoute",
-          '_self');*/
+      html.window.open(
+          "https://api.instagram.com/oauth/authorize?&scope=${InstagramConst.scope}&response_type=${InstagramConst.responseType}&client_id=${InstagramConst.clientId}&redirect_uri=${InstagramConst.redirectUri}",
+          '_self');
     } else {
       Get.dialog(const WebViewDialogDemo());
 
       final flutterWebviewPlugin = FlutterWebviewPlugin();
       flutterWebviewPlugin.launch(InstagramConst.authorizeCodeApiUrl);
       flutterWebviewPlugin.onUrlChanged.listen((String url) async {
-        if (url.startsWith('https://hadaf.vemtto.pickinstagram.com')) {
+        if (url.startsWith(InstagramConst.redirectUri)) {
           Get.back();
 
           var uri = Uri.parse(url);
@@ -256,7 +256,7 @@ class ChooseFrameViewModel extends ChangeNotifier {
               await Get.toNamed(instaPickerRoute, arguments: code);
 
           setLoadingState(true);
-          
+
           var sources = result.map((e) => e.mediaUrl).toList();
           for (var source in sources) {
             var response = await Dio().get(source,
